@@ -549,28 +549,10 @@
             box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
 
-        /* Footer */
-        footer {
-            background: var(--dark);
-            color: white;
-            text-align: center;
-            padding: 60px 20px;
-        }
-
-        footer .heart {
-            color: var(--primary);
-            animation: heartbeat 1.5s infinite;
-        }
-
         /* Animations */
         @keyframes bounce {
             0%, 100% { transform: translateX(-50%) translateY(0); }
             50% { transform: translateX(-50%) translateY(-10px); }
-        }
-
-        @keyframes heartbeat {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
         }
 
         /* Responsive */
@@ -842,15 +824,6 @@
             <button type="submit" id="submitBtn">Confirmar Asistencia</button>
         </form>
     </section>
-
-    <!-- Footer -->
-    <footer>
-        <p style="font-size: 2rem; margin-bottom: 15px; font-family: 'Cormorant Garamond', serif;">
-            Sara <span class="heart">♥</span> Carlos
-        </p>
-        <p style="font-size: 1.2rem;">2-3 de Octubre, 2026</p>
-        <p style="margin-top: 10px; opacity: 0.8;">Talavera de la Reina, Toledo</p>
-    </footer>
 
     <!-- Modals -->
     <div id="modal-hotel1" class="modal">
