@@ -1,0 +1,596 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carlos & Sara - 03.10.2026</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            color: #2c3e50;
+            line-height: 1.6;
+            background: #f8f9fa;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><path d="M50 10 L60 40 L90 40 L65 60 L75 90 L50 70 L25 90 L35 60 L10 40 L40 40 Z" fill="rgba(255,255,255,0.05)"/></svg>');
+            opacity: 0.3;
+        }
+
+        h1 {
+            font-size: 4em;
+            font-weight: 300;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .ampersand {
+            font-family: 'Brush Script MT', cursive;
+            font-size: 1.2em;
+            margin: 0 15px;
+        }
+
+        .date {
+            font-size: 1.5em;
+            font-weight: 300;
+            letter-spacing: 3px;
+            position: relative;
+            z-index: 1;
+        }
+
+        nav {
+            background: white;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 20px;
+        }
+
+        nav a {
+            color: #667eea;
+            text-decoration: none;
+            padding: 10px 25px;
+            transition: all 0.3s;
+            font-size: 0.95em;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        nav a:hover {
+            color: #764ba2;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+
+        section {
+            max-width: 900px;
+            margin: 60px auto;
+            padding: 40px 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        h2 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            color: #667eea;
+            text-align: center;
+            font-weight: 300;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .countdown-item {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 10px;
+            min-width: 100px;
+        }
+
+        .countdown-number {
+            font-size: 3em;
+            font-weight: bold;
+            display: block;
+        }
+
+        .countdown-label {
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .event-details {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+
+        .event-item {
+            margin: 20px 0;
+            padding: 20px;
+            border-left: 4px solid #667eea;
+            background: white;
+        }
+
+        .event-item h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+
+        .event-item p {
+            margin: 5px 0;
+            line-height: 1.8;
+        }
+
+        .accommodation-list {
+            display: grid;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .accommodation-card {
+            border: 2px solid #e9ecef;
+            padding: 25px;
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+
+        .accommodation-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+        }
+
+        .accommodation-card h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .accommodation-card p {
+            margin: 8px 0;
+            color: #6c757d;
+        }
+
+        .rsvp-form {
+            max-width: 500px;
+            margin: 30px auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #495057;
+            font-weight: 500;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e9ecef;
+            border-radius: 5px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+            font-family: inherit;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            cursor: pointer;
+            width: 100%;
+            transition: transform 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+        }
+
+        .heart {
+            color: #e74c3c;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .info-note {
+            background: #e3f2fd;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #2196f3;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5em; }
+            h2 { font-size: 2em; }
+            .countdown-number { font-size: 2em; }
+            nav ul { flex-direction: column; align-items: center; }
+            .form-row { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Carlos <span class="ampersand">&</span> Sara</h1>
+        <p class="date">03 · 10 · 2026</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#evento">Evento</a></li>
+            <li><a href="#recomendaciones">Recomendaciones</a></li>
+            <li><a href="#confirmacion">Confirmación</a></li>
+        </ul>
+    </nav>
+
+    <section id="inicio">
+        <h2>¡Nos Casamos!</h2>
+        <p style="text-align: center; font-size: 1.2em; color: #6c757d; margin-bottom: 20px;">
+            Estamos muy emocionados de compartir este día tan especial con vosotros
+        </p>
+        
+        <div class="countdown">
+            <div class="countdown-item">
+                <span class="countdown-number" id="days">0</span>
+                <span class="countdown-label">Días</span>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-number" id="hours">0</span>
+                <span class="countdown-label">Horas</span>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-number" id="minutes">0</span>
+                <span class="countdown-label">Minutos</span>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-number" id="seconds">0</span>
+                <span class="countdown-label">Segundos</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="evento">
+        <h2>Detalles del Evento</h2>
+        
+        <div class="info-note">
+            <p style="text-align: center; margin: 0;">
+                <strong>📅 Fin de semana de celebración: 2-3 de Octubre, 2026</strong>
+            </p>
+        </div>
+
+        <div class="event-details">
+            <div class="event-item">
+                <h3>🍷 Preboda - Viernes 02/10/2026</h3>
+                <p><strong>Misa de 1</strong></p>
+                <p>📍 Calle José Luis Gallo, 1</p>
+                <p>Talavera de la Reina, Toledo</p>
+                <p>🕘 21:00h</p>
+                <p style="margin-top: 10px; font-style: italic;">Una noche para reunirnos y empezar a celebrar juntos</p>
+            </div>
+            
+            <div class="event-item">
+                <h3>💒 Ceremonia - Sábado 03/10/2026</h3>
+                <p><strong>Iglesia de Santa María la Mayor</strong></p>
+                <p>📍 Talavera de la Reina, Toledo</p>
+                <p>🕕 18:00h</p>
+            </div>
+            
+            <div class="event-item">
+                <h3>🥂 Banquete - Sábado 03/10/2026</h3>
+                <p><strong>NÜA - Carlos Maldonado</strong></p>
+                <p>📍 Av. de Miramar, 1, Serranillos Playa</p>
+                <p>45646 Talavera de la Reina, Toledo</p>
+                <p>A orillas del embalse de Cazalegas</p>
+                <p style="margin-top: 10px; font-style: italic;">Finca singular con cocina de autor del chef estrella Michelin Carlos Maldonado</p>
+            </div>
+
+            <div class="event-item">
+                <h3>👔 Dress Code</h3>
+                <p>Etiqueta formal</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="recomendaciones">
+        <h2>Recomendaciones</h2>
+        
+        <h3 style="color: #667eea; margin: 30px 0 20px 0; font-size: 1.8em;">🏨 Alojamiento</h3>
+        <p style="text-align: center; color: #6c757d; margin-bottom: 30px;">
+            Hemos seleccionado estos alojamientos para vuestra comodidad en Talavera de la Reina
+        </p>
+        
+        <div class="accommodation-list">
+            <div class="accommodation-card">
+                <h3>🏨 Hotel Perales ⭐⭐⭐⭐</h3>
+                <p>📍 Avda. de Toledo, 1</p>
+                <p>📞 925 82 47 00</p>
+                <p>Hotel céntrico con todas las comodidades</p>
+                <p style="margin-top: 10px; font-weight: 500;">💡 Menciona la boda de Carlos & Sara para tarifa especial</p>
+            </div>
+
+            <div class="accommodation-card">
+                <h3>🏨 Hotel Beatriz Toledo Auditorium ⭐⭐⭐⭐</h3>
+                <p>📍 Carretera Madrid-Lisboa, Km 116</p>
+                <p>📞 925 82 76 00</p>
+                <p>Hotel con spa y restaurante</p>
+                <p style="margin-top: 10px; font-weight: 500;">💡 Reserva anticipada recomendada</p>
+            </div>
+
+            <div class="accommodation-card">
+                <h3>🏡 Apartamentos Turísticos</h3>
+                <p>📍 Varias ubicaciones en el centro</p>
+                <p>💡 Ideal para grupos o familias</p>
+                <p>🔍 Buscar en Airbnb o Booking</p>
+            </div>
+        </div>
+
+        <h3 style="color: #667eea; margin: 50px 0 20px 0; font-size: 1.8em;">🍽️ Restaurantes Recomendados</h3>
+        
+        <div class="accommodation-list">
+            <div class="accommodation-card">
+                <h3>⭐ Raíces - Carlos Maldonado</h3>
+                <p>📍 Ronda del Cañillo, 3</p>
+                <p>📞 671 42 21 15</p>
+                <p>🌟 Restaurante con Estrella Michelin</p>
+                <p>Cocina de autor manchega con toque creativo</p>
+            </div>
+
+            <div class="accommodation-card">
+                <h3>🍷 Misa de 1</h3>
+                <p>📍 Calle José Luis Gallo, 1</p>
+                <p>📞 925 04 62 06</p>
+                <p>Restaurante céntrico con ambiente familiar</p>
+                <p>Cocina mediterránea y española</p>
+            </div>
+
+            <div class="accommodation-card">
+                <h3>🍽️ El Monasterio</h3>
+                <p>📍 Av. Real Fábrica de Sedas, 3</p>
+                <p>Vistas a la Colegiata de Santa María la Mayor</p>
+                <p>Cocina mediterránea y española</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="confirmacion">
+        <h2>Confirma tu Asistencia</h2>
+        <p style="text-align: center; color: #6c757d; margin-bottom: 30px;">
+            Por favor, confirma tu asistencia antes del <strong>1 de Septiembre de 2026</strong>
+        </p>
+        
+        <div class="info-note">
+            <p style="text-align: center; margin: 0;">
+                Este formulario enviará tu confirmación directamente a Carlos y Sara por email
+            </p>
+        </div>
+
+        <form class="rsvp-form" action="https://formsubmit.co/carlosmartingonzalez2012@gmail.com" method="POST">
+            <!-- FormSubmit Configuration -->
+            <input type="hidden" name="_subject" value="Nueva confirmación de asistencia - Boda Carlos & Sara">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="table">
+            
+            <div class="form-group">
+                <label>Nombre completo *</label>
+                <input type="text" name="Nombre_Completo" required placeholder="Tu nombre">
+            </div>
+
+            <div class="form-group">
+                <label>Email *</label>
+                <input type="email" name="Email" required placeholder="tu@email.com">
+            </div>
+
+            <div class="form-group">
+                <label>¿Asistirás a la ceremonia y banquete? *</label>
+                <select name="Asistencia_Ceremonia_Banquete" required>
+                    <option value="">Selecciona una opción</option>
+                    <option value="Sí, asistiré">Sí, asistiré</option>
+                    <option value="No podré asistir">No podré asistir</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>¿Asistirás a la preboda (02/10/2026)? *</label>
+                <select name="Asistencia_Preboda" required>
+                    <option value="">Selecciona una opción</option>
+                    <option value="Sí, asistiré a la preboda">Sí, asistiré a la preboda</option>
+                    <option value="No asistiré a la preboda">No asistiré a la preboda</option>
+                </select>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Número de acompañantes</label>
+                    <input type="number" name="Numero_Acompanantes" min="0" max="5" value="0">
+                </div>
+
+                <div class="form-group">
+                    <label>Número de niños</label>
+                    <input type="number" name="Numero_Ninos" min="0" max="5" value="0">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Alergias o restricciones alimentarias</label>
+                <textarea name="Alergias_Restricciones" rows="3" placeholder="Déjanos saber si tienes alguna alergia o preferencia alimentaria"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>¿Necesitarás servicio de autobús? *</label>
+                <select name="Servicio_Autobus" required>
+                    <option value="">Selecciona una opción</option>
+                    <option value="Sí, necesito autobús">Sí, necesito autobús</option>
+                    <option value="No, iré por mi cuenta">No, iré por mi cuenta</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Mensaje para los novios</label>
+                <textarea name="Mensaje" rows="4" placeholder="¡Nos encantaría leer vuestras palabras!"></textarea>
+            </div>
+
+            <button type="submit">Enviar Confirmación</button>
+        </form>
+    </section>
+
+    <footer>
+        <p style="font-size: 1.5em; margin-bottom: 10px;">Carlos <span class="heart">♥</span> Sara</p>
+        <p>2-3 de Octubre de 2026 · Talavera de la Reina</p>
+        <p style="margin-top: 20px; opacity: 0.8;">¡Nos vemos en el altar!</p>
+    </footer>
+
+    <script>
+        // Countdown Timer
+        const weddingDate = new Date('2026-10-03T18:00:00').getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = days;
+            document.getElementById('hours').textContent = hours;
+            document.getElementById('minutes').textContent = minutes;
+            document.getElementById('seconds').textContent = seconds;
+
+            if (distance < 0) {
+                document.querySelector('.countdown').innerHTML = '<h3 style="color: #667eea;">¡Ya es nuestro día especial!</h3>';
+            }
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        // Form submission - Google Forms style
+        document.getElementById('rsvpForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(e.target);
+            const data = {};
+            formData.forEach((value, key) => {
+                data[key] = value;
+            });
+
+            // Crear el mailto con toda la información
+            const subject = encodeURIComponent('Confirmación de asistencia - ' + data.nombre);
+            const body = encodeURIComponent(`
+CONFIRMACIÓN DE ASISTENCIA A LA BODA
+
+Nombre: ${data.nombre}
+Email: ${data.email}
+
+ASISTENCIA:
+- Ceremonia y Banquete: ${data.asistencia === 'si' ? 'SÍ' : 'NO'}
+- Preboda (02/10/2026): ${data.preboda === 'si' ? 'SÍ' : 'NO'}
+
+INVITADOS:
+- Acompañantes: ${data.acompanantes || '0'}
+- Niños: ${data.ninos || '0'}
+
+SERVICIOS:
+- Necesita autobús: ${data.autobus === 'si' ? 'SÍ' : 'NO'}
+
+ALERGIAS/RESTRICCIONES:
+${data.alergias || 'Ninguna'}
+
+MENSAJE:
+${data.mensaje || 'Sin mensaje'}
+            `);
+
+            // Abrir el cliente de correo
+            window.location.href = `mailto:tu-email@ejemplo.com?subject=${subject}&body=${body}`;
+            
+            // Mostrar confirmación
+            alert('¡Gracias por confirmar tu asistencia!\n\nSe abrirá tu cliente de correo para enviar la confirmación a Carlos y Sara.\n\nSi no se abre automáticamente, por favor envía un email a: tu-email@ejemplo.com');
+        });
+    </script>
+</body>
+</html>
