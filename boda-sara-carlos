@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carlos & Sara - Nuestra Boda</title>
+    <title>Sara & Carlos - Nuestra Boda</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Montserrat:wght@300;400;500&display=swap');
         
@@ -70,33 +70,30 @@
             transform: rotate(-10deg);
         }
 
-        .hero-content {
-            animation: fadeInUp 1.5s ease;
-        }
-
-        .hero h1 {
+        h1 {
             font-family: 'Cormorant Garamond', serif;
             font-size: 7rem;
             font-weight: 300;
             margin-bottom: 20px;
-            letter-spacing: 4px;
+            position: relative;
+            z-index: 1;
         }
 
-        .hero .ampersand {
+        .ampersand {
             font-size: 8rem;
             margin: 0 30px;
             display: inline-block;
             font-style: italic;
         }
 
-        .hero .date {
+        .date {
             font-size: 1.5rem;
             letter-spacing: 8px;
             margin-top: 20px;
             font-weight: 300;
         }
 
-        .hero .location {
+        .location {
             font-size: 1.2rem;
             margin-top: 10px;
             opacity: 0.9;
@@ -385,6 +382,90 @@
             margin-bottom: 20px;
         }
 
+        .card.clickable {
+            cursor: pointer;
+        }
+
+        .card.clickable:hover {
+            transform: translateY(-10px) scale(1.02);
+        }
+
+        /* Modal Popup */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            animation: fadeIn 0.3s;
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 40px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 600px;
+            position: relative;
+            animation: slideDown 0.3s;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .close-modal {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #aaa;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .close-modal:hover {
+            color: var(--secondary);
+        }
+
+        .modal-content h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+
+        .modal-content .modal-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .modal-info {
+            margin: 15px 0;
+            padding: 15px;
+            background: var(--accent);
+            border-radius: 8px;
+        }
+
+        .modal-info strong {
+            color: var(--secondary);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
         /* Form */
         .rsvp-form {
             max-width: 600px;
@@ -422,12 +503,6 @@
             border-color: var(--primary);
         }
 
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
         button {
             width: 100%;
             padding: 18px;
@@ -458,23 +533,11 @@
         }
 
         footer .heart {
-            font-size: 2rem;
             color: var(--primary);
             animation: heartbeat 1.5s infinite;
         }
 
         /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
         @keyframes bounce {
             0%, 100% { transform: translateX(-50%) translateY(0); }
             50% { transform: translateX(-50%) translateY(-10px); }
@@ -487,8 +550,8 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 3.5rem; }
-            .hero .ampersand { font-size: 4rem; margin: 0 15px; }
+            h1 { font-size: 3.5rem; }
+            .ampersand { font-size: 4rem; margin: 0 15px; }
             h2 { font-size: 2.5rem; }
             nav ul { gap: 20px; flex-wrap: wrap; padding: 0 20px; }
             .timeline::before { left: 20px; }
@@ -496,17 +559,6 @@
             .timeline-content { width: 100%; margin-left: 40px; }
             .timeline-dot { left: 20px; }
             .countdown-container { gap: 30px; }
-            .form-row { grid-template-columns: 1fr; }
-        }
-
-        .info-box {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: white;
-            padding: 30px;
-            border-radius: 15px;
-            text-align: center;
-            margin: 40px 0;
-            font-size: 1.2rem;
         }
     </style>
 </head>
@@ -529,7 +581,7 @@
                 <li><a href="#inicio" style="color: var(--dark); font-size: 0.85rem;">Inicio</a></li>
                 <li><a href="#evento" style="color: var(--dark); font-size: 0.85rem;">Evento</a></li>
                 <li><a href="#recomendaciones" style="color: var(--dark); font-size: 0.85rem;">Recomendaciones</a></li>
-                <li><a href="#confirmacion" style="color: var(--dark); font-size: 0.85rem;">Confirmar</a></li>
+                <li><a href="#confirmacion" style="color: var(--dark); font-size: 0.85rem;">Confirmación</a></li>
             </ul>
         </nav>
         
@@ -542,14 +594,12 @@
             <li><a href="#inicio">Inicio</a></li>
             <li><a href="#evento">Evento</a></li>
             <li><a href="#recomendaciones">Recomendaciones</a></li>
-            <li><a href="#confirmacion">Confirmar</a></li>
+            <li><a href="#confirmacion">Confirmación</a></li>
         </ul>
     </nav>
 
     <!-- Countdown Section -->
     <section id="inicio">
-        <h2>Nos Casamos</h2>
-        
         <div class="countdown-container">
             <div class="countdown-box">
                 <span class="countdown-number" id="days">0</span>
@@ -572,7 +622,7 @@
 
     <!-- Event Timeline -->
     <section id="evento" class="alt">
-        <h2>Celebración</h2>
+        <h2>Itinerario</h2>
 
         <div class="timeline">
             <div class="timeline-item">
@@ -621,38 +671,9 @@
     <!-- Recommendations -->
     <section id="recomendaciones" class="alt">
         <h2>Recomendaciones</h2>
-        <p class="subtitle">Para hacer de tu estancia una experiencia inolvidable</p>
+        <p class="subtitle">Para que conozcáis nuestros sitios favoritos de Talavera</p>
 
-        <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: var(--secondary); text-align: center; margin: 60px 0 40px;">Alojamiento</h3>
-        
-        <div class="cards-grid">
-            <div class="card">
-                <div class="icon">🏨</div>
-                <h3>Hotel Perales ⭐⭐⭐⭐</h3>
-                <p>📍 Avda. de Toledo, 1</p>
-                <p>📞 925 82 47 00</p>
-                <p style="margin-top: 15px;">Hotel céntrico con todas las comodidades</p>
-                <p style="margin-top: 10px; font-weight: 500; color: var(--primary);">Menciona "Boda Carlos & Sara"</p>
-            </div>
-
-            <div class="card">
-                <div class="icon">🏨</div>
-                <h3>Hotel Beatriz ⭐⭐⭐⭐</h3>
-                <p>📍 Km 116, Madrid-Lisboa</p>
-                <p>📞 925 82 76 00</p>
-                <p style="margin-top: 15px;">Hotel con spa y restaurante</p>
-            </div>
-
-            <div class="card">
-                <div class="icon">🏡</div>
-                <h3>Apartamentos</h3>
-                <p>📍 Centro de Talavera</p>
-                <p style="margin-top: 15px;">Ideal para grupos y familias</p>
-                <p style="margin-top: 10px;">Buscar en Airbnb o Booking</p>
-            </div>
-        </div>
-
-        <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: var(--secondary); text-align: center; margin: 80px 0 40px;">Restaurantes</h3>
+        <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: var(--secondary); text-align: center; margin: 60px 0 40px;">Bares & Restaurantes</h3>
         
         <div class="cards-grid">
             <div class="card">
@@ -676,6 +697,50 @@
                 <h3>El Monasterio</h3>
                 <p>📍 Av. Real Fábrica de Sedas, 3</p>
                 <p style="margin-top: 15px;">Vistas a la Colegiata</p>
+            </div>
+        </div>
+
+        <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: var(--secondary); text-align: center; margin: 80px 0 40px;">Alojamiento</h3>
+        
+        <div class="cards-grid">
+            <div class="card clickable" data-modal="hotel1">
+                <div class="icon">🏨</div>
+                <h3>Hotel Boutique Centro ⭐⭐⭐⭐</h3>
+                <p>📍 Centro de Talavera</p>
+                <p style="margin-top: 15px;">Hotel céntrico con todas las comodidades</p>
+                <p style="margin-top: 10px; font-weight: 500; color: var(--primary);">👉 Ver más información</p>
+            </div>
+
+            <div class="card clickable" data-modal="hotel2">
+                <div class="icon">🏨</div>
+                <h3>Hotel Spa Relax ⭐⭐⭐⭐</h3>
+                <p>📍 A las afueras</p>
+                <p style="margin-top: 15px;">Hotel con spa y restaurante</p>
+                <p style="margin-top: 10px; font-weight: 500; color: var(--primary);">👉 Ver más información</p>
+            </div>
+
+            <div class="card clickable" data-modal="apt1">
+                <div class="icon">🏡</div>
+                <h3>Apartamento Plaza Mayor</h3>
+                <p>📍 Plaza Mayor</p>
+                <p style="margin-top: 15px;">Ideal para 2-4 personas</p>
+                <p style="margin-top: 10px; font-weight: 500; color: var(--primary);">👉 Ver más información</p>
+            </div>
+
+            <div class="card clickable" data-modal="apt2">
+                <div class="icon">🏡</div>
+                <h3>Apartamento Familiar Centro</h3>
+                <p>📍 Centro histórico</p>
+                <p style="margin-top: 15px;">Ideal para familias (4-6 personas)</p>
+                <p style="margin-top: 10px; font-weight: 500; color: var(--primary);">👉 Ver más información</p>
+            </div>
+
+            <div class="card clickable" data-modal="apt3">
+                <div class="icon">🏡</div>
+                <h3>Loft Moderno Río</h3>
+                <p>📍 Junto al río</p>
+                <p style="margin-top: 15px;">Ideal para 2 personas</p>
+                <p style="margin-top: 10px; font-weight: 500; color: var(--primary);">👉 Ver más información</p>
             </div>
         </div>
     </section>
@@ -755,7 +820,177 @@
         <p style="margin-top: 10px; opacity: 0.8;">Talavera de la Reina, Toledo</p>
     </footer>
 
+    <!-- Modals -->
+    <div id="modal-hotel1" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('hotel1')">&times;</span>
+            <div class="modal-icon">🏨</div>
+            <h3>Hotel Boutique Centro</h3>
+            <p style="color: #666; margin-bottom: 20px;">⭐⭐⭐⭐</p>
+            
+            <div class="modal-info">
+                <strong>📍 Dirección</strong>
+                <p>Calle Principal, 123, Centro, Talavera de la Reina</p>
+            </div>
+            
+            <div class="modal-info">
+                <strong>📞 Teléfono</strong>
+                <p>925 XXX XXX</p>
+            </div>
+            
+            <div class="modal-info">
+                <strong>💰 Precio aproximado</strong>
+                <p>80-120€/noche</p>
+            </div>
+            
+            <div class="modal-info">
+                <strong>✨ Características</strong>
+                <p>• WiFi gratuito<br>• Desayuno incluido<br>• Parking disponible<br>• Aire acondicionado</p>
+            </div>
+            
+            <div class="modal-info">
+                <strong>🎁 Reserva especial</strong>
+                <p>Menciona "Boda Sara & Carlos" para tarifa preferente</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-hotel2" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('hotel2')">&times;</span>
+            <div class="modal-icon">🏨</div>
+            <h3>Hotel Spa Relax</h3>
+            <p style="color: #666; margin-bottom: 20px;">⭐⭐⭐⭐</p>
+            
+            <div class="modal-info">
+                <strong>📍 Dirección</strong>
+                <p>Carretera Madrid-Lisboa, Km XX, Talavera de la Reina</p>
+            </div>
+            
+            <div class="modal-info">
+                <strong>📞 Teléfono</strong>
+                <p>925 XXX XXX</p>
+            </div>
+            
+            <div class="modal-info">
+                <strong>💰 Precio aproximado</strong>
+                <p>100-150€/noche</p>
+            </div>
+            
+            <div class="modal-info">
+                <strong>✨ Características</strong>
+                <p>• Spa y piscina<br>• Restaurante<br>• Parking gratuito<br>• WiFi</p>
+            </div>
+            
+            <div class="modal-info">
+                <strong>🎁 Reserva especial</strong>
+                <p>Menciona "Boda Sara & Carlos" para descuento</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-apt1" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('apt1')">&times;</span>
+            <div class="modal-icon">🏡</div>
+            <h3>Apartamento Plaza Mayor</h3>
+            
+            <div class="modal-info">
+                <strong>📍 Dirección</strong>
+                <p>Plaza Mayor, 5, Talavera de la Reina</p>
+            </div>
+            
+            <div class="modal-info">
+                <strong>👥 Capacidad</strong>
+                <p>2-4 personas</p>
+            </div>
+            
+            <div class="modal-info">
+                <strong>💰 Precio aproximado</strong>
+                <p>60-90€/noche</p>
+            </div>
+            
+            <div class="modal-info">
+                <strong>✨ Características</strong>
+                <p>• 1 dormitorio<br>• Cocina equipada<br>• WiFi<br>• En pleno centro</p>
+            </div>
+            
+            <div class="modal-info">
+                <strong>🔗 Reserva</strong>
+                <p>Disponible en Airbnb y Booking.com</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-apt2" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('apt2')">&times;</span>
+            <div class="modal-icon">🏡</div>
+            <h3>Apartamento Familiar Centro</h3>
+            
+            <div class="modal-info">
+                <strong>📍 Dirección</strong>
+                <p>Calle del Carmen, 8, Centro Histórico</p>
+            </div>
+            
+            <div class="modal-info">
+                <strong>👥 Capacidad</strong>
+                <p>4-6 personas</p>
+            </div>
+            
+            <div class="modal-info">
+                <strong>💰 Precio aproximado</strong>
+                <p>90-130€/noche</p>
+            </div>
+            
+            <div class="modal-info">
+                <strong>✨ Características</strong>
+                <p>• 2 dormitorios<br>• 2 baños<br>• Cocina completa<br>• Salón amplio<br>• WiFi</p>
+            </div>
+            
+            <div class="modal-info">
+                <strong>🔗 Reserva</strong>
+                <p>Disponible en Airbnb y Booking.com</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-apt3" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('apt3')">&times;</span>
+            <div class="modal-icon">🏡</div>
+            <h3>Loft Moderno Río</h3>
+            
+            <div class="modal-info">
+                <strong>📍 Dirección</strong>
+                <p>Paseo del Río, 15, Talavera de la Reina</p>
+            </div>
+            
+            <div class="modal-info">
+                <strong>👥 Capacidad</strong>
+                <p>2 personas</p>
+            </div>
+            
+            <div class="modal-info">
+                <strong>💰 Precio aproximado</strong>
+                <p>70-100€/noche</p>
+            </div>
+            
+            <div class="modal-info">
+                <strong>✨ Características</strong>
+                <p>• Diseño moderno<br>• Vistas al río<br>• Cocina americana<br>• WiFi<br>• Parking</p>
+            </div>
+            
+            <div class="modal-info">
+                <strong>🔗 Reserva</strong>
+                <p>Disponible en Airbnb y Booking.com</p>
+            </div>
+        </div>
+    </div>
+
     <script>
+        console.log('=== SCRIPT INICIADO ===');
+
         // Countdown
         const weddingDate = new Date('2026-10-03T18:00:00').getTime();
         
@@ -813,6 +1048,49 @@
                 input.value = '';
             }
         }
+
+        // Modal functions
+        function openModal(id) {
+            console.log('Abriendo modal:', id);
+            const modal = document.getElementById('modal-' + id);
+            if (modal) {
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeModal(id) {
+            console.log('Cerrando modal:', id);
+            const modal = document.getElementById('modal-' + id);
+            if (modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Close modal when clicking outside
+        window.addEventListener('click', function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Add click listeners to accommodation cards
+        console.log('Buscando tarjetas clickables...');
+        const cards = document.querySelectorAll('.card.clickable');
+        console.log('Tarjetas encontradas:', cards.length);
+
+        cards.forEach((card, index) => {
+            console.log('Añadiendo listener a tarjeta', index, card.getAttribute('data-modal'));
+            card.addEventListener('click', function() {
+                const modalId = this.getAttribute('data-modal');
+                console.log('Click en tarjeta, abriendo modal:', modalId);
+                openModal(modalId);
+            });
+        });
+
+        console.log('=== SCRIPT COMPLETADO ===');
     </script>
 </body>
 </html>
