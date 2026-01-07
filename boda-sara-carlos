@@ -503,6 +503,31 @@
             border-color: var(--primary);
         }
 
+        .error-message {
+            color: #e74c3c;
+            font-size: 0.85rem;
+            display: block;
+            margin-top: 5px;
+            min-height: 20px;
+        }
+
+        #formMessage {
+            text-align: center;
+            font-weight: 500;
+        }
+
+        #formMessage.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        #formMessage.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
         button {
             width: 100%;
             padding: 18px;
@@ -742,65 +767,69 @@
     <section id="confirmacion">
         <h2>Confirma tu Asistencia</h2>
 
-        <form class="rsvp-form" action="https://formsubmit.co/carlosmartingonzalez2012@gmail.com" method="POST">
-            <input type="hidden" name="_subject" value="Nueva confirmación - Boda Sara & Carlos">
-            <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_template" value="table">
-
+        <form class="rsvp-form" id="rsvpForm">
             <div class="form-group">
                 <label>Nombre y Apellidos *</label>
-                <input type="text" name="Nombre_Apellidos" required>
+                <input type="text" name="nombre" id="nombre" required>
+                <span class="error-message" id="error-nombre"></span>
             </div>
 
             <div class="form-group">
                 <label>Mail *</label>
-                <input type="email" name="Email" required>
+                <input type="email" name="email" id="email" required>
+                <span class="error-message" id="error-email"></span>
             </div>
 
             <div class="form-group">
                 <label>¿Vienes acompañado/a? *</label>
-                <select name="Viene_Acompañado" id="acompanado" required onchange="toggleAcompanante()">
+                <select name="acompanado" id="acompanado" required onchange="toggleAcompanante()">
                     <option value="">Selecciona</option>
                     <option value="Sí">Sí</option>
                     <option value="No">No</option>
                 </select>
+                <span class="error-message" id="error-acompanado"></span>
             </div>
 
             <div class="form-group" id="acompananteField" style="display: none;">
-                <label>Nombre y Apellidos del Acompañante</label>
-                <input type="text" name="Nombre_Acompanante" id="nombreAcompanante">
+                <label>Nombre y Apellidos del Acompañante *</label>
+                <input type="text" name="nombreAcompanante" id="nombreAcompanante">
+                <span class="error-message" id="error-nombreAcompanante"></span>
             </div>
 
             <div class="form-group">
                 <label>¿Asistiréis a la preboda del viernes? *</label>
-                <select name="Asistencia_Preboda" required>
+                <select name="preboda" id="preboda" required>
                     <option value="">Selecciona</option>
                     <option value="Sí">Sí</option>
                     <option value="No">No</option>
                     <option value="Solo uno de los dos">Solo uno de los dos</option>
                 </select>
+                <span class="error-message" id="error-preboda"></span>
             </div>
 
             <div class="form-group">
                 <label>¿Utilizaréis el Servicio de Autobuses? *</label>
-                <select name="Servicio_Autobus" required>
+                <select name="autobus" id="autobus" required>
                     <option value="">Selecciona</option>
                     <option value="Sí">Sí</option>
                     <option value="No">No</option>
                 </select>
+                <span class="error-message" id="error-autobus"></span>
             </div>
 
             <div class="form-group">
                 <label>Restricciones alimentarias (Alergias, intolerancias)</label>
-                <textarea name="Restricciones_Alimentarias" rows="3" placeholder="Indica aquí cualquier alergia o intolerancia"></textarea>
+                <textarea name="restricciones" id="restricciones" rows="3" placeholder="Indica aquí cualquier alergia o intolerancia"></textarea>
             </div>
 
             <div class="form-group">
                 <label>Número de pie por si los tacones piden un descanso (solo chicas)</label>
-                <input type="text" name="Numero_Pie" placeholder="Ej: 38">
+                <input type="text" name="numeroPie" id="numeroPie" placeholder="Ej: 38">
             </div>
 
-            <button type="submit">Confirmar Asistencia</button>
+            <div id="formMessage" style="margin-top: 20px; padding: 15px; border-radius: 8px; display: none;"></div>
+
+            <button type="submit" id="submitBtn">Confirmar Asistencia</button>
         </form>
     </section>
 
@@ -972,8 +1001,95 @@
                 field.style.display = 'none';
                 input.required = false;
                 input.value = '';
+                document.getElementById('error-nombreAcompanante').textContent = '';
             }
         }
+
+        // Form submission
+        const SCRIPT_URL = 'TU_URL_DE_APPS_SCRIPT_AQUI'; // ⚠️ REEMPLAZAR CON TU URL
+
+        document.getElementById('rsvpForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Limpiar mensajes de error
+            document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
+            document.getElementById('formMessage').style.display = 'none';
+            
+            // Validar campos obligatorios
+            let hasErrors = false;
+            const requiredFields = ['nombre', 'email', 'acompanado', 'preboda', 'autobus'];
+            
+            requiredFields.forEach(fieldId => {
+                const field = document.getElementById(fieldId);
+                if (!field.value.trim()) {
+                    document.getElementById('error-' + fieldId).textContent = 'Información necesaria';
+                    hasErrors = true;
+                }
+            });
+            
+            // Validar acompañante si viene acompañado
+            if (document.getElementById('acompanado').value === 'Sí') {
+                const nombreAcompanante = document.getElementById('nombreAcompanante');
+                if (!nombreAcompanante.value.trim()) {
+                    document.getElementById('error-nombreAcompanante').textContent = 'Información necesaria';
+                    hasErrors = true;
+                }
+            }
+            
+            if (hasErrors) {
+                return;
+            }
+            
+            // Preparar datos
+            const formData = {
+                nombre: document.getElementById('nombre').value,
+                email: document.getElementById('email').value,
+                acompanado: document.getElementById('acompanado').value,
+                nombreAcompanante: document.getElementById('nombreAcompanante').value || '',
+                preboda: document.getElementById('preboda').value,
+                autobus: document.getElementById('autobus').value,
+                restricciones: document.getElementById('restricciones').value || '',
+                numeroPie: document.getElementById('numeroPie').value || ''
+            };
+            
+            // Deshabilitar botón
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Enviando...';
+            
+            try {
+                const response = await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                // Con no-cors no podemos leer la respuesta, asumimos éxito
+                const messageDiv = document.getElementById('formMessage');
+                messageDiv.className = 'success';
+                messageDiv.textContent = '¡Confirmación enviada correctamente! Gracias por confirmar tu asistencia.';
+                messageDiv.style.display = 'block';
+                
+                // Limpiar formulario
+                document.getElementById('rsvpForm').reset();
+                toggleAcompanante();
+                
+                // Scroll al mensaje
+                messageDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                
+            } catch (error) {
+                const messageDiv = document.getElementById('formMessage');
+                messageDiv.className = 'error';
+                messageDiv.textContent = 'Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.';
+                messageDiv.style.display = 'block';
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Confirmar Asistencia';
+            }
+        });
 
         // Modal functions
         function openModal(id) {
