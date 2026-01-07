@@ -579,7 +579,8 @@
         <nav style="position: absolute; bottom: 100px; left: 50%; transform: translateX(-50%); background: transparent; box-shadow: none; padding: 0;">
             <ul style="gap: 40px;">
                 <li><a href="#inicio" style="color: var(--dark); font-size: 0.85rem;">Inicio</a></li>
-                <li><a href="#evento" style="color: var(--dark); font-size: 0.85rem;">Evento</a></li>
+                <li><a href="#itinerario" style="color: var(--dark); font-size: 0.85rem;">Itinerario</a></li>
+                <li><a href="#alojamiento" style="color: var(--dark); font-size: 0.85rem;">Alojamiento</a></li>
                 <li><a href="#recomendaciones" style="color: var(--dark); font-size: 0.85rem;">Recomendaciones</a></li>
                 <li><a href="#confirmacion" style="color: var(--dark); font-size: 0.85rem;">Confirmación</a></li>
             </ul>
@@ -592,7 +593,8 @@
     <nav id="navbar">
         <ul>
             <li><a href="#inicio">Inicio</a></li>
-            <li><a href="#evento">Evento</a></li>
+            <li><a href="#itinerario">Itinerario</a></li>
+            <li><a href="#alojamiento">Alojamiento</a></li>
             <li><a href="#recomendaciones">Recomendaciones</a></li>
             <li><a href="#confirmacion">Confirmación</a></li>
         </ul>
@@ -621,7 +623,7 @@
     </section>
 
     <!-- Event Timeline -->
-    <section id="evento" class="alt">
+    <section id="itinerario" class="alt">
         <h2>Itinerario</h2>
 
         <div class="timeline">
@@ -668,6 +670,60 @@
         </div>
     </section>
 
+    <!-- Accommodation Section -->
+    <section id="alojamiento">
+        <h2>Alojamiento</h2>
+        <p class="subtitle">Opciones para tu estancia en Talavera</p>
+
+        <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: var(--secondary); text-align: center; margin: 60px 0 40px;">Hoteles</h3>
+        
+        <div class="cards-grid">
+            <div class="card clickable" data-modal="hotel1">
+                <div class="icon">🏨</div>
+                <h3>Hotel Boutique Centro ⭐⭐⭐⭐</h3>
+                <p>📍 Centro de Talavera</p>
+                <p style="margin-top: 15px;">Hotel céntrico con todas las comodidades</p>
+                <p style="margin-top: 10px; font-weight: 500; color: var(--primary);">👉 Ver más información</p>
+            </div>
+
+            <div class="card clickable" data-modal="hotel2">
+                <div class="icon">🏨</div>
+                <h3>Hotel Spa Relax ⭐⭐⭐⭐</h3>
+                <p>📍 A las afueras</p>
+                <p style="margin-top: 15px;">Hotel con spa y restaurante</p>
+                <p style="margin-top: 10px; font-weight: 500; color: var(--primary);">👉 Ver más información</p>
+            </div>
+        </div>
+
+        <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: var(--secondary); text-align: center; margin: 80px 0 40px;">Apartamentos & Casas Rurales</h3>
+        
+        <div class="cards-grid">
+            <div class="card clickable" data-modal="apt1">
+                <div class="icon">🏡</div>
+                <h3>Apartamento Plaza Mayor</h3>
+                <p>📍 Plaza Mayor</p>
+                <p style="margin-top: 15px;">Ideal para 2-4 personas</p>
+                <p style="margin-top: 10px; font-weight: 500; color: var(--primary);">👉 Ver más información</p>
+            </div>
+
+            <div class="card clickable" data-modal="apt2">
+                <div class="icon">🏡</div>
+                <h3>Apartamento Familiar Centro</h3>
+                <p>📍 Centro histórico</p>
+                <p style="margin-top: 15px;">Ideal para familias (4-6 personas)</p>
+                <p style="margin-top: 10px; font-weight: 500; color: var(--primary);">👉 Ver más información</p>
+            </div>
+
+            <div class="card clickable" data-modal="apt3">
+                <div class="icon">🏡</div>
+                <h3>Loft Moderno Río</h3>
+                <p>📍 Junto al río</p>
+                <p style="margin-top: 15px;">Ideal para 2 personas</p>
+                <p style="margin-top: 10px; font-weight: 500; color: var(--primary);">👉 Ver más información</p>
+            </div>
+        </div>
+    </section>
+
     <!-- Recommendations -->
     <section id="recomendaciones" class="alt">
         <h2>Recomendaciones</h2>
@@ -697,50 +753,6 @@
                 <h3>El Monasterio</h3>
                 <p>📍 Av. Real Fábrica de Sedas, 3</p>
                 <p style="margin-top: 15px;">Vistas a la Colegiata</p>
-            </div>
-        </div>
-
-        <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: var(--secondary); text-align: center; margin: 80px 0 40px;">Alojamiento</h3>
-        
-        <div class="cards-grid">
-            <div class="card clickable" data-modal="hotel1">
-                <div class="icon">🏨</div>
-                <h3>Hotel Boutique Centro ⭐⭐⭐⭐</h3>
-                <p>📍 Centro de Talavera</p>
-                <p style="margin-top: 15px;">Hotel céntrico con todas las comodidades</p>
-                <p style="margin-top: 10px; font-weight: 500; color: var(--primary);">👉 Ver más información</p>
-            </div>
-
-            <div class="card clickable" data-modal="hotel2">
-                <div class="icon">🏨</div>
-                <h3>Hotel Spa Relax ⭐⭐⭐⭐</h3>
-                <p>📍 A las afueras</p>
-                <p style="margin-top: 15px;">Hotel con spa y restaurante</p>
-                <p style="margin-top: 10px; font-weight: 500; color: var(--primary);">👉 Ver más información</p>
-            </div>
-
-            <div class="card clickable" data-modal="apt1">
-                <div class="icon">🏡</div>
-                <h3>Apartamento Plaza Mayor</h3>
-                <p>📍 Plaza Mayor</p>
-                <p style="margin-top: 15px;">Ideal para 2-4 personas</p>
-                <p style="margin-top: 10px; font-weight: 500; color: var(--primary);">👉 Ver más información</p>
-            </div>
-
-            <div class="card clickable" data-modal="apt2">
-                <div class="icon">🏡</div>
-                <h3>Apartamento Familiar Centro</h3>
-                <p>📍 Centro histórico</p>
-                <p style="margin-top: 15px;">Ideal para familias (4-6 personas)</p>
-                <p style="margin-top: 10px; font-weight: 500; color: var(--primary);">👉 Ver más información</p>
-            </div>
-
-            <div class="card clickable" data-modal="apt3">
-                <div class="icon">🏡</div>
-                <h3>Loft Moderno Río</h3>
-                <p>📍 Junto al río</p>
-                <p style="margin-top: 15px;">Ideal para 2 personas</p>
-                <p style="margin-top: 10px; font-weight: 500; color: var(--primary);">👉 Ver más información</p>
             </div>
         </div>
     </section>
