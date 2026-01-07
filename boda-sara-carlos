@@ -781,6 +781,16 @@
             </div>
 
             <div class="form-group">
+                <label>¿Asistirás a la Boda? *</label>
+                <select name="asisteBoda" id="asisteBoda" required>
+                    <option value="">Selecciona</option>
+                    <option value="Sí">Sí</option>
+                    <option value="No">No</option>
+                </select>
+                <span class="error-message" id="error-asisteBoda"></span>
+            </div>
+
+            <div class="form-group">
                 <label>¿Vienes acompañado/a? *</label>
                 <select name="acompanado" id="acompanado" required onchange="toggleAcompanante()">
                     <option value="">Selecciona</option>
@@ -1006,7 +1016,7 @@
         }
 
         // Form submission
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwBHgFKyTQD0UKT-E4Fqrn2sU3buJKHLotRQsBDd90sW78tU3n7Erge2TEq5UkNv4-Wlw/exec'; // ⚠️ REEMPLAZAR CON TU URL
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz92-E270qmp06frweKBq0OQKK5uklWp0x3WTQSCZXPIpkACAoF4YJaikkbq62USMXWXg/exec'; // ⚠️ REEMPLAZAR CON TU URL
 
         document.getElementById('rsvpForm').addEventListener('submit', async function(e) {
             e.preventDefault();
@@ -1017,7 +1027,7 @@
             
             // Validar campos obligatorios
             let hasErrors = false;
-            const requiredFields = ['nombre', 'email', 'acompanado', 'preboda', 'autobus'];
+            const requiredFields = ['nombre', 'email', 'asisteBoda', 'acompanado', 'preboda', 'autobus'];
             
             requiredFields.forEach(fieldId => {
                 const field = document.getElementById(fieldId);
@@ -1044,6 +1054,7 @@
             const formData = {
                 nombre: document.getElementById('nombre').value,
                 email: document.getElementById('email').value,
+                asisteBoda: document.getElementById('asisteBoda').value,
                 acompanado: document.getElementById('acompanado').value,
                 nombreAcompanante: document.getElementById('nombreAcompanante').value || '',
                 preboda: document.getElementById('preboda').value,
