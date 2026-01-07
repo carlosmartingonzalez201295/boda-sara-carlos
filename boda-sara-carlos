@@ -435,7 +435,7 @@
             </p>
         </div>
 
-        <form class="rsvp-form" action="https://formsubmit.co/TU-EMAIL-AQUI@gmail.com" method="POST">
+        <form class="rsvp-form" action="https://formsubmit.co/carlosmartingonzalez2012@gmail.com" method="POST">
             <input type="hidden" name="_subject" value="Nueva confirmación de asistencia - Boda Carlos & Sara">
             <input type="hidden" name="_captcha" value="false">
             <input type="hidden" name="_template" value="table">
