@@ -683,69 +683,63 @@
     <!-- RSVP Form -->
     <section id="confirmacion">
         <h2>Confirma tu Asistencia</h2>
-        <p class="subtitle">Te esperamos antes del 1 de Septiembre de 2026</p>
 
         <form class="rsvp-form" action="https://formsubmit.co/carlosmartingonzalez2012@gmail.com" method="POST">
-            <input type="hidden" name="_subject" value="Nueva confirmación - Boda Carlos & Sara">
+            <input type="hidden" name="_subject" value="Nueva confirmación - Boda Sara & Carlos">
             <input type="hidden" name="_captcha" value="false">
             <input type="hidden" name="_template" value="table">
 
             <div class="form-group">
-                <label>Nombre Completo *</label>
-                <input type="text" name="Nombre" required>
+                <label>Nombre y Apellidos *</label>
+                <input type="text" name="Nombre_Apellidos" required>
             </div>
 
             <div class="form-group">
-                <label>Email *</label>
+                <label>Mail *</label>
                 <input type="email" name="Email" required>
             </div>
 
             <div class="form-group">
-                <label>¿Asistirás a la ceremonia y banquete? *</label>
-                <select name="Asistencia_Boda" required>
+                <label>¿Vienes acompañado/a? *</label>
+                <select name="Viene_Acompañado" id="acompanado" required onchange="toggleAcompanante()">
                     <option value="">Selecciona</option>
-                    <option value="Sí">Sí, asistiré</option>
-                    <option value="No">No podré asistir</option>
+                    <option value="Sí">Sí</option>
+                    <option value="No">No</option>
                 </select>
             </div>
 
+            <div class="form-group" id="acompananteField" style="display: none;">
+                <label>Nombre y Apellidos del Acompañante</label>
+                <input type="text" name="Nombre_Acompanante" id="nombreAcompanante">
+            </div>
+
             <div class="form-group">
-                <label>¿Asistirás a la preboda (02/10)? *</label>
+                <label>¿Asistiréis a la preboda del viernes? *</label>
                 <select name="Asistencia_Preboda" required>
                     <option value="">Selecciona</option>
-                    <option value="Sí">Sí, asistiré</option>
-                    <option value="No">No asistiré</option>
+                    <option value="Sí">Sí</option>
+                    <option value="No">No</option>
+                    <option value="Solo uno de los dos">Solo uno de los dos</option>
                 </select>
             </div>
 
-            <div class="form-row">
-                <div class="form-group">
-                    <label>Acompañantes</label>
-                    <input type="number" name="Acompanantes" min="0" max="5" value="0">
-                </div>
-                <div class="form-group">
-                    <label>Niños</label>
-                    <input type="number" name="Ninos" min="0" max="5" value="0">
-                </div>
-            </div>
-
             <div class="form-group">
-                <label>Alergias o restricciones</label>
-                <textarea name="Alergias" rows="3"></textarea>
-            </div>
-
-            <div class="form-group">
-                <label>¿Necesitas autobús? *</label>
-                <select name="Autobus" required>
+                <label>¿Utilizaréis el Servicio de Autobuses? *</label>
+                <select name="Servicio_Autobus" required>
                     <option value="">Selecciona</option>
-                    <option value="Sí">Sí, necesito autobús</option>
-                    <option value="No">No, iré por mi cuenta</option>
+                    <option value="Sí">Sí</option>
+                    <option value="No">No</option>
                 </select>
             </div>
 
             <div class="form-group">
-                <label>Mensaje para los novios</label>
-                <textarea name="Mensaje" rows="4"></textarea>
+                <label>Restricciones alimentarias (Alergias, intolerancias)</label>
+                <textarea name="Restricciones_Alimentarias" rows="3" placeholder="Indica aquí cualquier alergia o intolerancia"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Número de pie por si los tacones piden un descanso (solo chicas)</label>
+                <input type="text" name="Numero_Pie" placeholder="Ej: 38">
             </div>
 
             <button type="submit">Confirmar Asistencia</button>
@@ -803,6 +797,22 @@
                 }
             });
         });
+
+        // Toggle acompañante field
+        function toggleAcompanante() {
+            const select = document.getElementById('acompanado');
+            const field = document.getElementById('acompananteField');
+            const input = document.getElementById('nombreAcompanante');
+            
+            if (select.value === 'Sí') {
+                field.style.display = 'block';
+                input.required = true;
+            } else {
+                field.style.display = 'none';
+                input.required = false;
+                input.value = '';
+            }
+        }
     </script>
 </body>
 </html>
