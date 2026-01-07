@@ -635,6 +635,18 @@
 
         <div class="timeline">
             <div class="timeline-item">
+                <div class="timeline-content" style="cursor: pointer;" onclick="openModal('golf')">
+                    <div class="timeline-icon">⛳</div>
+                    <h3>Torneo de Golf</h3>
+                    <p><strong>Viernes, 02 de Octubre</strong></p>
+                    <p>09:30h - Palomarejos Golf</p>
+                    <p style="margin-top: 15px; font-style: italic;">Para los que quieran empezar antes el fin de semana, Carlos está organizando un torneo el viernes por la mañana</p>
+                    <p style="margin-top: 10px; font-weight: 500; color: var(--primary);">👉 Click para inscribirte</p>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+
+            <div class="timeline-item">
                 <div class="timeline-content">
                     <div class="timeline-icon">🍷</div>
                     <h3>Preboda</h3>
@@ -926,6 +938,54 @@
         </div>
     </div>
 
+    <!-- Golf Tournament Modal -->
+    <div id="modal-golf" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('golf')">&times;</span>
+            <div class="modal-icon">⛳</div>
+            <h3>Torneo de Golf</h3>
+            <p style="color: #666; margin-bottom: 20px;">Viernes, 02 de Octubre - 09:30h</p>
+
+            <form id="golfForm" style="margin-top: 30px;">
+                <h4 style="color: var(--secondary); margin-bottom: 20px; text-align: center;">Inscripción al Torneo</h4>
+                
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; margin-bottom: 8px; color: var(--secondary); font-weight: 500;">Nombre y Apellidos *</label>
+                    <input type="text" id="golf-nombre" required style="width: 100%; padding: 12px; border: 2px solid var(--accent); border-radius: 8px; font-size: 1rem;">
+                    <span class="error-message" id="error-golf-nombre"></span>
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; margin-bottom: 8px; color: var(--secondary); font-weight: 500;">Número de Licencia *</label>
+                    <input type="text" id="golf-licencia" required style="width: 100%; padding: 12px; border: 2px solid var(--accent); border-radius: 8px; font-size: 1rem;">
+                    <span class="error-message" id="error-golf-licencia"></span>
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; margin-bottom: 8px; color: var(--secondary); font-weight: 500;">Handicap *</label>
+                    <input type="text" id="golf-handicap" required style="width: 100%; padding: 12px; border: 2px solid var(--accent); border-radius: 8px; font-size: 1rem;">
+                    <span class="error-message" id="error-golf-handicap"></span>
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; margin-bottom: 8px; color: var(--secondary); font-weight: 500;">¿Traerás tus palos? *</label>
+                    <select id="golf-palos" required style="width: 100%; padding: 12px; border: 2px solid var(--accent); border-radius: 8px; font-size: 1rem;">
+                        <option value="">Selecciona</option>
+                        <option value="Sí">Sí</option>
+                        <option value="No">No</option>
+                    </select>
+                    <span class="error-message" id="error-golf-palos"></span>
+                </div>
+
+                <div id="golfFormMessage" style="margin-top: 20px; padding: 15px; border-radius: 8px; display: none;"></div>
+
+                <button type="submit" id="submitGolfBtn" style="width: 100%; padding: 15px; background: var(--primary); color: white; border: none; border-radius: 8px; font-size: 1.1rem; cursor: pointer; text-transform: uppercase; letter-spacing: 2px;">
+                    Confirmar Inscripción
+                </button>
+            </form>
+        </div>
+    </div>
+
     <script>
         console.log('=== SCRIPT INICIADO ===');
 
@@ -989,7 +1049,7 @@
         }
 
         // Form submission
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz92-E270qmp06frweKBq0OQKK5uklWp0x3WTQSCZXPIpkACAoF4YJaikkbq62USMXWXg/exec'; // ⚠️ REEMPLAZAR CON TU URL
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz92-E270qmp06frweKBq0OQKK5uklWp0x3WTQSCZXPIpkACAoF4YJaikkbq62USMXWXg/exec';
 
         document.getElementById('rsvpForm').addEventListener('submit', async function(e) {
             e.preventDefault();
@@ -1072,6 +1132,81 @@
             } finally {
                 submitBtn.disabled = false;
                 submitBtn.textContent = 'Confirmar Asistencia';
+            }
+        });
+
+        // Golf Form submission
+        const GOLF_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz92-E270qmp06frweKBq0OQKK5uklWp0x3WTQSCZXPIpkACAoF4YJaikkbq62USMXWXg/exec';
+
+        document.getElementById('golfForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Limpiar mensajes de error
+            document.querySelectorAll('#modal-golf .error-message').forEach(el => el.textContent = '');
+            document.getElementById('golfFormMessage').style.display = 'none';
+            
+            // Validar campos obligatorios
+            let hasErrors = false;
+            const golfFields = ['golf-nombre', 'golf-licencia', 'golf-handicap', 'golf-palos'];
+            
+            golfFields.forEach(fieldId => {
+                const field = document.getElementById(fieldId);
+                if (!field.value.trim()) {
+                    document.getElementById('error-' + fieldId).textContent = 'Información necesaria';
+                    hasErrors = true;
+                }
+            });
+            
+            if (hasErrors) {
+                return;
+            }
+            
+            // Preparar datos para el golf
+            const golfData = {
+                tipo: 'golf',
+                nombre: document.getElementById('golf-nombre').value,
+                licencia: document.getElementById('golf-licencia').value,
+                handicap: document.getElementById('golf-handicap').value,
+                palos: document.getElementById('golf-palos').value
+            };
+            
+            // Deshabilitar botón
+            const submitBtn = document.getElementById('submitGolfBtn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Enviando...';
+            
+            try {
+                await fetch(GOLF_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(golfData)
+                });
+                
+                const messageDiv = document.getElementById('golfFormMessage');
+                messageDiv.className = 'success';
+                messageDiv.style.background = '#d4edda';
+                messageDiv.style.color = '#155724';
+                messageDiv.style.border = '1px solid #c3e6cb';
+                messageDiv.textContent = '¡Inscripción al torneo enviada correctamente! Nos vemos en el campo.';
+                messageDiv.style.display = 'block';
+                
+                // Limpiar formulario
+                document.getElementById('golfForm').reset();
+                
+            } catch (error) {
+                const messageDiv = document.getElementById('golfFormMessage');
+                messageDiv.className = 'error';
+                messageDiv.style.background = '#f8d7da';
+                messageDiv.style.color = '#721c24';
+                messageDiv.style.border = '1px solid #f5c6cb';
+                messageDiv.textContent = 'Hubo un error al enviar la inscripción. Por favor, inténtalo de nuevo.';
+                messageDiv.style.display = 'block';
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Confirmar Inscripción';
             }
         });
 
