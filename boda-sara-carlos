@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -8,7 +7,7 @@
     <style>
         * {
             margin: 0;
-            padding: 
+            padding: 0;
             box-sizing: border-box;
         }
 
@@ -26,17 +25,6 @@
             padding: 80px 20px;
             position: relative;
             overflow: hidden;
-        }
-
-        header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><path d="M50 10 L60 40 L90 40 L65 60 L75 90 L50 70 L25 90 L35 60 L10 40 L40 40 Z" fill="rgba(255,255,255,0.05)"/></svg>');
-            opacity: 0.3;
         }
 
         h1 {
@@ -108,6 +96,12 @@
             color: #667eea;
             text-align: center;
             font-weight: 300;
+        }
+
+        h3 {
+            color: #667eea;
+            margin: 30px 0 20px 0;
+            font-size: 1.8em;
         }
 
         .countdown {
@@ -185,6 +179,7 @@
         .accommodation-card h3 {
             color: #667eea;
             margin-bottom: 10px;
+            font-size: 1.3em;
         }
 
         .accommodation-card p {
@@ -277,6 +272,7 @@
         @media (max-width: 768px) {
             h1 { font-size: 2.5em; }
             h2 { font-size: 2em; }
+            h3 { font-size: 1.5em; }
             .countdown-number { font-size: 2em; }
             nav ul { flex-direction: column; align-items: center; }
             .form-row { grid-template-columns: 1fr; }
@@ -369,7 +365,7 @@
     <section id="recomendaciones">
         <h2>Recomendaciones</h2>
         
-        <h3 style="color: #667eea; margin: 30px 0 20px 0; font-size: 1.8em;">🏨 Alojamiento</h3>
+        <h3>🏨 Alojamiento</h3>
         <p style="text-align: center; color: #6c757d; margin-bottom: 30px;">
             Hemos seleccionado estos alojamientos para vuestra comodidad en Talavera de la Reina
         </p>
@@ -399,7 +395,7 @@
             </div>
         </div>
 
-        <h3 style="color: #667eea; margin: 50px 0 20px 0; font-size: 1.8em;">🍽️ Restaurantes Recomendados</h3>
+        <h3>🍽️ Restaurantes Recomendados</h3>
         
         <div class="accommodation-list">
             <div class="accommodation-card">
@@ -439,8 +435,7 @@
             </p>
         </div>
 
-        <form class="rsvp-form" action="https://formsubmit.co/carlosmartingonzalez2012@gmail.com" method="POST">
-            <!-- FormSubmit Configuration -->
+        <form class="rsvp-form" action="https://formsubmit.co/TU-EMAIL-AQUI@gmail.com" method="POST">
             <input type="hidden" name="_subject" value="Nueva confirmación de asistencia - Boda Carlos & Sara">
             <input type="hidden" name="_captcha" value="false">
             <input type="hidden" name="_template" value="table">
@@ -515,7 +510,6 @@
     </footer>
 
     <script>
-        // Countdown Timer
         const weddingDate = new Date('2026-10-03T18:00:00').getTime();
 
         function updateCountdown() {
@@ -540,56 +534,14 @@
         updateCountdown();
         setInterval(updateCountdown, 1000);
 
-        // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
-                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
             });
-        });
-
-        // Form submission - Google Forms style
-        document.getElementById('rsvpForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const formData = new FormData(e.target);
-            const data = {};
-            formData.forEach((value, key) => {
-                data[key] = value;
-            });
-
-            // Crear el mailto con toda la información
-            const subject = encodeURIComponent('Confirmación de asistencia - ' + data.nombre);
-            const body = encodeURIComponent(`
-CONFIRMACIÓN DE ASISTENCIA A LA BODA
-
-Nombre: ${data.nombre}
-Email: ${data.email}
-
-ASISTENCIA:
-- Ceremonia y Banquete: ${data.asistencia === 'si' ? 'SÍ' : 'NO'}
-- Preboda (02/10/2026): ${data.preboda === 'si' ? 'SÍ' : 'NO'}
-
-INVITADOS:
-- Acompañantes: ${data.acompanantes || '0'}
-- Niños: ${data.ninos || '0'}
-
-SERVICIOS:
-- Necesita autobús: ${data.autobus === 'si' ? 'SÍ' : 'NO'}
-
-ALERGIAS/RESTRICCIONES:
-${data.alergias || 'Ninguna'}
-
-MENSAJE:
-${data.mensaje || 'Sin mensaje'}
-            `);
-
-            // Abrir el cliente de correo
-            window.location.href = `mailto:tu-email@ejemplo.com?subject=${subject}&body=${body}`;
-            
-            // Mostrar confirmación
-            alert('¡Gracias por confirmar tu asistencia!\n\nSe abrirá tu cliente de correo para enviar la confirmación a Carlos y Sara.\n\nSi no se abre automáticamente, por favor envía un email a: tu-email@ejemplo.com');
         });
     </script>
 </body>
