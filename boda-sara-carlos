@@ -1006,7 +1006,7 @@
         }
 
         // Form submission
-        const SCRIPT_URL = 'TU_URL_DE_APPS_SCRIPT_AQUI'; // ⚠️ REEMPLAZAR CON TU URL
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwBHgFKyTQD0UKT-E4Fqrn2sU3buJKHLotRQsBDd90sW78tU3n7Erge2TEq5UkNv4-Wlw/exec'; // ⚠️ REEMPLAZAR CON TU URL
 
         document.getElementById('rsvpForm').addEventListener('submit', async function(e) {
             e.preventDefault();
