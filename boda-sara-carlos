@@ -16,7 +16,7 @@
         :root {
             --primary: #d4a373;
             --secondary: #8b7355;
-            --accent: #f4efe8;
+            --accent: #faf8f5;
             --dark: #3d3d3d;
             --light: #fff;
         }
@@ -26,22 +26,48 @@
             color: var(--dark);
             line-height: 1.8;
             overflow-x: hidden;
+            background: #faf8f5;
         }
 
         /* Hero Section */
         .hero {
             height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
-                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23d4a373" width="1200" height="800"/><path fill="%23c49563" d="M0 400 Q300 350 600 400 T1200 400 V800 H0 Z"/></svg>');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+            background: #faf8f5;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
             text-align: center;
-            color: white;
+            color: var(--dark);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -10%;
+            right: -5%;
+            width: 500px;
+            height: 500px;
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==');
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 0.15;
+            transform: rotate(15deg);
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -10%;
+            left: -5%;
+            width: 450px;
+            height: 450px;
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==');
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 0.15;
+            transform: rotate(-10deg);
         }
 
         .hero-content {
@@ -87,7 +113,7 @@
         .scroll-indicator::after {
             content: '↓';
             font-size: 2rem;
-            color: white;
+            color: var(--secondary);
         }
 
         /* Navigation */
@@ -146,10 +172,42 @@
             padding: 100px 20px;
             max-width: 1200px;
             margin: 0 auto;
+            position: relative;
+        }
+
+        section::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 0.08;
+            pointer-events: none;
+        }
+
+        section:nth-child(2)::before {
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==');
+            top: 50px;
+            right: -50px;
+            transform: rotate(25deg);
+        }
+
+        section:nth-child(3)::before {
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==');
+            bottom: 50px;
+            left: -50px;
+            transform: rotate(-15deg);
+        }
+
+        section:nth-child(4)::before {
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==');
+            top: 100px;
+            right: -30px;
         }
 
         section.alt {
-            background: var(--accent);
+            background: white;
         }
 
         h2 {
@@ -286,38 +344,6 @@
         .timeline-content p {
             color: #666;
             line-height: 1.6;
-        }
-
-        /* Gallery */
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin: 60px 0;
-        }
-
-        .gallery-item {
-            aspect-ratio: 1;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            border-radius: 10px;
-            overflow: hidden;
-            position: relative;
-            cursor: pointer;
-            transition: transform 0.3s;
-        }
-
-        .gallery-item:hover {
-            transform: scale(1.05);
-        }
-
-        .gallery-placeholder {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100%;
-            color: white;
-            font-size: 3rem;
-            opacity: 0.5;
         }
 
         /* Cards */
@@ -489,13 +515,24 @@
     <div class="hero">
         <div class="hero-content">
             <h1>
-                Carlos 
+                Sara 
                 <span class="ampersand">&</span>
-                Sara
+                Carlos
             </h1>
             <p class="date">03 . 10 . 2026</p>
             <p class="location">Talavera de la Reina</p>
         </div>
+        
+        <!-- Navigation in Hero -->
+        <nav style="position: absolute; bottom: 100px; left: 50%; transform: translateX(-50%); background: transparent; box-shadow: none; padding: 0;">
+            <ul style="gap: 40px;">
+                <li><a href="#inicio" style="color: var(--dark); font-size: 0.85rem;">Inicio</a></li>
+                <li><a href="#evento" style="color: var(--dark); font-size: 0.85rem;">Evento</a></li>
+                <li><a href="#recomendaciones" style="color: var(--dark); font-size: 0.85rem;">Recomendaciones</a></li>
+                <li><a href="#confirmacion" style="color: var(--dark); font-size: 0.85rem;">Confirmar</a></li>
+            </ul>
+        </nav>
+        
         <div class="scroll-indicator"></div>
     </div>
 
@@ -512,7 +549,6 @@
     <!-- Countdown Section -->
     <section id="inicio">
         <h2>Nos Casamos</h2>
-        <p class="subtitle">Únete a nosotros para celebrar nuestro amor</p>
         
         <div class="countdown-container">
             <div class="countdown-box">
@@ -537,11 +573,6 @@
     <!-- Event Timeline -->
     <section id="evento" class="alt">
         <h2>Celebración</h2>
-        <p class="subtitle">Un fin de semana para recordar</p>
-
-        <div class="info-box">
-            📅 Fin de semana del 2 al 3 de Octubre, 2026
-        </div>
 
         <div class="timeline">
             <div class="timeline-item">
@@ -584,33 +615,6 @@
         <div style="text-align: center; margin-top: 60px; padding: 30px; background: white; border-radius: 15px;">
             <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--secondary); margin-bottom: 15px;">👔 Dress Code</h3>
             <p style="font-size: 1.2rem; color: #666;">Etiqueta formal</p>
-        </div>
-    </section>
-
-    <!-- Gallery Section -->
-    <section>
-        <h2>Nuestra Historia</h2>
-        <p class="subtitle">Los momentos que nos trajeron hasta aquí</p>
-        
-        <div class="gallery">
-            <div class="gallery-item">
-                <div class="gallery-placeholder">📷</div>
-            </div>
-            <div class="gallery-item">
-                <div class="gallery-placeholder">📷</div>
-            </div>
-            <div class="gallery-item">
-                <div class="gallery-placeholder">📷</div>
-            </div>
-            <div class="gallery-item">
-                <div class="gallery-placeholder">📷</div>
-            </div>
-            <div class="gallery-item">
-                <div class="gallery-placeholder">📷</div>
-            </div>
-            <div class="gallery-item">
-                <div class="gallery-placeholder">📷</div>
-            </div>
         </div>
     </section>
 
@@ -681,7 +685,7 @@
         <h2>Confirma tu Asistencia</h2>
         <p class="subtitle">Te esperamos antes del 1 de Septiembre de 2026</p>
 
-        <form class="rsvp-form" action="https://formsubmit.co/TU-EMAIL-AQUI@gmail.com" method="POST">
+        <form class="rsvp-form" action="https://formsubmit.co/carlosmartingonzalez2012@gmail.com" method="POST">
             <input type="hidden" name="_subject" value="Nueva confirmación - Boda Carlos & Sara">
             <input type="hidden" name="_captcha" value="false">
             <input type="hidden" name="_template" value="table">
@@ -751,7 +755,7 @@
     <!-- Footer -->
     <footer>
         <p style="font-size: 2rem; margin-bottom: 15px; font-family: 'Cormorant Garamond', serif;">
-            Carlos <span class="heart">♥</span> Sara
+            Sara <span class="heart">♥</span> Carlos
         </p>
         <p style="font-size: 1.2rem;">2-3 de Octubre, 2026</p>
         <p style="margin-top: 10px; opacity: 0.8;">Talavera de la Reina, Toledo</p>
