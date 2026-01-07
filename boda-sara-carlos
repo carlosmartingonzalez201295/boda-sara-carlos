@@ -680,45 +680,26 @@
         <div class="cards-grid">
             <div class="card clickable" data-modal="hotel1">
                 <div class="icon">🏨</div>
-                <h3>Hotel Boutique Centro ⭐⭐⭐⭐</h3>
-                <p>📍 Centro de Talavera</p>
-                <p style="margin-top: 15px;">Hotel céntrico con todas las comodidades</p>
-                <p style="margin-top: 10px; font-weight: 500; color: var(--primary);">👉 Ver más información</p>
-            </div>
-
-            <div class="card clickable" data-modal="hotel2">
-                <div class="icon">🏨</div>
-                <h3>Hotel Spa Relax ⭐⭐⭐⭐</h3>
-                <p>📍 A las afueras</p>
-                <p style="margin-top: 15px;">Hotel con spa y restaurante</p>
+                <h3>Hotel Be Live City Center ⭐⭐⭐⭐</h3>
+                <p>📍 Av. Toledo, s/n, 45600 Talavera de la Reina</p>
                 <p style="margin-top: 10px; font-weight: 500; color: var(--primary);">👉 Ver más información</p>
             </div>
         </div>
 
-        <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: var(--secondary); text-align: center; margin: 80px 0 40px;">Apartamentos & Casas Rurales</h3>
+        <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: var(--secondary); text-align: center; margin: 80px 0 40px;">Apartamentos</h3>
         
         <div class="cards-grid">
             <div class="card clickable" data-modal="apt1">
                 <div class="icon">🏡</div>
-                <h3>Apartamento Plaza Mayor</h3>
-                <p>📍 Plaza Mayor</p>
-                <p style="margin-top: 15px;">Ideal para 2-4 personas</p>
+                <h3>Blue Windows</h3>
+                <p>📍 C. Corre. del Cristo, 18, 45600 Talavera de la Reina</p>
                 <p style="margin-top: 10px; font-weight: 500; color: var(--primary);">👉 Ver más información</p>
             </div>
 
             <div class="card clickable" data-modal="apt2">
                 <div class="icon">🏡</div>
-                <h3>Apartamento Familiar Centro</h3>
-                <p>📍 Centro histórico</p>
-                <p style="margin-top: 15px;">Ideal para familias (4-6 personas)</p>
-                <p style="margin-top: 10px; font-weight: 500; color: var(--primary);">👉 Ver más información</p>
-            </div>
-
-            <div class="card clickable" data-modal="apt3">
-                <div class="icon">🏡</div>
-                <h3>Loft Moderno Río</h3>
-                <p>📍 Junto al río</p>
-                <p style="margin-top: 15px;">Ideal para 2 personas</p>
+                <h3>Santa Rita B&Boutique</h3>
+                <p>📍 Centro de Talavera</p>
                 <p style="margin-top: 10px; font-weight: 500; color: var(--primary);">👉 Ver más información</p>
             </div>
         </div>
@@ -837,66 +818,37 @@
         <div class="modal-content">
             <span class="close-modal" onclick="closeModal('hotel1')">&times;</span>
             <div class="modal-icon">🏨</div>
-            <h3>Hotel Boutique Centro</h3>
+            <h3>Hotel Be Live City Center</h3>
             <p style="color: #666; margin-bottom: 20px;">⭐⭐⭐⭐</p>
             
             <div class="modal-info">
                 <strong>📍 Dirección</strong>
-                <p>Calle Principal, 123, Centro, Talavera de la Reina</p>
+                <p>Av. Toledo, s/n, 45600 Talavera de la Reina, Toledo</p>
             </div>
             
             <div class="modal-info">
                 <strong>📞 Teléfono</strong>
-                <p>925 XXX XXX</p>
+                <p>925 72 72 00</p>
+            </div>
+            
+            <div class="modal-info">
+                <strong>📧 Mail</strong>
+                <p>recepcion.talavera@belivehotels.com</p>
             </div>
             
             <div class="modal-info">
                 <strong>💰 Precio aproximado</strong>
-                <p>80-120€/noche</p>
+                <p>96€/noche</p>
             </div>
             
             <div class="modal-info">
-                <strong>✨ Características</strong>
-                <p>• WiFi gratuito<br>• Desayuno incluido<br>• Parking disponible<br>• Aire acondicionado</p>
+                <strong>ℹ️ Información adicional</strong>
+                <p>• Parking: 12€/día<br>• Desayuno: 8€/día</p>
             </div>
             
             <div class="modal-info">
-                <strong>🎁 Reserva especial</strong>
-                <p>Menciona "Boda Sara & Carlos" para tarifa preferente</p>
-            </div>
-        </div>
-    </div>
-
-    <div id="modal-hotel2" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModal('hotel2')">&times;</span>
-            <div class="modal-icon">🏨</div>
-            <h3>Hotel Spa Relax</h3>
-            <p style="color: #666; margin-bottom: 20px;">⭐⭐⭐⭐</p>
-            
-            <div class="modal-info">
-                <strong>📍 Dirección</strong>
-                <p>Carretera Madrid-Lisboa, Km XX, Talavera de la Reina</p>
-            </div>
-            
-            <div class="modal-info">
-                <strong>📞 Teléfono</strong>
-                <p>925 XXX XXX</p>
-            </div>
-            
-            <div class="modal-info">
-                <strong>💰 Precio aproximado</strong>
-                <p>100-150€/noche</p>
-            </div>
-            
-            <div class="modal-info">
-                <strong>✨ Características</strong>
-                <p>• Spa y piscina<br>• Restaurante<br>• Parking gratuito<br>• WiFi</p>
-            </div>
-            
-            <div class="modal-info">
-                <strong>🎁 Reserva especial</strong>
-                <p>Menciona "Boda Sara & Carlos" para descuento</p>
+                <strong>🎁 Reserva boda</strong>
+                <p><strong>Titular de la reserva:</strong> BODA CARLOS Y SARA<br><strong>Localizador:</strong> 25GTV174</p>
             </div>
         </div>
     </div>
@@ -905,31 +857,31 @@
         <div class="modal-content">
             <span class="close-modal" onclick="closeModal('apt1')">&times;</span>
             <div class="modal-icon">🏡</div>
-            <h3>Apartamento Plaza Mayor</h3>
+            <h3>Blue Windows</h3>
             
             <div class="modal-info">
                 <strong>📍 Dirección</strong>
-                <p>Plaza Mayor, 5, Talavera de la Reina</p>
+                <p>Calle Corredera del Cristo, 18, Talavera de la Reina - España</p>
             </div>
             
             <div class="modal-info">
-                <strong>👥 Capacidad</strong>
-                <p>2-4 personas</p>
+                <strong>📞 Teléfono</strong>
+                <p>925 80 24 28</p>
+            </div>
+            
+            <div class="modal-info">
+                <strong>📧 Mail</strong>
+                <p>reservas@bluewindowshouse.com</p>
             </div>
             
             <div class="modal-info">
                 <strong>💰 Precio aproximado</strong>
-                <p>60-90€/noche</p>
+                <p>Información próximamente</p>
             </div>
             
             <div class="modal-info">
-                <strong>✨ Características</strong>
-                <p>• 1 dormitorio<br>• Cocina equipada<br>• WiFi<br>• En pleno centro</p>
-            </div>
-            
-            <div class="modal-info">
-                <strong>🔗 Reserva</strong>
-                <p>Disponible en Airbnb y Booking.com</p>
+                <strong>🎁 Reserva boda</strong>
+                <p>Información próximamente</p>
             </div>
         </div>
     </div>
@@ -938,64 +890,26 @@
         <div class="modal-content">
             <span class="close-modal" onclick="closeModal('apt2')">&times;</span>
             <div class="modal-icon">🏡</div>
-            <h3>Apartamento Familiar Centro</h3>
+            <h3>Santa Rita B&Boutique</h3>
             
             <div class="modal-info">
                 <strong>📍 Dirección</strong>
-                <p>Calle del Carmen, 8, Centro Histórico</p>
+                <p>Calle Mesones, 3, Talavera de la Reina - España</p>
             </div>
             
             <div class="modal-info">
-                <strong>👥 Capacidad</strong>
-                <p>4-6 personas</p>
+                <strong>📞 Teléfono</strong>
+                <p>925 80 17 17</p>
             </div>
             
             <div class="modal-info">
-                <strong>💰 Precio aproximado</strong>
-                <p>90-130€/noche</p>
+                <strong>🌐 Web</strong>
+                <p>www.santaritaritaloquesedanosequita.es</p>
             </div>
             
             <div class="modal-info">
-                <strong>✨ Características</strong>
-                <p>• 2 dormitorios<br>• 2 baños<br>• Cocina completa<br>• Salón amplio<br>• WiFi</p>
-            </div>
-            
-            <div class="modal-info">
-                <strong>🔗 Reserva</strong>
-                <p>Disponible en Airbnb y Booking.com</p>
-            </div>
-        </div>
-    </div>
-
-    <div id="modal-apt3" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModal('apt3')">&times;</span>
-            <div class="modal-icon">🏡</div>
-            <h3>Loft Moderno Río</h3>
-            
-            <div class="modal-info">
-                <strong>📍 Dirección</strong>
-                <p>Paseo del Río, 15, Talavera de la Reina</p>
-            </div>
-            
-            <div class="modal-info">
-                <strong>👥 Capacidad</strong>
-                <p>2 personas</p>
-            </div>
-            
-            <div class="modal-info">
-                <strong>💰 Precio aproximado</strong>
-                <p>70-100€/noche</p>
-            </div>
-            
-            <div class="modal-info">
-                <strong>✨ Características</strong>
-                <p>• Diseño moderno<br>• Vistas al río<br>• Cocina americana<br>• WiFi<br>• Parking</p>
-            </div>
-            
-            <div class="modal-info">
-                <strong>🔗 Reserva</strong>
-                <p>Disponible en Airbnb y Booking.com</p>
+                <strong>🎁 Reserva boda</strong>
+                <p>Información próximamente</p>
             </div>
         </div>
     </div>
