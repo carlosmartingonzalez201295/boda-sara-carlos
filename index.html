@@ -1120,42 +1120,35 @@
                 return;
             }
             
-            // Preparar datos
-            const formData = {
-                nombre: document.getElementById('nombre').value,
-                email: document.getElementById('email').value,
-                asisteBoda: document.getElementById('asisteBoda').value,
-                acompanado: document.getElementById('acompanado').value,
-                nombreAcompanante: document.getElementById('nombreAcompanante').value || '',
-                preboda: document.getElementById('preboda').value,
-                autobus: document.getElementById('autobus').value,
-                restricciones: document.getElementById('restricciones').value || '',
-                numeroPie: document.getElementById('numeroPie').value || ''
-            };
-            
+        // 1. Actualiza aquí tu URL NUEVA del paso 2
+            const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzL2Yy7GNZ-rAiBfnaEixm15a-PzD2zmUNViK-g7hLKqj9fI6f3LjRHKl76wB7QdFTcEQ/exec'; 
+
+            // 2. Creamos el objeto FormData directo del formulario HTML
+            // Esto coge automáticamente todos los inputs que tengan 'name='
+            const formElement = document.getElementById('rsvpForm');
+            const data = new FormData(formElement);
+
             // Deshabilitar botón
             const submitBtn = document.getElementById('submitBtn');
             submitBtn.disabled = true;
             submitBtn.textContent = 'Enviando...';
             
             try {
-                const response = await fetch(SCRIPT_URL, {
+                // 3. Enviamos los datos. Fíjate que NO ponemos headers ni JSON.stringify
+                await fetch(SCRIPT_URL, {
                     method: 'POST',
-                    mode: 'no-cors',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(formData)
+                    mode: 'no-cors', // Seguimos usando no-cors, pero con FormData funciona mejor
+                    body: data
                 });
                 
-                // Con no-cors no podemos leer la respuesta, asumimos éxito
+                // Con no-cors asumimos éxito si no salta al catch
                 const messageDiv = document.getElementById('formMessage');
                 messageDiv.className = 'success';
-                messageDiv.textContent = '¡Confirmación enviada correctamente! Gracias por confirmar tu asistencia.';
+                messageDiv.textContent = '¡Confirmación enviada correctamente! Gracias.';
                 messageDiv.style.display = 'block';
                 
                 // Limpiar formulario
-                document.getElementById('rsvpForm').reset();
+                formElement.reset();
                 toggleAcompanante();
                 
                 // Scroll al mensaje
