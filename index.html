@@ -150,16 +150,17 @@
         }
 
       /* Sections */
+       /* Sections */
         section {
-            padding: 100px 20px;
+            padding: 80px 20px;
             max-width: 1200px;
             margin: 0 auto;
             position: relative;
             
-            /* --- CAMBIO AQUÍ: FONDO PARA EL TEXTO --- */
-            background-color: rgba(250, 248, 245, 0.95); /* Color crema casi opaco */
-            /* Opcional: Un pequeño borde redondeado y sombra para que destaque */
-            border-radius: 8px;
+            /* --- CAMBIO: FONDO TRANSPARENTE --- */
+            background-color: transparent; 
+            box-shadow: none;
+            border-radius: 0;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
 
@@ -196,8 +197,8 @@
             right: -30px;
         }
 
-        section.alt {
-            background: white;
+       section.alt {
+            background: transparent;
         }
         
         /* CAMBIO 4: Clases para la animación de Scroll Reveal */
@@ -213,7 +214,7 @@
         }
 
 
-        h2 {
+       h2 {
             font-family: 'Cormorant Garamond', serif;
             font-size: 4rem;
             text-align: center;
@@ -222,19 +223,31 @@
             color: var(--secondary);
             position: relative; 
             z-index: 1;
+            
+            /* --- CAMBIO: HALO PARA LEERSE MEJOR --- */
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.9), 
+                         0 0 10px rgba(255, 255, 255, 0.9);
         }
 
-        .subtitle {
+     .subtitle {
             text-align: center;
             font-size: 1.1rem;
-            color: #666;
+            color: #444; /* Un poco más oscuro para contraste */
             margin-top: -40px;
             margin-bottom: 60px;
             font-style: italic;
             position: relative;
             z-index: 1;
+            
+            /* --- CAMBIO: HALO --- */
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+            background-color: rgba(255,255,255,0.4); /* Fondo muy sutil detrás del subtítulo */
+            display: inline-block; /* Para que el fondo solo ocupe el texto */
+            padding: 5px 20px;
+            border-radius: 20px;
+            left: 50%;
+            transform: translateX(-50%);
         }
-
         /* Countdown */
         .countdown-container {
             display: flex;
