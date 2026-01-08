@@ -32,7 +32,11 @@
         /* Hero Section */
         .hero {
             height: 100vh;
-            background: #faf8f5;
+            background: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), 
+                        url('https://raw.githubusercontent.com/carlosmartingonzalez201295/boda-sara-carlos/main/images/Portada.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -40,34 +44,6 @@
             text-align: center;
             color: var(--dark);
             overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -10%;
-            right: -5%;
-            width: 500px;
-            height: 500px;
-            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==');
-            background-size: contain;
-            background-repeat: no-repeat;
-            opacity: 0.15;
-            transform: rotate(15deg);
-        }
-
-        .hero::after {
-            content: '';
-            position: absolute;
-            bottom: -10%;
-            left: -5%;
-            width: 450px;
-            height: 450px;
-            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==');
-            background-size: contain;
-            background-repeat: no-repeat;
-            opacity: 0.15;
-            transform: rotate(-10deg);
         }
 
         h1 {
@@ -119,7 +95,6 @@
             top: 0;
             width: 100%;
             background: rgba(255,255,255,0.95);
-            backdrop-filter: blur(10px);
             z-index: 1000;
             padding: 20px 0;
             box-shadow: 0 2px 20px rgba(0,0,0,0.1);
@@ -580,6 +555,26 @@
             </h1>
             <p class="date">03 . 10 . 2026</p>
             <p class="location">Talavera de la Reina</p>
+            
+            <!-- Countdown in Hero -->
+            <div class="countdown-container" style="margin-top: 60px;">
+                <div class="countdown-box">
+                    <span class="countdown-number" id="days-hero">0</span>
+                    <span class="countdown-label">Días</span>
+                </div>
+                <div class="countdown-box">
+                    <span class="countdown-number" id="hours-hero">0</span>
+                    <span class="countdown-label">Horas</span>
+                </div>
+                <div class="countdown-box">
+                    <span class="countdown-number" id="minutes-hero">0</span>
+                    <span class="countdown-label">Minutos</span>
+                </div>
+                <div class="countdown-box">
+                    <span class="countdown-number" id="seconds-hero">0</span>
+                    <span class="countdown-label">Segundos</span>
+                </div>
+            </div>
         </div>
         
         <!-- Navigation in Hero -->
@@ -608,25 +603,7 @@
     </nav>
 
     <!-- Countdown Section -->
-    <section id="inicio">
-        <div class="countdown-container">
-            <div class="countdown-box">
-                <span class="countdown-number" id="days">0</span>
-                <span class="countdown-label">Días</span>
-            </div>
-            <div class="countdown-box">
-                <span class="countdown-number" id="hours">0</span>
-                <span class="countdown-label">Horas</span>
-            </div>
-            <div class="countdown-box">
-                <span class="countdown-number" id="minutes">0</span>
-                <span class="countdown-label">Minutos</span>
-            </div>
-            <div class="countdown-box">
-                <span class="countdown-number" id="seconds">0</span>
-                <span class="countdown-label">Segundos</span>
-            </div>
-        </div>
+    <section id="inicio" style="display: none;">
     </section>
 
     <!-- Event Timeline -->
@@ -1001,10 +978,11 @@
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
             
-            document.getElementById('days').textContent = days;
-            document.getElementById('hours').textContent = hours;
-            document.getElementById('minutes').textContent = minutes;
-            document.getElementById('seconds').textContent = seconds;
+            // Actualizar countdown en el hero
+            document.getElementById('days-hero').textContent = days;
+            document.getElementById('hours-hero').textContent = hours;
+            document.getElementById('minutes-hero').textContent = minutes;
+            document.getElementById('seconds-hero').textContent = seconds;
         }
         
         updateCountdown();
