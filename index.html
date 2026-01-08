@@ -27,49 +27,68 @@
             line-height: 1.8;
             overflow-x: hidden;
             
-            /* --- CAMBIO AQUÍ: FONDO DE FLORES --- */
+            /* FONDO DE FLORES */
             background-image: url('https://i.imgur.com/Hpf7Dl5.jpeg');
             background-repeat: repeat;
-            background-size: 400px; /* Tamaño de las flores */
-            background-attachment: fixed; /* El fondo se queda quieto al hacer scroll */
-            background-color: #faf8f5; /* Color de base por si la imagen falla */
+            background-size: 400px;
+            background-attachment: fixed;
+            background-color: #faf8f5;
         }
 
-       /* Hero Section con imagen de fondo */
-        .hero {
+       /* --- HERO SECTION (PORTADA) --- */
+       .hero {
             height: 100vh;
+            width: 100%;
             
-            /* --- CAMBIO AQUÍ: TAPAR FLORES --- */
-            background-color: #faf8f5; /* Color sólido para tapar el fondo del body */
+            /* Fondo sólido para tapar las flores del body */
+            background-color: #faf8f5;
             
-            background-image: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), 
+            background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), 
                         url('https://i.imgur.com/CIqDdSY.jpeg');
-            background-size: contain;
-            background-position: center;
+            background-size: cover;       /* Ocupa toda la pantalla */
+            background-position: center;  /* Centrado */
             background-repeat: no-repeat;
+            
+            /* Flexbox para centrar la caja de contenido */
             display: flex;
-            align-items: flex-start;
             justify-content: center;
-            padding-top: 80px;
-            position: relative;
+            align-items: center;
+            
             text-align: center;
             color: var(--dark);
-            overflow: hidden;
+            position: relative;
+            z-index: 10;
         }
+
+        /* CAJA DE CRISTAL (GLASSMORPHISM) */
+        .hero-content {
+            background-color: rgba(255, 255, 255, 0.75); /* Blanco semitransparente */
+            padding: 40px 60px;
+            border-radius: 20px;
+            backdrop-filter: blur(8px); /* Efecto borroso detrás */
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            max-width: 90%;
+            width: 700px; /* Ancho controlado */
+            margin: 0 auto;
+            border: 1px solid rgba(255,255,255,0.4);
+        }
+
         h1 {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 7rem;
+            font-size: 5rem;
             font-weight: 300;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
+            line-height: 1;
             position: relative;
             z-index: 1;
         }
 
         .ampersand {
-            font-size: 8rem;
-            margin: 0 30px;
+            font-size: 6rem;
+            margin: 0 15px;
             display: inline-block;
             font-style: italic;
+            color: var(--primary);
         }
 
         .date {
@@ -83,55 +102,66 @@
             font-size: 1.2rem;
             margin-top: 10px;
             opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
         }
 
         .scroll-indicator {
             position: absolute;
-            bottom: 40px;
+            bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
             animation: bounce 2s infinite;
+            z-index: 20;
         }
 
         .scroll-indicator::after {
             content: '↓';
             font-size: 2rem;
-            color: var(--secondary);
+            color: white; /* Blanco para que se vea sobre la foto oscura */
+            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
         }
 
-        /* Navigation */
+        /* --- NAVEGACIÓN UNIFICADA --- */
         nav {
             position: fixed;
             top: 0;
+            left: 0;
             width: 100%;
-            background: rgba(255,255,255,0.95);
             z-index: 1000;
-            padding: 20px 0;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-            transform: translateY(-100%);
-            transition: transform 0.3s ease;
+            padding: 20px 40px;
+            transition: all 0.4s ease;
+            display: flex;
+            justify-content: space-between; /* Espacio entre logo (si hubiera) y menú */
+            align-items: center;
         }
 
-        nav.visible {
-            transform: translateY(0);
+        /* Clase que añadiremos con JS al bajar */
+        nav.scrolled {
+            background: rgba(255,255,255,0.98);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+            padding: 15px 40px;
         }
 
         nav ul {
             display: flex;
             justify-content: center;
             list-style: none;
-            gap: 50px;
+            gap: 40px;
+            width: 100%; /* Ocupar ancho para centrar */
         }
 
         nav a {
-            color: var(--dark);
+            color: var(--dark); /* Color por defecto */
             text-decoration: none;
             font-size: 0.9rem;
             letter-spacing: 2px;
             text-transform: uppercase;
-            font-weight: 400;
+            font-weight: 500;
             transition: color 0.3s;
             position: relative;
+            text-shadow: 0 0 10px rgba(255,255,255,0.8); /* Halo para leerse sobre foto */
         }
 
         nav a::after {
@@ -148,23 +178,27 @@
         nav a:hover::after {
             width: 100%;
         }
+        
+        /* Botón Hamburguesa (oculto en PC) */
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 1.8rem;
+            color: var(--dark);
+        }
 
-      /* Sections */
-       /* Sections */
+        /* --- SECTIONS --- */
         section {
-            padding: 80px 20px;
+            padding: 100px 20px;
             max-width: 1200px;
             margin: 0 auto;
             position: relative;
-            
-            /* --- CAMBIO: FONDO TRANSPARENTE --- */
             background-color: transparent; 
             box-shadow: none;
             border-radius: 0;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
 
-        /* CAMBIO 3: Ajustar los elementos decorativos del fondo para que no se salgan de la sección sólida */
+        /* Decoración de fondo en secciones */
         section::before {
             content: '';
             position: absolute;
@@ -174,47 +208,19 @@
             background-repeat: no-repeat;
             opacity: 0.08;
             pointer-events: none;
-            z-index: 0; /* Asegurar que quedan por detrás del contenido */
+            z-index: 0;
         }
+        /* (Decoraciones específicas mantenidas igual) */
+        section:nth-child(2)::before { background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg=='); top: 50px; right: -50px; transform: rotate(25deg); }
+        section:nth-child(3)::before { background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg=='); bottom: 50px; left: -50px; transform: rotate(-15deg); }
+        section:nth-child(4)::before { background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg=='); top: 100px; right: -30px; }
 
-        section:nth-child(2)::before {
-            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==');
-            top: 50px;
-            right: -50px;
-            transform: rotate(25deg);
-        }
-
-        section:nth-child(3)::before {
-            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==');
-            bottom: 50px;
-            left: -50px;
-            transform: rotate(-15deg);
-        }
-
-        section:nth-child(4)::before {
-            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==');
-            top: 100px;
-            right: -30px;
-        }
-
-       section.alt {
-            background: transparent;
-        }
+        section.alt { background: transparent; }
         
-        /* CAMBIO 4: Clases para la animación de Scroll Reveal */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px); /* Se desplaza 30px hacia abajo inicialmente */
-            transition: all 0.8s ease; /* Duración y suavidad de la animación */
-        }
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
 
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0); /* Vuelve a su posición original */
-        }
-
-
-       h2 {
+        h2 {
             font-family: 'Cormorant Garamond', serif;
             font-size: 4rem;
             text-align: center;
@@ -223,392 +229,174 @@
             color: var(--secondary);
             position: relative; 
             z-index: 1;
-            
-            /* --- CAMBIO: HALO PARA LEERSE MEJOR --- */
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.9), 
-                         0 0 10px rgba(255, 255, 255, 0.9);
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.9), 0 0 10px rgba(255, 255, 255, 0.9);
         }
 
-     .subtitle {
+        .subtitle {
             text-align: center;
             font-size: 1.1rem;
-            color: #444; /* Un poco más oscuro para contraste */
+            color: #444;
             margin-top: -40px;
             margin-bottom: 60px;
             font-style: italic;
             position: relative;
             z-index: 1;
-            
-            /* --- CAMBIO: HALO --- */
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
-            background-color: rgba(255,255,255,0.4); /* Fondo muy sutil detrás del subtítulo */
-            display: inline-block; /* Para que el fondo solo ocupe el texto */
+            background-color: rgba(255,255,255,0.4);
+            display: inline-block;
             padding: 5px 20px;
             border-radius: 20px;
             left: 50%;
             transform: translateX(-50%);
+            white-space: nowrap; /* Evita que se rompa feo */
         }
-        /* Countdown */
+        
+        /* Countdown ajustado a la caja */
         .countdown-container {
             display: flex;
             justify-content: center;
-            gap: 60px;
-            margin: 60px 0;
+            gap: 30px;
+            margin: 40px 0 10px 0;
             flex-wrap: wrap;
         }
 
-        .countdown-box {
-            text-align: center;
-            position: relative;
-        }
-
+        .countdown-box { text-align: center; position: relative; }
+        
         .countdown-box::before {
             content: '';
             position: absolute;
-            top: 50%;
-            left: 50%;
+            top: 50%; left: 50%;
             transform: translate(-50%, -50%);
-            width: 120px;
-            height: 120px;
-            border: 2px solid var(--primary);
+            width: 90px; height: 90px; /* Más pequeño para la caja */
+            border: 1px solid var(--secondary);
             border-radius: 50%;
             opacity: 0.3;
         }
 
         .countdown-number {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 4rem;
+            font-size: 2.5rem;
             color: var(--primary);
             display: block;
             font-weight: 600;
         }
 
         .countdown-label {
-            font-size: 0.9rem;
+            font-size: 0.75rem;
             letter-spacing: 2px;
             text-transform: uppercase;
             color: var(--secondary);
-            margin-top: 10px;
+            margin-top: 5px;
         }
 
-        /* Timeline */
-        .timeline {
-            position: relative;
-            max-width: 800px;
-            margin: 80px auto;
-            z-index: 1;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 2px;
-            height: 100%;
-            background: var(--primary);
-            opacity: 0.3;
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 80px;
-            display: flex;
-            align-items: center;
-        }
-
-        .timeline-item:nth-child(odd) {
-            flex-direction: row;
-        }
-
-        .timeline-item:nth-child(even) {
-            flex-direction: row-reverse;
-        }
-
-        .timeline-content {
-            width: 45%;
-            padding: 30px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-        }
-
-        .timeline-content:hover {
-            transform: translateY(-5px);
-        }
-
-        .timeline-dot {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 20px;
-            height: 20px;
-            background: var(--primary);
-            border-radius: 50%;
-            border: 4px solid white;
-            box-shadow: 0 0 0 4px var(--accent);
-        }
-
-        .timeline-icon {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-        }
-
-        .timeline-content h3 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2rem;
-            color: var(--secondary);
-            margin-bottom: 10px;
-        }
-
-        .timeline-content p {
-            color: #666;
-            line-height: 1.6;
-        }
+        /* Timeline (Igual) */
+        .timeline { position: relative; max-width: 800px; margin: 80px auto; z-index: 1; }
+        .timeline::before { content: ''; position: absolute; left: 50%; transform: translateX(-50%); width: 2px; height: 100%; background: var(--primary); opacity: 0.3; }
+        .timeline-item { position: relative; margin-bottom: 80px; display: flex; align-items: center; }
+        .timeline-item:nth-child(odd) { flex-direction: row; }
+        .timeline-item:nth-child(even) { flex-direction: row-reverse; }
+        .timeline-content { width: 45%; padding: 30px; background: white; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: transform 0.3s; }
+        .timeline-content:hover { transform: translateY(-5px); }
+        .timeline-dot { position: absolute; left: 50%; transform: translateX(-50%); width: 20px; height: 20px; background: var(--primary); border-radius: 50%; border: 4px solid white; box-shadow: 0 0 0 4px var(--accent); }
+        .timeline-icon { font-size: 2.5rem; margin-bottom: 15px; }
+        .timeline-content h3 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--secondary); margin-bottom: 10px; }
+        .timeline-content p { color: #666; line-height: 1.6; }
 
         /* Cards */
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin: 60px 0;
-            position: relative;
-            z-index: 1;
-        }
-
-        .card {
-            background: white;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: all 0.3s;
-            border-top: 4px solid var(--primary);
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-        }
-
-        .card h3 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.8rem;
-            color: var(--secondary);
-            margin-bottom: 15px;
-        }
-
-        .card p {
-            color: #666;
-            margin: 8px 0;
-        }
-
-        .card .icon {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-
-        .card.clickable {
-            cursor: pointer;
-        }
-
-        .card.clickable:hover {
-            transform: translateY(-10px) scale(1.02);
-        }
+        .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin: 60px 0; position: relative; z-index: 1; }
+        .card { background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: all 0.3s; border-top: 4px solid var(--primary); }
+        .card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
+        .card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--secondary); margin-bottom: 15px; }
+        .card p { color: #666; margin: 8px 0; }
+        .card .icon { font-size: 2.5rem; margin-bottom: 20px; }
+        .card.clickable { cursor: pointer; }
+        .card.clickable:hover { transform: translateY(-10px) scale(1.02); }
 
         /* Modal Popup */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.7);
-            animation: fadeIn 0.3s;
-        }
-
-        .modal-content {
-            background-color: white;
-            margin: 5% auto;
-            padding: 40px;
-            border-radius: 15px;
-            width: 90%;
-            max-width: 600px;
-            position: relative;
-            animation: slideDown 0.3s;
-            max-height: 80vh;
-            overflow-y: auto;
-        }
-
-        .close-modal {
-            position: absolute;
-            right: 20px;
-            top: 20px;
-            font-size: 2rem;
-            font-weight: bold;
-            color: #aaa;
-            cursor: pointer;
-            transition: color 0.3s;
-        }
-
-        .close-modal:hover {
-            color: var(--secondary);
-        }
-
-        .modal-content h3 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2.5rem;
-            color: var(--secondary);
-            margin-bottom: 20px;
-        }
-
-        .modal-content .modal-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
-        }
-
-        .modal-info {
-            margin: 15px 0;
-            padding: 15px;
-            background: var(--accent);
-            border-radius: 8px;
-        }
-
-        .modal-info strong {
-            color: var(--secondary);
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes slideDown {
-            from { transform: translateY(-50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
+        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); animation: fadeIn 0.3s; }
+        .modal-content { background-color: white; margin: 5% auto; padding: 40px; border-radius: 15px; width: 90%; max-width: 600px; position: relative; animation: slideDown 0.3s; max-height: 80vh; overflow-y: auto; }
+        .close-modal { position: absolute; right: 20px; top: 20px; font-size: 2rem; font-weight: bold; color: #aaa; cursor: pointer; transition: color 0.3s; }
+        .close-modal:hover { color: var(--secondary); }
+        .modal-content h3 { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: var(--secondary); margin-bottom: 20px; }
+        .modal-content .modal-icon { font-size: 3rem; margin-bottom: 20px; }
+        .modal-info { margin: 15px 0; padding: 15px; background: var(--accent); border-radius: 8px; }
+        .modal-info strong { color: var(--secondary); display: block; margin-bottom: 5px; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideDown { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
         /* Form */
-        .rsvp-form {
-            max-width: 600px;
-            margin: 60px auto;
-            background: white;
-            padding: 50px;
-            border-radius: 15px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            position: relative;
-            z-index: 1;
-        }
-
-        .form-group {
-            margin-bottom: 25px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: var(--secondary);
-            font-weight: 500;
-            letter-spacing: 1px;
-        }
-
-        input, select, textarea {
-            width: 100%;
-            padding: 15px;
-            border: 2px solid var(--accent);
-            border-radius: 8px;
-            font-size: 1rem;
-            font-family: inherit;
-            transition: border-color 0.3s;
-        }
-
-        input:focus, select:focus, textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-        }
-
-        .error-message {
-            color: #e74c3c;
-            font-size: 0.85rem;
-            display: block;
-            margin-top: 5px;
-            min-height: 20px;
-        }
-
-        #formMessage {
-            text-align: center;
-            font-weight: 500;
-        }
-
-        #formMessage.success {
-            background: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-        }
-
-        #formMessage.error {
-            background: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-        }
-
-        button {
-            width: 100%;
-            padding: 18px;
-            background: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        button:hover {
-            background: var(--secondary);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-        }
-
-        /* Animations */
-        @keyframes bounce {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(-10px); }
-        }
+        .rsvp-form { max-width: 600px; margin: 60px auto; background: white; padding: 50px; border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); position: relative; z-index: 1; }
+        .form-group { margin-bottom: 25px; }
+        label { display: block; margin-bottom: 8px; color: var(--secondary); font-weight: 500; letter-spacing: 1px; }
+        input, select, textarea { width: 100%; padding: 15px; border: 2px solid var(--accent); border-radius: 8px; font-size: 1rem; font-family: inherit; transition: border-color 0.3s; }
+        input:focus, select:focus, textarea:focus { outline: none; border-color: var(--primary); }
+        .error-message { color: #e74c3c; font-size: 0.85rem; display: block; margin-top: 5px; min-height: 20px; }
+        #formMessage { text-align: center; font-weight: 500; }
+        #formMessage.success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        #formMessage.error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        button { width: 100%; padding: 18px; background: var(--primary); color: white; border: none; border-radius: 8px; font-size: 1.1rem; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: all 0.3s; font-family: 'Montserrat', sans-serif; }
+        button:hover { background: var(--secondary); transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+        @keyframes bounce { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(-10px); } }
 
         /* Responsive */
         @media (max-width: 1240px) {
-            /* En pantallas más pequeñas, el fondo de patrón se reduce o desaparece de los lados */
-             section {
-                margin: 0;
-                max-width: 100%;
-                box-shadow: none;
-             }
+             section { margin: 0; max-width: 100%; box-shadow: none; }
         }
 
+        /* --- MÓVIL (MENÚ HAMBURGUESA Y AJUSTES) --- */
         @media (max-width: 768px) {
             h1 { font-size: 3.5rem; }
-            .ampersand { font-size: 4rem; margin: 0 15px; }
-            h2 { font-size: 2.5rem; }
-            nav ul { gap: 20px; flex-wrap: wrap; padding: 0 20px; }
+            .ampersand { font-size: 4rem; margin: 0 10px; }
+            .hero-content { padding: 30px 20px; width: 95%; } /* Caja más pequeña en móvil */
+            
+            /* Ajustes menú móvil */
+            .menu-toggle { display: block; } /* Mostrar icono hamburguesa */
+            
+            nav { padding: 15px 20px; background: rgba(255,255,255,0.95); } /* Barra siempre visible en móvil */
+            
+            nav ul {
+                display: none; /* Oculto por defecto */
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                padding: 20px 0;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+                gap: 0;
+            }
+            
+            nav ul.active { display: flex; } /* Clase para mostrarlo */
+            
+            nav li { text-align: center; width: 100%; }
+            nav a { display: block; padding: 15px; border-bottom: 1px solid #f0f0f0; }
+            
             .timeline::before { left: 20px; }
             .timeline-item { flex-direction: column !important; }
             .timeline-content { width: 100%; margin-left: 40px; }
             .timeline-dot { left: 20px; }
-            .countdown-container { gap: 30px; }
-            section { padding: 60px 20px; } /* Ajuste de padding en móvil */
+            section { padding: 60px 20px; }
         }
     </style>
 </head>
 <body>
-    <div class="hero">
+    
+    <nav id="navbar">
+        <div style="font-family: 'Cormorant Garamond'; font-size: 1.5rem; font-weight: 600; color: var(--secondary);">S & C</div>
+        
+        <div class="menu-toggle" id="mobile-menu">☰</div>
+        
+        <ul id="nav-list">
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#itinerario">Itinerario</a></li>
+            <li><a href="#alojamiento">Alojamiento</a></li>
+            <li><a href="#recomendaciones">Recomendaciones</a></li>
+            <li><a href="#confirmacion">Confirmación</a></li>
+        </ul>
+    </nav>
+
+    <div class="hero" id="inicio">
         <div class="hero-content">
             <h1>
                 Sara 
@@ -618,7 +406,7 @@
             <p class="date">03 . 10 . 2026</p>
             <p class="location">Talavera de la Reina</p>
             
-            <div class="countdown-container" style="margin-top: 60px;">
+            <div class="countdown-container">
                 <div class="countdown-box">
                     <span class="countdown-number" id="days-hero">0</span>
                     <span class="countdown-label">Días</span>
@@ -638,31 +426,8 @@
             </div>
         </div>
         
-        <nav style="position: absolute; bottom: 100px; left: 50%; transform: translateX(-50%); background: transparent; box-shadow: none; padding: 0;">
-            <ul style="gap: 40px;">
-                <li><a href="#inicio" style="color: var(--dark); font-size: 0.85rem;">Inicio</a></li>
-                <li><a href="#itinerario" style="color: var(--dark); font-size: 0.85rem;">Itinerario</a></li>
-                <li><a href="#alojamiento" style="color: var(--dark); font-size: 0.85rem;">Alojamiento</a></li>
-                <li><a href="#recomendaciones" style="color: var(--dark); font-size: 0.85rem;">Recomendaciones</a></li>
-                <li><a href="#confirmacion" style="color: var(--dark); font-size: 0.85rem;">Confirmación</a></li>
-            </ul>
-        </nav>
-        
         <div class="scroll-indicator"></div>
     </div>
-
-    <nav id="navbar">
-        <ul>
-            <li><a href="#inicio">Inicio</a></li>
-            <li><a href="#itinerario">Itinerario</a></li>
-            <li><a href="#alojamiento">Alojamiento</a></li>
-            <li><a href="#recomendaciones">Recomendaciones</a></li>
-            <li><a href="#confirmacion">Confirmación</a></li>
-        </ul>
-    </nav>
-
-    <section id="inicio" style="display: none;">
-    </section>
 
     <section id="itinerario" class="alt">
         <h2 class="reveal">Itinerario</h2>
@@ -717,7 +482,7 @@
             </div>
         </div>
 
-        <div class="reveal" style="text-align: center; margin-top: 60px; padding: 30px; background: var(--accent); border-radius: 15px; position: relative; z-index: 1;">
+        <div class="reveal" style="text-align: center; margin-top: 60px; padding: 30px; background: white; border-radius: 15px; position: relative; z-index: 1; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
             <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--secondary); margin-bottom: 15px;">👔 Dress Code</h3>
             <p style="font-size: 1.2rem; color: #666;">Etiqueta formal</p>
         </div>
@@ -727,7 +492,7 @@
         <h2 class="reveal">Alojamiento</h2>
         <p class="subtitle reveal">Opciones para tu estancia en Talavera</p>
 
-        <h3 class="reveal" style="font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: var(--secondary); text-align: center; margin: 60px 0 40px; position: relative; z-index: 1;">Hoteles</h3>
+        <h3 class="reveal" style="font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: var(--secondary); text-align: center; margin: 60px 0 40px; position: relative; z-index: 1; text-shadow: 0 0 10px white;">Hoteles</h3>
         
         <div class="cards-grid">
             <div class="card clickable reveal" data-modal="hotel1">
@@ -738,7 +503,7 @@
             </div>
         </div>
 
-        <h3 class="reveal" style="font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: var(--secondary); text-align: center; margin: 80px 0 40px; position: relative; z-index: 1;">Apartamentos</h3>
+        <h3 class="reveal" style="font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: var(--secondary); text-align: center; margin: 80px 0 40px; position: relative; z-index: 1; text-shadow: 0 0 10px white;">Apartamentos</h3>
         
         <div class="cards-grid">
             <div class="card clickable reveal" data-modal="apt1">
@@ -761,7 +526,7 @@
         <h2 class="reveal">Recomendaciones</h2>
         <p class="subtitle reveal">Para que conozcáis nuestros sitios favoritos de Talavera</p>
 
-        <h3 class="reveal" style="font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: var(--secondary); text-align: center; margin: 60px 0 40px; position: relative; z-index: 1;">Bares & Restaurantes</h3>
+        <h3 class="reveal" style="font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: var(--secondary); text-align: center; margin: 60px 0 40px; position: relative; z-index: 1; text-shadow: 0 0 10px white;">Bares & Restaurantes</h3>
         
         <div class="cards-grid">
             <div class="card reveal">
@@ -980,31 +745,33 @@
                 
                 <div style="margin-bottom: 20px;">
                     <label style="display: block; margin-bottom: 8px; color: var(--secondary); font-weight: 500;">Nombre y Apellidos *</label>
-                    <input type="text" id="golf-nombre" required style="width: 100%; padding: 12px; border: 2px solid var(--accent); border-radius: 8px; font-size: 1rem;">
+                    <input type="text" name="golf-nombre" id="golf-nombre" required style="width: 100%; padding: 12px; border: 2px solid var(--accent); border-radius: 8px; font-size: 1rem;">
                     <span class="error-message" id="error-golf-nombre"></span>
                 </div>
 
                 <div style="margin-bottom: 20px;">
                     <label style="display: block; margin-bottom: 8px; color: var(--secondary); font-weight: 500;">Número de Licencia *</label>
-                    <input type="text" id="golf-licencia" required style="width: 100%; padding: 12px; border: 2px solid var(--accent); border-radius: 8px; font-size: 1rem;">
+                    <input type="text" name="golf-licencia" id="golf-licencia" required style="width: 100%; padding: 12px; border: 2px solid var(--accent); border-radius: 8px; font-size: 1rem;">
                     <span class="error-message" id="error-golf-licencia"></span>
                 </div>
 
                 <div style="margin-bottom: 20px;">
                     <label style="display: block; margin-bottom: 8px; color: var(--secondary); font-weight: 500;">Handicap *</label>
-                    <input type="text" id="golf-handicap" required style="width: 100%; padding: 12px; border: 2px solid var(--accent); border-radius: 8px; font-size: 1rem;">
+                    <input type="text" name="golf-handicap" id="golf-handicap" required style="width: 100%; padding: 12px; border: 2px solid var(--accent); border-radius: 8px; font-size: 1rem;">
                     <span class="error-message" id="error-golf-handicap"></span>
                 </div>
 
                 <div style="margin-bottom: 20px;">
                     <label style="display: block; margin-bottom: 8px; color: var(--secondary); font-weight: 500;">¿Traerás tus palos? *</label>
-                    <select id="golf-palos" required style="width: 100%; padding: 12px; border: 2px solid var(--accent); border-radius: 8px; font-size: 1rem;">
+                    <select name="golf-palos" id="golf-palos" required style="width: 100%; padding: 12px; border: 2px solid var(--accent); border-radius: 8px; font-size: 1rem;">
                         <option value="">Selecciona</option>
                         <option value="Sí">Sí</option>
                         <option value="No">No</option>
                     </select>
                     <span class="error-message" id="error-golf-palos"></span>
                 </div>
+                
+                <input type="hidden" name="tipo" value="golf">
 
                 <div id="golfFormMessage" style="margin-top: 20px; padding: 15px; border-radius: 8px; display: none;"></div>
 
@@ -1018,34 +785,40 @@
     <script>
         console.log('=== SCRIPT INICIADO ===');
 
-        // CAMBIO 6: Script para la animación de Scroll Reveal
-        // Usamos IntersectionObserver para detectar cuándo los elementos entran en pantalla
+        // ANIMACIÓN SCROLL REVEAL
         document.addEventListener("DOMContentLoaded", function() {
             const revealElements = document.querySelectorAll('.reveal');
-
-            const revealOptions = {
-                threshold: 0.15, // El elemento debe estar al 15% visible para activarse
-                rootMargin: "0px 0px -50px 0px" // Activa un poco antes de que entre del todo
-            };
+            const revealOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
 
             const revealOnScroll = new IntersectionObserver(function(entries, revealOnScroll) {
                 entries.forEach(entry => {
-                    if (!entry.isIntersecting) {
-                        return;
-                    } else {
+                    if (entry.isIntersecting) {
                         entry.target.classList.add('active');
-                        revealOnScroll.unobserve(entry.target); // Dejar de observar una vez animado
+                        revealOnScroll.unobserve(entry.target);
                     }
                 });
             }, revealOptions);
 
-            revealElements.forEach(element => {
-                revealOnScroll.observe(element);
+            revealElements.forEach(element => { revealOnScroll.observe(element); });
+            
+            // MENU MÓVIL LOGIC
+            const menuToggle = document.getElementById('mobile-menu');
+            const navList = document.getElementById('nav-list');
+            const navLinks = document.querySelectorAll('nav ul li a');
+            
+            menuToggle.addEventListener('click', () => {
+                navList.classList.toggle('active');
+            });
+            
+            // Cerrar menú al hacer click en un enlace
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    navList.classList.remove('active');
+                });
             });
         });
 
-
-        // Countdown
+        // COUNTDOWN
         const weddingDate = new Date('2026-10-03T18:00:00').getTime();
         
         function updateCountdown() {
@@ -1057,38 +830,34 @@
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
             
-            // Actualizar countdown en el hero
             document.getElementById('days-hero').textContent = days;
             document.getElementById('hours-hero').textContent = hours;
             document.getElementById('minutes-hero').textContent = minutes;
             document.getElementById('seconds-hero').textContent = seconds;
         }
-        
         updateCountdown();
         setInterval(updateCountdown, 1000);
 
-        // Navbar show/hide
+        // NAVBAR SCROLL EFFECT
         window.addEventListener('scroll', () => {
             const navbar = document.getElementById('navbar');
-            if (window.scrollY > window.innerHeight - 100) {
-                navbar.classList.add('visible');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
             } else {
-                navbar.classList.remove('visible');
+                navbar.classList.remove('scrolled');
             }
         });
 
-        // Smooth scroll
+        // SMOOTH SCROLL
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
+                if (target) { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
             });
         });
 
-        // Toggle acompañante field
+        // TOGGLE ACOMPAÑANTE
         function toggleAcompanante() {
             const select = document.getElementById('acompanado');
             const field = document.getElementById('acompananteField');
@@ -1105,20 +874,19 @@
             }
         }
 
-        // Form submission
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby6ez3sA8uZcTMgAk8zeUxUKsVdlc0PxeW4czcV0YLVSB_y6bEX2G01-sc027VSuI6YGw/exec';
+        // --- ENVÍO DE FORMULARIOS ---
+        
+        // URL DE TU APPS SCRIPT (Sustituir si cambia)
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzL2Yy7GNZ-rAiBfnaEixm15a-PzD2zmUNViK-g7hLKqj9fI6f3LjRHKl76wB7QdFTcEQ/exec';
 
+        // 1. Formulario Principal Boda
         document.getElementById('rsvpForm').addEventListener('submit', async function(e) {
             e.preventDefault();
-            
-            // Limpiar mensajes de error
             document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
             document.getElementById('formMessage').style.display = 'none';
             
-            // Validar campos obligatorios
             let hasErrors = false;
             const requiredFields = ['nombre', 'email', 'asisteBoda', 'acompanado', 'preboda', 'autobus'];
-            
             requiredFields.forEach(fieldId => {
                 const field = document.getElementById(fieldId);
                 if (!field.value.trim()) {
@@ -1127,7 +895,6 @@
                 }
             });
             
-            // Validar acompañante si viene acompañado
             if (document.getElementById('acompanado').value === 'Sí') {
                 const nombreAcompanante = document.getElementById('nombreAcompanante');
                 if (!nombreAcompanante.value.trim()) {
@@ -1136,48 +903,27 @@
                 }
             }
             
-            if (hasErrors) {
-                return;
-            }
+            if (hasErrors) return;
             
-        // 1. Actualiza aquí tu URL NUEVA del paso 2
-            const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzL2Yy7GNZ-rAiBfnaEixm15a-PzD2zmUNViK-g7hLKqj9fI6f3LjRHKl76wB7QdFTcEQ/exec'; 
-
-            // 2. Creamos el objeto FormData directo del formulario HTML
-            // Esto coge automáticamente todos los inputs que tengan 'name='
             const formElement = document.getElementById('rsvpForm');
             const data = new FormData(formElement);
-
-            // Deshabilitar botón
             const submitBtn = document.getElementById('submitBtn');
             submitBtn.disabled = true;
             submitBtn.textContent = 'Enviando...';
             
             try {
-                // 3. Enviamos los datos. Fíjate que NO ponemos headers ni JSON.stringify
-                await fetch(SCRIPT_URL, {
-                    method: 'POST',
-                    mode: 'no-cors', // Seguimos usando no-cors, pero con FormData funciona mejor
-                    body: data
-                });
-                
-                // Con no-cors asumimos éxito si no salta al catch
+                await fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: data });
                 const messageDiv = document.getElementById('formMessage');
                 messageDiv.className = 'success';
                 messageDiv.textContent = '¡Confirmación enviada correctamente! Gracias.';
                 messageDiv.style.display = 'block';
-                
-                // Limpiar formulario
                 formElement.reset();
                 toggleAcompanante();
-                
-                // Scroll al mensaje
                 messageDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                
             } catch (error) {
                 const messageDiv = document.getElementById('formMessage');
                 messageDiv.className = 'error';
-                messageDiv.textContent = 'Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.';
+                messageDiv.textContent = 'Hubo un error al enviar. Inténtalo de nuevo.';
                 messageDiv.style.display = 'block';
             } finally {
                 submitBtn.disabled = false;
@@ -1185,20 +931,17 @@
             }
         });
 
-        // Golf Form submission
+        // 2. Formulario Golf (AUN NO CORREGIDO EL JS, ESPERANDO TU SEÑAL)
+        // He mantenido tu código original aquí hasta que me digas.
         const GOLF_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz92-E270qmp06frweKBq0OQKK5uklWp0x3WTQSCZXPIpkACAoF4YJaikkbq62USMXWXg/exec';
 
         document.getElementById('golfForm').addEventListener('submit', async function(e) {
             e.preventDefault();
-            
-            // Limpiar mensajes de error
             document.querySelectorAll('#modal-golf .error-message').forEach(el => el.textContent = '');
             document.getElementById('golfFormMessage').style.display = 'none';
             
-            // Validar campos obligatorios
             let hasErrors = false;
             const golfFields = ['golf-nombre', 'golf-licencia', 'golf-handicap', 'golf-palos'];
-            
             golfFields.forEach(fieldId => {
                 const field = document.getElementById(fieldId);
                 if (!field.value.trim()) {
@@ -1207,11 +950,8 @@
                 }
             });
             
-            if (hasErrors) {
-                return;
-            }
+            if (hasErrors) return;
             
-            // Preparar datos para el golf
             const golfData = {
                 tipo: 'golf',
                 nombre: document.getElementById('golf-nombre').value,
@@ -1220,7 +960,6 @@
                 palos: document.getElementById('golf-palos').value
             };
             
-            // Deshabilitar botón
             const submitBtn = document.getElementById('submitGolfBtn');
             submitBtn.disabled = true;
             submitBtn.textContent = 'Enviando...';
@@ -1229,30 +968,20 @@
                 await fetch(GOLF_SCRIPT_URL, {
                     method: 'POST',
                     mode: 'no-cors',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(golfData)
                 });
-                
                 const messageDiv = document.getElementById('golfFormMessage');
                 messageDiv.className = 'success';
-                messageDiv.style.background = '#d4edda';
-                messageDiv.style.color = '#155724';
-                messageDiv.style.border = '1px solid #c3e6cb';
-                messageDiv.textContent = '¡Inscripción al torneo enviada correctamente! Nos vemos en el campo.';
+                messageDiv.style.background = '#d4edda'; messageDiv.style.color = '#155724'; messageDiv.style.border = '1px solid #c3e6cb';
+                messageDiv.textContent = '¡Inscripción enviada!';
                 messageDiv.style.display = 'block';
-                
-                // Limpiar formulario
                 document.getElementById('golfForm').reset();
-                
             } catch (error) {
                 const messageDiv = document.getElementById('golfFormMessage');
                 messageDiv.className = 'error';
-                messageDiv.style.background = '#f8d7da';
-                messageDiv.style.color = '#721c24';
-                messageDiv.style.border = '1px solid #f5c6cb';
-                messageDiv.textContent = 'Hubo un error al enviar la inscripción. Por favor, inténtalo de nuevo.';
+                messageDiv.style.background = '#f8d7da'; messageDiv.style.color = '#721c24'; messageDiv.style.border = '1px solid #f5c6cb';
+                messageDiv.textContent = 'Hubo un error.';
                 messageDiv.style.display = 'block';
             } finally {
                 submitBtn.disabled = false;
@@ -1260,47 +989,27 @@
             }
         });
 
-        // Modal functions
+        // Modals
         function openModal(id) {
-            console.log('Abriendo modal:', id);
             const modal = document.getElementById('modal-' + id);
-            if (modal) {
-                modal.style.display = 'block';
-                document.body.style.overflow = 'hidden';
-            }
+            if (modal) { modal.style.display = 'block'; document.body.style.overflow = 'hidden'; }
         }
-
         function closeModal(id) {
-            console.log('Cerrando modal:', id);
             const modal = document.getElementById('modal-' + id);
-            if (modal) {
-                modal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }
+            if (modal) { modal.style.display = 'none'; document.body.style.overflow = 'auto'; }
         }
-
-        // Close modal when clicking outside
         window.addEventListener('click', function(event) {
             if (event.target.classList.contains('modal')) {
-                event.target.style.display = 'none';
-                document.body.style.overflow = 'auto';
+                event.target.style.display = 'none'; document.body.style.overflow = 'auto';
             }
         });
-
-        // Add click listeners to accommodation cards
-        console.log('Buscando tarjetas clickables...');
         const cards = document.querySelectorAll('.card.clickable');
-        console.log('Tarjetas encontradas:', cards.length);
-
         cards.forEach((card, index) => {
-            console.log('Añadiendo listener a tarjeta', index, card.getAttribute('data-modal'));
             card.addEventListener('click', function() {
                 const modalId = this.getAttribute('data-modal');
-                console.log('Click en tarjeta, abriendo modal:', modalId);
                 openModal(modalId);
             });
         });
-
         console.log('=== SCRIPT COMPLETADO ===');
     </script>
 </body>
