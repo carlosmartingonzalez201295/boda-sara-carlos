@@ -21,22 +21,28 @@
             --light: #fff;
         }
 
-        body {
+       body {
             font-family: 'Montserrat', sans-serif;
             color: var(--dark);
             line-height: 1.8;
             overflow-x: hidden;
-            /* CAMBIO 1: Fondo de patrón en el body */
-            background-image: url('https://imgur.com/f518359f-c463-43c8-9377-28079b2b9e3e'); /* URL de tu patrón */
+            
+            /* --- CAMBIO AQUÍ: FONDO DE FLORES --- */
+            background-image: url('https://i.imgur.com/Hpf7Dl5.jpeg');
             background-repeat: repeat;
-            background-size: 400px; /* Ajusta el tamaño del patrón si lo ves muy grande o pequeño */
-            background-color: var(--accent); /* Color de respaldo */
+            background-size: 400px; /* Tamaño de las flores */
+            background-attachment: fixed; /* El fondo se queda quieto al hacer scroll */
+            background-color: #faf8f5; /* Color de base por si la imagen falla */
         }
 
-        /* Hero Section con imagen de fondo */
+       /* Hero Section con imagen de fondo */
         .hero {
             height: 100vh;
-            background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), 
+            
+            /* --- CAMBIO AQUÍ: TAPAR FLORES --- */
+            background-color: #faf8f5; /* Color sólido para tapar el fondo del body */
+            
+            background-image: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), 
                         url('https://i.imgur.com/CIqDdSY.jpeg');
             background-size: contain;
             background-position: center;
@@ -49,9 +55,7 @@
             text-align: center;
             color: var(--dark);
             overflow: hidden;
-            background-color: var(--accent); /* Asegura fondo sólido en pantallas de carga */
         }
-
         h1 {
             font-family: 'Cormorant Garamond', serif;
             font-size: 7rem;
@@ -145,15 +149,18 @@
             width: 100%;
         }
 
-        /* Sections */
+      /* Sections */
         section {
             padding: 100px 20px;
             max-width: 1200px;
-            margin: 0 auto; /* Esto centra el contenido dejando ver el patrón a los lados */
+            margin: 0 auto;
             position: relative;
-            /* CAMBIO 2: Fondo sólido para las secciones normales */
-            background: var(--accent); 
-            box-shadow: 0 0 20px rgba(0,0,0,0.05); /* Sutil sombra para separar del fondo */
+            
+            /* --- CAMBIO AQUÍ: FONDO PARA EL TEXTO --- */
+            background-color: rgba(250, 248, 245, 0.95); /* Color crema casi opaco */
+            /* Opcional: Un pequeño borde redondeado y sombra para que destaque */
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
 
         /* CAMBIO 3: Ajustar los elementos decorativos del fondo para que no se salgan de la sección sólida */
