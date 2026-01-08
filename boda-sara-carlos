@@ -29,17 +29,18 @@
             background: #faf8f5;
         }
 
-        /* Hero Section */
+        /* Hero Section con imagen de fondo */
         .hero {
             height: 100vh;
-            background: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), 
-                        url('https://raw.githubusercontent.com/carlosmartingonzalez201295/boda-sara-carlos/main/images/Portada.jpeg');
-            background-size: cover;
+            background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), 
+                        url('https://i.imgur.com/CIqDdSY.jpeg');
+            background-size: contain;
             background-position: center;
             background-repeat: no-repeat;
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             justify-content: center;
+            padding-top: 80px;
             position: relative;
             text-align: center;
             color: var(--dark);
