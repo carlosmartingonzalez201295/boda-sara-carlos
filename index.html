@@ -21,32 +21,26 @@
             --light: #fff;
         }
 
-       /* 1. EL FONDO GENERAL (Aquí va tu imagen de flores) */
         body {
             font-family: 'Montserrat', sans-serif;
             color: var(--dark);
             line-height: 1.8;
             overflow-x: hidden;
-            
-            /* CONFIGURACIÓN DEL FONDO LATERAL */
-            background-image: url('https://i.imgur.com/Hpf7Dl5.jpeg');
-            background-repeat: repeat;      /* Que se repita como un patrón */
-            background-size: 500px;         /* Ajusta este número si ves las flores muy grandes o pequeñas */
-            background-attachment: fixed;   /* EFECTO PARALLAX: El fondo se queda quieto mientras haces scroll */
-            background-color: #faf8f5;      /* Color de seguridad por si la imagen tarda en cargar */
+            /* CAMBIO 1: Fondo de patrón en el body */
+            background-image: url('https://imgur.com/f518359f-c463-43c8-9377-28079b2b9e3e'); /* URL de tu patrón */
+            background-repeat: repeat;
+            background-size: 400px; /* Ajusta el tamaño del patrón si lo ves muy grande o pequeño */
+            background-color: var(--accent); /* Color de respaldo */
         }
 
-      /* 2. LA HERO (PORTADA) - Esta debe TAPAR el fondo de flores */
+        /* Hero Section con imagen de fondo */
         .hero {
             height: 100vh;
-            /* Añadimos un color de fondo base para asegurar que no se transparenten las flores */
-            background-color: #faf8f5; 
-            background-image: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), 
+            background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), 
                         url('https://i.imgur.com/CIqDdSY.jpeg');
-            background-size: cover; /* Cambiado a cover para que llene bien toda la pantalla */
+            background-size: contain;
             background-position: center;
             background-repeat: no-repeat;
-            
             display: flex;
             align-items: flex-start;
             justify-content: center;
@@ -55,10 +49,7 @@
             text-align: center;
             color: var(--dark);
             overflow: hidden;
-            
-            /* IMPORTANTE: Esto asegura que la Hero esté por encima del fondo del body */
-            z-index: 10;
-            box-shadow: 0 4px 30px rgba(0,0,0,0.1); /* Sombrita suave al final de la hero */
+            background-color: var(--accent); /* Asegura fondo sólido en pantallas de carga */
         }
 
         h1 {
@@ -165,29 +156,18 @@
             box-shadow: 0 0 20px rgba(0,0,0,0.05); /* Sutil sombra para separar del fondo */
         }
 
-     /* 3. LAS SECCIONES DE CONTENIDO - Aquí hacemos el efecto "caja" */
-        section {
-            padding: 100px 60px; /* Más espacio interior */
-            max-width: 1000px;   /* Ancho máximo limitado para que SE VEAN los márgenes a los lados */
-            margin: 60px auto;   /* Centrado y con separación vertical entre secciones */
-            position: relative;
-            
-            /* Fondo sólido blanco/crema para que el texto se lea bien sobre las flores */
-            background-color: rgba(250, 248, 245, 0.96); /* Un pelín de transparencia queda muy elegante */
-            border-radius: 8px;  /* Bordes ligeramente redondeados */
-            box-shadow: 0 10px 40px rgba(0,0,0,0.08); /* Sombra para que flote sobre las flores */
-            z-index: 2;
+        /* CAMBIO 3: Ajustar los elementos decorativos del fondo para que no se salgan de la sección sólida */
+        section::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 0.08;
+            pointer-events: none;
+            z-index: 0; /* Asegurar que quedan por detrás del contenido */
         }
-
-        /* Ajuste para móviles: En el móvil quitamos los márgenes para aprovechar el espacio */
-        @media (max-width: 768px) {
-            section {
-                margin: 0;        /* Sin márgenes externos */
-                max-width: 100%;  /* Ocupar todo el ancho */
-                border-radius: 0; /* Sin bordes redondeados */
-                padding: 60px 20px;
-                box-shadow: none; /* Quitamos la sombra en móvil */
-            }
 
         section:nth-child(2)::before {
             background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==');
