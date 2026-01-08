@@ -26,7 +26,11 @@
             color: var(--dark);
             line-height: 1.8;
             overflow-x: hidden;
-            background: #faf8f5;
+            /* CAMBIO 1: Fondo de patrón en el body */
+            background-image: url('https://i.imgur.com/PZc0I6j.png'); /* URL de tu patrón */
+            background-repeat: repeat;
+            background-size: 400px; /* Ajusta el tamaño del patrón si lo ves muy grande o pequeño */
+            background-color: var(--accent); /* Color de respaldo */
         }
 
         /* Hero Section con imagen de fondo */
@@ -45,6 +49,7 @@
             text-align: center;
             color: var(--dark);
             overflow: hidden;
+            background-color: var(--accent); /* Asegura fondo sólido en pantallas de carga */
         }
 
         h1 {
@@ -144,10 +149,14 @@
         section {
             padding: 100px 20px;
             max-width: 1200px;
-            margin: 0 auto;
+            margin: 0 auto; /* Esto centra el contenido dejando ver el patrón a los lados */
             position: relative;
+            /* CAMBIO 2: Fondo sólido para las secciones normales */
+            background: var(--accent); 
+            box-shadow: 0 0 20px rgba(0,0,0,0.05); /* Sutil sombra para separar del fondo */
         }
 
+        /* CAMBIO 3: Ajustar los elementos decorativos del fondo para que no se salgan de la sección sólida */
         section::before {
             content: '';
             position: absolute;
@@ -157,6 +166,7 @@
             background-repeat: no-repeat;
             opacity: 0.08;
             pointer-events: none;
+            z-index: 0; /* Asegurar que quedan por detrás del contenido */
         }
 
         section:nth-child(2)::before {
@@ -182,6 +192,19 @@
         section.alt {
             background: white;
         }
+        
+        /* CAMBIO 4: Clases para la animación de Scroll Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px); /* Se desplaza 30px hacia abajo inicialmente */
+            transition: all 0.8s ease; /* Duración y suavidad de la animación */
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0); /* Vuelve a su posición original */
+        }
+
 
         h2 {
             font-family: 'Cormorant Garamond', serif;
@@ -190,6 +213,8 @@
             margin-bottom: 60px;
             font-weight: 400;
             color: var(--secondary);
+            position: relative; 
+            z-index: 1;
         }
 
         .subtitle {
@@ -199,6 +224,8 @@
             margin-top: -40px;
             margin-bottom: 60px;
             font-style: italic;
+            position: relative;
+            z-index: 1;
         }
 
         /* Countdown */
@@ -249,6 +276,7 @@
             position: relative;
             max-width: 800px;
             margin: 80px auto;
+            z-index: 1;
         }
 
         .timeline::before {
@@ -325,6 +353,8 @@
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
             margin: 60px 0;
+            position: relative;
+            z-index: 1;
         }
 
         .card {
@@ -450,6 +480,8 @@
             padding: 50px;
             border-radius: 15px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 1;
         }
 
         .form-group {
@@ -532,6 +564,15 @@
         }
 
         /* Responsive */
+        @media (max-width: 1240px) {
+            /* En pantallas más pequeñas, el fondo de patrón se reduce o desaparece de los lados */
+             section {
+                margin: 0;
+                max-width: 100%;
+                box-shadow: none;
+             }
+        }
+
         @media (max-width: 768px) {
             h1 { font-size: 3.5rem; }
             .ampersand { font-size: 4rem; margin: 0 15px; }
@@ -542,11 +583,11 @@
             .timeline-content { width: 100%; margin-left: 40px; }
             .timeline-dot { left: 20px; }
             .countdown-container { gap: 30px; }
+            section { padding: 60px 20px; } /* Ajuste de padding en móvil */
         }
     </style>
 </head>
 <body>
-    <!-- Hero Section -->
     <div class="hero">
         <div class="hero-content">
             <h1>
@@ -557,7 +598,6 @@
             <p class="date">03 . 10 . 2026</p>
             <p class="location">Talavera de la Reina</p>
             
-            <!-- Countdown in Hero -->
             <div class="countdown-container" style="margin-top: 60px;">
                 <div class="countdown-box">
                     <span class="countdown-number" id="days-hero">0</span>
@@ -578,7 +618,6 @@
             </div>
         </div>
         
-        <!-- Navigation in Hero -->
         <nav style="position: absolute; bottom: 100px; left: 50%; transform: translateX(-50%); background: transparent; box-shadow: none; padding: 0;">
             <ul style="gap: 40px;">
                 <li><a href="#inicio" style="color: var(--dark); font-size: 0.85rem;">Inicio</a></li>
@@ -592,7 +631,6 @@
         <div class="scroll-indicator"></div>
     </div>
 
-    <!-- Navigation -->
     <nav id="navbar">
         <ul>
             <li><a href="#inicio">Inicio</a></li>
@@ -603,16 +641,14 @@
         </ul>
     </nav>
 
-    <!-- Countdown Section -->
     <section id="inicio" style="display: none;">
     </section>
 
-    <!-- Event Timeline -->
     <section id="itinerario" class="alt">
-        <h2>Itinerario</h2>
+        <h2 class="reveal">Itinerario</h2>
 
         <div class="timeline">
-            <div class="timeline-item">
+            <div class="timeline-item reveal">
                 <div class="timeline-content" style="cursor: pointer;" onclick="openModal('golf')">
                     <div class="timeline-icon">⛳</div>
                     <h3>Torneo de Golf</h3>
@@ -624,7 +660,7 @@
                 <div class="timeline-dot"></div>
             </div>
 
-            <div class="timeline-item">
+            <div class="timeline-item reveal">
                 <div class="timeline-content">
                     <div class="timeline-icon">🍷</div>
                     <h3>Preboda</h3>
@@ -636,7 +672,7 @@
                 <div class="timeline-dot"></div>
             </div>
 
-            <div class="timeline-item">
+            <div class="timeline-item reveal">
                 <div class="timeline-content">
                     <div class="timeline-icon">💒</div>
                     <h3>Ceremonia</h3>
@@ -648,7 +684,7 @@
                 <div class="timeline-dot"></div>
             </div>
 
-            <div class="timeline-item">
+            <div class="timeline-item reveal">
                 <div class="timeline-content">
                     <div class="timeline-icon">🥂</div>
                     <h3>Banquete</h3>
@@ -661,21 +697,20 @@
             </div>
         </div>
 
-        <div style="text-align: center; margin-top: 60px; padding: 30px; background: white; border-radius: 15px;">
+        <div class="reveal" style="text-align: center; margin-top: 60px; padding: 30px; background: var(--accent); border-radius: 15px; position: relative; z-index: 1;">
             <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--secondary); margin-bottom: 15px;">👔 Dress Code</h3>
             <p style="font-size: 1.2rem; color: #666;">Etiqueta formal</p>
         </div>
     </section>
 
-    <!-- Accommodation Section -->
     <section id="alojamiento">
-        <h2>Alojamiento</h2>
-        <p class="subtitle">Opciones para tu estancia en Talavera</p>
+        <h2 class="reveal">Alojamiento</h2>
+        <p class="subtitle reveal">Opciones para tu estancia en Talavera</p>
 
-        <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: var(--secondary); text-align: center; margin: 60px 0 40px;">Hoteles</h3>
+        <h3 class="reveal" style="font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: var(--secondary); text-align: center; margin: 60px 0 40px; position: relative; z-index: 1;">Hoteles</h3>
         
         <div class="cards-grid">
-            <div class="card clickable" data-modal="hotel1">
+            <div class="card clickable reveal" data-modal="hotel1">
                 <div class="icon">🏨</div>
                 <h3>Hotel Be Live City Center ⭐⭐⭐⭐</h3>
                 <p>📍 Av. Toledo, s/n, 45600 Talavera de la Reina</p>
@@ -683,17 +718,17 @@
             </div>
         </div>
 
-        <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: var(--secondary); text-align: center; margin: 80px 0 40px;">Apartamentos</h3>
+        <h3 class="reveal" style="font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: var(--secondary); text-align: center; margin: 80px 0 40px; position: relative; z-index: 1;">Apartamentos</h3>
         
         <div class="cards-grid">
-            <div class="card clickable" data-modal="apt1">
+            <div class="card clickable reveal" data-modal="apt1">
                 <div class="icon">🏡</div>
                 <h3>Blue Windows</h3>
                 <p>📍 C. Corre. del Cristo, 18, 45600 Talavera de la Reina</p>
                 <p style="margin-top: 10px; font-weight: 500; color: var(--primary);">👉 Ver más información</p>
             </div>
 
-            <div class="card clickable" data-modal="apt2">
+            <div class="card clickable reveal" data-modal="apt2">
                 <div class="icon">🏡</div>
                 <h3>Santa Rita B&Boutique</h3>
                 <p>📍 Centro de Talavera</p>
@@ -702,15 +737,14 @@
         </div>
     </section>
 
-    <!-- Recommendations -->
     <section id="recomendaciones" class="alt">
-        <h2>Recomendaciones</h2>
-        <p class="subtitle">Para que conozcáis nuestros sitios favoritos de Talavera</p>
+        <h2 class="reveal">Recomendaciones</h2>
+        <p class="subtitle reveal">Para que conozcáis nuestros sitios favoritos de Talavera</p>
 
-        <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: var(--secondary); text-align: center; margin: 60px 0 40px;">Bares & Restaurantes</h3>
+        <h3 class="reveal" style="font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: var(--secondary); text-align: center; margin: 60px 0 40px; position: relative; z-index: 1;">Bares & Restaurantes</h3>
         
         <div class="cards-grid">
-            <div class="card">
+            <div class="card reveal">
                 <div class="icon">⭐</div>
                 <h3>Raíces</h3>
                 <p>Carlos Maldonado - Estrella Michelin</p>
@@ -718,7 +752,7 @@
                 <p>📞 671 42 21 15</p>
             </div>
 
-            <div class="card">
+            <div class="card reveal">
                 <div class="icon">🍷</div>
                 <h3>Misa de 1</h3>
                 <p>📍 Calle José Luis Gallo, 1</p>
@@ -726,7 +760,7 @@
                 <p style="margin-top: 15px;">Cocina mediterránea</p>
             </div>
 
-            <div class="card">
+            <div class="card reveal">
                 <div class="icon">🍽️</div>
                 <h3>El Monasterio</h3>
                 <p>📍 Av. Real Fábrica de Sedas, 3</p>
@@ -735,11 +769,10 @@
         </div>
     </section>
 
-    <!-- RSVP Form -->
     <section id="confirmacion">
-        <h2>Confirma tu Asistencia</h2>
+        <h2 class="reveal">Confirma tu Asistencia</h2>
 
-        <form class="rsvp-form" id="rsvpForm">
+        <form class="rsvp-form reveal" id="rsvpForm">
             <div class="form-group">
                 <label>Nombre y Apellidos *</label>
                 <input type="text" name="nombre" id="nombre" required>
@@ -815,7 +848,6 @@
         </form>
     </section>
 
-    <!-- Modals -->
     <div id="modal-hotel1" class="modal">
         <div class="modal-content">
             <span class="close-modal" onclick="closeModal('hotel1')">&times;</span>
@@ -916,7 +948,6 @@
         </div>
     </div>
 
-    <!-- Golf Tournament Modal -->
     <div id="modal-golf" class="modal">
         <div class="modal-content">
             <span class="close-modal" onclick="closeModal('golf')">&times;</span>
@@ -966,6 +997,33 @@
 
     <script>
         console.log('=== SCRIPT INICIADO ===');
+
+        // CAMBIO 6: Script para la animación de Scroll Reveal
+        // Usamos IntersectionObserver para detectar cuándo los elementos entran en pantalla
+        document.addEventListener("DOMContentLoaded", function() {
+            const revealElements = document.querySelectorAll('.reveal');
+
+            const revealOptions = {
+                threshold: 0.15, // El elemento debe estar al 15% visible para activarse
+                rootMargin: "0px 0px -50px 0px" // Activa un poco antes de que entre del todo
+            };
+
+            const revealOnScroll = new IntersectionObserver(function(entries, revealOnScroll) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) {
+                        return;
+                    } else {
+                        entry.target.classList.add('active');
+                        revealOnScroll.unobserve(entry.target); // Dejar de observar una vez animado
+                    }
+                });
+            }, revealOptions);
+
+            revealElements.forEach(element => {
+                revealOnScroll.observe(element);
+            });
+        });
+
 
         // Countdown
         const weddingDate = new Date('2026-10-03T18:00:00').getTime();
