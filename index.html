@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sara & Carlos - Nuestra Boda</title>
     <style>
+        /* Fuentes */
         @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;600&family=Montserrat:wght@300;400;500&display=swap');
         @import url('https://fonts.cdnfonts.com/css/cac-champagne');
         
@@ -25,25 +26,26 @@
             display: flex;
             justify-content: space-between; 
             align-items: center;
-            background: rgba(54, 89, 66, 0.95); 
-            backdrop-filter: blur(5px);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1); 
+            /* CAMBIO IMPORTANTE: Fondo inicial transparente y sin sombra */
+            background: transparent; 
+            box-shadow: none;
         }
 
-        nav.scrolled { background: var(--nav-bg-green); }
+        /* CAMBIO IMPORTANTE: Al hacer scroll, añadimos el fondo verde, el desenfoque y la sombra */
+        nav.scrolled { 
+            background: rgba(54, 89, 66, 0.95); 
+            backdrop-filter: blur(5px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
 
-        /* --- TRUCO MAGICO PARA EL SELLO --- */
-        /* Esto convierte tu imagen JPEG (con fondo) en un sello BLANCO y TRANSPARENTE */
+        /* --- TRUCO MAGICO PARA EL SELLO (SE MANTIENE) --- */
         .nav-logo img { 
             height: 88px; 
             width: auto; 
             display: block;
-            /* 1. Invertimos los colores (Lo blanco se vuelve negro, lo verde se vuelve rosado/oscuro) */
-            /* 2. Lo ponemos en escala de grises y subimos el brillo al máximo para que lo que era verde ahora sea BLANCO puro */
             filter: invert(1) grayscale(1) brightness(10);
-            /* 3. Usamos 'screen' para que todo lo que ahora es NEGRO (el fondo original blanco invertido) se vuelva transparente */
             mix-blend-mode: screen; 
-            opacity: 0.9; /* Un pelín de transparencia para que se funda bonito */
+            opacity: 0.9;
         }
 
         nav ul {
