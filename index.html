@@ -5,11 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sara & Carlos - Nuestra Boda</title>
     <style>
+        /* Fuentes */
         @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;600&family=Montserrat:wght@300;400;500&display=swap');
         @import url('https://fonts.cdnfonts.com/css/cac-champagne');
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root { --primary: #d4a373; --secondary: #8b7355; --accent: #faf8f5; --dark: #3d3d3d; --light: #fff; --nav-bg-green: #365942; --hero-text: #5d4037; }
+        
+        /* Fondo general de flores para el resto de la web */
         body { font-family: 'Montserrat', sans-serif; color: var(--dark); line-height: 1.8; overflow-x: hidden; background-image: url('https://i.imgur.com/Hpf7Dl5.jpeg'); background-repeat: repeat; background-size: 400px; background-attachment: fixed; background-color: #faf8f5; }
 
        /* --- NAVEGACIÓN --- */
@@ -25,25 +28,29 @@
             display: flex;
             justify-content: space-between; 
             align-items: center;
+            
+            /* Fondo verde */
             background: rgba(54, 89, 66, 0.95); 
             backdrop-filter: blur(5px);
             box-shadow: 0 4px 20px rgba(0,0,0,0.1); 
         }
 
-        nav.scrolled { background: var(--nav-bg-green); }
+        nav.scrolled { 
+            background: var(--nav-bg-green); 
+        }
 
-        /* --- TRUCO MAGICO PARA EL SELLO --- */
-        /* Esto convierte tu imagen JPEG (con fondo) en un sello BLANCO y TRANSPARENTE */
+        /* --- CORRECCIÓN DEL SELLO (Versión anterior) --- */
         .nav-logo img { 
             height: 88px; 
             width: auto; 
             display: block;
-            /* 1. Invertimos los colores (Lo blanco se vuelve negro, lo verde se vuelve rosado/oscuro) */
-            /* 2. Lo ponemos en escala de grises y subimos el brillo al máximo para que lo que era verde ahora sea BLANCO puro */
-            filter: invert(1) grayscale(1) brightness(10);
-            /* 3. Usamos 'screen' para que todo lo que ahora es NEGRO (el fondo original blanco invertido) se vuelva transparente */
+            
+            /* Este es el filtro que hacía el efecto de "más oscuro alrededor" al intentar forzar el contraste */
+            filter: grayscale(100%) contrast(500%);
+            
+            /* 'screen' hace transparente lo que el filtro consiguió volver negro puro */
             mix-blend-mode: screen; 
-            opacity: 0.9; /* Un pelín de transparencia para que se funda bonito */
+            opacity: 1; 
         }
 
         nav ul {
@@ -82,21 +89,26 @@
 
         .menu-toggle { display: none; cursor: pointer; font-size: 1.8rem; color: var(--light); }
 
-       /* --- HERO SECTION --- */
+       /* --- HERO SECTION (PORTADA A PANTALLA COMPLETA) --- */
        .hero {
-            height: auto;
-            min-height: 40vh;
+            height: 100vh;
             width: 100%;
-            background: transparent;
             display: flex;
             justify-content: center;
-            align-items: flex-end;
-            padding-top: 110px;
-            padding-bottom: 20px;
+            
+            align-items: flex-start; 
+            padding-top: 140px; 
+            
+            padding-bottom: 0;
             text-align: center;
-            color: var(--hero-text);
+            color: var(--light); 
             position: relative;
             z-index: 10;
+            
+            background-image: url('https://i.imgur.com/8sY93tI.jpeg'); 
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
         }
 
         h1 {
@@ -107,6 +119,7 @@
             line-height: 1;
             position: relative;
             z-index: 1;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
 
         .ampersand {
@@ -115,6 +128,7 @@
             margin: 0 10px;
             display: inline-block;
             color: var(--primary);
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
 
         .date {
@@ -123,6 +137,7 @@
             letter-spacing: 2px;
             margin-top: 15px;
             font-weight: normal;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
 
         .location {
@@ -133,96 +148,20 @@
             text-transform: none;
             letter-spacing: 1px;
             font-weight: normal;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
 
         .scroll-indicator {
             position: absolute;
-            bottom: -50px;
+            bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
             animation: bounce 2s infinite;
             z-index: 20;
-            opacity: 0.8;
-            color: var(--hero-text);
-        }
-        .scroll-indicator::after { content: '↓'; font-size: 2rem; }
-
-        /* --- SECCIÓN HISTORIA --- */
-        .story-section {
-            padding: 0px 20px 100px;
-            position: relative;
-            max-width: 1200px;
-            margin: 0 auto;
-            overflow: visible;
-        }
-
-        .story-container {
-            position: relative;
-            height: 400px;
-            width: 100%;
-        }
-
-        .story-line-svg {
-            position: absolute;
-            top: 30px;
-            left: -5%;
-            width: 110%;
-            height: 350px;
-            z-index: 0;
-            pointer-events: none;
-            filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.1));
-        }
-
-        .story-line-path {
-            fill: none;
-            stroke: var(--secondary);
-            stroke-width: 4;
             opacity: 0.9;
-            stroke-linecap: round;
-            stroke-dasharray: 15, 15;
+            color: var(--light);
         }
-
-        .polaroid {
-            position: absolute;
-            background: white;
-            padding: 12px 12px 45px 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-            width: 190px;
-            z-index: 1;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .polaroid:hover {
-            transform: scale(1.1) rotate(0deg) !important;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.25);
-            z-index: 10;
-        }
-
-        .polaroid img {
-            width: 100%;
-            aspect-ratio: 1 / 1;
-            object-fit: cover;
-            border: 1px solid #eee;
-            background-color: #f0f0f0;
-        }
-
-        .polaroid-caption {
-            position: absolute;
-            bottom: 5px;
-            left: 0;
-            width: 100%;
-            text-align: center;
-            font-family: 'CAC Champagne', cursive;
-            font-size: 1.8rem;
-            color: var(--dark);
-            line-height: 1;
-        }
-
-        .p1 { left: 1%; top: 30px; transform: rotate(-4deg); }
-        .p2 { left: 21%; top: 110px; transform: rotate(3deg); z-index: 2; }
-        .p3 { left: 41%; top: 20px; transform: rotate(-2deg); }
-        .p4 { left: 61%; top: 100px; transform: rotate(5deg); z-index: 2; }
-        .p5 { left: 81%; top: 40px; transform: rotate(-3deg); }
+        .scroll-indicator::after { content: '↓'; font-size: 2rem; text-shadow: 0 2px 5px rgba(0,0,0,0.5); }
 
         /* --- SECTIONS GENERALES --- */
         section { padding: 100px 20px; max-width: 1200px; margin: 0 auto; position: relative; background-color: transparent; box-shadow: none; border-radius: 0; }
@@ -233,6 +172,7 @@
         h2 { font-family: 'Cormorant Garamond', serif; font-size: 4rem; text-align: center; margin-bottom: 60px; font-weight: 400; color: var(--secondary); position: relative; z-index: 1; }
         .subtitle { text-align: center; font-size: 1.1rem; color: #444; margin-top: -40px; margin-bottom: 60px; font-style: italic; position: relative; z-index: 1; background-color: rgba(255,255,255,0.7); display: inline-block; padding: 5px 20px; border-radius: 20px; left: 50%; transform: translateX(-50%); white-space: nowrap; }
         
+        /* Timeline */
         .timeline { position: relative; max-width: 800px; margin: 80px auto; z-index: 1; }
         .timeline::before { content: ''; position: absolute; left: 50%; transform: translateX(-50%); width: 2px; height: 100%; background: var(--primary); opacity: 0.3; }
         .timeline-item { position: relative; margin-bottom: 80px; display: flex; align-items: center; }
@@ -245,6 +185,7 @@
         .timeline-content h3 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--secondary); margin-bottom: 10px; }
         .timeline-content p { color: #666; line-height: 1.6; }
         
+        /* Cards */
         .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin: 60px 0; position: relative; z-index: 1; }
         .card { background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: all 0.3s; border-top: 4px solid var(--primary); }
         .card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
@@ -254,6 +195,7 @@
         .card.clickable { cursor: pointer; }
         .card.clickable:hover { transform: translateY(-10px) scale(1.02); }
         
+        /* Modal */
         .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); animation: fadeIn 0.3s; }
         .modal-content { background-color: white; margin: 5% auto; padding: 40px; border-radius: 15px; width: 90%; max-width: 600px; position: relative; animation: slideDown 0.3s; max-height: 80vh; overflow-y: auto; }
         .close-modal { position: absolute; right: 20px; top: 20px; font-size: 2rem; font-weight: bold; color: #aaa; cursor: pointer; transition: color 0.3s; }
@@ -265,6 +207,7 @@
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes slideDown { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
         
+        /* Form */
         .rsvp-form { max-width: 600px; margin: 60px auto; background: white; padding: 50px; border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); position: relative; z-index: 1; }
         .form-group { margin-bottom: 25px; }
         label { display: block; margin-bottom: 8px; color: var(--secondary); font-weight: 500; letter-spacing: 1px; }
@@ -286,8 +229,14 @@
             .date { font-size: 2.8rem; }
             .location { font-size: 1.8rem; }
 
-            .hero { padding-top: 100px; padding-bottom: 10px; min-height: 40vh; align-items: center; }
-            .scroll-indicator { bottom: -40px; }
+            .hero { 
+                height: 100vh; 
+                padding-top: 100px; 
+                padding-bottom: 0; 
+                align-items: flex-start;
+                background-attachment: scroll; 
+            }
+            .scroll-indicator { bottom: 20px; }
 
             nav { padding: 15px 20px; justify-content: space-between; }
             .nav-logo img { height: 50px; }
@@ -313,12 +262,6 @@
             .menu-toggle { display: block; } 
             .nav-countdown { display: none; } 
 
-            .story-section { padding-top: 60px; }
-            .story-container { height: auto; display: flex; flex-direction: column; align-items: center; gap: 50px; }
-            .polaroid { position: relative; top: auto !important; left: auto !important; right: auto !important; width: 75%; max-width: 280px; transform: rotate(3deg); }
-            .polaroid:nth-child(even) { transform: rotate(-2deg); }
-            .story-line-svg { display: none; } 
-
             .timeline::before { left: 20px; }
             .timeline-item { flex-direction: column !important; }
             .timeline-content { width: 100%; margin-left: 40px; }
@@ -331,7 +274,7 @@
     
     <nav id="navbar">
         <div class="nav-logo">
-            <img src="https://i.imgur.com/Z3dxInO.jpeg" alt="Sello S&C">
+            <img src="https://i.imgur.com/MdGi1yy.jpeg" alt="Sello S&C">
         </div>
         <ul id="nav-list">
             <li><a href="#inicio" class="nav-link">Inicio</a></li>
@@ -359,20 +302,6 @@
         </div>
         <div class="scroll-indicator"></div>
     </div>
-
-    <section class="story-section">
-        <div class="story-container reveal">
-            <svg class="story-line-svg" viewBox="0 0 1400 350" preserveAspectRatio="none">
-                <path class="story-line-path" d="M 0,180 C 150,80 300,280 450,180 S 750,80 900,180 S 1200,80 1350,180" vector-effect="non-scaling-stroke" />
-            </svg>
-
-            <div class="polaroid p1"><img src="https://via.placeholder.com/300x300/cccccc/ffffff?text=Foto+1" alt="Historia 1"><div class="polaroid-caption">xxx</div></div>
-            <div class="polaroid p2"><img src="https://via.placeholder.com/300x300/cccccc/ffffff?text=Foto+2" alt="Historia 2"><div class="polaroid-caption">xxx</div></div>
-            <div class="polaroid p3"><img src="https://via.placeholder.com/300x300/cccccc/ffffff?text=Foto+3" alt="Historia 3"><div class="polaroid-caption">xxx</div></div>
-            <div class="polaroid p4"><img src="https://via.placeholder.com/300x300/cccccc/ffffff?text=Foto+4" alt="Historia 4"><div class="polaroid-caption">xxx</div></div>
-            <div class="polaroid p5"><img src="https://via.placeholder.com/300x300/cccccc/ffffff?text=Foto+5" alt="Historia 5"><div class="polaroid-caption">xxx</div></div>
-        </div>
-    </section>
 
     <section id="itinerario" class="alt">
         <div class="timeline">
