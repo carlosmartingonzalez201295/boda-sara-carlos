@@ -5,10 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sara & Carlos - Nuestra Boda</title>
     <style>
+        /* Fuentes */
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Montserrat:wght@300;400;500&display=swap');
+        /* Importamos CAC Champagne */
+        @import url('https://fonts.cdnfonts.com/css/cac-champagne');
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        :root { --primary: #d4a373; --secondary: #8b7355; --accent: #faf8f5; --dark: #3d3d3d; --light: #fff; --nav-bg-green: #365942; }
+        :root { --primary: #d4a373; --secondary: #8b7355; --accent: #faf8f5; --dark: #3d3d3d; --light: #fff; --nav-bg-green: #365942; --hero-text: #5d4037; }
         body { font-family: 'Montserrat', sans-serif; color: var(--dark); line-height: 1.8; overflow-x: hidden; background-image: url('https://i.imgur.com/Hpf7Dl5.jpeg'); background-repeat: repeat; background-size: 400px; background-attachment: fixed; background-color: #faf8f5; }
 
        /* --- NAVEGACIÓN --- */
@@ -21,34 +24,23 @@
             z-index: 1000;
             padding: 0 30px;
             transition: all 0.4s ease;
-            
             display: flex;
             justify-content: space-between; 
             align-items: center;
-            
             background: rgba(54, 89, 66, 0.95); 
             backdrop-filter: blur(5px);
             box-shadow: 0 4px 20px rgba(0,0,0,0.1); 
         }
 
-        nav.scrolled {
-            background: var(--nav-bg-green);
-        }
+        nav.scrolled { background: var(--nav-bg-green); }
 
-        /* 1. SELLO */
-        .nav-logo img {
-            height: 88px; 
-            width: auto;
-            display: block;
-        }
+        .nav-logo img { height: 88px; width: auto; display: block; }
 
-        /* 2. MENÚ */
         nav ul {
             position: absolute;
             left: 50%;
             top: 50%;
             transform: translate(-50%, -50%);
-            
             display: flex;
             list-style: none;
             gap: 30px;
@@ -68,72 +60,40 @@
         }
 
         nav a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: var(--primary); transition: width 0.3s; }
-        
         nav a:hover::after { width: 100%; }
         nav a.active::after { width: 100%; }
         
-        /* 3. DERECHA */
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-        }
+        .nav-right { display: flex; align-items: center; gap: 30px; }
 
-        /* CONTADOR */
-        .nav-countdown {
-            display: flex;
-            gap: 15px;
-            background: transparent;
-            padding: 0;
-            border-radius: 0;
-        }
-        .nav-countdown-box {
-            text-align: center;
-            min-width: 20px;
-        }
-        .nav-countdown-number {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.3rem; 
-            font-weight: 600;
-            color: var(--light);
-            display: block;
-            line-height: 1;
-        }
-        .nav-countdown-label {
-            font-size: 0.55rem;
-            text-transform: uppercase;
-            color: rgba(255, 255, 255, 0.8);
-            letter-spacing: 1px;
-        }
+        .nav-countdown { display: flex; gap: 15px; background: transparent; padding: 0; border-radius: 0; }
+        .nav-countdown-box { text-align: center; min-width: 20px; }
+        .nav-countdown-number { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 600; color: var(--light); display: block; line-height: 1; }
+        .nav-countdown-label { font-size: 0.55rem; text-transform: uppercase; color: rgba(255, 255, 255, 0.8); letter-spacing: 1px; }
 
         .menu-toggle { display: none; cursor: pointer; font-size: 1.8rem; color: var(--light); }
 
-       /* --- HERO SECTION --- */
+       /* --- HERO SECTION (PORTADA) --- */
        .hero {
-            height: 100vh;
+            height: auto;
+            min-height: 40vh;
             width: 100%;
-            background-color: #faf8f5;
-            background-image: linear-gradient(rgba(255,255,255,0.3), rgba(255,255,255,0.3)), 
-                        url('https://i.imgur.com/CIqDdSY.jpeg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            
+            background: transparent;
             display: flex;
             justify-content: center;
-            align-items: flex-start;
-            padding-top: 150px;
-            
+            align-items: flex-end;
+            padding-top: 110px;
+            padding-bottom: 20px;
             text-align: center;
-            color: var(--dark);
+            color: var(--hero-text);
             position: relative;
             z-index: 10;
         }
 
+        /* CAMBIO: VOLVEMOS A CAC CHAMPAGNE */
         h1 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 5rem;
-            font-weight: 300;
+            font-family: 'CAC Champagne', cursive; 
+            font-size: 7rem;
+            font-weight: normal; 
             margin-bottom: 5px;
             line-height: 1;
             position: relative;
@@ -141,48 +101,130 @@
         }
 
         .ampersand {
+            font-family: 'CAC Champagne', cursive;
             font-size: 6rem;
-            margin: 0 15px;
+            margin: 0 10px;
             display: inline-block;
-            font-style: italic;
             color: var(--primary);
         }
 
         .date {
-            font-size: 1.5rem;
-            letter-spacing: 8px;
+            font-family: 'CAC Champagne', cursive;
+            font-size: 3rem;
+            letter-spacing: 2px;
             margin-top: 15px;
-            font-weight: 300;
+            font-weight: normal;
         }
 
         .location {
-            font-size: 1rem;
+            font-family: 'CAC Champagne', cursive;
+            font-size: 2.5rem;
             margin-top: 5px;
-            opacity: 0.9;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            opacity: 1;
+            text-transform: none;
+            letter-spacing: 1px;
+            font-weight: normal;
         }
 
         .scroll-indicator {
             position: absolute;
-            bottom: 30px;
+            bottom: -50px;
             left: 50%;
             transform: translateX(-50%);
             animation: bounce 2s infinite;
             z-index: 20;
+            opacity: 0.8;
+            color: var(--hero-text);
         }
-        .scroll-indicator::after { content: '↓'; font-size: 2rem; color: var(--dark); }
+        .scroll-indicator::after { content: '↓'; font-size: 2rem; }
 
-        /* --- SECTIONS --- */
-        /* Eliminados los estilos section::before que ponían los cuadrados de fondo */
+        /* --- SECCIÓN HISTORIA --- */
+        .story-section {
+            padding: 0px 20px 100px;
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            overflow: visible;
+        }
+
+        .story-container {
+            position: relative;
+            height: 400px;
+            width: 100%;
+        }
+
+        .story-line-svg {
+            position: absolute;
+            top: 30px;
+            left: -5%;
+            width: 110%;
+            height: 350px;
+            z-index: 0;
+            pointer-events: none;
+            filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.1));
+        }
+
+        .story-line-path {
+            fill: none;
+            stroke: var(--secondary);
+            stroke-width: 4;
+            opacity: 0.9;
+            stroke-linecap: round;
+            stroke-dasharray: 15, 15; /* Línea discontinua */
+        }
+
+        /* Estilo Polaroid */
+        .polaroid {
+            position: absolute;
+            background: white;
+            padding: 12px 12px 45px 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            width: 190px;
+            z-index: 1;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .polaroid:hover {
+            transform: scale(1.1) rotate(0deg) !important;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+            z-index: 10;
+        }
+
+        .polaroid img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border: 1px solid #eee;
+            background-color: #f0f0f0;
+        }
+
+        .polaroid-caption {
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            font-family: 'CAC Champagne', cursive;
+            font-size: 1.8rem;
+            color: var(--dark);
+            line-height: 1;
+        }
+
+        /* POSICIONES */
+        .p1 { left: 1%; top: 30px; transform: rotate(-4deg); }
+        .p2 { left: 21%; top: 110px; transform: rotate(3deg); z-index: 2; }
+        .p3 { left: 41%; top: 20px; transform: rotate(-2deg); }
+        .p4 { left: 61%; top: 100px; transform: rotate(5deg); z-index: 2; }
+        .p5 { left: 81%; top: 40px; transform: rotate(-3deg); }
+
+
+        /* --- SECTIONS GENERALES --- */
         section { padding: 100px 20px; max-width: 1200px; margin: 0 auto; position: relative; background-color: transparent; box-shadow: none; border-radius: 0; }
-        
         section.alt { background: transparent; }
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
         .reveal.active { opacity: 1; transform: translateY(0); }
         
         h2 { font-family: 'Cormorant Garamond', serif; font-size: 4rem; text-align: center; margin-bottom: 60px; font-weight: 400; color: var(--secondary); position: relative; z-index: 1; }
-        
         .subtitle { text-align: center; font-size: 1.1rem; color: #444; margin-top: -40px; margin-bottom: 60px; font-style: italic; position: relative; z-index: 1; background-color: rgba(255,255,255,0.7); display: inline-block; padding: 5px 20px; border-radius: 20px; left: 50%; transform: translateX(-50%); white-space: nowrap; }
         
         /* Timeline */
@@ -235,12 +277,16 @@
         @keyframes bounce { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(-10px); } }
         @media (max-width: 1240px) { section { margin: 0; max-width: 100%; box-shadow: none; } }
 
-        /* --- MÓVIL (MENÚ HAMBURGUESA Y AJUSTES) --- */
+        /* --- MÓVIL --- */
         @media (max-width: 1024px) { 
-            h1 { font-size: 3.5rem; }
-            .ampersand { font-size: 4rem; margin: 0 10px; }
-            .hero { padding-top: 120px; } 
-            
+            h1 { font-size: 6rem; }
+            .ampersand { font-size: 5rem; margin: 0 5px; }
+            .date { font-size: 2.8rem; }
+            .location { font-size: 1.8rem; }
+
+            .hero { padding-top: 100px; padding-bottom: 10px; min-height: 40vh; align-items: center; }
+            .scroll-indicator { bottom: -40px; }
+
             nav { padding: 15px 20px; justify-content: space-between; }
             .nav-logo img { height: 50px; }
 
@@ -259,17 +305,18 @@
             }
             nav ul.active { display: flex; }
             nav li { text-align: center; width: 100%; }
-            
-            nav a { 
-                display: block; 
-                padding: 15px; 
-                border-bottom: 1px solid #f0f0f0; 
-                color: var(--dark); 
-            }
+            nav a { display: block; padding: 15px; border-bottom: 1px solid #f0f0f0; color: var(--dark); }
             nav a::after { display: none; } 
 
             .menu-toggle { display: block; } 
             .nav-countdown { display: none; } 
+
+            /* Ajuste Historia en móvil */
+            .story-section { padding-top: 60px; }
+            .story-container { height: auto; display: flex; flex-direction: column; align-items: center; gap: 50px; }
+            .polaroid { position: relative; top: auto !important; left: auto !important; right: auto !important; width: 75%; max-width: 280px; transform: rotate(3deg); }
+            .polaroid:nth-child(even) { transform: rotate(-2deg); }
+            .story-line-svg { display: none; } 
 
             .timeline::before { left: 20px; }
             .timeline-item { flex-direction: column !important; }
@@ -285,7 +332,6 @@
         <div class="nav-logo">
             <img src="https://i.imgur.com/N1vnIVI.jpeg" alt="Sello S&C">
         </div>
-        
         <ul id="nav-list">
             <li><a href="#inicio" class="nav-link">Inicio</a></li>
             <li><a href="#itinerario" class="nav-link">Itinerario</a></li>
@@ -293,44 +339,58 @@
             <li><a href="#recomendaciones" class="nav-link">Recomendaciones</a></li>
             <li><a href="#confirmacion" class="nav-link">Confirmación</a></li>
         </ul>
-        
         <div class="nav-right">
             <div class="nav-countdown">
-                <div class="nav-countdown-box">
-                    <span class="nav-countdown-number" id="days-nav">0</span>
-                    <span class="nav-countdown-label">Días</span>
-                </div>
-                <div class="nav-countdown-box">
-                    <span class="nav-countdown-number" id="hours-nav">0</span>
-                    <span class="nav-countdown-label">Hr</span>
-                </div>
-                <div class="nav-countdown-box">
-                    <span class="nav-countdown-number" id="minutes-nav">0</span>
-                    <span class="nav-countdown-label">Min</span>
-                </div>
-                <div class="nav-countdown-box">
-                    <span class="nav-countdown-number" id="seconds-nav">0</span>
-                    <span class="nav-countdown-label">Seg</span>
-                </div>
+                <div class="nav-countdown-box"><span class="nav-countdown-number" id="days-nav">0</span><span class="nav-countdown-label">Días</span></div>
+                <div class="nav-countdown-box"><span class="nav-countdown-number" id="hours-nav">0</span><span class="nav-countdown-label">Hr</span></div>
+                <div class="nav-countdown-box"><span class="nav-countdown-number" id="minutes-nav">0</span><span class="nav-countdown-label">Min</span></div>
+                <div class="nav-countdown-box"><span class="nav-countdown-number" id="seconds-nav">0</span><span class="nav-countdown-label">Seg</span></div>
             </div>
-
             <div class="menu-toggle" id="mobile-menu">☰</div>
         </div>
     </nav>
 
     <div class="hero" id="inicio">
         <div style="padding: 0 20px;">
-            <h1>
-                Sara 
-                <span class="ampersand">&</span>
-                Carlos
-            </h1>
+            <h1>Sara <span class="ampersand">&</span> Carlos</h1>
             <p class="date">03 . 10 . 2026</p>
             <p class="location">Talavera de la Reina</p>
-            </div>
-        
+        </div>
         <div class="scroll-indicator"></div>
     </div>
+
+    <section class="story-section">
+        <div class="story-container reveal">
+            <svg class="story-line-svg" viewBox="0 0 1400 350" preserveAspectRatio="none">
+                <path class="story-line-path" d="M 0,180 C 150,80 300,280 450,180 S 750,80 900,180 S 1200,80 1350,180" vector-effect="non-scaling-stroke" />
+            </svg>
+
+            <div class="polaroid p1">
+                <img src="https://via.placeholder.com/300x300/cccccc/ffffff?text=Foto+1" alt="Historia 1">
+                <div class="polaroid-caption">xxx</div>
+            </div>
+
+            <div class="polaroid p2">
+                <img src="https://via.placeholder.com/300x300/cccccc/ffffff?text=Foto+2" alt="Historia 2">
+                <div class="polaroid-caption">xxx</div>
+            </div>
+
+            <div class="polaroid p3">
+                <img src="https://via.placeholder.com/300x300/cccccc/ffffff?text=Foto+3" alt="Historia 3">
+                <div class="polaroid-caption">xxx</div>
+            </div>
+
+            <div class="polaroid p4">
+                <img src="https://via.placeholder.com/300x300/cccccc/ffffff?text=Foto+4" alt="Historia 4">
+                <div class="polaroid-caption">xxx</div>
+            </div>
+
+            <div class="polaroid p5">
+                <img src="https://via.placeholder.com/300x300/cccccc/ffffff?text=Foto+5" alt="Historia 5">
+                <div class="polaroid-caption">xxx</div>
+            </div>
+        </div>
+    </section>
 
     <section id="itinerario" class="alt">
         <div class="timeline">
@@ -345,7 +405,6 @@
                 </div>
                 <div class="timeline-dot"></div>
             </div>
-
             <div class="timeline-item reveal">
                 <div class="timeline-content">
                     <div class="timeline-icon">🍷</div>
@@ -357,7 +416,6 @@
                 </div>
                 <div class="timeline-dot"></div>
             </div>
-
             <div class="timeline-item reveal">
                 <div class="timeline-content">
                     <div class="timeline-icon">💒</div>
@@ -369,7 +427,6 @@
                 </div>
                 <div class="timeline-dot"></div>
             </div>
-
             <div class="timeline-item reveal">
                 <div class="timeline-content">
                     <div class="timeline-icon">🥂</div>
@@ -382,11 +439,10 @@
                 <div class="timeline-dot"></div>
             </div>
         </div>
-        </section>
+    </section>
 
     <section id="alojamiento">
         <p class="subtitle reveal" style="margin-top: 0;">Opciones para tu estancia en Talavera</p>
-        
         <div class="cards-grid">
             <div class="card clickable reveal" data-modal="hotel1">
                 <div class="icon">🏨</div>
@@ -394,14 +450,12 @@
                 <p>📍 Av. Toledo, s/n</p>
                 <p style="margin-top: 10px; font-weight: 500; color: var(--primary);">👉 Ver más información</p>
             </div>
-
             <div class="card clickable reveal" data-modal="apt1">
                 <div class="icon">🏡</div>
                 <h3>Blue Windows</h3>
                 <p>📍 C. Corre. del Cristo, 18</p>
                 <p style="margin-top: 10px; font-weight: 500; color: var(--primary);">👉 Ver más información</p>
             </div>
-
             <div class="card clickable reveal" data-modal="apt2">
                 <div class="icon">🏡</div>
                 <h3>Santa Rita B&Boutique</h3>
@@ -413,7 +467,6 @@
 
     <section id="recomendaciones" class="alt">
         <p class="subtitle reveal" style="margin-top: 0;">Para que conozcáis nuestros sitios favoritos de Talavera</p>
-        
         <div class="cards-grid">
             <div class="card reveal">
                 <div class="icon">⭐</div>
@@ -422,7 +475,6 @@
                 <p>📍 Ronda del Cañillo, 3</p>
                 <p>📞 671 42 21 15</p>
             </div>
-
             <div class="card reveal">
                 <div class="icon">🍷</div>
                 <h3>Misa de 1</h3>
@@ -430,7 +482,6 @@
                 <p>📞 925 04 62 06</p>
                 <p style="margin-top: 15px;">Cocina mediterránea</p>
             </div>
-
             <div class="card reveal">
                 <div class="icon">🍽️</div>
                 <h3>El Monasterio</h3>
@@ -443,292 +494,63 @@
     <section id="confirmacion">
         <form class="rsvp-form reveal" id="rsvpForm">
             <h3 style="text-align: center; font-family: 'Cormorant Garamond'; font-size: 2.5rem; color: var(--secondary); margin-bottom: 30px;">Confirma tu Asistencia</h3>
-            
-            <div class="form-group">
-                <label>Nombre y Apellidos *</label>
-                <input type="text" name="nombre" id="nombre" required>
-                <span class="error-message" id="error-nombre"></span>
-            </div>
-
-            <div class="form-group">
-                <label>Mail *</label>
-                <input type="email" name="email" id="email" required>
-                <span class="error-message" id="error-email"></span>
-            </div>
-
-            <div class="form-group">
-                <label>¿Asistirás a la Boda? *</label>
-                <select name="asisteBoda" id="asisteBoda" required>
-                    <option value="">Selecciona</option>
-                    <option value="Sí">Sí</option>
-                    <option value="No">No</option>
-                </select>
-                <span class="error-message" id="error-asisteBoda"></span>
-            </div>
-
-            <div class="form-group">
-                <label>¿Vienes acompañado/a? *</label>
-                <select name="acompanado" id="acompanado" required onchange="toggleAcompanante()">
-                    <option value="">Selecciona</option>
-                    <option value="Sí">Sí</option>
-                    <option value="No">No</option>
-                </select>
-                <span class="error-message" id="error-acompanado"></span>
-            </div>
-
-            <div class="form-group" id="acompananteField" style="display: none;">
-                <label>Nombre y Apellidos del Acompañante *</label>
-                <input type="text" name="nombreAcompanante" id="nombreAcompanante">
-                <span class="error-message" id="error-nombreAcompanante"></span>
-            </div>
-
-            <div class="form-group">
-                <label>¿Asistiréis a la preboda del viernes? *</label>
-                <select name="preboda" id="preboda" required>
-                    <option value="">Selecciona</option>
-                    <option value="Sí">Sí</option>
-                    <option value="No">No</option>
-                    <option value="Solo uno de los dos">Solo uno de los dos</option>
-                </select>
-                <span class="error-message" id="error-preboda"></span>
-            </div>
-
-            <div class="form-group">
-                <label>¿Utilizaréis el Servicio de Autobuses? *</label>
-                <select name="autobus" id="autobus" required>
-                    <option value="">Selecciona</option>
-                    <option value="Sí">Sí</option>
-                    <option value="No">No</option>
-                </select>
-                <span class="error-message" id="error-autobus"></span>
-            </div>
-
-            <div class="form-group">
-                <label>Restricciones alimentarias (Alergias, intolerancias)</label>
-                <textarea name="restricciones" id="restricciones" rows="3" placeholder="Indica aquí cualquier alergia o intolerancia"></textarea>
-            </div>
-
-            <div class="form-group">
-                <label>Número de pie por si los tacones piden un descanso (solo chicas)</label>
-                <input type="text" name="numeroPie" id="numeroPie" placeholder="Ej: 38">
-            </div>
-
+            <div class="form-group"><label>Nombre y Apellidos *</label><input type="text" name="nombre" id="nombre" required><span class="error-message" id="error-nombre"></span></div>
+            <div class="form-group"><label>Mail *</label><input type="email" name="email" id="email" required><span class="error-message" id="error-email"></span></div>
+            <div class="form-group"><label>¿Asistirás a la Boda? *</label><select name="asisteBoda" id="asisteBoda" required><option value="">Selecciona</option><option value="Sí">Sí</option><option value="No">No</option></select><span class="error-message" id="error-asisteBoda"></span></div>
+            <div class="form-group"><label>¿Vienes acompañado/a? *</label><select name="acompanado" id="acompanado" required onchange="toggleAcompanante()"><option value="">Selecciona</option><option value="Sí">Sí</option><option value="No">No</option></select><span class="error-message" id="error-acompanado"></span></div>
+            <div class="form-group" id="acompananteField" style="display: none;"><label>Nombre y Apellidos del Acompañante *</label><input type="text" name="nombreAcompanante" id="nombreAcompanante"><span class="error-message" id="error-nombreAcompanante"></span></div>
+            <div class="form-group"><label>¿Asistiréis a la preboda del viernes? *</label><select name="preboda" id="preboda" required><option value="">Selecciona</option><option value="Sí">Sí</option><option value="No">No</option><option value="Solo uno de los dos">Solo uno de los dos</option></select><span class="error-message" id="error-preboda"></span></div>
+            <div class="form-group"><label>¿Utilizaréis el Servicio de Autobuses? *</label><select name="autobus" id="autobus" required><option value="">Selecciona</option><option value="Sí">Sí</option><option value="No">No</option></select><span class="error-message" id="error-autobus"></span></div>
+            <div class="form-group"><label>Restricciones alimentarias</label><textarea name="restricciones" id="restricciones" rows="3"></textarea></div>
+            <div class="form-group"><label>Número de pie (solo chicas)</label><input type="text" name="numeroPie" id="numeroPie" placeholder="Ej: 38"></div>
             <div id="formMessage" style="margin-top: 20px; padding: 15px; border-radius: 8px; display: none;"></div>
-
             <button type="submit" id="submitBtn">Confirmar Asistencia</button>
         </form>
     </section>
 
-    <div id="modal-hotel1" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModal('hotel1')">&times;</span>
-            <div class="modal-icon">🏨</div>
-            <h3>Hotel Be Live City Center</h3>
-            <p style="color: #666; margin-bottom: 20px;">⭐⭐⭐⭐</p>
-            
-            <div class="modal-info">
-                <strong>📍 Dirección</strong>
-                <p>Av. Toledo, s/n, 45600 Talavera de la Reina, Toledo</p>
-            </div>
-            
-            <div class="modal-info">
-                <strong>📞 Teléfono</strong>
-                <p>925 72 72 00</p>
-            </div>
-            
-            <div class="modal-info">
-                <strong>📧 Mail</strong>
-                <p>recepcion.talavera@belivehotels.com</p>
-            </div>
-            
-            <div class="modal-info">
-                <strong>💰 Precio aproximado</strong>
-                <p>96€/noche</p>
-            </div>
-            
-            <div class="modal-info">
-                <strong>ℹ️ Información adicional</strong>
-                <p>• Parking: 12€/día<br>• Desayuno: 8€/día</p>
-            </div>
-            
-            <div class="modal-info">
-                <strong>🎁 Reserva boda</strong>
-                <p><strong>Titular de la reserva:</strong> BODA CARLOS Y SARA<br><strong>Localizador:</strong> 25GTV174</p>
-            </div>
-        </div>
-    </div>
-
-    <div id="modal-apt1" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModal('apt1')">&times;</span>
-            <div class="modal-icon">🏡</div>
-            <h3>Blue Windows</h3>
-            
-            <div class="modal-info">
-                <strong>📍 Dirección</strong>
-                <p>Calle Corredera del Cristo, 18, Talavera de la Reina - España</p>
-            </div>
-            
-            <div class="modal-info">
-                <strong>📞 Teléfono</strong>
-                <p>925 80 24 28</p>
-            </div>
-            
-            <div class="modal-info">
-                <strong>📧 Mail</strong>
-                <p>reservas@bluewindowshouse.com</p>
-            </div>
-            
-            <div class="modal-info">
-                <strong>💰 Precio aproximado</strong>
-                <p>Información próximamente</p>
-            </div>
-            
-            <div class="modal-info">
-                <strong>🎁 Reserva boda</strong>
-                <p>Información próximamente</p>
-            </div>
-        </div>
-    </div>
-
-    <div id="modal-apt2" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModal('apt2')">&times;</span>
-            <div class="modal-icon">🏡</div>
-            <h3>Santa Rita B&Boutique</h3>
-            
-            <div class="modal-info">
-                <strong>📍 Dirección</strong>
-                <p>Calle Mesones, 3, Talavera de la Reina - España</p>
-            </div>
-            
-            <div class="modal-info">
-                <strong>📞 Teléfono</strong>
-                <p>925 80 17 17</p>
-            </div>
-            
-            <div class="modal-info">
-                <strong>🌐 Web</strong>
-                <p>www.santaritaritaloquesedanosequita.es</p>
-            </div>
-            
-            <div class="modal-info">
-                <strong>🎁 Reserva boda</strong>
-                <p>Información próximamente</p>
-            </div>
-        </div>
-    </div>
-
+    <div id="modal-hotel1" class="modal"><div class="modal-content"><span class="close-modal" onclick="closeModal('hotel1')">&times;</span><div class="modal-icon">🏨</div><h3>Hotel Be Live City Center</h3><p style="color: #666; margin-bottom: 20px;">⭐⭐⭐⭐</p><div class="modal-info"><strong>📍 Dirección</strong><p>Av. Toledo, s/n</p></div><div class="modal-info"><strong>📞 Teléfono</strong><p>925 72 72 00</p></div><div class="modal-info"><strong>📧 Mail</strong><p>recepcion.talavera@belivehotels.com</p></div><div class="modal-info"><strong>💰 Precio aproximado</strong><p>96€/noche</p></div><div class="modal-info"><strong>ℹ️ Información adicional</strong><p>• Parking: 12€/día<br>• Desayuno: 8€/día</p></div><div class="modal-info"><strong>🎁 Reserva boda</strong><p><strong>Titular:</strong> BODA CARLOS Y SARA<br><strong>Localizador:</strong> 25GTV174</p></div></div></div>
+    <div id="modal-apt1" class="modal"><div class="modal-content"><span class="close-modal" onclick="closeModal('apt1')">&times;</span><div class="modal-icon">🏡</div><h3>Blue Windows</h3><div class="modal-info"><strong>📍 Dirección</strong><p>Calle Corredera del Cristo, 18</p></div><div class="modal-info"><strong>📞 Teléfono</strong><p>925 80 24 28</p></div><div class="modal-info"><strong>📧 Mail</strong><p>reservas@bluewindowshouse.com</p></div><div class="modal-info"><strong>💰 Precio aproximado</strong><p>Información próximamente</p></div></div></div>
+    <div id="modal-apt2" class="modal"><div class="modal-content"><span class="close-modal" onclick="closeModal('apt2')">&times;</span><div class="modal-icon">🏡</div><h3>Santa Rita B&Boutique</h3><div class="modal-info"><strong>📍 Dirección</strong><p>Calle Mesones, 3</p></div><div class="modal-info"><strong>📞 Teléfono</strong><p>925 80 17 17</p></div><div class="modal-info"><strong>🌐 Web</strong><p>www.santaritaritaloquesedanosequita.es</p></div><div class="modal-info"><strong>🎁 Reserva boda</strong><p>Información próximamente</p></div></div></div>
     <div id="modal-golf" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModal('golf')">&times;</span>
-            <div class="modal-icon">⛳</div>
-            <h3>Torneo de Golf</h3>
-            <p style="color: #666; margin-bottom: 20px;">Viernes, 02 de Octubre - 09:30h</p>
-
-            <form id="golfForm" style="margin-top: 30px;">
-                <h4 style="color: var(--secondary); margin-bottom: 20px; text-align: center;">Inscripción al Torneo</h4>
-                
-                <div style="margin-bottom: 20px;">
-                    <label style="display: block; margin-bottom: 8px; color: var(--secondary); font-weight: 500;">Nombre y Apellidos *</label>
-                    <input type="text" name="golf-nombre" id="golf-nombre" required style="width: 100%; padding: 12px; border: 2px solid var(--accent); border-radius: 8px; font-size: 1rem;">
-                    <span class="error-message" id="error-golf-nombre"></span>
-                </div>
-
-                <div style="margin-bottom: 20px;">
-                    <label style="display: block; margin-bottom: 8px; color: var(--secondary); font-weight: 500;">Número de Licencia *</label>
-                    <input type="text" name="golf-licencia" id="golf-licencia" required style="width: 100%; padding: 12px; border: 2px solid var(--accent); border-radius: 8px; font-size: 1rem;">
-                    <span class="error-message" id="error-golf-licencia"></span>
-                </div>
-
-                <div style="margin-bottom: 20px;">
-                    <label style="display: block; margin-bottom: 8px; color: var(--secondary); font-weight: 500;">Handicap *</label>
-                    <input type="text" name="golf-handicap" id="golf-handicap" required style="width: 100%; padding: 12px; border: 2px solid var(--accent); border-radius: 8px; font-size: 1rem;">
-                    <span class="error-message" id="error-golf-handicap"></span>
-                </div>
-
-                <div style="margin-bottom: 20px;">
-                    <label style="display: block; margin-bottom: 8px; color: var(--secondary); font-weight: 500;">¿Traerás tus palos? *</label>
-                    <select name="golf-palos" id="golf-palos" required style="width: 100%; padding: 12px; border: 2px solid var(--accent); border-radius: 8px; font-size: 1rem;">
-                        <option value="">Selecciona</option>
-                        <option value="Sí">Sí</option>
-                        <option value="No">No</option>
-                    </select>
-                    <span class="error-message" id="error-golf-palos"></span>
-                </div>
-                
-                <input type="hidden" name="tipo" value="golf">
-
-                <div id="golfFormMessage" style="margin-top: 20px; padding: 15px; border-radius: 8px; display: none;"></div>
-
-                <button type="submit" id="submitGolfBtn" style="width: 100%; padding: 15px; background: var(--primary); color: white; border: none; border-radius: 8px; font-size: 1.1rem; cursor: pointer; text-transform: uppercase; letter-spacing: 2px;">
-                    Confirmar Inscripción
-                </button>
-            </form>
+        <div class="modal-content"><span class="close-modal" onclick="closeModal('golf')">&times;</span><div class="modal-icon">⛳</div><h3>Torneo de Golf</h3><p style="color: #666; margin-bottom: 20px;">Viernes, 02 de Octubre - 09:30h</p>
+            <form id="golfForm" style="margin-top: 30px;"><h4 style="color: var(--secondary); margin-bottom: 20px; text-align: center;">Inscripción al Torneo</h4><div style="margin-bottom: 20px;"><label style="display: block; margin-bottom: 8px;">Nombre y Apellidos *</label><input type="text" name="golf-nombre" id="golf-nombre" required style="width: 100%; padding: 12px; border: 2px solid var(--accent); border-radius: 8px;"><span class="error-message" id="error-golf-nombre"></span></div><div style="margin-bottom: 20px;"><label style="display: block; margin-bottom: 8px;">Número de Licencia *</label><input type="text" name="golf-licencia" id="golf-licencia" required style="width: 100%; padding: 12px; border: 2px solid var(--accent); border-radius: 8px;"><span class="error-message" id="error-golf-licencia"></span></div><div style="margin-bottom: 20px;"><label style="display: block; margin-bottom: 8px;">Handicap *</label><input type="text" name="golf-handicap" id="golf-handicap" required style="width: 100%; padding: 12px; border: 2px solid var(--accent); border-radius: 8px;"><span class="error-message" id="error-golf-handicap"></span></div><div style="margin-bottom: 20px;"><label style="display: block; margin-bottom: 8px;">¿Traerás tus palos? *</label><select name="golf-palos" id="golf-palos" required style="width: 100%; padding: 12px; border: 2px solid var(--accent); border-radius: 8px;"><option value="">Selecciona</option><option value="Sí">Sí</option><option value="No">No</option></select><span class="error-message" id="error-golf-palos"></span></div><input type="hidden" name="tipo" value="golf"><div id="golfFormMessage" style="margin-top: 20px; padding: 15px; border-radius: 8px; display: none;"></div><button type="submit" id="submitGolfBtn" style="width: 100%; padding: 15px; background: var(--primary); color: white; border: none; border-radius: 8px;">Confirmar Inscripción</button></form>
         </div>
     </div>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            const revealElements = document.querySelectorAll('.reveal');
-            const revealOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
             const revealOnScroll = new IntersectionObserver(function(entries, revealOnScroll) {
                 entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('active'); revealOnScroll.unobserve(entry.target); } });
-            }, revealOptions);
-            revealElements.forEach(element => { revealOnScroll.observe(element); });
+            }, { threshold: 0.15, rootMargin: "0px 0px -50px 0px" });
+            document.querySelectorAll('.reveal').forEach(element => { revealOnScroll.observe(element); });
             
-            // MENÚ MÓVIL
             const menuToggle = document.getElementById('mobile-menu');
             const navList = document.getElementById('nav-list');
-            const navLinks = document.querySelectorAll('nav ul li a');
             menuToggle.addEventListener('click', () => { navList.classList.toggle('active'); });
-            navLinks.forEach(link => { link.addEventListener('click', () => { navList.classList.remove('active'); }); });
+            document.querySelectorAll('nav ul li a').forEach(link => { link.addEventListener('click', () => { navList.classList.remove('active'); }); });
         });
 
-        // COUNTDOWN ACTUALIZADO
         const weddingDate = new Date('2026-10-03T18:00:00').getTime();
         function updateCountdown() {
             const now = new Date().getTime();
             const distance = weddingDate - now;
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            
-            document.getElementById('days-nav').textContent = days;
-            document.getElementById('hours-nav').textContent = hours;
-            document.getElementById('minutes-nav').textContent = minutes;
-            document.getElementById('seconds-nav').textContent = seconds;
+            document.getElementById('days-nav').textContent = Math.floor(distance / (1000 * 60 * 60 * 24));
+            document.getElementById('hours-nav').textContent = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            document.getElementById('minutes-nav').textContent = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            document.getElementById('seconds-nav').textContent = Math.floor((distance % (1000 * 60)) / 1000);
         }
-        updateCountdown();
-        setInterval(updateCountdown, 1000); 
+        setInterval(updateCountdown, 1000); updateCountdown();
 
-        // NAVBAR SCROLL + SCROLL SPY (MENÚ INTELIGENTE)
         window.addEventListener('scroll', () => {
             const navbar = document.getElementById('navbar');
             if (window.scrollY > 50) { navbar.classList.add('scrolled'); } else { navbar.classList.remove('scrolled'); }
             
-            // Lógica para marcar el menú activo al hacer scroll
             const sections = document.querySelectorAll('section, .hero');
-            const navLi = document.querySelectorAll('nav ul li a');
             let current = '';
-
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                if (pageYOffset >= (sectionTop - 150)) { // 150px de margen para detectar antes de llegar
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navLi.forEach(a => {
-                a.classList.remove('active');
-                if (a.getAttribute('href').includes(current)) {
-                    a.classList.add('active');
-                }
-            });
+            sections.forEach(section => { if (pageYOffset >= (section.offsetTop - 150)) { current = section.getAttribute('id'); } });
+            document.querySelectorAll('nav ul li a').forEach(a => { a.classList.remove('active'); if (a.getAttribute('href').includes(current)) { a.classList.add('active'); } });
         });
 
-        // SMOOTH SCROLL
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -737,68 +559,52 @@
             });
         });
 
-        // TOGGLE ACOMPAÑANTE
         function toggleAcompanante() {
             const select = document.getElementById('acompanado');
             const field = document.getElementById('acompananteField');
             const input = document.getElementById('nombreAcompanante');
-            if (select.value === 'Sí') { field.style.display = 'block'; input.required = true; } else { field.style.display = 'none'; input.required = false; input.value = ''; document.getElementById('error-nombreAcompanante').textContent = ''; }
+            if (select.value === 'Sí') { field.style.display = 'block'; input.required = true; } else { field.style.display = 'none'; input.required = false; input.value = ''; }
         }
 
-        // --- ENVÍO DE FORMULARIOS ---
         const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzL2Yy7GNZ-rAiBfnaEixm15a-PzD2zmUNViK-g7hLKqj9fI6f3LjRHKl76wB7QdFTcEQ/exec';
-
-        // 1. Formulario Boda
         document.getElementById('rsvpForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
-            document.getElementById('formMessage').style.display = 'none';
-            let hasErrors = false;
-            const requiredFields = ['nombre', 'email', 'asisteBoda', 'acompanado', 'preboda', 'autobus'];
-            requiredFields.forEach(fieldId => { const field = document.getElementById(fieldId); if (!field.value.trim()) { document.getElementById('error-' + fieldId).textContent = 'Información necesaria'; hasErrors = true; } });
-            if (document.getElementById('acompanado').value === 'Sí') { const nombreAcompanante = document.getElementById('nombreAcompanante'); if (!nombreAcompanante.value.trim()) { document.getElementById('error-nombreAcompanante').textContent = 'Información necesaria'; hasErrors = true; } }
-            if (hasErrors) return;
-            const formElement = document.getElementById('rsvpForm');
-            const data = new FormData(formElement);
+            const form = document.getElementById('rsvpForm');
+            if(!form.checkValidity()) return;
             const submitBtn = document.getElementById('submitBtn');
             submitBtn.disabled = true; submitBtn.textContent = 'Enviando...';
             try {
-                await fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: data });
-                const messageDiv = document.getElementById('formMessage');
-                messageDiv.className = 'success'; messageDiv.textContent = '¡Confirmación enviada correctamente! Gracias.'; messageDiv.style.display = 'block';
-                formElement.reset(); toggleAcompanante(); messageDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                await fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: new FormData(form) });
+                document.getElementById('formMessage').style.display = 'block';
+                document.getElementById('formMessage').className = 'success';
+                document.getElementById('formMessage').textContent = '¡Confirmación enviada!';
+                form.reset(); toggleAcompanante();
             } catch (error) {
-                const messageDiv = document.getElementById('formMessage');
-                messageDiv.className = 'error'; messageDiv.textContent = 'Hubo un error al enviar. Inténtalo de nuevo.'; messageDiv.style.display = 'block';
+                document.getElementById('formMessage').style.display = 'block';
+                document.getElementById('formMessage').className = 'error';
+                document.getElementById('formMessage').textContent = 'Error al enviar.';
             } finally { submitBtn.disabled = false; submitBtn.textContent = 'Confirmar Asistencia'; }
         });
 
-        // 2. Formulario Golf
         const GOLF_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz92-E270qmp06frweKBq0OQKK5uklWp0x3WTQSCZXPIpkACAoF4YJaikkbq62USMXWXg/exec';
         document.getElementById('golfForm').addEventListener('submit', async function(e) {
             e.preventDefault();
-            document.querySelectorAll('#modal-golf .error-message').forEach(el => el.textContent = '');
-            document.getElementById('golfFormMessage').style.display = 'none';
-            let hasErrors = false;
-            const golfFields = ['golf-nombre', 'golf-licencia', 'golf-handicap', 'golf-palos'];
-            golfFields.forEach(fieldId => { const field = document.getElementById(fieldId); if (!field.value.trim()) { document.getElementById('error-' + fieldId).textContent = 'Información necesaria'; hasErrors = true; } });
-            if (hasErrors) return;
-            const golfData = { tipo: 'golf', nombre: document.getElementById('golf-nombre').value, licencia: document.getElementById('golf-licencia').value, handicap: document.getElementById('golf-handicap').value, palos: document.getElementById('golf-palos').value };
             const submitBtn = document.getElementById('submitGolfBtn');
             submitBtn.disabled = true; submitBtn.textContent = 'Enviando...';
+            const golfData = { tipo: 'golf', nombre: document.getElementById('golf-nombre').value, licencia: document.getElementById('golf-licencia').value, handicap: document.getElementById('golf-handicap').value, palos: document.getElementById('golf-palos').value };
             try {
                 await fetch(GOLF_SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(golfData) });
-                const messageDiv = document.getElementById('golfFormMessage'); messageDiv.className = 'success'; messageDiv.style.background = '#d4edda'; messageDiv.style.color = '#155724'; messageDiv.style.border = '1px solid #c3e6cb'; messageDiv.textContent = '¡Inscripción enviada!'; messageDiv.style.display = 'block'; document.getElementById('golfForm').reset();
+                const msg = document.getElementById('golfFormMessage'); msg.style.display = 'block'; msg.className = 'success'; msg.textContent = '¡Inscripción enviada!'; document.getElementById('golfForm').reset();
             } catch (error) {
-                const messageDiv = document.getElementById('golfFormMessage'); messageDiv.className = 'error'; messageDiv.style.background = '#f8d7da'; messageDiv.style.color = '#721c24'; messageDiv.style.border = '1px solid #f5c6cb'; messageDiv.textContent = 'Hubo un error.'; messageDiv.style.display = 'block';
+                const msg = document.getElementById('golfFormMessage'); msg.style.display = 'block'; msg.className = 'error'; msg.textContent = 'Error.';
             } finally { submitBtn.disabled = false; submitBtn.textContent = 'Confirmar Inscripción'; }
         });
 
-        // Modals
-        function openModal(id) { const modal = document.getElementById('modal-' + id); if (modal) { modal.style.display = 'block'; document.body.style.overflow = 'hidden'; } }
-        function closeModal(id) { const modal = document.getElementById('modal-' + id); if (modal) { modal.style.display = 'none'; document.body.style.overflow = 'auto'; } }
-        window.addEventListener('click', function(event) { if (event.target.classList.contains('modal')) { event.target.style.display = 'none'; document.body.style.overflow = 'auto'; } });
-        document.querySelectorAll('.card.clickable').forEach((card) => { card.addEventListener('click', function() { const modalId = this.getAttribute('data-modal'); openModal(modalId); }); });
+        function openModal(id) { document.getElementById('modal-' + id).style.display = 'block'; document.body.style.overflow = 'hidden'; }
+        function closeModal(id) { document.getElementById('modal-' + id).style.display = 'none'; document.body.style.overflow = 'auto'; }
+        window.addEventListener('click', (e) => { if (e.target.classList.contains('modal')) { e.target.style.display = 'none'; document.body.style.overflow = 'auto'; } });
+        document.querySelectorAll('.card.clickable').forEach(card => card.addEventListener('click', () => openModal(card.getAttribute('data-modal'))));
     </script>
 </body>
 </html>
