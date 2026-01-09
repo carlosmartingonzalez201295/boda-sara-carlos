@@ -8,7 +8,7 @@
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Montserrat:wght@300;400;500&display=swap');
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        :root { --primary: #d4a373; --secondary: #8b7355; --accent: #faf8f5; --dark: #3d3d3d; --light: #fff; }
+        :root { --primary: #d4a373; --secondary: #8b7355; --accent: #faf8f5; --dark: #3d3d3d; --light: #fff; --nav-bg-green: #365942; }
         body { font-family: 'Montserrat', sans-serif; color: var(--dark); line-height: 1.8; overflow-x: hidden; background-image: url('https://i.imgur.com/Hpf7Dl5.jpeg'); background-repeat: repeat; background-size: 400px; background-attachment: fixed; background-color: #faf8f5; }
 
        /* --- NAVEGACIÓN --- */
@@ -17,7 +17,7 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 90px; /* Altura total de la barra */
+            height: 90px;
             z-index: 1000;
             padding: 0 30px;
             transition: all 0.4s ease;
@@ -26,23 +26,23 @@
             justify-content: space-between; 
             align-items: center;
             
-            background: rgba(255,255,255,0.9);
+            background: rgba(54, 89, 66, 0.95); 
             backdrop-filter: blur(5px);
-            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1); 
         }
 
         nav.scrolled {
-            background: rgba(255,255,255,0.98);
+            background: var(--nav-bg-green);
         }
 
-        /* 1. SELLO (IZQUIERDA) - TAMAÑO AUMENTADO */
+        /* 1. SELLO */
         .nav-logo img {
-            height: 86px; /* Aumentado de 70px a 86px para llenar la barra de 90px */
+            height: 88px; 
             width: auto;
             display: block;
         }
 
-        /* 2. MENÚ (CENTRADO ABSOLUTO) */
+        /* 2. MENÚ */
         nav ul {
             position: absolute;
             left: 50%;
@@ -57,7 +57,7 @@
         }
 
         nav a {
-            color: var(--dark);
+            color: var(--light); 
             text-decoration: none;
             font-size: 0.85rem;
             letter-spacing: 2px;
@@ -68,22 +68,24 @@
         }
 
         nav a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: var(--primary); transition: width 0.3s; }
-        nav a:hover::after { width: 100%; }
         
-        /* 3. CONTENEDOR DERECHO */
+        nav a:hover::after { width: 100%; }
+        nav a.active::after { width: 100%; }
+        
+        /* 3. DERECHA */
         .nav-right {
             display: flex;
             align-items: center;
             gap: 30px;
         }
 
-        /* CONTADOR (Ajustado para que quepan los segundos) */
+        /* CONTADOR */
         .nav-countdown {
             display: flex;
-            gap: 10px; 
-            background: var(--accent);
-            padding: 5px 15px;
-            border-radius: 20px;
+            gap: 15px;
+            background: transparent;
+            padding: 0;
+            border-radius: 0;
         }
         .nav-countdown-box {
             text-align: center;
@@ -91,19 +93,20 @@
         }
         .nav-countdown-number {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.2rem;
+            font-size: 1.3rem; 
             font-weight: 600;
-            color: var(--primary);
+            color: var(--light);
             display: block;
             line-height: 1;
         }
         .nav-countdown-label {
-            font-size: 0.6rem;
+            font-size: 0.55rem;
             text-transform: uppercase;
-            color: var(--secondary);
+            color: rgba(255, 255, 255, 0.8);
+            letter-spacing: 1px;
         }
 
-        .menu-toggle { display: none; cursor: pointer; font-size: 1.8rem; color: var(--dark); }
+        .menu-toggle { display: none; cursor: pointer; font-size: 1.8rem; color: var(--light); }
 
        /* --- HERO SECTION --- */
        .hero {
@@ -127,7 +130,6 @@
             z-index: 10;
         }
 
-        /* TEXTOS SIN SOMBRAS */
         h1 {
             font-family: 'Cormorant Garamond', serif;
             font-size: 5rem;
@@ -169,23 +171,18 @@
             animation: bounce 2s infinite;
             z-index: 20;
         }
-        /* Flecha oscura ahora que no tiene sombra */
         .scroll-indicator::after { content: '↓'; font-size: 2rem; color: var(--dark); }
 
         /* --- SECTIONS --- */
+        /* Eliminados los estilos section::before que ponían los cuadrados de fondo */
         section { padding: 100px 20px; max-width: 1200px; margin: 0 auto; position: relative; background-color: transparent; box-shadow: none; border-radius: 0; }
-        section::before { content: ''; position: absolute; width: 300px; height: 300px; background-size: contain; background-repeat: no-repeat; opacity: 0.08; pointer-events: none; z-index: 0; }
-        section:nth-child(2)::before { background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg=='); top: 50px; right: -50px; transform: rotate(25deg); }
-        section:nth-child(3)::before { background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg=='); bottom: 50px; left: -50px; transform: rotate(-15deg); }
-        section:nth-child(4)::before { background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg=='); top: 100px; right: -30px; }
+        
         section.alt { background: transparent; }
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
         .reveal.active { opacity: 1; transform: translateY(0); }
         
-        /* Títulos H2 sin sombra */
         h2 { font-family: 'Cormorant Garamond', serif; font-size: 4rem; text-align: center; margin-bottom: 60px; font-weight: 400; color: var(--secondary); position: relative; z-index: 1; }
         
-        /* Subtítulos sin sombra y fondo un poco más opaco para legibilidad */
         .subtitle { text-align: center; font-size: 1.1rem; color: #444; margin-top: -40px; margin-bottom: 60px; font-style: italic; position: relative; z-index: 1; background-color: rgba(255,255,255,0.7); display: inline-block; padding: 5px 20px; border-radius: 20px; left: 50%; transform: translateX(-50%); white-space: nowrap; }
         
         /* Timeline */
@@ -239,7 +236,7 @@
         @media (max-width: 1240px) { section { margin: 0; max-width: 100%; box-shadow: none; } }
 
         /* --- MÓVIL (MENÚ HAMBURGUESA Y AJUSTES) --- */
-        @media (max-width: 1024px) { /* Breakpoint subido a 1024px para que quepa todo */
+        @media (max-width: 1024px) { 
             h1 { font-size: 3.5rem; }
             .ampersand { font-size: 4rem; margin: 0 10px; }
             .hero { padding-top: 120px; } 
@@ -247,7 +244,6 @@
             nav { padding: 15px 20px; justify-content: space-between; }
             .nav-logo img { height: 50px; }
 
-            /* Menú oculto (resetear position absolute) */
             nav ul {
                 display: none;
                 flex-direction: column;
@@ -255,20 +251,24 @@
                 top: 100%;
                 left: 0;
                 width: 100%;
-                background: white;
+                background: white; 
                 padding: 20px 0;
                 box-shadow: 0 10px 20px rgba(0,0,0,0.1);
                 gap: 0;
-                transform: none; /* Quitamos el centrado */
+                transform: none; 
             }
             nav ul.active { display: flex; }
             nav li { text-align: center; width: 100%; }
-            nav a { display: block; padding: 15px; border-bottom: 1px solid #f0f0f0; }
+            
+            nav a { 
+                display: block; 
+                padding: 15px; 
+                border-bottom: 1px solid #f0f0f0; 
+                color: var(--dark); 
+            }
             nav a::after { display: none; } 
 
             .menu-toggle { display: block; } 
-            
-            /* Ocultar contador en móvil para simplificar */
             .nav-countdown { display: none; } 
 
             .timeline::before { left: 20px; }
@@ -287,11 +287,11 @@
         </div>
         
         <ul id="nav-list">
-            <li><a href="#inicio">Inicio</a></li>
-            <li><a href="#itinerario">Itinerario</a></li>
-            <li><a href="#alojamiento">Alojamiento</a></li>
-            <li><a href="#recomendaciones">Recomendaciones</a></li>
-            <li><a href="#confirmacion">Confirmación</a></li>
+            <li><a href="#inicio" class="nav-link">Inicio</a></li>
+            <li><a href="#itinerario" class="nav-link">Itinerario</a></li>
+            <li><a href="#alojamiento" class="nav-link">Alojamiento</a></li>
+            <li><a href="#recomendaciones" class="nav-link">Recomendaciones</a></li>
+            <li><a href="#confirmacion" class="nav-link">Confirmación</a></li>
         </ul>
         
         <div class="nav-right">
@@ -333,8 +333,6 @@
     </div>
 
     <section id="itinerario" class="alt">
-        <h2 class="reveal">Itinerario</h2>
-
         <div class="timeline">
             <div class="timeline-item reveal">
                 <div class="timeline-content" style="cursor: pointer;" onclick="openModal('golf')">
@@ -384,35 +382,23 @@
                 <div class="timeline-dot"></div>
             </div>
         </div>
-
-        <div class="reveal" style="text-align: center; margin-top: 60px; padding: 30px; background: white; border-radius: 15px; position: relative; z-index: 1; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
-            <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--secondary); margin-bottom: 15px;">👔 Dress Code</h3>
-            <p style="font-size: 1.2rem; color: #666;">Etiqueta formal</p>
-        </div>
-    </section>
+        </section>
 
     <section id="alojamiento">
-        <h2 class="reveal">Alojamiento</h2>
-        <p class="subtitle reveal">Opciones para tu estancia en Talavera</p>
-
-        <h3 class="reveal" style="font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: var(--secondary); text-align: center; margin: 60px 0 40px; position: relative; z-index: 1;">Hoteles</h3>
+        <p class="subtitle reveal" style="margin-top: 0;">Opciones para tu estancia en Talavera</p>
         
         <div class="cards-grid">
             <div class="card clickable reveal" data-modal="hotel1">
                 <div class="icon">🏨</div>
                 <h3>Hotel Be Live City Center ⭐⭐⭐⭐</h3>
-                <p>📍 Av. Toledo, s/n, 45600 Talavera de la Reina</p>
+                <p>📍 Av. Toledo, s/n</p>
                 <p style="margin-top: 10px; font-weight: 500; color: var(--primary);">👉 Ver más información</p>
             </div>
-        </div>
 
-        <h3 class="reveal" style="font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: var(--secondary); text-align: center; margin: 80px 0 40px; position: relative; z-index: 1;">Apartamentos</h3>
-        
-        <div class="cards-grid">
             <div class="card clickable reveal" data-modal="apt1">
                 <div class="icon">🏡</div>
                 <h3>Blue Windows</h3>
-                <p>📍 C. Corre. del Cristo, 18, 45600 Talavera de la Reina</p>
+                <p>📍 C. Corre. del Cristo, 18</p>
                 <p style="margin-top: 10px; font-weight: 500; color: var(--primary);">👉 Ver más información</p>
             </div>
 
@@ -426,10 +412,7 @@
     </section>
 
     <section id="recomendaciones" class="alt">
-        <h2 class="reveal">Recomendaciones</h2>
-        <p class="subtitle reveal">Para que conozcáis nuestros sitios favoritos de Talavera</p>
-
-        <h3 class="reveal" style="font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: var(--secondary); text-align: center; margin: 60px 0 40px; position: relative; z-index: 1;">Bares & Restaurantes</h3>
+        <p class="subtitle reveal" style="margin-top: 0;">Para que conozcáis nuestros sitios favoritos de Talavera</p>
         
         <div class="cards-grid">
             <div class="card reveal">
@@ -458,9 +441,9 @@
     </section>
 
     <section id="confirmacion">
-        <h2 class="reveal">Confirma tu Asistencia</h2>
-
         <form class="rsvp-form reveal" id="rsvpForm">
+            <h3 style="text-align: center; font-family: 'Cormorant Garamond'; font-size: 2.5rem; color: var(--secondary); margin-bottom: 30px;">Confirma tu Asistencia</h3>
+            
             <div class="form-group">
                 <label>Nombre y Apellidos *</label>
                 <input type="text" name="nombre" id="nombre" required>
@@ -702,7 +685,7 @@
             navLinks.forEach(link => { link.addEventListener('click', () => { navList.classList.remove('active'); }); });
         });
 
-        // COUNTDOWN ACTUALIZADO (Con segundos)
+        // COUNTDOWN ACTUALIZADO
         const weddingDate = new Date('2026-10-03T18:00:00').getTime();
         function updateCountdown() {
             const now = new Date().getTime();
@@ -718,12 +701,31 @@
             document.getElementById('seconds-nav').textContent = seconds;
         }
         updateCountdown();
-        setInterval(updateCountdown, 1000); // Actualizar cada segundo
+        setInterval(updateCountdown, 1000); 
 
-        // NAVBAR SCROLL
+        // NAVBAR SCROLL + SCROLL SPY (MENÚ INTELIGENTE)
         window.addEventListener('scroll', () => {
             const navbar = document.getElementById('navbar');
             if (window.scrollY > 50) { navbar.classList.add('scrolled'); } else { navbar.classList.remove('scrolled'); }
+            
+            // Lógica para marcar el menú activo al hacer scroll
+            const sections = document.querySelectorAll('section, .hero');
+            const navLi = document.querySelectorAll('nav ul li a');
+            let current = '';
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= (sectionTop - 150)) { // 150px de margen para detectar antes de llegar
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLi.forEach(a => {
+                a.classList.remove('active');
+                if (a.getAttribute('href').includes(current)) {
+                    a.classList.add('active');
+                }
+            });
         });
 
         // SMOOTH SCROLL
