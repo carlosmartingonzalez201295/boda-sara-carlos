@@ -23,7 +23,7 @@
             width: 100%;
             height: 100%;
             
-            /* Usa el mismo fondo que la web */
+            /* CAMBIO: Ahora usa el mismo fondo que la web */
             background-image: url('https://i.imgur.com/Hpf7Dl5.jpeg'); 
             background-repeat: repeat; 
             background-size: 400px; 
@@ -44,14 +44,14 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.15); /* Sombra suave */
             max-width: 90%;
             width: 350px;
-            /* CAMBIO: Eliminado el border-top marrón/naranja */
+            border-top: 4px solid var(--primary); /* Detalle estético */
         }
 
         .login-box h2 {
             font-family: 'Cormorant Garamond', serif;
             font-size: 2.5rem;
             color: var(--secondary);
-            margin-bottom: 25px; 
+            margin-bottom: 25px; /* Más espacio al no haber texto debajo */
         }
 
         .login-box input {
@@ -59,7 +59,7 @@
             padding: 15px;
             margin-bottom: 20px;
             
-            /* Input más visible */
+            /* CAMBIO: Input más visible */
             background-color: #f0f0f0; /* Fondo grisáceo */
             border: 2px solid #ccc; /* Borde más visible */
             
