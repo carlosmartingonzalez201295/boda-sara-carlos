@@ -22,13 +22,10 @@
             left: 0;
             width: 100%;
             height: 100%;
-            
-            /* CAMBIO: Ahora usa el mismo fondo que la web */
             background-image: url('https://i.imgur.com/Hpf7Dl5.jpeg'); 
             background-repeat: repeat; 
             background-size: 400px; 
             background-color: #faf8f5;
-            
             z-index: 9999;
             display: flex;
             justify-content: center;
@@ -41,28 +38,24 @@
             padding: 50px 40px;
             border-radius: 15px;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15); /* Sombra suave */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15); 
             max-width: 90%;
             width: 350px;
-            border-top: 4px solid var(--primary); /* Detalle estético */
         }
 
         .login-box h2 {
             font-family: 'Cormorant Garamond', serif;
             font-size: 2.5rem;
             color: var(--secondary);
-            margin-bottom: 25px; /* Más espacio al no haber texto debajo */
+            margin-bottom: 25px; 
         }
 
         .login-box input {
             width: 100%;
             padding: 15px;
             margin-bottom: 20px;
-            
-            /* CAMBIO: Input más visible */
-            background-color: #f0f0f0; /* Fondo grisáceo */
-            border: 2px solid #ccc; /* Borde más visible */
-            
+            background-color: #f0f0f0; 
+            border: 2px solid #ccc; 
             border-radius: 8px;
             font-size: 1.1rem;
             text-align: center;
@@ -125,7 +118,6 @@
             background: var(--nav-bg-green); 
         }
 
-        /* Corrección del sello (Versión que te gustaba) */
         .nav-logo img { 
             height: 88px; 
             width: auto; 
@@ -416,7 +408,7 @@
                     <div class="timeline-icon">💒</div>
                     <h3>Ceremonia</h3>
                     <p><strong>Sábado, 03 de Octubre</strong></p>
-                    <p>18:00h</p>
+                    <p>17:00h</p>
                     <p>Iglesia de Santa María la Mayor</p>
                     <p>Talavera de la Reina</p>
                 </div>
@@ -493,6 +485,17 @@
             <div class="form-group"><label>Mail *</label><input type="email" name="email" id="email" required><span class="error-message" id="error-email"></span></div>
             <div class="form-group"><label>¿Asistirás a la Boda? *</label><select name="asisteBoda" id="asisteBoda" required><option value="">Selecciona</option><option value="Sí">Sí</option><option value="No">No</option></select><span class="error-message" id="error-asisteBoda"></span></div>
             <div class="form-group"><label>¿Vienes acompañado/a? *</label><select name="acompanado" id="acompanado" required onchange="toggleAcompanante()"><option value="">Selecciona</option><option value="Sí">Sí</option><option value="No">No</option></select><span class="error-message" id="error-acompanado"></span></div>
+            
+            <div class="form-group">
+                <label>¿Traerás Niños? *</label>
+                <select name="ninos" id="ninos" required>
+                    <option value="">Selecciona</option>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </div>
             <div class="form-group" id="acompananteField" style="display: none;"><label>Nombre y Apellidos del Acompañante *</label><input type="text" name="nombreAcompanante" id="nombreAcompanante"><span class="error-message" id="error-nombreAcompanante"></span></div>
             <div class="form-group"><label>¿Asistiréis a la preboda del viernes? *</label><select name="preboda" id="preboda" required><option value="">Selecciona</option><option value="Sí">Sí</option><option value="No">No</option><option value="Solo uno de los dos">Solo uno de los dos</option></select><span class="error-message" id="error-preboda"></span></div>
             <div class="form-group"><label>¿Utilizaréis el Servicio de Autobuses? *</label><select name="autobus" id="autobus" required><option value="">Selecciona</option><option value="Sí">Sí</option><option value="No">No</option></select><span class="error-message" id="error-autobus"></span></div>
@@ -583,7 +586,7 @@
             if (select.value === 'Sí') { field.style.display = 'block'; input.required = true; } else { field.style.display = 'none'; input.required = false; input.value = ''; }
         }
 
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbydmcrak5xySCb9M15NttuGgoYxz_H5nHhHhze1Y9lkZBHNJY0jdlS6ibFYqmtyfd8TjQ/exec';
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzL2Yy7GNZ-rAiBfnaEixm15a-PzD2zmUNViK-g7hLKqj9fI6f3LjRHKl76wB7QdFTcEQ/exec';
         document.getElementById('rsvpForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
