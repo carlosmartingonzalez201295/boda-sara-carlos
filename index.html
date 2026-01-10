@@ -15,6 +15,94 @@
         /* Fondo general de flores para el resto de la web */
         body { font-family: 'Montserrat', sans-serif; color: var(--dark); line-height: 1.8; overflow-x: hidden; background-image: url('https://i.imgur.com/Hpf7Dl5.jpeg'); background-repeat: repeat; background-size: 400px; background-attachment: fixed; background-color: #faf8f5; }
 
+        /* --- PANTALLA DE CONTRASEÑA --- */
+        #login-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            
+            /* Usa el mismo fondo que la web */
+            background-image: url('https://i.imgur.com/Hpf7Dl5.jpeg'); 
+            background-repeat: repeat; 
+            background-size: 400px; 
+            background-color: #faf8f5;
+            
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .login-box {
+            background: white;
+            padding: 50px 40px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15); /* Sombra suave */
+            max-width: 90%;
+            width: 350px;
+            /* CAMBIO: Eliminado el border-top marrón/naranja */
+        }
+
+        .login-box h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 25px; 
+        }
+
+        .login-box input {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            
+            /* Input más visible */
+            background-color: #f0f0f0; /* Fondo grisáceo */
+            border: 2px solid #ccc; /* Borde más visible */
+            
+            border-radius: 8px;
+            font-size: 1.1rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .login-box input:focus {
+            background-color: #fff;
+            border-color: var(--primary);
+            outline: none;
+        }
+
+        .login-box button {
+            width: 100%;
+            padding: 15px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: 0.3s;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+        }
+
+        .login-box button:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+
+        #login-error {
+            color: #e74c3c;
+            margin-top: 15px;
+            display: none;
+            font-size: 0.9rem;
+        }
+
        /* --- NAVEGACIÓN --- */
        nav {
             position: fixed;
@@ -28,8 +116,6 @@
             display: flex;
             justify-content: space-between; 
             align-items: center;
-            
-            /* Fondo verde */
             background: rgba(54, 89, 66, 0.95); 
             backdrop-filter: blur(5px);
             box-shadow: 0 4px 20px rgba(0,0,0,0.1); 
@@ -39,16 +125,12 @@
             background: var(--nav-bg-green); 
         }
 
-        /* --- CORRECCIÓN DEL SELLO (Versión anterior) --- */
+        /* Corrección del sello (Versión que te gustaba) */
         .nav-logo img { 
             height: 88px; 
             width: auto; 
             display: block;
-            
-            /* Este es el filtro que hacía el efecto de "más oscuro alrededor" al intentar forzar el contraste */
             filter: grayscale(100%) contrast(500%);
-            
-            /* 'screen' hace transparente lo que el filtro consiguió volver negro puro */
             mix-blend-mode: screen; 
             opacity: 1; 
         }
@@ -89,22 +171,19 @@
 
         .menu-toggle { display: none; cursor: pointer; font-size: 1.8rem; color: var(--light); }
 
-       /* --- HERO SECTION (PORTADA A PANTALLA COMPLETA) --- */
+       /* --- HERO SECTION --- */
        .hero {
             height: 100vh;
             width: 100%;
             display: flex;
             justify-content: center;
-            
             align-items: flex-start; 
             padding-top: 140px; 
-            
             padding-bottom: 0;
             text-align: center;
             color: var(--light); 
             position: relative;
             z-index: 10;
-            
             background-image: url('https://i.imgur.com/8sY93tI.jpeg'); 
             background-size: cover;
             background-position: center center;
@@ -172,7 +251,6 @@
         h2 { font-family: 'Cormorant Garamond', serif; font-size: 4rem; text-align: center; margin-bottom: 60px; font-weight: 400; color: var(--secondary); position: relative; z-index: 1; }
         .subtitle { text-align: center; font-size: 1.1rem; color: #444; margin-top: -40px; margin-bottom: 60px; font-style: italic; position: relative; z-index: 1; background-color: rgba(255,255,255,0.7); display: inline-block; padding: 5px 20px; border-radius: 20px; left: 50%; transform: translateX(-50%); white-space: nowrap; }
         
-        /* Timeline */
         .timeline { position: relative; max-width: 800px; margin: 80px auto; z-index: 1; }
         .timeline::before { content: ''; position: absolute; left: 50%; transform: translateX(-50%); width: 2px; height: 100%; background: var(--primary); opacity: 0.3; }
         .timeline-item { position: relative; margin-bottom: 80px; display: flex; align-items: center; }
@@ -185,7 +263,6 @@
         .timeline-content h3 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--secondary); margin-bottom: 10px; }
         .timeline-content p { color: #666; line-height: 1.6; }
         
-        /* Cards */
         .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin: 60px 0; position: relative; z-index: 1; }
         .card { background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: all 0.3s; border-top: 4px solid var(--primary); }
         .card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
@@ -195,7 +272,6 @@
         .card.clickable { cursor: pointer; }
         .card.clickable:hover { transform: translateY(-10px) scale(1.02); }
         
-        /* Modal */
         .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); animation: fadeIn 0.3s; }
         .modal-content { background-color: white; margin: 5% auto; padding: 40px; border-radius: 15px; width: 90%; max-width: 600px; position: relative; animation: slideDown 0.3s; max-height: 80vh; overflow-y: auto; }
         .close-modal { position: absolute; right: 20px; top: 20px; font-size: 2rem; font-weight: bold; color: #aaa; cursor: pointer; transition: color 0.3s; }
@@ -207,7 +283,6 @@
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes slideDown { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
         
-        /* Form */
         .rsvp-form { max-width: 600px; margin: 60px auto; background: white; padding: 50px; border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); position: relative; z-index: 1; }
         .form-group { margin-bottom: 25px; }
         label { display: block; margin-bottom: 8px; color: var(--secondary); font-weight: 500; letter-spacing: 1px; }
@@ -270,7 +345,16 @@
         }
     </style>
 </head>
-<body>
+<body style="overflow: hidden;">
+
+    <div id="login-overlay">
+        <div class="login-box">
+            <h2>¡Bienvenidos!</h2>
+            <input type="password" id="password-input" placeholder="Contraseña" onkeypress="handleEnter(event)">
+            <button onclick="checkPassword()">Entrar</button>
+            <p id="login-error">Contraseña incorrecta, inténtalo de nuevo.</p>
+        </div>
+    </div>
     
     <nav id="navbar">
         <div class="nav-logo">
@@ -429,6 +513,28 @@
     </div>
 
     <script>
+        // --- LÓGICA DE CONTRASEÑA ---
+        function checkPassword() {
+            const input = document.getElementById('password-input').value;
+            const overlay = document.getElementById('login-overlay');
+            const errorMsg = document.getElementById('login-error');
+
+            if (input === '201295') {
+                overlay.style.display = 'none';
+                document.body.style.overflow = 'auto'; // Habilitar scroll
+            } else {
+                errorMsg.style.display = 'block';
+                document.getElementById('password-input').value = '';
+            }
+        }
+
+        // Permitir entrar pulsando ENTER
+        function handleEnter(e) {
+            if (e.key === 'Enter') {
+                checkPassword();
+            }
+        }
+
         document.addEventListener("DOMContentLoaded", function() {
             const revealOnScroll = new IntersectionObserver(function(entries, revealOnScroll) {
                 entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('active'); revealOnScroll.unobserve(entry.target); } });
