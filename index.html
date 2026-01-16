@@ -164,7 +164,6 @@
             width: 100%;
         }
 
-        /* CAMBIO 1: Animación flotante en imágenes */
         @keyframes floating {
             0% { transform: translateY(0px); }
             50% { transform: translateY(-8px); }
@@ -177,17 +176,13 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.15);
             overflow: hidden; flex-shrink: 0; cursor: pointer;
             position: relative; z-index: 2; background: white;
-            
-            /* Aplicamos animación */
             animation: floating 4s ease-in-out infinite;
         }
-        
-        /* Retardo para los pares, para que no se muevan a la vez */
-        .timeline-item:nth-child(even) .timeline-img-box {
-            animation-delay: 2s;
-        }
+        .timeline-item:nth-child(even) .timeline-img-box { animation-delay: 2s; }
 
-        .timeline-img-box img { width: 100%; height: 100%; object-fit: cover; }
+        .timeline-img-box img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
+        .timeline-img-box:active img { transform: scale(0.95); }
+
         .img-preboda { object-position: top center !important; }
 
         .timeline-content {
@@ -203,7 +198,7 @@
         .timeline-item:nth-child(even) { flex-direction: row-reverse; }
         .timeline-item:nth-child(even) .timeline-content { text-align: right; padding-right: 15px; }
 
-        /* --- TARJETAS (CAMBIO 3: Sin caja visible) --- */
+        /* --- TARJETAS --- */
         .cards-grid { display: flex; flex-direction: column; gap: 30px; }
         
         .card { 
@@ -211,17 +206,13 @@
             padding: 0; 
             border-radius: 0; 
             box-shadow: none; 
-            border: none; /* Eliminamos bordes */
+            border: none;
             text-align: center; 
         }
         
         .card-img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 15px;
-            margin-bottom: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.15); /* Sombra solo en la foto */
+            width: 100%; height: 200px; object-fit: cover; border-radius: 15px;
+            margin-bottom: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.15);
         }
 
         .card h3 { font-family: 'Cormorant Garamond'; font-size: 1.7rem; color: var(--secondary); margin-bottom: 5px; font-weight: 600; }
@@ -234,12 +225,12 @@
         .leaflet-popup-content p { margin: 0; color: #555; font-size: 0.9rem; margin-bottom: 5px; }
         .leaflet-popup-content .address { font-size: 0.8rem; color: #888; border-top: 1px solid #eee; padding-top: 5px; font-style: italic; }
         
-        /* ESTILO CHINCHETA GENERICA (Color se define en JS) */
+        /* ESTILO CHINCHETA PERSONALIZADA (SVG) */
         .custom-pin-marker {
             display: flex; justify-content: center; align-items: center;
         }
         .custom-pin-marker svg {
-            width: 40px; height: 40px;
+            width: 45px; height: 45px;
             filter: drop-shadow(0 3px 3px rgba(0,0,0,0.3));
         }
 
@@ -596,21 +587,24 @@
                 maxZoom: 20
             }).addTo(map);
 
-            // FUNCIÓN PARA CREAR CHINCHETAS DE COLORES
+            // FUNCIÓN PARA CREAR CHINCHETAS SVG CON COLOR PERSONALIZADO
             function getMarkerIcon(color) {
-                // SVG de chincheta con color dinámico
-                const svgIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="40" height="40" fill="${color}" stroke="#333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3" fill="#fff"></circle></svg>`;
-                
+                // SVG de "Map Pin" estándar
+                const svgIcon = `
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="40" height="40">
+                    <path fill="${color}" stroke="#333" stroke-width="1" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                </svg>`;
+
                 return L.divIcon({
                     className: 'custom-pin-marker',
                     html: svgIcon,
                     iconSize: [40, 40],
-                    iconAnchor: [20, 40], // Punta de la chincheta
+                    iconAnchor: [20, 40], 
                     popupAnchor: [0, -40]
                 });
             }
 
-            // CAMBIO 5: Definición de marcadores con colores
+            // MARCADORES CON COLORES ESPECÍFICOS
             const markers = [
                 // RECOMENDACIONES (ROJO: #e74c3c)
                 { coords: [39.9585, -4.8333], title: "Casco Viejo", addr: "Plaza Villatoya, 1", color: "#e74c3c" },
@@ -621,7 +615,7 @@
 
                 // IGLESIA Y FINCA (AMARILLO: #f1c40f)
                 { coords: [39.9576, -4.8315], title: "Colegiata Sta María la Mayor", addr: "Plaza del Pan", color: "#f1c40f" },
-                { coords: [39.9880, -4.7800], title: "La Casona del Lago - NÜA", addr: "Serranillos Playa", color: "#f1c40f" }, // Aprox Serranillos
+                { coords: [39.9880, -4.7800], title: "La Casona del Lago - NÜA", addr: "Serranillos Playa", color: "#f1c40f" }, 
 
                 // PREBODA Y GOLF (AZUL: #3498db)
                 { coords: [39.9605, -4.8320], title: "Misa de 1", addr: "Calle José Luis Gallo, 1", color: "#3498db" },
@@ -641,7 +635,7 @@
                     .bindPopup(`<h3>${m.title}</h3><div class="address">${m.addr}</div>`);
             });
 
-            // Ajustar mapa para ver todos los puntos
+            // Ajustar mapa
             map.fitBounds(featureGroup.getBounds(), { padding: [20, 20] });
         });
 
