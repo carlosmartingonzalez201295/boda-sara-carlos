@@ -7,7 +7,7 @@
     <style>
         /* Fuentes */
         @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;600&family=Montserrat:wght@300;400;500&display=swap');
-        /* NUEVA FUENTE PARA LA PORTADA */
+        /* FUENTE PARA LA PORTADA */
         @import url('https://fonts.cdnfonts.com/css/edwardian-script-itc');
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -110,8 +110,7 @@
             display: flex;
             justify-content: space-between; 
             align-items: center;
-            /* CAMBIO: Color sólido desde el inicio para que el sello se vea igual */
-            background: var(--nav-bg-green); 
+            background: var(--nav-bg-green); /* Color sólido */
             backdrop-filter: blur(5px);
             box-shadow: 0 4px 20px rgba(0,0,0,0.1); 
         }
@@ -178,16 +177,16 @@
             color: var(--light); 
             position: relative;
             z-index: 10;
-            background-image: url('https://i.imgur.com/8sY93tI.jpeg'); 
+            /* CAMBIO: NUEVA FOTO DE PORTADA */
+            background-image: url('https://i.imgur.com/awciMp7.jpeg'); 
             background-size: cover;
             background-position: center center;
             background-attachment: fixed;
         }
 
-        /* CAMBIO: Tipografía Edwardian Script y tamaños aumentados */
         h1 {
             font-family: 'Edwardian Script ITC', cursive;
-            font-size: 9rem; /* Aumentado */
+            font-size: 9rem;
             font-weight: normal;
             margin-bottom: 10px;
             line-height: 1.1;
@@ -198,7 +197,7 @@
 
         .ampersand {
             font-family: 'Edwardian Script ITC', cursive;
-            font-size: 8rem; /* Aumentado */
+            font-size: 8rem;
             margin: 0 15px;
             display: inline-block;
             color: var(--primary);
@@ -207,7 +206,7 @@
 
         .date {
             font-family: 'Edwardian Script ITC', cursive;
-            font-size: 4.5rem; /* Aumentado */
+            font-size: 4.5rem;
             letter-spacing: 2px;
             margin-top: 20px;
             font-weight: normal;
@@ -217,7 +216,7 @@
 
         .location {
             font-family: 'Edwardian Script ITC', cursive;
-            font-size: 4rem; /* Aumentado */
+            font-size: 4rem;
             margin-top: 10px;
             opacity: 1;
             text-transform: none;
@@ -296,7 +295,7 @@
 
         /* --- MÓVIL --- */
         @media (max-width: 1024px) { 
-            /* CAMBIO: Tamaños ajustados para móvil con la nueva fuente */
+            /* Tamaños ajustados para móvil con la fuente Edwardian */
             h1 { font-size: 7rem; } 
             .ampersand { font-size: 6rem; margin: 0 5px; }
             .date { font-size: 3.5rem; }
@@ -528,7 +527,7 @@
             const overlay = document.getElementById('login-overlay');
             const errorMsg = document.getElementById('login-error');
 
-            if (input === '201295') {
+            if (input === '201295') { // LA CONTRASEÑA SIGUE SIENDO 201295
                 overlay.style.display = 'none';
                 document.body.style.overflow = 'auto'; // Habilitar scroll
             } else {
