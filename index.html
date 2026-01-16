@@ -69,33 +69,19 @@
         
         /* --- NAVEGACIÓN --- */
         nav {
-            position: fixed; top: 0; left: 0; width: 100%; height: 70px;
-            z-index: 1000; padding: 0 15px; /* Padding reducido para ganar espacio */
+            position: fixed; top: 0; left: 0; width: 100%; height: 90px; /* Un poco más alta para el logo grande */
+            z-index: 1000; padding: 0 20px;
             display: flex; justify-content: space-between; align-items: center;
             background: var(--nav-bg); 
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
-        .nav-logo img { height: 45px; filter: grayscale(100%) contrast(500%); mix-blend-mode: screen; }
-        .menu-toggle { font-size: 1.8rem; color: white; cursor: pointer; padding: 10px; }
+        /* CAMBIO 3: Logo más grande */
+        .nav-logo img { height: 75px; filter: grayscale(100%) contrast(500%); mix-blend-mode: screen; }
         
-        /* CUENTA ATRÁS CENTRAL EN NAV */
-        .nav-center-countdown {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            display: flex;
-            gap: 5px;
-            color: white;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.85rem;
-            font-weight: 500;
-        }
-        .countdown-unit { text-align: center; min-width: 18px; }
-        .countdown-sep { opacity: 0.6; }
-
+        .menu-toggle { font-size: 2rem; color: white; cursor: pointer; padding: 10px; }
+        
         nav ul {
-            position: fixed; top: 70px; left: 0; width: 100%; height: calc(100vh - 70px);
+            position: fixed; top: 90px; left: 0; width: 100%; height: calc(100vh - 90px);
             background: white; flex-direction: column; align-items: center; justify-content: flex-start;
             padding-top: 40px; gap: 0; list-style: none;
             transform: translateX(100%); transition: transform 0.3s ease-in-out;
@@ -108,43 +94,71 @@
         .hero {
             height: 100vh; min-height: 100dvh; width: 100%;
             display: flex; flex-direction: column; 
-            justify-content: flex-start; /* Alineamos arriba */
+            justify-content: flex-start; 
             align-items: center;
             text-align: center; color: var(--light); position: relative;
             background-image: url('https://i.imgur.com/awciMp7.jpeg'); 
             background-size: cover; background-position: center; background-attachment: scroll; 
-            padding: 120px 20px 20px 20px; /* Padding top generoso para bajar el texto */
+            padding: 130px 20px 20px 20px; 
         }
-        .hero::before { content: ''; position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.1); z-index: 0; }
+        .hero::before { content: ''; position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.15); z-index: 0; }
         
-        /* Texto Portada */
-        .hero-text { position: relative; z-index: 2; margin-top: 10px; }
+        /* CAMBIO 1: Texto Portada con fuente Montserrat */
+        .hero-text { position: relative; z-index: 2; margin-top: 20px; }
         .hero-title {
-            font-family: 'Edwardian Script ITC', cursive;
-            font-size: 18vw; /* Grande y fluido */
-            line-height: 1;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 300; /* Letra fina elegante */
+            text-transform: uppercase;
+            font-size: 3rem; 
+            line-height: 1.2;
             margin-bottom: 10px;
+            letter-spacing: 4px;
             text-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
         .hero-date {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2.5rem;
-            letter-spacing: 3px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 300;
+            font-size: 1.5rem;
+            letter-spacing: 5px;
             text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-            font-weight: 600;
         }
 
         .scroll-indicator { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); z-index: 2; animation: bounce 2s infinite; font-size: 2rem; }
 
-        /* --- SECCIONES GENERALES & SOLUCIÓN SCROLL --- */
+        /* --- CUENTA ATRÁS (CAMBIO 2) --- */
+        .countdown-section {
+            padding: 50px 20px 10px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+        .countdown-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .countdown-number {
+            font-family: 'Cormorant Garamond', serif; /* Serif para los números queda mejor */
+            font-size: 3.5rem;
+            color: var(--nav-bg); /* Verde Oscuro */
+            font-weight: 600;
+            line-height: 1;
+        }
+        .countdown-label {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        /* --- SECCIONES GENERALES --- */
         section { 
             padding: 50px 20px; 
-            width: 100%; 
-            max-width: 100%; 
-            position: relative; 
-            
-            /* ESTA ES LA CLAVE: Hace que al pinchar en el menú, el título no se esconda */
-            scroll-margin-top: 80px; 
+            width: 100%; max-width: 100%; position: relative; 
+            scroll-margin-top: 90px; /* Ajustado a la nueva altura del menú */
         }
 
         h2 { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; text-align: center; margin-bottom: 40px; color: var(--secondary); line-height: 1.1; }
@@ -247,8 +261,7 @@
             .card:last-child { border-right: none; }
             .modal-content { width: 90%; max-width: 500px; height: auto; max-height: 85vh; border-radius: 15px; margin: 5% auto; }
             .close-modal { background: transparent; font-size: 2rem; top: 15px; right: 20px; }
-            .hero-title { font-size: 8rem; }
-            .nav-center-countdown { font-size: 1.1rem; gap: 15px; }
+            .hero-title { font-size: 6rem; }
         }
     </style>
 </head>
@@ -268,10 +281,6 @@
             <img src="https://i.imgur.com/MdGi1yy.jpeg" alt="Sello S&C">
         </div>
         
-        <div class="nav-center-countdown" id="countdown-display">
-            <span id="d-val">0</span>d : <span id="h-val">0</span>h : <span id="m-val">0</span>m : <span id="s-val">0</span>s
-        </div>
-
         <div class="menu-toggle" id="mobile-menu">☰</div>
         
         <ul id="nav-list">
@@ -290,6 +299,25 @@
             <p class="hero-date">03.10.26</p>
         </div>
         <div class="scroll-indicator">↓</div>
+    </div>
+
+    <div class="countdown-section reveal">
+        <div class="countdown-item">
+            <span class="countdown-number" id="d-val">0</span>
+            <span class="countdown-label">Días</span>
+        </div>
+        <div class="countdown-item">
+            <span class="countdown-number" id="h-val">0</span>
+            <span class="countdown-label">Horas</span>
+        </div>
+        <div class="countdown-item">
+            <span class="countdown-number" id="m-val">0</span>
+            <span class="countdown-label">Min</span>
+        </div>
+        <div class="countdown-item">
+            <span class="countdown-number" id="s-val">0</span>
+            <span class="countdown-label">Seg</span>
+        </div>
     </div>
 
     <section id="bienvenida" style="padding-bottom: 0;">
@@ -450,9 +478,8 @@
         function openModal(id) { document.getElementById('modal-'+id).style.display = 'block'; document.body.style.overflow = 'hidden'; }
         function closeModal(id) { document.getElementById('modal-'+id).style.display = 'none'; document.body.style.overflow = 'auto'; }
 
-        // --- MAPA LEAFLET CONFIGURADO ---
+        // --- MAPA LEAFLET ---
         document.addEventListener('DOMContentLoaded', function() {
-            // Centrado en la zona del casco antiguo
             const map = L.map('map', { scrollWheelZoom: false }).setView([39.9579, -4.832], 17);
 
             L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
@@ -468,21 +495,11 @@
                 popupAnchor: [0, -30]
             });
 
-            // Direcciones actualizadas y reales
             const markers = [
-                // Casco Viejo: Plaza Villatoya 1
                 { coords: [39.9585, -4.8333], title: "Casco Viejo", desc: "Cocina tradicional", addr: "Plaza Villatoya, 1" },
-                
-                // Sushido: Arco de San Pedro 11
                 { coords: [39.9576, -4.8312], title: "Sushido", desc: "Opción favorita si preferís sushi", addr: "C. Arco de San Pedro, 11" },
-                
-                // Cosafina: Arco de San Pedro 10 (casi enfrente, le doy un toque de separación para el dedo)
                 { coords: [39.95775, -4.8311], title: "Cosafina", desc: "Bar Castizo ideal para previas", addr: "C. Arco de San Pedro, 10" },
-                
-                // La Antigua: Arco de San Pedro 13
                 { coords: [39.95745, -4.8313], title: "La Antigua", desc: "No os podéis ir sin probar sus revolconas", addr: "C. Arco de San Pedro, 13" },
-                
-                // Askuabarra: Plaza Arzobispo don Pedro Tenorio 2
                 { coords: [39.9571, -4.8306], title: "Askuabarra", desc: "Parrilla y producto", addr: "Plaza Arzobispo don Pedro Tenorio, 2" }
             ];
 
@@ -525,7 +542,6 @@
             document.getElementById('nombreAcompanante').required = (val === 'Sí');
         }
 
-        // Cuenta atrás actualizada
         const weddingDate = new Date('2026-10-03T18:00:00').getTime();
         setInterval(() => {
             const now = new Date().getTime();
