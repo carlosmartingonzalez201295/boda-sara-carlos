@@ -93,29 +93,28 @@
         .hero {
             height: 100vh; min-height: 100dvh; width: 100%;
             display: flex; flex-direction: column; 
-            justify-content: flex-start; 
+            /* CAMBIO 1: Centrado vertical para que no se corte arriba */
+            justify-content: center; 
             align-items: center;
             text-align: center; color: var(--light); position: relative;
             background-image: url('https://i.imgur.com/awciMp7.jpeg'); 
             background-size: cover; background-position: center; background-attachment: scroll; 
-            /* CAMBIO 1: Reducido padding superior para subir el texto */
-            padding: 110px 20px 20px 20px; 
+            padding: 20px;
         }
         .hero::before { content: ''; position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.15); z-index: 0; }
         
-        .hero-text { position: relative; z-index: 2; margin-top: 20px; }
+        .hero-text { position: relative; z-index: 2; margin-bottom: 60px; /* Espacio para que no choque con la flecha */ }
         
-        /* CAMBIO 1: Tamaño reducido y forzar una línea */
         .hero-title {
             font-family: 'Montserrat', sans-serif;
             font-weight: 300;
             text-transform: uppercase;
-            font-size: 2.2rem;  /* Reducido de 3rem */
+            font-size: 2.2rem;  
             line-height: 1.2;
             margin-bottom: 10px;
             letter-spacing: 4px;
             text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-            white-space: nowrap; /* Fuerza una sola línea */
+            white-space: nowrap; 
         }
         .hero-date {
             font-family: 'Montserrat', sans-serif;
@@ -133,7 +132,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 15px; /* Un poco menos de espacio entre elementos para que quepan bien las palabras largas */
+            gap: 15px;
         }
         .countdown-item {
             display: flex;
@@ -142,15 +141,14 @@
         }
         .countdown-number {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 3rem; /* Un poco más pequeños para compensar el texto largo abajo */
+            font-size: 3rem; 
             color: var(--nav-bg);
             font-weight: 600;
             line-height: 1;
         }
-        /* CAMBIO 2: Quitamos uppercase */
         .countdown-label {
             font-family: 'Montserrat', sans-serif;
-            font-size: 0.7rem; /* Texto un poco más pequeño */
+            font-size: 0.7rem; 
             letter-spacing: 1px;
             color: #666;
             margin-top: 5px;
@@ -172,14 +170,70 @@
         }
         .text-block p { margin-bottom: 15px; }
 
-        /* --- ITINERARIO --- */
-        .timeline { position: relative; padding-left: 20px; margin: 20px 0; border-left: 2px solid rgba(212, 163, 115, 0.4); }
-        .timeline-item { position: relative; margin-bottom: 40px; padding-left: 20px; }
-        .timeline-dot { position: absolute; left: -11px; top: 0; width: 20px; height: 20px; background: var(--primary); border-radius: 50%; border: 3px solid #faf8f5; }
-        .timeline-content { background: transparent; padding: 0; box-shadow: none; }
-        .timeline-icon { font-size: 2rem; margin-bottom: 5px; display: block; }
-        .timeline-content h3 { font-family: 'Cormorant Garamond'; font-size: 1.6rem; color: var(--secondary); margin-bottom: 2px; font-weight: 600; }
-        .timeline-content p { font-size: 1rem; margin-bottom: 4px; color: #555; }
+        /* --- ITINERARIO "CAMINO" (CAMBIO 3) --- */
+        .timeline { 
+            position: relative; 
+            margin: 40px 0; 
+            padding: 0;
+            border-left: none; /* Quitamos borde antiguo */
+        }
+        /* Línea central discontinua */
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0; bottom: 0; left: 50%;
+            width: 2px;
+            margin-left: -1px;
+            background: repeating-linear-gradient(to bottom, var(--secondary) 0, var(--secondary) 10px, transparent 10px, transparent 20px);
+            opacity: 0.5;
+            z-index: 0;
+        }
+
+        .timeline-item { 
+            position: relative; 
+            margin-bottom: 50px; 
+            width: 50%;
+            clear: both;
+        }
+        
+        /* Alternancia Izquierda / Derecha */
+        .timeline-item:nth-child(odd) {
+            float: left;
+            padding-right: 30px;
+            text-align: right;
+        }
+        .timeline-item:nth-child(even) {
+            float: right;
+            padding-left: 30px;
+            text-align: left;
+            margin-top: 50px; /* Desplazamiento vertical para efecto zigzag */
+        }
+
+        /* Limpiar floats al final */
+        .timeline::after { content: ""; display: table; clear: both; }
+
+        /* Icono central en el camino */
+        .timeline-icon { 
+            position: absolute;
+            top: 0;
+            width: 40px; height: 40px;
+            background: #faf8f5;
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            font-size: 1.2rem;
+            z-index: 1;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-icon { right: -20px; }
+        .timeline-item:nth-child(even) .timeline-icon { left: -20px; }
+        
+        /* Ocultar el dot antiguo */
+        .timeline-dot { display: none; }
+
+        .timeline-content { background: transparent; padding: 0; box-shadow: none; cursor: pointer; }
+        .timeline-content h3 { font-family: 'Cormorant Garamond'; font-size: 1.4rem; color: var(--secondary); margin-bottom: 5px; font-weight: 600; line-height: 1.2; }
+        .timeline-content p { font-size: 0.9rem; margin-bottom: 2px; color: #555; }
 
         /* --- TARJETAS --- */
         .cards-grid { display: flex; flex-direction: column; gap: 0; }
@@ -256,8 +310,9 @@
             nav li { width: auto; }
             nav a { color: white; border: none; padding: 0; margin-left: 20px; display: inline-block; }
             .menu-toggle { display: none; }
-            .timeline { max-width: 600px; margin: 0 auto; border-left: 2px solid rgba(212, 163, 115, 0.4); }
-            .timeline-content { text-align: left; }
+            /* Ajuste timeline escritorio */
+            .timeline { max-width: 800px; margin: 0 auto; }
+            .timeline-item:nth-child(even) { margin-top: 70px; }
             .cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
             .card { border-bottom: none; border-right: 1px solid rgba(139, 115, 85, 0.2); }
             .card:last-child { border-right: none; }
@@ -326,7 +381,7 @@
     <section id="bienvenida" style="padding-bottom: 0;">
         <div class="text-block reveal">
             <h2 style="font-size: 2rem; margin-bottom: 20px;">¡Hola a todos!</h2>
-            <p>Hemos preparado este espacio para que podáis consultar nuestras recomendaciones sobre Talavera.</p>
+            <p>Hemos preparado este espacio para que podáis consultar toda la información necesaria sobre nuestra boda.</p>
             <p>Dicen que la felicidad se multiplica cuando se comparte y nosotros tenemos la suerte de teneros a vosotros. Nos hace muy felices que forméis parte de este día tan especial para nosotros.</p>
             <p style="font-weight: 500; color: var(--secondary);">¡Estamos deseando que nos confirméis vuestra asistencia!</p>
             <p>¡Nos vemos muy pronto!</p>
@@ -337,41 +392,39 @@
         <h2>Itinerario</h2>
         <div class="timeline">
             <div class="timeline-item reveal">
-                <div class="timeline-dot"></div>
+                <div class="timeline-icon">⛳</div>
                 <div class="timeline-content" onclick="openModal('golf')">
-                    <span class="timeline-icon">⛳</span>
                     <h3>Torneo de Golf</h3>
-                    <p><strong>Viernes, 02 Oct • 09:30h</strong></p>
+                    <p><strong>Viernes 02 • 09:30h</strong></p>
                     <p>Palomarejos Golf</p>
-                    <p style="color: var(--primary); margin-top:5px; font-weight:600; font-size:0.9rem;">👉 Click para inscribirse</p>
+                    <p style="color: var(--primary); font-size:0.8rem; font-weight:600;">👉 Inscribirse</p>
                 </div>
             </div>
+            
             <div class="timeline-item reveal">
-                <div class="timeline-dot"></div>
+                <div class="timeline-icon">🍷</div>
                 <div class="timeline-content">
-                    <span class="timeline-icon">🍷</span>
                     <h3>Preboda</h3>
-                    <p><strong>Viernes, 02 Oct • 21:00h</strong></p>
+                    <p><strong>Viernes 02 • 21:00h</strong></p>
                     <p>Misa de 1</p>
                     <p>Calle José Luis Gallo, 1</p>
                 </div>
             </div>
+
             <div class="timeline-item reveal">
-                <div class="timeline-dot"></div>
+                <div class="timeline-icon">💒</div>
                 <div class="timeline-content">
-                    <span class="timeline-icon">💒</span>
-                    <h3>Ceremonia</h3>
-                    <p><strong>Sábado, 03 Oct • 17:00h</strong></p>
+                    <h3>Ceremonia Religiosa</h3>
+                    <p><strong>Sábado 03 • 17:00h</strong></p>
                     <p>Santa María la Mayor</p>
-                    <p>Talavera de la Reina</p>
                 </div>
             </div>
+
             <div class="timeline-item reveal">
-                <div class="timeline-dot"></div>
+                <div class="timeline-icon">🥂</div>
                 <div class="timeline-content">
-                    <span class="timeline-icon">🥂</span>
-                    <h3>Banquete</h3>
-                    <p><strong>Sábado, 03 Oct</strong></p>
+                    <h3>Celebración</h3>
+                    <p><strong>Sábado 03</strong></p>
                     <p>NÜA - Carlos Maldonado</p>
                     <p>Serranillos Playa</p>
                 </div>
@@ -458,6 +511,14 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
     <script>
+        // CAMBIO 1: Forzar scroll arriba al recargar
+        window.onbeforeunload = function () {
+            window.scrollTo(0, 0);
+        }
+        window.onload = function () {
+            window.scrollTo(0, 0);
+        }
+
         function checkPassword() {
             if(document.getElementById('password-input').value === '201295') {
                 document.getElementById('login-overlay').style.display = 'none';
@@ -545,7 +606,6 @@
             document.getElementById('nombreAcompanante').required = (val === 'Sí');
         }
 
-        // Cuenta atrás actualizada
         const weddingDate = new Date('2026-10-03T18:00:00').getTime();
         setInterval(() => {
             const now = new Date().getTime();
