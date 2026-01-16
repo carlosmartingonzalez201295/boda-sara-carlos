@@ -138,35 +138,25 @@
         .text-block { text-align: center; font-size: 1rem; color: #555; margin: -20px auto 30px auto; max-width: 90%; line-height: 1.8; }
         .text-block p { margin-bottom: 15px; }
 
-        /* --- ITINERARIO CON LÍNEA CURVA LIMPIA --- */
+        /* --- ITINERARIO --- */
         .timeline { 
             position: relative; margin: 40px 0; padding: 0;
-            display: flex; flex-direction: column; gap: 60px; /* Espacio vertical aumentado */
+            display: flex; flex-direction: column; gap: 60px;
             padding-bottom: 20px;
         }
         
-        /* CAMBIO 1: Nueva línea curva que va de foto a foto sin cruzar texto */
-        .timeline::before {
-            content: '';
-            position: absolute;
-            top: 65px; bottom: 65px; left: 0; width: 100%;
-            /* SVG que dibuja una línea serpenteante desde el centro de la imagen izquierda al centro de la derecha */
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M 18 0 C 60 0, 40 33, 82 33 C 40 33, 60 66, 18 66 C 60 66, 40 100, 82 100' vector-effect='non-scaling-stroke' fill='none' stroke='%23d4a373' stroke-width='2' stroke-dasharray='5 5' opacity='0.6' /%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-size: 100% 100%;
-            z-index: 0;
-        }
+        /* CAMBIO 3: Línea eliminada */
+        .timeline::before { display: none; }
 
         .timeline-item {
             display: flex;
             align-items: center;
-            justify-content: space-between; /* Separar foto y texto a los extremos */
+            justify-content: space-between;
             position: relative;
             z-index: 1;
             width: 100%;
         }
 
-        /* Imágenes grandes (130px) */
         .timeline-img-box {
             width: 130px; height: 130px;
             border-radius: 50%; border: 4px solid white;
@@ -177,22 +167,19 @@
         .timeline-img-box img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
         .timeline-img-box:active img { transform: scale(0.95); }
 
-        /* Ajuste específico para la Preboda para que no se corte */
         .img-preboda { object-position: top center !important; }
 
         .timeline-content {
-            width: 55%; /* El resto del espacio */
+            width: 55%;
             padding: 0 10px;
             display: flex; flex-direction: column; justify-content: center;
         }
         .timeline-content h3 { font-family: 'Cormorant Garamond'; font-size: 1.3rem; color: var(--secondary); margin-bottom: 5px; font-weight: 700; line-height: 1.1; }
         .timeline-content p { font-size: 0.9rem; margin-bottom: 2px; color: #555; }
 
-        /* Alternancia: Impar (Img Izq - Texto Der) */
+        /* Alternancia */
         .timeline-item:nth-child(odd) { flex-direction: row; }
         .timeline-item:nth-child(odd) .timeline-content { text-align: left; padding-left: 15px; }
-
-        /* Alternancia: Par (Img Der - Texto Izq) */
         .timeline-item:nth-child(even) { flex-direction: row-reverse; }
         .timeline-item:nth-child(even) .timeline-content { text-align: right; padding-right: 15px; }
 
@@ -224,11 +211,12 @@
         .modal-content { background: white; width: 100%; height: 100%; max-width: 100%; margin: 0; border-radius: 0; padding: 25px; overflow-y: auto; position: relative; animation: slideUp 0.3s; display: flex; flex-direction: column; align-items: center; }
         .close-modal { position: absolute; top: 15px; right: 15px; font-size: 2rem; width: 40px; height: 40px; background: rgba(255,255,255,0.8); border-radius: 50%; display: flex; justify-content: center; align-items: center; color: #333; z-index: 10; cursor: pointer; }
         
-        /* CABECERA MODAL (FOTO RECTANGULAR) */
+        /* CAMBIO 1: Imagen entera en modal */
         .modal-header-img {
             width: 100%;
-            height: 200px;
-            object-fit: cover;
+            height: auto; /* Altura automática para no recortar */
+            max-height: 400px; /* Límite para que no ocupe toda la pantalla en móviles muy largos */
+            object-fit: contain; /* Asegura que se vea entera */
             border-radius: 15px;
             margin-bottom: 20px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
@@ -245,7 +233,6 @@
             nav a { color: white; border: none; padding: 0; margin-left: 20px; display: inline-block; }
             .menu-toggle { display: none; }
             .timeline { max-width: 800px; margin: 0 auto; }
-            .timeline::before { width: 400px; margin-left: -200px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 100' preserveAspectRatio='none'%3E%3Cpath d='M 70 0 C 200 0, 200 33, 330 33 C 200 33, 200 66, 70 66 C 200 66, 200 100, 330 100' vector-effect='non-scaling-stroke' fill='none' stroke='%23d4a373' stroke-width='2' stroke-dasharray='5 5' opacity='0.6' /%3E%3C/svg%3E"); }
             .cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
             .card { border-bottom: none; border-right: 1px solid rgba(139, 115, 85, 0.2); }
             .card:last-child { border-right: none; }
@@ -317,7 +304,6 @@
                 <div class="timeline-content" onclick="openModal('golf')">
                     <h3>Torneo de Golf</h3>
                     <p><strong>Viernes - 09:30h</strong></p>
-                    <p>Palomarejos Golf</p>
                 </div>
             </div>
             
@@ -328,7 +314,6 @@
                 <div class="timeline-content" onclick="openModal('preboda')">
                     <h3>Preboda</h3>
                     <p><strong>Viernes - 21:00h</strong></p>
-                    <p>Misa de 1</p>
                 </div>
             </div>
 
@@ -339,7 +324,6 @@
                 <div class="timeline-content" onclick="openModal('ceremonia')">
                     <h3>Ceremonia Religiosa</h3>
                     <p><strong>Sábado - 17:00h</strong></p>
-                    <p>Santa María la Mayor</p>
                 </div>
             </div>
 
@@ -349,8 +333,7 @@
                 </div>
                 <div class="timeline-content" onclick="openModal('celebracion')">
                     <h3>Celebración</h3>
-                    <p><strong>Sábado</strong></p>
-                    <p>NÜA - Carlos Maldonado</p>
+                    <p><strong>Sábado - 19:00h aprox.</strong></p>
                 </div>
             </div>
         </div>
@@ -452,6 +435,7 @@
             <h3>Torneo de Golf</h3>
             <p>Viernes • 09:30h</p>
             <p style="margin-bottom: 20px;">Palomarejos Golf</p>
+            <p style="margin-bottom: 20px; color: #666; font-size: 0.9rem;">Para aquellos que quieran empezar el fin de semana antes que nadie, Carlos ha organizado un torneo de Golf con su respectivo hoyo 19 el viernes por la mañana.</p>
             <form id="golfForm" style="width:100%;">
                 <div class="form-group"><input type="text" id="golf-nombre" name="golf-nombre" placeholder="Nombre completo" required></div>
                 <div class="form-group"><input type="text" id="golf-licencia" name="golf-licencia" placeholder="Licencia" required></div>
@@ -470,7 +454,7 @@
             <h3>Preboda</h3>
             <p>Viernes • 21:00h</p>
             <p>Misa de 1 - Calle José Luis Gallo, 1</p>
-            <p style="margin-top: 15px; color: #666; font-size: 0.9rem;">Una noche para reunirnos antes del gran día y disfrutar de un ambiente relajado en el centro de Talavera.</p>
+            <p style="margin-top: 15px; color: #666; font-size: 0.9rem;">Para ir calentando el terreno... ¡tendremos preboda el viernes! Os confirmaremos la hora exacta más adelante :) Pero id reservando el hueco para el primer brindis. Gracias por desplazaros para acompañarnos; teneros cerca ya desde el día anterior nos hace muchísima ilusión (y es la excusa perfecta para empezar por todo lo alto el fin de semana)</p>
         </div>
     </div>
 
@@ -480,8 +464,10 @@
             <img src="https://i.imgur.com/3yS2fNk.jpeg" class="modal-header-img" alt="Ceremonia">
             <h3>Ceremonia Religiosa</h3>
             <p>Sábado • 17:00h</p>
-            <p>Iglesia de Santa María la Mayor (La Colegial)</p>
+            <p>Colegiata Santa María la Mayor</p>
+            <p>Pl. del Pan</p>
             <p style="margin-top: 15px; color: #666; font-size: 0.9rem;">La ceremonia tendrá lugar en el corazón de Talavera. Se ruega puntualidad.</p>
+            <p style="margin-top: 10px; color: #666; font-size: 0.9rem;">Habrá servicio de autobuses a la salida de la ceremonia hasta la finca.</p>
         </div>
     </div>
 
@@ -490,10 +476,9 @@
             <div class="close-modal" onclick="closeModal('celebracion')">&times;</div>
             <img src="https://i.imgur.com/XaKG3fN.jpeg" class="modal-header-img" alt="Celebración">
             <h3>Celebración</h3>
-            <p>Sábado</p>
-            <p>NÜA - Carlos Maldonado</p>
-            <p>Av. de Miramar, 1, Serranillos Playa</p>
-            <p style="margin-top: 15px; color: #666; font-size: 0.9rem;">Disfrutaremos de una cena cocktail a orillas del embalse.</p>
+            <p>Sábado • 19:00h aprox.</p>
+            <p>La Casona del Lago - Grupo NÜA</p>
+            <p style="margin-top: 15px; color: #666; font-size: 0.9rem;">Habrá servicio de autobús al acabar la celebración de vuelta al centro de Talavera.</p>
         </div>
     </div>
 
