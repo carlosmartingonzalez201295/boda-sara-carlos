@@ -34,10 +34,8 @@
             overflow-x: hidden;
         }
 
-        /* FONDO PATRÓN TRANSPARENTE */
         body::before {
-            content: "";
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-image: url('https://i.imgur.com/Hpf7Dl5.jpeg'); 
             background-repeat: repeat; background-size: 300px;
             opacity: 0.15; z-index: -1; pointer-events: none;
@@ -61,7 +59,14 @@
         }
         .login-box h2 { font-family: 'Cormorant Garamond'; color: var(--secondary); font-size: 2rem; margin-bottom: 20px; }
         .login-box input { width: 100%; padding: 15px; margin-bottom: 15px; border: 2px solid #eee; border-radius: 10px; font-size: 1.2rem; text-align: center; }
-        .login-box button { width: 100%; padding: 15px; background: var(--primary); color: white; border: none; border-radius: 10px; font-size: 1rem; font-weight: 600; text-transform: uppercase; }
+        
+        /* CAMBIO 1: BOTÓN VERDE */
+        .login-box button { 
+            width: 100%; padding: 15px; 
+            background: var(--nav-bg); /* Ahora es verde */
+            color: white; border: none; border-radius: 10px; 
+            font-size: 1rem; font-weight: 600; text-transform: uppercase; 
+        }
         
         /* --- NAVEGACIÓN --- */
         nav {
@@ -86,22 +91,16 @@
         .nav-right { display: flex; align-items: center; }
         .nav-countdown { display: none; } 
 
-        /* --- HERO (PORTADA) --- */
+        /* --- HERO (PORTADA LIMPIA) --- */
         .hero {
             height: 100vh; min-height: 100dvh; width: 100%;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             text-align: center; color: var(--light); position: relative;
             background-image: url('https://i.imgur.com/awciMp7.jpeg'); 
             background-size: cover; background-position: center; background-attachment: scroll; 
-            padding: 80px 20px 20px 20px;
+            padding: 20px;
         }
-        .hero::before { content: ''; position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.2); z-index: 0; }
-        .hero-content { position: relative; z-index: 2; width: 100%; }
-
-        h1 { font-family: 'Edwardian Script ITC', cursive; font-size: 18vw; line-height: 1; margin-bottom: 10px; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
-        .ampersand { font-family: 'Edwardian Script ITC', cursive; font-size: 15vw; color: var(--primary); display: block; margin: -10px 0; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
-        .date { font-family: 'Edwardian Script ITC', cursive; font-size: 10vw; margin-top: 20px; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
-        .location { font-family: 'Edwardian Script ITC', cursive; font-size: 8vw; margin-top: 5px; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+        .hero::before { content: ''; position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.1); z-index: 0; }
         .scroll-indicator { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); z-index: 2; animation: bounce 2s infinite; font-size: 2rem; }
 
         /* --- SECCIONES GENERALES --- */
@@ -143,11 +142,19 @@
             border-radius: 20px; 
             box-shadow: 0 10px 30px rgba(0,0,0,0.15);
             margin-bottom: 20px;
-            z-index: 1; /* Para que no tape el menú */
+            z-index: 1; 
         }
         .leaflet-popup-content-wrapper { border-radius: 10px; font-family: 'Montserrat', sans-serif; }
         .leaflet-popup-content h3 { color: var(--secondary); margin: 0 0 5px 0; font-family: 'Cormorant Garamond'; font-size: 1.2rem; }
-        .leaflet-popup-content p { margin: 0; color: #555; font-size: 0.9rem; }
+        .leaflet-popup-content p { margin: 0; color: #555; font-size: 0.9rem; margin-bottom: 5px; }
+        .leaflet-popup-content .address { font-size: 0.8rem; color: #888; border-top: 1px solid #eee; padding-top: 5px; font-style: italic; }
+        
+        /* Estilo para el marcador Emoji */
+        .custom-emoji-marker {
+            display: flex; justify-content: center; align-items: center;
+            font-size: 2rem; /* Tamaño del emoji */
+            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
 
         /* --- FORMULARIO RSVP --- */
         .rsvp-form { 
@@ -194,10 +201,6 @@
             nav a { color: white; border: none; padding: 0; margin-left: 20px; display: inline-block; }
             .menu-toggle { display: none; }
             .nav-countdown { display: flex; }
-            h1 { font-size: 8rem; }
-            .ampersand { font-size: 6rem; }
-            .date { font-size: 4rem; }
-            .location { font-size: 3rem; }
             .timeline { max-width: 600px; margin: 0 auto; border-left: 2px solid rgba(212, 163, 115, 0.4); }
             .timeline-content { text-align: left; }
             .cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
@@ -231,6 +234,7 @@
         </div>
         <ul id="nav-list">
             <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#bienvenida">Bienvenida</a></li>
             <li><a href="#itinerario">Itinerario</a></li>
             <li><a href="#alojamiento">Alojamiento</a></li>
             <li><a href="#recomendaciones">Recomendaciones</a></li>
@@ -239,15 +243,18 @@
     </nav>
 
     <div class="hero" id="inicio">
-        <div class="hero-content">
-            <h1>Sara</h1>
-            <span class="ampersand">&</span>
-            <h1>Carlos</h1>
-            <p class="date">03 . 10 . 2026</p>
-            <p class="location">Talavera de la Reina</p>
-        </div>
         <div class="scroll-indicator">↓</div>
     </div>
+
+    <section id="bienvenida" style="padding-bottom: 0;">
+        <div class="text-block reveal">
+            <h2 style="font-size: 2rem; margin-bottom: 20px;">¡Hola a todos!</h2>
+            <p>Hemos preparado este espacio para que podáis consultar nuestras recomendaciones sobre Talavera.</p>
+            <p>Dicen que la felicidad se multiplica cuando se comparte y nosotros tenemos la suerte de teneros a vosotros. Nos hace muy felices que forméis parte de este día tan especial para nosotros.</p>
+            <p style="font-weight: 500; color: var(--secondary);">¡Estamos deseando que nos confirméis vuestra asistencia!</p>
+            <p>¡Nos vemos muy pronto!</p>
+        </div>
+    </section>
 
     <section id="itinerario">
         <h2>Itinerario</h2>
@@ -397,34 +404,53 @@
         function openModal(id) { document.getElementById('modal-'+id).style.display = 'block'; document.body.style.overflow = 'hidden'; }
         function closeModal(id) { document.getElementById('modal-'+id).style.display = 'none'; document.body.style.overflow = 'auto'; }
 
-        // --- INICIALIZACIÓN DEL MAPA ---
+        // --- MAPA LEAFLET CONFIGURADO ---
         document.addEventListener('DOMContentLoaded', function() {
-            // Coordenadas aproximadas del casco antiguo
-            const map = L.map('map', { scrollWheelZoom: false }).setView([39.9579, -4.832], 16);
+            // Centrado en la zona del casco antiguo
+            const map = L.map('map', { scrollWheelZoom: false }).setView([39.9579, -4.832], 17);
 
             L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-                subdomains: 'abcd',
+                attribution: '&copy; OpenStreetMap &copy; CARTO',
                 maxZoom: 20
             }).addTo(map);
 
-            // Icono personalizado (opcional, usando el estándar azul por ahora para asegurar compatibilidad)
+            // CAMBIO 4: Marcador Emoji Personalizado 📍
+            const emojiIcon = L.divIcon({
+                className: 'custom-emoji-marker',
+                html: '<div style="font-size: 2rem;">📍</div>',
+                iconSize: [30, 30],
+                iconAnchor: [15, 30], // La punta del pin abajo al centro
+                popupAnchor: [0, -30]
+            });
+
+            // Coordenadas ajustadas para Talavera de la Reina (Casco Antiguo)
             const markers = [
-                { coords: [39.9582, -4.8325], title: "Cosafina", desc: "Bar Castizo ideal para previas" },
-                { coords: [39.9588, -4.8335], title: "Casco Viejo", desc: "Cocina tradicional" },
-                { coords: [39.9575, -4.8305], title: "La Antigua", desc: "No os podéis ir sin probar sus revolconas" },
-                // Nudges leves para que no se solapen (están muy cerca)
-                { coords: [39.9576, -4.8309], title: "Sushido", desc: "Opción favorita si preferís sushi" },
-                { coords: [39.9574, -4.8302], title: "Askuabarra", desc: "Parrilla y producto" }
+                // Casco Viejo: Plaza Villatoya 1 (aprox)
+                { coords: [39.9592, -4.8338], title: "Casco Viejo", desc: "Cocina tradicional", addr: "Plaza Villatoya, 1" },
+                
+                // NOTA: Los siguientes 3 están en la misma calle, he separado ligeramente las coords
+                // para que se pueda hacer click en todos en el móvil.
+                
+                // Sushido: Arco de San Pedro 11
+                { coords: [39.9576, -4.8312], title: "Sushido", desc: "Opción favorita si preferís sushi", addr: "C. Arco de San Pedro, 11" },
+                
+                // Cosafina: Arco de San Pedro 10 (casi enfrente)
+                { coords: [39.9577, -4.8310], title: "Cosafina", desc: "Bar Castizo ideal para previas", addr: "C. Arco de San Pedro, 10" },
+                
+                // La Antigua: Arco de San Pedro 13 (un poco más abajo)
+                { coords: [39.9575, -4.8314], title: "La Antigua", desc: "No os podéis ir sin probar sus revolconas", addr: "C. Arco de San Pedro, 13" },
+                
+                // Askuabarra: Plaza Arzobispo don Pedro Tenorio 2
+                { coords: [39.9572, -4.8305], title: "Askuabarra", desc: "Parrilla y producto", addr: "Plaza Arzobispo don Pedro Tenorio, 2" }
             ];
 
             markers.forEach(m => {
-                L.marker(m.coords).addTo(map)
-                    .bindPopup(`<h3>${m.title}</h3><p>${m.desc}</p>`);
+                L.marker(m.coords, { icon: emojiIcon }).addTo(map)
+                    .bindPopup(`<h3>${m.title}</h3><p>${m.desc}</p><div class="address">📍 ${m.addr}</div>`);
             });
         });
 
-        // Formularios (igual que antes)
+        // Formularios
         const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzL2Yy7GNZ-rAiBfnaEixm15a-PzD2zmUNViK-g7hLKqj9fI6f3LjRHKl76wB7QdFTcEQ/exec';
         document.getElementById('rsvpForm').addEventListener('submit', async function(e) {
             e.preventDefault();
