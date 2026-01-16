@@ -69,13 +69,12 @@
         
         /* --- NAVEGACIÓN --- */
         nav {
-            position: fixed; top: 0; left: 0; width: 100%; height: 90px; /* Un poco más alta para el logo grande */
+            position: fixed; top: 0; left: 0; width: 100%; height: 90px; 
             z-index: 1000; padding: 0 20px;
             display: flex; justify-content: space-between; align-items: center;
             background: var(--nav-bg); 
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
-        /* CAMBIO 3: Logo más grande */
         .nav-logo img { height: 75px; filter: grayscale(100%) contrast(500%); mix-blend-mode: screen; }
         
         .menu-toggle { font-size: 2rem; color: white; cursor: pointer; padding: 10px; }
@@ -99,21 +98,24 @@
             text-align: center; color: var(--light); position: relative;
             background-image: url('https://i.imgur.com/awciMp7.jpeg'); 
             background-size: cover; background-position: center; background-attachment: scroll; 
-            padding: 130px 20px 20px 20px; 
+            /* CAMBIO 1: Reducido padding superior para subir el texto */
+            padding: 110px 20px 20px 20px; 
         }
         .hero::before { content: ''; position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.15); z-index: 0; }
         
-        /* CAMBIO 1: Texto Portada con fuente Montserrat */
         .hero-text { position: relative; z-index: 2; margin-top: 20px; }
+        
+        /* CAMBIO 1: Tamaño reducido y forzar una línea */
         .hero-title {
             font-family: 'Montserrat', sans-serif;
-            font-weight: 300; /* Letra fina elegante */
+            font-weight: 300;
             text-transform: uppercase;
-            font-size: 3rem; 
+            font-size: 2.2rem;  /* Reducido de 3rem */
             line-height: 1.2;
             margin-bottom: 10px;
             letter-spacing: 4px;
             text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            white-space: nowrap; /* Fuerza una sola línea */
         }
         .hero-date {
             font-family: 'Montserrat', sans-serif;
@@ -125,13 +127,13 @@
 
         .scroll-indicator { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); z-index: 2; animation: bounce 2s infinite; font-size: 2rem; }
 
-        /* --- CUENTA ATRÁS (CAMBIO 2) --- */
+        /* --- CUENTA ATRÁS --- */
         .countdown-section {
             padding: 50px 20px 10px 20px;
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 20px;
+            gap: 15px; /* Un poco menos de espacio entre elementos para que quepan bien las palabras largas */
         }
         .countdown-item {
             display: flex;
@@ -139,16 +141,16 @@
             align-items: center;
         }
         .countdown-number {
-            font-family: 'Cormorant Garamond', serif; /* Serif para los números queda mejor */
-            font-size: 3.5rem;
-            color: var(--nav-bg); /* Verde Oscuro */
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem; /* Un poco más pequeños para compensar el texto largo abajo */
+            color: var(--nav-bg);
             font-weight: 600;
             line-height: 1;
         }
+        /* CAMBIO 2: Quitamos uppercase */
         .countdown-label {
             font-family: 'Montserrat', sans-serif;
-            font-size: 0.75rem;
-            text-transform: uppercase;
+            font-size: 0.7rem; /* Texto un poco más pequeño */
             letter-spacing: 1px;
             color: #666;
             margin-top: 5px;
@@ -158,7 +160,7 @@
         section { 
             padding: 50px 20px; 
             width: 100%; max-width: 100%; position: relative; 
-            scroll-margin-top: 90px; /* Ajustado a la nueva altura del menú */
+            scroll-margin-top: 90px; 
         }
 
         h2 { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; text-align: center; margin-bottom: 40px; color: var(--secondary); line-height: 1.1; }
@@ -262,6 +264,7 @@
             .modal-content { width: 90%; max-width: 500px; height: auto; max-height: 85vh; border-radius: 15px; margin: 5% auto; }
             .close-modal { background: transparent; font-size: 2rem; top: 15px; right: 20px; }
             .hero-title { font-size: 6rem; }
+            .countdown-number { font-size: 4rem; }
         }
     </style>
 </head>
@@ -312,11 +315,11 @@
         </div>
         <div class="countdown-item">
             <span class="countdown-number" id="m-val">0</span>
-            <span class="countdown-label">Min</span>
+            <span class="countdown-label">Minutos</span>
         </div>
         <div class="countdown-item">
             <span class="countdown-number" id="s-val">0</span>
-            <span class="countdown-label">Seg</span>
+            <span class="countdown-label">Segundos</span>
         </div>
     </div>
 
@@ -542,6 +545,7 @@
             document.getElementById('nombreAcompanante').required = (val === 'Sí');
         }
 
+        // Cuenta atrás actualizada
         const weddingDate = new Date('2026-10-03T18:00:00').getTime();
         setInterval(() => {
             const now = new Date().getTime();
