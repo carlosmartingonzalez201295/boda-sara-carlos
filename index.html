@@ -31,7 +31,7 @@
             overflow-x: hidden;
         }
 
-        /* TRUCO PARA FONDO MUY TRANSPARENTE */
+        /* FONDO PATRÓN TRANSPARENTE (15% Opacidad) */
         body::before {
             content: "";
             position: fixed;
@@ -39,7 +39,7 @@
             background-image: url('https://i.imgur.com/Hpf7Dl5.jpeg'); 
             background-repeat: repeat; 
             background-size: 300px;
-            opacity: 0.15; /* AQUÍ CONTROLAS LA TRANSPARENCIA (0.15 = muy clarito) */
+            opacity: 0.15; 
             z-index: -1;
             pointer-events: none;
         }
@@ -51,7 +51,6 @@
             z-index: 9999; display: flex; flex-direction: column;
             justify-content: center; align-items: center; padding: 20px;
         }
-        /* El fondo del login también transparente */
         #login-overlay::before {
             content: ""; position: absolute; top:0; left:0; width:100%; height:100%;
             background-image: url('https://i.imgur.com/Hpf7Dl5.jpeg'); background-size: 300px; opacity: 0.15; z-index: -1;
@@ -111,33 +110,36 @@
         section { padding: 50px 20px; width: 100%; max-width: 100%; position: relative; }
         
         h2 { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; text-align: center; margin-bottom: 40px; color: var(--secondary); line-height: 1.1; }
+        
+        /* ESTILO PARA BLOQUES DE TEXTO INTRODUCTORIO */
+        .text-block {
+            text-align: center;
+            font-size: 1rem;
+            color: #555;
+            margin: -20px auto 40px auto;
+            max-width: 90%;
+            line-height: 1.8;
+        }
+        .text-block p { margin-bottom: 15px; }
+
         .subtitle { display: block; text-align: center; font-size: 0.95rem; color: #555; margin: -30px auto 40px auto; font-style: italic; max-width: 90%; }
 
-        /* --- ITINERARIO (SIN CAJAS) --- */
+        /* --- ITINERARIO (LIMPIO) --- */
         .timeline { position: relative; padding-left: 20px; margin: 20px 0; border-left: 2px solid rgba(212, 163, 115, 0.4); }
-        
         .timeline-item { position: relative; margin-bottom: 40px; padding-left: 20px; }
-        .timeline-dot { 
-            position: absolute; left: -11px; top: 0; 
-            width: 20px; height: 20px; background: var(--primary); 
-            border-radius: 50%; border: 3px solid #faf8f5; /* Color del fondo para simular recorte */
-        }
-        /* ESTILO LIMPIO SIN CAJA */
-        .timeline-content { 
-            background: transparent; padding: 0; box-shadow: none;
-        }
+        .timeline-dot { position: absolute; left: -11px; top: 0; width: 20px; height: 20px; background: var(--primary); border-radius: 50%; border: 3px solid #faf8f5; }
+        .timeline-content { background: transparent; padding: 0; box-shadow: none; }
         .timeline-icon { font-size: 2rem; margin-bottom: 5px; display: block; }
         .timeline-content h3 { font-family: 'Cormorant Garamond'; font-size: 1.6rem; color: var(--secondary); margin-bottom: 2px; font-weight: 600; }
         .timeline-content p { font-size: 1rem; margin-bottom: 4px; color: #555; }
 
-        /* --- TARJETAS (SIN CAJAS - SOLO TEXTO) --- */
+        /* --- TARJETAS (LIMPIAS) --- */
         .cards-grid { display: flex; flex-direction: column; gap: 0; }
-        
         .card { 
             background: transparent; padding: 30px 10px; border-radius: 0; 
             box-shadow: none; border-top: none;
             text-align: center;
-            border-bottom: 1px solid rgba(139, 115, 85, 0.2); /* Separador sutil */
+            border-bottom: 1px solid rgba(139, 115, 85, 0.2); 
         }
         .card:last-child { border-bottom: none; }
         
@@ -145,7 +147,7 @@
         .card h3 { font-family: 'Cormorant Garamond'; font-size: 1.6rem; color: var(--secondary); margin-bottom: 5px; font-weight: 600; }
         .card p { color: #555; }
 
-        /* --- FORMULARIO RSVP (ÚNICO CON CAJA) --- */
+        /* --- FORMULARIO RSVP (CON CAJA) --- */
         .rsvp-form { 
             background: white; padding: 30px 20px; border-radius: 15px; 
             box-shadow: 0 10px 40px rgba(0,0,0,0.1); width: 100%; margin-top: 20px;
@@ -187,6 +189,7 @@
         @keyframes bounce { 0%, 100% { transform: translate(-50%, 0); } 50% { transform: translate(-50%, -10px); } }
         @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
 
+        /* Ajustes PC */
         @media (min-width: 769px) {
             nav ul { position: static; height: auto; flex-direction: row; background: transparent; transform: none; padding: 0; width: auto; }
             nav li { width: auto; }
@@ -320,23 +323,43 @@
     </section>
 
     <section id="recomendaciones">
-        <h2>Sitios Favoritos</h2>
-        <span class="subtitle">Dónde comer bien</span>
+        <h2>Recomendaciones</h2>
+        
+        <div class="text-block reveal">
+            <p>Talavera es mi casa y ahora también la de Carlos, que ya se conoce cada rincón como uno más del equipo (o eso dicen mis amigos).</p>
+            <p>Por eso os queremos dejar nuestros sitios de confianza para reponer fuerzas el sábado o calentar motores el viernes antes de la preboda.</p>
+            <p style="font-style: italic; color: var(--secondary); font-weight: 600; margin-top: 20px;">📍 Están todos por la zona del centro, muy cerquita de la Iglesia y del sitio donde celebraremos la preboda:</p>
+        </div>
+
         <div class="cards-grid">
             <div class="card reveal">
-                <div class="icon">⭐</div>
-                <h3>Raíces</h3>
-                <p>Carlos Maldonado</p>
+                <div class="icon">🍻</div>
+                <h3>Cosafina</h3>
+                <p>Bar Castizo ideal para previas</p>
             </div>
+            
             <div class="card reveal">
-                <div class="icon">🍷</div>
-                <h3>Misa de 1</h3>
-                <p>Cocina mediterránea</p>
+                <div class="icon">🥓</div>
+                <h3>La Antigua</h3>
+                <p>No os podéis ir de Talavera sin probar sus revolconas</p>
             </div>
+            
             <div class="card reveal">
-                <div class="icon">🍽️</div>
-                <h3>El Monasterio</h3>
-                <p>Vistas a la Colegiata</p>
+                <div class="icon">🥘</div>
+                <h3>Casco Viejo</h3>
+                <p>Cocina tradicional</p>
+            </div>
+
+            <div class="card reveal">
+                <div class="icon">🔥</div>
+                <h3>Askuabarra</h3>
+                <p>Parrilla y producto</p>
+            </div>
+
+            <div class="card reveal">
+                <div class="icon">🍣</div>
+                <h3>Sushido</h3>
+                <p>Nuestra opción favorita si preferís cambiar de tercio y comer un buen sushi</p>
             </div>
         </div>
     </section>
