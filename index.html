@@ -60,10 +60,9 @@
         .login-box h2 { font-family: 'Cormorant Garamond'; color: var(--secondary); font-size: 2rem; margin-bottom: 20px; }
         .login-box input { width: 100%; padding: 15px; margin-bottom: 15px; border: 2px solid #eee; border-radius: 10px; font-size: 1.2rem; text-align: center; }
         
-        /* CAMBIO 1: BOTÓN VERDE */
         .login-box button { 
             width: 100%; padding: 15px; 
-            background: var(--nav-bg); /* Ahora es verde */
+            background: var(--nav-bg); 
             color: white; border: none; border-radius: 10px; 
             font-size: 1rem; font-weight: 600; text-transform: uppercase; 
         }
@@ -71,14 +70,30 @@
         /* --- NAVEGACIÓN --- */
         nav {
             position: fixed; top: 0; left: 0; width: 100%; height: 70px;
-            z-index: 1000; padding: 0 20px;
+            z-index: 1000; padding: 0 15px; /* Padding reducido para ganar espacio */
             display: flex; justify-content: space-between; align-items: center;
             background: var(--nav-bg); 
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
-        .nav-logo img { height: 50px; filter: grayscale(100%) contrast(500%); mix-blend-mode: screen; }
+        .nav-logo img { height: 45px; filter: grayscale(100%) contrast(500%); mix-blend-mode: screen; }
         .menu-toggle { font-size: 1.8rem; color: white; cursor: pointer; padding: 10px; }
         
+        /* CUENTA ATRÁS CENTRAL EN NAV */
+        .nav-center-countdown {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            gap: 5px;
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        .countdown-unit { text-align: center; min-width: 18px; }
+        .countdown-sep { opacity: 0.6; }
+
         nav ul {
             position: fixed; top: 70px; left: 0; width: 100%; height: calc(100vh - 70px);
             background: white; flex-direction: column; align-items: center; justify-content: flex-start;
@@ -88,23 +103,50 @@
         nav ul.active { transform: translateX(0); }
         nav li { width: 100%; text-align: center; }
         nav a { display: block; padding: 20px; font-size: 1.1rem; color: var(--dark); border-bottom: 1px solid #f5f5f5; text-transform: uppercase; letter-spacing: 1px; text-decoration: none; }
-        .nav-right { display: flex; align-items: center; }
-        .nav-countdown { display: none; } 
 
-        /* --- HERO (PORTADA LIMPIA) --- */
+        /* --- HERO (PORTADA) --- */
         .hero {
             height: 100vh; min-height: 100dvh; width: 100%;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            display: flex; flex-direction: column; 
+            justify-content: flex-start; /* Alineamos arriba */
+            align-items: center;
             text-align: center; color: var(--light); position: relative;
             background-image: url('https://i.imgur.com/awciMp7.jpeg'); 
             background-size: cover; background-position: center; background-attachment: scroll; 
-            padding: 20px;
+            padding: 120px 20px 20px 20px; /* Padding top generoso para bajar el texto */
         }
         .hero::before { content: ''; position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.1); z-index: 0; }
+        
+        /* Texto Portada */
+        .hero-text { position: relative; z-index: 2; margin-top: 10px; }
+        .hero-title {
+            font-family: 'Edwardian Script ITC', cursive;
+            font-size: 18vw; /* Grande y fluido */
+            line-height: 1;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+        .hero-date {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            letter-spacing: 3px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            font-weight: 600;
+        }
+
         .scroll-indicator { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); z-index: 2; animation: bounce 2s infinite; font-size: 2rem; }
 
-        /* --- SECCIONES GENERALES --- */
-        section { padding: 50px 20px; width: 100%; max-width: 100%; position: relative; }
+        /* --- SECCIONES GENERALES & SOLUCIÓN SCROLL --- */
+        section { 
+            padding: 50px 20px; 
+            width: 100%; 
+            max-width: 100%; 
+            position: relative; 
+            
+            /* ESTA ES LA CLAVE: Hace que al pinchar en el menú, el título no se esconda */
+            scroll-margin-top: 80px; 
+        }
+
         h2 { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; text-align: center; margin-bottom: 40px; color: var(--secondary); line-height: 1.1; }
         .subtitle { display: block; text-align: center; font-size: 0.95rem; color: #555; margin: -30px auto 40px auto; font-style: italic; max-width: 90%; }
         
@@ -123,7 +165,7 @@
         .timeline-content h3 { font-family: 'Cormorant Garamond'; font-size: 1.6rem; color: var(--secondary); margin-bottom: 2px; font-weight: 600; }
         .timeline-content p { font-size: 1rem; margin-bottom: 4px; color: #555; }
 
-        /* --- TARJETAS (ALOJAMIENTO) --- */
+        /* --- TARJETAS --- */
         .cards-grid { display: flex; flex-direction: column; gap: 0; }
         .card { 
             background: transparent; padding: 30px 10px; border-radius: 0; 
@@ -149,11 +191,9 @@
         .leaflet-popup-content p { margin: 0; color: #555; font-size: 0.9rem; margin-bottom: 5px; }
         .leaflet-popup-content .address { font-size: 0.8rem; color: #888; border-top: 1px solid #eee; padding-top: 5px; font-style: italic; }
         
-        /* Estilo para el marcador Emoji */
         .custom-emoji-marker {
             display: flex; justify-content: center; align-items: center;
-            font-size: 2rem; /* Tamaño del emoji */
-            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            font-size: 2rem; text-shadow: 0 2px 5px rgba(0,0,0,0.3);
         }
 
         /* --- FORMULARIO RSVP --- */
@@ -200,7 +240,6 @@
             nav li { width: auto; }
             nav a { color: white; border: none; padding: 0; margin-left: 20px; display: inline-block; }
             .menu-toggle { display: none; }
-            .nav-countdown { display: flex; }
             .timeline { max-width: 600px; margin: 0 auto; border-left: 2px solid rgba(212, 163, 115, 0.4); }
             .timeline-content { text-align: left; }
             .cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
@@ -208,6 +247,8 @@
             .card:last-child { border-right: none; }
             .modal-content { width: 90%; max-width: 500px; height: auto; max-height: 85vh; border-radius: 15px; margin: 5% auto; }
             .close-modal { background: transparent; font-size: 2rem; top: 15px; right: 20px; }
+            .hero-title { font-size: 8rem; }
+            .nav-center-countdown { font-size: 1.1rem; gap: 15px; }
         }
     </style>
 </head>
@@ -226,12 +267,13 @@
         <div class="nav-logo">
             <img src="https://i.imgur.com/MdGi1yy.jpeg" alt="Sello S&C">
         </div>
-        <div class="nav-right">
-            <div class="nav-countdown">
-               <span id="days-nav" style="color:white; margin-right:5px">0</span><span style="color:white">Días</span>
-            </div>
-            <div class="menu-toggle" id="mobile-menu">☰</div>
+        
+        <div class="nav-center-countdown" id="countdown-display">
+            <span id="d-val">0</span>d : <span id="h-val">0</span>h : <span id="m-val">0</span>m : <span id="s-val">0</span>s
         </div>
+
+        <div class="menu-toggle" id="mobile-menu">☰</div>
+        
         <ul id="nav-list">
             <li><a href="#inicio">Inicio</a></li>
             <li><a href="#bienvenida">Bienvenida</a></li>
@@ -243,6 +285,10 @@
     </nav>
 
     <div class="hero" id="inicio">
+        <div class="hero-text">
+            <h1 class="hero-title">Nos Casamos</h1>
+            <p class="hero-date">03.10.26</p>
+        </div>
         <div class="scroll-indicator">↓</div>
     </div>
 
@@ -341,7 +387,7 @@
 
     <section id="confirmacion">
         <form class="rsvp-form reveal" id="rsvpForm">
-            <h2 style="margin-bottom: 20px;">Confirmar Asistencia</h2>
+            <h2 style="margin-bottom: 20px;">Confirmación</h2>
             <div class="form-group"><label>Nombre y Apellidos</label><input type="text" name="nombre" required></div>
             <div class="form-group"><label>Email</label><input type="email" name="email" required></div>
             <div class="form-group"><label>¿Vienes a la boda?</label><select name="asisteBoda" required><option value="">Selecciona</option><option value="Sí">Sí</option><option value="No">No</option></select></div>
@@ -414,34 +460,30 @@
                 maxZoom: 20
             }).addTo(map);
 
-            // CAMBIO 4: Marcador Emoji Personalizado 📍
             const emojiIcon = L.divIcon({
                 className: 'custom-emoji-marker',
                 html: '<div style="font-size: 2rem;">📍</div>',
                 iconSize: [30, 30],
-                iconAnchor: [15, 30], // La punta del pin abajo al centro
+                iconAnchor: [15, 30], 
                 popupAnchor: [0, -30]
             });
 
-            // Coordenadas ajustadas para Talavera de la Reina (Casco Antiguo)
+            // Direcciones actualizadas y reales
             const markers = [
-                // Casco Viejo: Plaza Villatoya 1 (aprox)
-                { coords: [39.9592, -4.8338], title: "Casco Viejo", desc: "Cocina tradicional", addr: "Plaza Villatoya, 1" },
-                
-                // NOTA: Los siguientes 3 están en la misma calle, he separado ligeramente las coords
-                // para que se pueda hacer click en todos en el móvil.
+                // Casco Viejo: Plaza Villatoya 1
+                { coords: [39.9585, -4.8333], title: "Casco Viejo", desc: "Cocina tradicional", addr: "Plaza Villatoya, 1" },
                 
                 // Sushido: Arco de San Pedro 11
                 { coords: [39.9576, -4.8312], title: "Sushido", desc: "Opción favorita si preferís sushi", addr: "C. Arco de San Pedro, 11" },
                 
-                // Cosafina: Arco de San Pedro 10 (casi enfrente)
-                { coords: [39.9577, -4.8310], title: "Cosafina", desc: "Bar Castizo ideal para previas", addr: "C. Arco de San Pedro, 10" },
+                // Cosafina: Arco de San Pedro 10 (casi enfrente, le doy un toque de separación para el dedo)
+                { coords: [39.95775, -4.8311], title: "Cosafina", desc: "Bar Castizo ideal para previas", addr: "C. Arco de San Pedro, 10" },
                 
-                // La Antigua: Arco de San Pedro 13 (un poco más abajo)
-                { coords: [39.9575, -4.8314], title: "La Antigua", desc: "No os podéis ir sin probar sus revolconas", addr: "C. Arco de San Pedro, 13" },
+                // La Antigua: Arco de San Pedro 13
+                { coords: [39.95745, -4.8313], title: "La Antigua", desc: "No os podéis ir sin probar sus revolconas", addr: "C. Arco de San Pedro, 13" },
                 
                 // Askuabarra: Plaza Arzobispo don Pedro Tenorio 2
-                { coords: [39.9572, -4.8305], title: "Askuabarra", desc: "Parrilla y producto", addr: "Plaza Arzobispo don Pedro Tenorio, 2" }
+                { coords: [39.9571, -4.8306], title: "Askuabarra", desc: "Parrilla y producto", addr: "Plaza Arzobispo don Pedro Tenorio, 2" }
             ];
 
             markers.forEach(m => {
@@ -483,11 +525,21 @@
             document.getElementById('nombreAcompanante').required = (val === 'Sí');
         }
 
+        // Cuenta atrás actualizada
         const weddingDate = new Date('2026-10-03T18:00:00').getTime();
         setInterval(() => {
             const now = new Date().getTime();
-            const d = Math.floor((weddingDate - now) / (1000 * 60 * 60 * 24));
-            document.getElementById('days-nav').innerText = d;
+            const dist = weddingDate - now;
+            
+            const d = Math.floor(dist / (1000 * 60 * 60 * 24));
+            const h = Math.floor((dist % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((dist % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((dist % (1000 * 60)) / 1000);
+
+            document.getElementById('d-val').innerText = d;
+            document.getElementById('h-val').innerText = h < 10 ? '0'+h : h;
+            document.getElementById('m-val').innerText = m < 10 ? '0'+m : m;
+            document.getElementById('s-val').innerText = s < 10 ? '0'+s : s;
         }, 1000);
     </script>
 </body>
