@@ -57,7 +57,15 @@
             width: 100%; max-width: 320px; text-align: center;
             box-shadow: 0 10px 40px rgba(0,0,0,0.1);
         }
-        .login-box h2 { font-family: 'Cormorant Garamond'; color: var(--secondary); font-size: 2rem; margin-bottom: 20px; }
+        
+        /* CAMBIO 1: Bienvenidos en VERDE */
+        .login-box h2 { 
+            font-family: 'Cormorant Garamond'; 
+            color: var(--nav-bg); /* CAMBIADO A VERDE */
+            font-size: 2rem; 
+            margin-bottom: 20px; 
+        }
+        
         .login-box input { width: 100%; padding: 15px; margin-bottom: 15px; border: 2px solid #eee; border-radius: 10px; font-size: 1.2rem; text-align: center; }
         
         .login-box button { 
@@ -145,7 +153,6 @@
             padding-bottom: 20px;
         }
         
-        /* CAMBIO 3: Línea eliminada */
         .timeline::before { display: none; }
 
         .timeline-item {
@@ -211,12 +218,11 @@
         .modal-content { background: white; width: 100%; height: 100%; max-width: 100%; margin: 0; border-radius: 0; padding: 25px; overflow-y: auto; position: relative; animation: slideUp 0.3s; display: flex; flex-direction: column; align-items: center; }
         .close-modal { position: absolute; top: 15px; right: 15px; font-size: 2rem; width: 40px; height: 40px; background: rgba(255,255,255,0.8); border-radius: 50%; display: flex; justify-content: center; align-items: center; color: #333; z-index: 10; cursor: pointer; }
         
-        /* CAMBIO 1: Imagen entera en modal */
         .modal-header-img {
             width: 100%;
-            height: auto; /* Altura automática para no recortar */
-            max-height: 400px; /* Límite para que no ocupe toda la pantalla en móviles muy largos */
-            object-fit: contain; /* Asegura que se vea entera */
+            height: auto;
+            max-height: 400px;
+            object-fit: contain; 
             border-radius: 15px;
             margin-bottom: 20px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
@@ -333,7 +339,7 @@
                 </div>
                 <div class="timeline-content" onclick="openModal('celebracion')">
                     <h3>Celebración</h3>
-                    <p><strong>Sábado - 19:00h aprox.</strong></p>
+                    <p><strong>Sábado - Al acabar la Ceremonia</strong></p>
                 </div>
             </div>
         </div>
@@ -432,9 +438,9 @@
         <div class="modal-content">
             <div class="close-modal" onclick="closeModal('golf')">&times;</div>
             <img src="https://i.imgur.com/GEZh21g.jpeg" class="modal-header-img" alt="Golf">
-            <h3>Torneo de Golf</h3>
+            <h3>Palomarejos Golf</h3>
             <p>Viernes • 09:30h</p>
-            <p style="margin-bottom: 20px;">Palomarejos Golf</p>
+            <p style="margin-bottom: 20px;">N-Va, Km 113, Talavera de la Reina</p>
             <p style="margin-bottom: 20px; color: #666; font-size: 0.9rem;">Para aquellos que quieran empezar el fin de semana antes que nadie, Carlos ha organizado un torneo de Golf con su respectivo hoyo 19 el viernes por la mañana.</p>
             <form id="golfForm" style="width:100%;">
                 <div class="form-group"><input type="text" id="golf-nombre" name="golf-nombre" placeholder="Nombre completo" required></div>
@@ -451,9 +457,9 @@
         <div class="modal-content">
             <div class="close-modal" onclick="closeModal('preboda')">&times;</div>
             <img src="https://i.imgur.com/0khwPw5.jpeg" class="modal-header-img" style="object-position: top center;" alt="Preboda">
-            <h3>Preboda</h3>
+            <h3>Misa de 1</h3>
             <p>Viernes • 21:00h</p>
-            <p>Misa de 1 - Calle José Luis Gallo, 1</p>
+            <p>Calle José Luis Gallo, 1</p>
             <p style="margin-top: 15px; color: #666; font-size: 0.9rem;">Para ir calentando el terreno... ¡tendremos preboda el viernes! Os confirmaremos la hora exacta más adelante :) Pero id reservando el hueco para el primer brindis. Gracias por desplazaros para acompañarnos; teneros cerca ya desde el día anterior nos hace muchísima ilusión (y es la excusa perfecta para empezar por todo lo alto el fin de semana)</p>
         </div>
     </div>
@@ -462,10 +468,9 @@
         <div class="modal-content">
             <div class="close-modal" onclick="closeModal('ceremonia')">&times;</div>
             <img src="https://i.imgur.com/3yS2fNk.jpeg" class="modal-header-img" alt="Ceremonia">
-            <h3>Ceremonia Religiosa</h3>
+            <h3>Colegiata Santa María la Mayor</h3>
             <p>Sábado • 17:00h</p>
-            <p>Colegiata Santa María la Mayor</p>
-            <p>Pl. del Pan</p>
+            <p>Plaza del Pan</p>
             <p style="margin-top: 15px; color: #666; font-size: 0.9rem;">La ceremonia tendrá lugar en el corazón de Talavera. Se ruega puntualidad.</p>
             <p style="margin-top: 10px; color: #666; font-size: 0.9rem;">Habrá servicio de autobuses a la salida de la ceremonia hasta la finca.</p>
         </div>
@@ -475,9 +480,9 @@
         <div class="modal-content">
             <div class="close-modal" onclick="closeModal('celebracion')">&times;</div>
             <img src="https://i.imgur.com/XaKG3fN.jpeg" class="modal-header-img" alt="Celebración">
-            <h3>Celebración</h3>
-            <p>Sábado • 19:00h aprox.</p>
-            <p>La Casona del Lago - Grupo NÜA</p>
+            <h3>La Casona del Lago - Grupo NÜA</h3>
+            <p>Sábado - Al acabar la Ceremonia</p>
+            <p>Av. de Miramar, 1, Serranillos Playa</p>
             <p style="margin-top: 15px; color: #666; font-size: 0.9rem;">Habrá servicio de autobús al acabar la celebración de vuelta al centro de Talavera.</p>
         </div>
     </div>
