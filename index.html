@@ -58,10 +58,9 @@
             box-shadow: 0 10px 40px rgba(0,0,0,0.1);
         }
         
-        /* CAMBIO 1: Bienvenidos en VERDE */
         .login-box h2 { 
             font-family: 'Cormorant Garamond'; 
-            color: var(--nav-bg); /* CAMBIADO A VERDE */
+            color: var(--nav-bg); 
             font-size: 2rem; 
             margin-bottom: 20px; 
         }
@@ -134,6 +133,7 @@
         .countdown-section {
             padding: 50px 20px 10px 20px;
             display: flex; justify-content: center; align-items: center; gap: 15px;
+            scroll-margin-top: 100px; /* Para el ancla del menú */
         }
         .countdown-item { display: flex; flex-direction: column; align-items: center; }
         .countdown-number { font-family: 'Cormorant Garamond', serif; font-size: 3rem; color: var(--nav-bg); font-weight: 600; line-height: 1; }
@@ -191,12 +191,22 @@
         .timeline-item:nth-child(even) .timeline-content { text-align: right; padding-right: 15px; }
 
         /* --- TARJETAS --- */
-        .cards-grid { display: flex; flex-direction: column; gap: 0; }
-        .card { background: transparent; padding: 30px 10px; border-radius: 0; box-shadow: none; border-top: none; text-align: center; border-bottom: 1px solid rgba(139, 115, 85, 0.2); }
-        .card:last-child { border-bottom: none; }
+        .cards-grid { display: flex; flex-direction: column; gap: 20px; }
+        .card { background: transparent; padding: 20px; border-radius: 15px; box-shadow: none; border-top: none; text-align: center; border: 1px solid rgba(139, 115, 85, 0.1); }
         .card .icon { font-size: 2.2rem; margin-bottom: 10px; }
+        
+        /* CAMBIO 7: Fotos en tarjetas de recomendación */
+        .card-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
         .card h3 { font-family: 'Cormorant Garamond'; font-size: 1.6rem; color: var(--secondary); margin-bottom: 5px; font-weight: 600; }
-        .card p { color: #555; }
+        .card p { color: #555; font-size: 0.95rem; }
 
         /* --- MAPA --- */
         #map { height: 450px; width: 100%; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); margin-bottom: 20px; z-index: 1; }
@@ -219,14 +229,16 @@
         .close-modal { position: absolute; top: 15px; right: 15px; font-size: 2rem; width: 40px; height: 40px; background: rgba(255,255,255,0.8); border-radius: 50%; display: flex; justify-content: center; align-items: center; color: #333; z-index: 10; cursor: pointer; }
         
         .modal-header-img {
-            width: 100%;
-            height: auto;
-            max-height: 400px;
-            object-fit: contain; 
-            border-radius: 15px;
-            margin-bottom: 20px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            width: 100%; height: auto; max-height: 400px; object-fit: contain; border-radius: 15px; margin-bottom: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
+        
+        /* CAMBIO 2: Clases para centrar y justificar en popups */
+        .modal-info-center { text-align: center; margin-bottom: 20px; width: 100%; }
+        .modal-info-center h3 { font-family: 'Cormorant Garamond'; font-size: 1.8rem; color: var(--secondary); margin-bottom: 5px; }
+        .modal-info-center p { color: #444; font-weight: 500; margin-bottom: 5px; }
+        .modal-info-center .address { color: #888; font-size: 0.9rem; font-style: italic; }
+        
+        .modal-desc-justify { text-align: justify; color: #666; font-size: 0.95rem; width: 100%; margin-bottom: 20px; }
 
         .reveal { opacity: 0; transform: translateY(20px); transition: 0.6s ease; }
         .reveal.active { opacity: 1; transform: translateY(0); }
@@ -240,8 +252,6 @@
             .menu-toggle { display: none; }
             .timeline { max-width: 800px; margin: 0 auto; }
             .cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
-            .card { border-bottom: none; border-right: 1px solid rgba(139, 115, 85, 0.2); }
-            .card:last-child { border-right: none; }
             .modal-content { width: 90%; max-width: 500px; height: auto; max-height: 85vh; border-radius: 15px; margin: 5% auto; }
             .hero-title { font-size: 6rem; }
             .countdown-number { font-size: 4rem; }
@@ -266,7 +276,7 @@
         <div class="menu-toggle" id="mobile-menu">☰</div>
         <ul id="nav-list">
             <li><a href="#inicio">Inicio</a></li>
-            <li><a href="#bienvenida">Bienvenida</a></li>
+            <li><a href="#cuenta-atras">Bienvenida</a></li>
             <li><a href="#itinerario">Itinerario</a></li>
             <li><a href="#alojamiento">Alojamiento</a></li>
             <li><a href="#recomendaciones">Recomendaciones</a></li>
@@ -283,7 +293,7 @@
         <div class="scroll-indicator">↓</div>
     </div>
 
-    <div class="countdown-section reveal">
+    <div id="cuenta-atras" class="countdown-section reveal">
         <div class="countdown-item"><span class="countdown-number" id="d-val">0</span><span class="countdown-label">Días</span></div>
         <div class="countdown-item"><span class="countdown-number" id="h-val">0</span><span class="countdown-label">Horas</span></div>
         <div class="countdown-item"><span class="countdown-number" id="m-val">0</span><span class="countdown-label">Minutos</span></div>
@@ -374,36 +384,36 @@
         <h2>Recomendaciones</h2>
         
         <div class="text-block reveal">
-            <p>Talavera es mi casa y ahora también la de Carlos, que ya se conoce cada rincón como uno más del equipo (o eso dicen mis amigos).</p>
-            <p>Por eso os queremos dejar nuestros sitios de confianza para reponer fuerzas el sábado o calentar motores el viernes antes de la preboda.</p>
+            <p>Talavera es mi casa y ahora también la de Carlos, que ya se conoce cada rincón como uno más del equipo.</p>
+            <p>Para calentar motores el viernes antes de la preboda o reponer fuerzas el sábado, estos son nuestros sitios de confianza.</p>
             <p style="font-style: italic; color: var(--secondary); font-weight: 600; margin-top: 20px;">📍 Están todos por la zona del centro, muy cerquita de la Iglesia y del sitio donde celebraremos la preboda:</p>
         </div>
 
         <div class="cards-grid">
             <div class="card reveal">
-                <div class="icon">🍻</div>
+                <img src="https://i.imgur.com/oUrVS6B.jpeg" class="card-img" alt="Cosafina">
                 <h3>Cosafina</h3>
-                <p>Bar Castizo ideal para previas</p>
+                <p>Bar castizo ideal para previas. Su gilda es un imprescindible.</p>
             </div>
             <div class="card reveal">
-                <div class="icon">🥓</div>
+                <img src="https://i.imgur.com/BzGUdYf.jpeg" class="card-img" alt="La Antigua">
                 <h3>La Antigua</h3>
-                <p>No os podéis ir de Talavera sin probar sus revolconas</p>
+                <p>Las revolconas son un must en el grupo de Sara. No os podéis ir de Talavera sin probarlas ;)</p>
             </div>
             <div class="card reveal">
-                <div class="icon">🥘</div>
+                <img src="https://i.imgur.com/OCSvOus.jpeg" class="card-img" alt="Casco Viejo">
                 <h3>Casco Viejo</h3>
-                <p>Cocina tradicional</p>
+                <p>Tapas tradicionales con toques modernos.</p>
             </div>
             <div class="card reveal">
-                <div class="icon">🔥</div>
+                <img src="https://i.imgur.com/aoBU7fM.jpeg" class="card-img" alt="Askuabarra">
                 <h3>Askuabarra</h3>
-                <p>Parrilla y producto</p>
+                <p>Cocina de producto donde su montadito de steak tartar es de lo mejorcito.</p>
             </div>
             <div class="card reveal">
-                <div class="icon">🍣</div>
+                <img src="https://i.imgur.com/vHYLM4W.jpeg" class="card-img" alt="Sushi Do">
                 <h3>Sushido</h3>
-                <p>Nuestra opción favorita si preferís cambiar de tercio y comer un buen sushi</p>
+                <p>Nuestra opción favorita si os apetece cambiar de tercio y os gusta la comida japonesa.</p>
             </div>
         </div>
     </section>
@@ -438,17 +448,24 @@
         <div class="modal-content">
             <div class="close-modal" onclick="closeModal('golf')">&times;</div>
             <img src="https://i.imgur.com/GEZh21g.jpeg" class="modal-header-img" alt="Golf">
-            <h3>Palomarejos Golf</h3>
-            <p>Viernes • 09:30h</p>
-            <p style="margin-bottom: 20px;">N-Va, Km 113, Talavera de la Reina</p>
-            <p style="margin-bottom: 20px; color: #666; font-size: 0.9rem;">Para aquellos que quieran empezar el fin de semana antes que nadie, Carlos ha organizado un torneo de Golf con su respectivo hoyo 19 el viernes por la mañana.</p>
+            
+            <div class="modal-info-center">
+                <h3>Palomarejos Golf</h3>
+                <p>Viernes • 09:30h</p>
+                <p class="address">N-Va, Km 113, Talavera de la Reina</p>
+            </div>
+            
+            <div class="modal-desc-justify">
+                <p>Para aquellos que quieran empezar el fin de semana antes que nadie, Carlos ha organizado un torneo de Golf con su respectivo hoyo 19 el viernes por la mañana.</p>
+            </div>
+
             <form id="golfForm" style="width:100%;">
                 <div class="form-group"><input type="text" id="golf-nombre" name="golf-nombre" placeholder="Nombre completo" required></div>
                 <div class="form-group"><input type="text" id="golf-licencia" name="golf-licencia" placeholder="Licencia" required></div>
                 <div class="form-group"><input type="text" id="golf-handicap" name="golf-handicap" placeholder="Handicap" required></div>
                 <div class="form-group"><select id="golf-palos" name="golf-palos" required><option value="">¿Traes palos?</option><option value="Sí">Sí</option><option value="No">No</option></select></div>
                 <div id="golfFormMessage"></div>
-                <button type="submit" id="submitGolfBtn">INSCRIBIRSE</button>
+                <button type="submit" id="submitGolfBtn">¡Me apunto!</button>
             </form>
         </div>
     </div>
@@ -457,10 +474,17 @@
         <div class="modal-content">
             <div class="close-modal" onclick="closeModal('preboda')">&times;</div>
             <img src="https://i.imgur.com/0khwPw5.jpeg" class="modal-header-img" style="object-position: top center;" alt="Preboda">
-            <h3>Misa de 1</h3>
-            <p>Viernes • 21:00h</p>
-            <p>Calle José Luis Gallo, 1</p>
-            <p style="margin-top: 15px; color: #666; font-size: 0.9rem;">Para ir calentando el terreno... ¡tendremos preboda el viernes! Os confirmaremos la hora exacta más adelante :) Pero id reservando el hueco para el primer brindis. Gracias por desplazaros para acompañarnos; teneros cerca ya desde el día anterior nos hace muchísima ilusión (y es la excusa perfecta para empezar por todo lo alto el fin de semana)</p>
+            
+            <div class="modal-info-center">
+                <h3>Misa de 1</h3>
+                <p>Viernes • 21:00h</p>
+                <p class="address">Calle José Luis Gallo, 1</p>
+            </div>
+
+            <div class="modal-desc-justify">
+                <p>Para ir calentando el terreno... ¡tendremos preboda el viernes! Os confirmaremos la hora exacta más adelante :) Pero id reservando el hueco para el primer brindis.</p>
+                <p>Gracias por desplazaros para acompañarnos; teneros cerca ya desde el día anterior nos hace muchísima ilusión (y es la excusa perfecta para empezar por todo lo alto el fin de semana).</p>
+            </div>
         </div>
     </div>
 
@@ -468,11 +492,17 @@
         <div class="modal-content">
             <div class="close-modal" onclick="closeModal('ceremonia')">&times;</div>
             <img src="https://i.imgur.com/3yS2fNk.jpeg" class="modal-header-img" alt="Ceremonia">
-            <h3>Colegiata Santa María la Mayor</h3>
-            <p>Sábado • 17:00h</p>
-            <p>Plaza del Pan</p>
-            <p style="margin-top: 15px; color: #666; font-size: 0.9rem;">La ceremonia tendrá lugar en el corazón de Talavera. Se ruega puntualidad.</p>
-            <p style="margin-top: 10px; color: #666; font-size: 0.9rem;">Habrá servicio de autobuses a la salida de la ceremonia hasta la finca.</p>
+            
+            <div class="modal-info-center">
+                <h3>Colegiata Santa María la Mayor</h3>
+                <p>Sábado • 17:00h</p>
+                <p class="address">Plaza del Pan</p>
+            </div>
+
+            <div class="modal-desc-justify">
+                <p>La ceremonia tendrá lugar en el corazón de Talavera. Habrá servicio de autobuses a la salida de la ceremonia hasta la finca.</p>
+                <p style="margin-top:10px; font-style:italic;">Se ruega puntualidad.</p>
+            </div>
         </div>
     </div>
 
@@ -480,10 +510,16 @@
         <div class="modal-content">
             <div class="close-modal" onclick="closeModal('celebracion')">&times;</div>
             <img src="https://i.imgur.com/XaKG3fN.jpeg" class="modal-header-img" alt="Celebración">
-            <h3>La Casona del Lago - Grupo NÜA</h3>
-            <p>Sábado - Al acabar la Ceremonia</p>
-            <p>Av. de Miramar, 1, Serranillos Playa</p>
-            <p style="margin-top: 15px; color: #666; font-size: 0.9rem;">Habrá servicio de autobús al acabar la celebración de vuelta al centro de Talavera.</p>
+            
+            <div class="modal-info-center">
+                <h3>La Casona del Lago - NÜA</h3>
+                <p>Sábado - Al acabar la Ceremonia</p>
+                <p class="address">Av. de Miramar, 1, Serranillos Playa</p>
+            </div>
+
+            <div class="modal-desc-justify">
+                <p>Habrá servicio de autobús al acabar la celebración de vuelta al centro de Talavera.</p>
+            </div>
         </div>
     </div>
 
