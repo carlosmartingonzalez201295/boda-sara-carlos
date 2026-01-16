@@ -76,7 +76,6 @@
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
         .nav-logo img { height: 75px; filter: grayscale(100%) contrast(500%); mix-blend-mode: screen; }
-        
         .menu-toggle { font-size: 2rem; color: white; cursor: pointer; padding: 10px; }
         
         nav ul {
@@ -89,7 +88,7 @@
         nav li { width: 100%; text-align: center; }
         nav a { display: block; padding: 20px; font-size: 1.1rem; color: var(--dark); border-bottom: 1px solid #f5f5f5; text-transform: uppercase; letter-spacing: 1px; text-decoration: none; }
 
-        /* --- HERO (PORTADA) --- */
+        /* --- HERO --- */
         .hero {
             height: 100vh; min-height: 100dvh; width: 100%;
             display: flex; flex-direction: column; 
@@ -101,7 +100,6 @@
             padding: 130px 20px 20px 20px; 
         }
         .hero::before { content: ''; position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.15); z-index: 0; }
-        
         .hero-text { position: relative; z-index: 2; margin-bottom: 60px; }
         
         .hero-title {
@@ -122,16 +120,12 @@
             letter-spacing: 5px;
             text-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
-
         .scroll-indicator { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); z-index: 2; animation: bounce 2s infinite; font-size: 2rem; }
 
         /* --- CUENTA ATRÁS --- */
         .countdown-section {
             padding: 50px 20px 10px 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 15px;
+            display: flex; justify-content: center; align-items: center; gap: 15px;
         }
         .countdown-item { display: flex; flex-direction: column; align-items: center; }
         .countdown-number { font-family: 'Cormorant Garamond', serif; font-size: 3rem; color: var(--nav-bg); font-weight: 600; line-height: 1; }
@@ -144,69 +138,63 @@
         .text-block { text-align: center; font-size: 1rem; color: #555; margin: -20px auto 30px auto; max-width: 90%; line-height: 1.8; }
         .text-block p { margin-bottom: 15px; }
 
-        /* --- ITINERARIO REDISEÑADO (Fotos grandes laterales) --- */
+        /* --- ITINERARIO CON LÍNEA CURVA LIMPIA --- */
         .timeline { 
             position: relative; margin: 40px 0; padding: 0;
-            display: flex; flex-direction: column; gap: 40px; /* Espacio entre filas */
+            display: flex; flex-direction: column; gap: 60px; /* Espacio vertical aumentado */
+            padding-bottom: 20px;
         }
         
-        /* Línea S-Curve Central */
+        /* CAMBIO 1: Nueva línea curva que va de foto a foto sin cruzar texto */
         .timeline::before {
             content: '';
             position: absolute;
-            top: 20px; bottom: 0; left: 50%;
-            width: 100px; margin-left: -50px;
-            /* Onda más amplia y suave */
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='200' viewBox='0 0 100 200'%3E%3Cpath d='M50,0 C80,50 80,150 50,200 C20,250 20,350 50,400' fill='none' stroke='%238b7355' stroke-width='2' stroke-dasharray='8 8' opacity='0.4' /%3E%3C/svg%3E");
-            background-repeat: repeat-y;
+            top: 65px; bottom: 65px; left: 0; width: 100%;
+            /* SVG que dibuja una línea serpenteante desde el centro de la imagen izquierda al centro de la derecha */
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M 18 0 C 60 0, 40 33, 82 33 C 40 33, 60 66, 18 66 C 60 66, 40 100, 82 100' vector-effect='non-scaling-stroke' fill='none' stroke='%23d4a373' stroke-width='2' stroke-dasharray='5 5' opacity='0.6' /%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
             z-index: 0;
         }
 
         .timeline-item {
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: space-between; /* Separar foto y texto a los extremos */
             position: relative;
             z-index: 1;
             width: 100%;
         }
 
-        /* Imágenes grandes redondas (130px) */
+        /* Imágenes grandes (130px) */
         .timeline-img-box {
-            width: 130px;
-            height: 130px;
-            border-radius: 50%;
-            border: 4px solid white;
+            width: 130px; height: 130px;
+            border-radius: 50%; border: 4px solid white;
             box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-            overflow: hidden;
-            flex-shrink: 0;
+            overflow: hidden; flex-shrink: 0; cursor: pointer;
+            position: relative; z-index: 2; background: white;
         }
-        .timeline-img-box img { width: 100%; height: 100%; object-fit: cover; }
+        .timeline-img-box img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
+        .timeline-img-box:active img { transform: scale(0.95); }
 
-        /* Contenedor de texto */
+        /* Ajuste específico para la Preboda para que no se corte */
+        .img-preboda { object-position: top center !important; }
+
         .timeline-content {
-            width: 45%;
-            padding: 0 15px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            width: 55%; /* El resto del espacio */
+            padding: 0 10px;
+            display: flex; flex-direction: column; justify-content: center;
         }
         .timeline-content h3 { font-family: 'Cormorant Garamond'; font-size: 1.3rem; color: var(--secondary); margin-bottom: 5px; font-weight: 700; line-height: 1.1; }
-        .timeline-content p { font-size: 0.85rem; margin-bottom: 2px; color: #555; }
-        .timeline-content .action { color: var(--primary); font-size: 0.8rem; font-weight: 600; margin-top: 5px; }
+        .timeline-content p { font-size: 0.9rem; margin-bottom: 2px; color: #555; }
 
         /* Alternancia: Impar (Img Izq - Texto Der) */
-        .timeline-item:nth-child(odd) {
-            flex-direction: row;
-        }
-        .timeline-item:nth-child(odd) .timeline-content { text-align: left; }
+        .timeline-item:nth-child(odd) { flex-direction: row; }
+        .timeline-item:nth-child(odd) .timeline-content { text-align: left; padding-left: 15px; }
 
         /* Alternancia: Par (Img Der - Texto Izq) */
-        .timeline-item:nth-child(even) {
-            flex-direction: row-reverse;
-        }
-        .timeline-item:nth-child(even) .timeline-content { text-align: right; }
-
+        .timeline-item:nth-child(even) { flex-direction: row-reverse; }
+        .timeline-item:nth-child(even) .timeline-content { text-align: right; padding-right: 15px; }
 
         /* --- TARJETAS --- */
         .cards-grid { display: flex; flex-direction: column; gap: 0; }
@@ -233,9 +221,19 @@
 
         /* --- MODALES --- */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 2000; backdrop-filter: blur(3px); }
-        .modal-content { background: white; width: 100%; height: 100%; max-width: 100%; margin: 0; border-radius: 0; padding: 40px 25px; overflow-y: auto; position: relative; animation: slideUp 0.3s; display: flex; flex-direction: column; align-items: center; }
-        .close-modal { position: absolute; top: 20px; right: 20px; font-size: 2.5rem; width: 40px; height: 40px; background: #f0f0f0; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: #333; z-index: 10; }
+        .modal-content { background: white; width: 100%; height: 100%; max-width: 100%; margin: 0; border-radius: 0; padding: 25px; overflow-y: auto; position: relative; animation: slideUp 0.3s; display: flex; flex-direction: column; align-items: center; }
+        .close-modal { position: absolute; top: 15px; right: 15px; font-size: 2rem; width: 40px; height: 40px; background: rgba(255,255,255,0.8); border-radius: 50%; display: flex; justify-content: center; align-items: center; color: #333; z-index: 10; cursor: pointer; }
         
+        /* CABECERA MODAL (FOTO RECTANGULAR) */
+        .modal-header-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
         .reveal { opacity: 0; transform: translateY(20px); transition: 0.6s ease; }
         .reveal.active { opacity: 1; transform: translateY(0); }
         @keyframes bounce { 0%, 100% { transform: translate(-50%, 0); } 50% { transform: translate(-50%, -10px); } }
@@ -247,11 +245,11 @@
             nav a { color: white; border: none; padding: 0; margin-left: 20px; display: inline-block; }
             .menu-toggle { display: none; }
             .timeline { max-width: 800px; margin: 0 auto; }
+            .timeline::before { width: 400px; margin-left: -200px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 100' preserveAspectRatio='none'%3E%3Cpath d='M 70 0 C 200 0, 200 33, 330 33 C 200 33, 200 66, 70 66 C 200 66, 200 100, 330 100' vector-effect='non-scaling-stroke' fill='none' stroke='%23d4a373' stroke-width='2' stroke-dasharray='5 5' opacity='0.6' /%3E%3C/svg%3E"); }
             .cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
             .card { border-bottom: none; border-right: 1px solid rgba(139, 115, 85, 0.2); }
             .card:last-child { border-right: none; }
             .modal-content { width: 90%; max-width: 500px; height: auto; max-height: 85vh; border-radius: 15px; margin: 5% auto; }
-            .close-modal { background: transparent; font-size: 2rem; top: 15px; right: 20px; }
             .hero-title { font-size: 6rem; }
             .countdown-number { font-size: 4rem; }
         }
@@ -279,7 +277,8 @@
             <li><a href="#itinerario">Itinerario</a></li>
             <li><a href="#alojamiento">Alojamiento</a></li>
             <li><a href="#recomendaciones">Recomendaciones</a></li>
-            <li><a href="#mapa">Mapa</a></li> <li><a href="#confirmacion">Confirmación</a></li>
+            <li><a href="#mapa">Mapa</a></li>
+            <li><a href="#confirmacion">Confirmación</a></li>
         </ul>
     </nav>
 
@@ -317,42 +316,40 @@
                 </div>
                 <div class="timeline-content" onclick="openModal('golf')">
                     <h3>Torneo de Golf</h3>
-                    <p><strong>Viernes 02 • 09:30h</strong></p>
+                    <p><strong>Viernes - 09:30h</strong></p>
                     <p>Palomarejos Golf</p>
-                    <p class="action">👉 Inscribirse</p>
                 </div>
             </div>
             
             <div class="timeline-item reveal">
-                <div class="timeline-img-box">
-                    <img src="https://i.imgur.com/0khwPw5.jpeg" alt="Preboda">
+                <div class="timeline-img-box" onclick="openModal('preboda')">
+                    <img src="https://i.imgur.com/0khwPw5.jpeg" alt="Preboda" class="img-preboda">
                 </div>
-                <div class="timeline-content">
+                <div class="timeline-content" onclick="openModal('preboda')">
                     <h3>Preboda</h3>
-                    <p><strong>Viernes 02 • 21:00h</strong></p>
+                    <p><strong>Viernes - 21:00h</strong></p>
                     <p>Misa de 1</p>
-                    <p>Calle José Luis Gallo, 1</p>
                 </div>
             </div>
 
             <div class="timeline-item reveal">
-                <div class="timeline-img-box">
-                    <img src="https://i.imgur.com/9yJq4qS.jpeg" alt="Ceremonia"> 
+                <div class="timeline-img-box" onclick="openModal('ceremonia')">
+                    <img src="https://i.imgur.com/3yS2fNk.jpeg" alt="Ceremonia"> 
                 </div>
-                <div class="timeline-content">
+                <div class="timeline-content" onclick="openModal('ceremonia')">
                     <h3>Ceremonia Religiosa</h3>
-                    <p><strong>Sábado 03 • 17:00h</strong></p>
+                    <p><strong>Sábado - 17:00h</strong></p>
                     <p>Santa María la Mayor</p>
                 </div>
             </div>
 
             <div class="timeline-item reveal">
-                <div class="timeline-img-box">
+                <div class="timeline-img-box" onclick="openModal('celebracion')">
                     <img src="https://i.imgur.com/XaKG3fN.jpeg" alt="Celebración">
                 </div>
-                <div class="timeline-content">
+                <div class="timeline-content" onclick="openModal('celebracion')">
                     <h3>Celebración</h3>
-                    <p><strong>Sábado 03</strong></p>
+                    <p><strong>Sábado</strong></p>
                     <p>NÜA - Carlos Maldonado</p>
                 </div>
             </div>
@@ -448,17 +445,14 @@
         </form>
     </section>
 
-    <div id="modal-hotel1" class="modal"><div class="modal-content"><div class="close-modal" onclick="closeModal('hotel1')">&times;</div><div style="font-size:3rem; margin-bottom:10px;">🏨</div><h3>Hotel Be Live</h3><p>Av. Toledo, s/n</p><div style="text-align:left; width:100%; margin-top:20px; background:#fafafa; padding:20px; border-radius:10px;"><strong>💰 96€/noche aprox</strong><br><br><strong>🎁 Código Boda:</strong><br>BODA CARLOS Y SARA<br>Loc: 25GTV174</div></div></div>
-    <div id="modal-apt1" class="modal"><div class="modal-content"><div class="close-modal" onclick="closeModal('apt1')">&times;</div><div style="font-size:3rem; margin-bottom:10px;">🏡</div><h3>Blue Windows</h3><p>C. Corredera del Cristo, 18</p><p style="margin-top:20px;">925 80 24 28</p></div></div>
-    <div id="modal-apt2" class="modal"><div class="modal-content"><div class="close-modal" onclick="closeModal('apt2')">&times;</div><div style="font-size:3rem; margin-bottom:10px;">🏡</div><h3>Santa Rita</h3><p>C. Mesones, 3</p><p style="margin-top:20px;">925 80 17 17</p></div></div>
-    
     <div id="modal-golf" class="modal">
         <div class="modal-content">
             <div class="close-modal" onclick="closeModal('golf')">&times;</div>
-            <div style="font-size:3rem; margin-bottom:10px;">⛳</div>
+            <img src="https://i.imgur.com/GEZh21g.jpeg" class="modal-header-img" alt="Golf">
             <h3>Torneo de Golf</h3>
-            <p>Viernes 02 • 09:30h</p>
-            <form id="golfForm" style="width:100%; margin-top:20px;">
+            <p>Viernes • 09:30h</p>
+            <p style="margin-bottom: 20px;">Palomarejos Golf</p>
+            <form id="golfForm" style="width:100%;">
                 <div class="form-group"><input type="text" id="golf-nombre" name="golf-nombre" placeholder="Nombre completo" required></div>
                 <div class="form-group"><input type="text" id="golf-licencia" name="golf-licencia" placeholder="Licencia" required></div>
                 <div class="form-group"><input type="text" id="golf-handicap" name="golf-handicap" placeholder="Handicap" required></div>
@@ -469,6 +463,44 @@
         </div>
     </div>
 
+    <div id="modal-preboda" class="modal">
+        <div class="modal-content">
+            <div class="close-modal" onclick="closeModal('preboda')">&times;</div>
+            <img src="https://i.imgur.com/0khwPw5.jpeg" class="modal-header-img" style="object-position: top center;" alt="Preboda">
+            <h3>Preboda</h3>
+            <p>Viernes • 21:00h</p>
+            <p>Misa de 1 - Calle José Luis Gallo, 1</p>
+            <p style="margin-top: 15px; color: #666; font-size: 0.9rem;">Una noche para reunirnos antes del gran día y disfrutar de un ambiente relajado en el centro de Talavera.</p>
+        </div>
+    </div>
+
+    <div id="modal-ceremonia" class="modal">
+        <div class="modal-content">
+            <div class="close-modal" onclick="closeModal('ceremonia')">&times;</div>
+            <img src="https://i.imgur.com/3yS2fNk.jpeg" class="modal-header-img" alt="Ceremonia">
+            <h3>Ceremonia Religiosa</h3>
+            <p>Sábado • 17:00h</p>
+            <p>Iglesia de Santa María la Mayor (La Colegial)</p>
+            <p style="margin-top: 15px; color: #666; font-size: 0.9rem;">La ceremonia tendrá lugar en el corazón de Talavera. Se ruega puntualidad.</p>
+        </div>
+    </div>
+
+    <div id="modal-celebracion" class="modal">
+        <div class="modal-content">
+            <div class="close-modal" onclick="closeModal('celebracion')">&times;</div>
+            <img src="https://i.imgur.com/XaKG3fN.jpeg" class="modal-header-img" alt="Celebración">
+            <h3>Celebración</h3>
+            <p>Sábado</p>
+            <p>NÜA - Carlos Maldonado</p>
+            <p>Av. de Miramar, 1, Serranillos Playa</p>
+            <p style="margin-top: 15px; color: #666; font-size: 0.9rem;">Disfrutaremos de una cena cocktail a orillas del embalse.</p>
+        </div>
+    </div>
+
+    <div id="modal-hotel1" class="modal"><div class="modal-content"><div class="close-modal" onclick="closeModal('hotel1')">&times;</div><div style="font-size:3rem; margin-bottom:10px;">🏨</div><h3>Hotel Be Live</h3><p>Av. Toledo, s/n</p><div style="text-align:left; width:100%; margin-top:20px; background:#fafafa; padding:20px; border-radius:10px;"><strong>💰 96€/noche aprox</strong><br><br><strong>🎁 Código Boda:</strong><br>BODA CARLOS Y SARA<br>Loc: 25GTV174</div></div></div>
+    <div id="modal-apt1" class="modal"><div class="modal-content"><div class="close-modal" onclick="closeModal('apt1')">&times;</div><div style="font-size:3rem; margin-bottom:10px;">🏡</div><h3>Blue Windows</h3><p>C. Corredera del Cristo, 18</p><p style="margin-top:20px;">925 80 24 28</p></div></div>
+    <div id="modal-apt2" class="modal"><div class="modal-content"><div class="close-modal" onclick="closeModal('apt2')">&times;</div><div style="font-size:3rem; margin-bottom:10px;">🏡</div><h3>Santa Rita</h3><p>C. Mesones, 3</p><p style="margin-top:20px;">925 80 17 17</p></div></div>
+    
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
     <script>
