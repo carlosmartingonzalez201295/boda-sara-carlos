@@ -133,7 +133,7 @@
         .countdown-section {
             padding: 50px 20px 10px 20px;
             display: flex; justify-content: center; align-items: center; gap: 15px;
-            scroll-margin-top: 100px; /* Para el ancla del menú */
+            scroll-margin-top: 100px;
         }
         .countdown-item { display: flex; flex-direction: column; align-items: center; }
         .countdown-number { font-family: 'Cormorant Garamond', serif; font-size: 3rem; color: var(--nav-bg); font-weight: 600; line-height: 1; }
@@ -164,16 +164,30 @@
             width: 100%;
         }
 
+        /* CAMBIO 1: Animación flotante en imágenes */
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0px); }
+        }
+
         .timeline-img-box {
             width: 130px; height: 130px;
             border-radius: 50%; border: 4px solid white;
             box-shadow: 0 5px 15px rgba(0,0,0,0.15);
             overflow: hidden; flex-shrink: 0; cursor: pointer;
             position: relative; z-index: 2; background: white;
+            
+            /* Aplicamos animación */
+            animation: floating 4s ease-in-out infinite;
         }
-        .timeline-img-box img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
-        .timeline-img-box:active img { transform: scale(0.95); }
+        
+        /* Retardo para los pares, para que no se muevan a la vez */
+        .timeline-item:nth-child(even) .timeline-img-box {
+            animation-delay: 2s;
+        }
 
+        .timeline-img-box img { width: 100%; height: 100%; object-fit: cover; }
         .img-preboda { object-position: top center !important; }
 
         .timeline-content {
@@ -184,28 +198,33 @@
         .timeline-content h3 { font-family: 'Cormorant Garamond'; font-size: 1.3rem; color: var(--secondary); margin-bottom: 5px; font-weight: 700; line-height: 1.1; }
         .timeline-content p { font-size: 0.9rem; margin-bottom: 2px; color: #555; }
 
-        /* Alternancia */
         .timeline-item:nth-child(odd) { flex-direction: row; }
         .timeline-item:nth-child(odd) .timeline-content { text-align: left; padding-left: 15px; }
         .timeline-item:nth-child(even) { flex-direction: row-reverse; }
         .timeline-item:nth-child(even) .timeline-content { text-align: right; padding-right: 15px; }
 
-        /* --- TARJETAS --- */
-        .cards-grid { display: flex; flex-direction: column; gap: 20px; }
-        .card { background: transparent; padding: 20px; border-radius: 15px; box-shadow: none; border-top: none; text-align: center; border: 1px solid rgba(139, 115, 85, 0.1); }
-        .card .icon { font-size: 2.2rem; margin-bottom: 10px; }
+        /* --- TARJETAS (CAMBIO 3: Sin caja visible) --- */
+        .cards-grid { display: flex; flex-direction: column; gap: 30px; }
         
-        /* CAMBIO 7: Fotos en tarjetas de recomendación */
+        .card { 
+            background: transparent; 
+            padding: 0; 
+            border-radius: 0; 
+            box-shadow: none; 
+            border: none; /* Eliminamos bordes */
+            text-align: center; 
+        }
+        
         .card-img {
             width: 100%;
-            height: 180px;
+            height: 200px;
             object-fit: cover;
-            border-radius: 10px;
+            border-radius: 15px;
             margin-bottom: 15px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15); /* Sombra solo en la foto */
         }
 
-        .card h3 { font-family: 'Cormorant Garamond'; font-size: 1.6rem; color: var(--secondary); margin-bottom: 5px; font-weight: 600; }
+        .card h3 { font-family: 'Cormorant Garamond'; font-size: 1.7rem; color: var(--secondary); margin-bottom: 5px; font-weight: 600; }
         .card p { color: #555; font-size: 0.95rem; }
 
         /* --- MAPA --- */
@@ -214,7 +233,15 @@
         .leaflet-popup-content h3 { color: var(--secondary); margin: 0 0 5px 0; font-family: 'Cormorant Garamond'; font-size: 1.2rem; }
         .leaflet-popup-content p { margin: 0; color: #555; font-size: 0.9rem; margin-bottom: 5px; }
         .leaflet-popup-content .address { font-size: 0.8rem; color: #888; border-top: 1px solid #eee; padding-top: 5px; font-style: italic; }
-        .custom-emoji-marker { display: flex; justify-content: center; align-items: center; font-size: 2rem; text-shadow: 0 2px 5px rgba(0,0,0,0.3); }
+        
+        /* ESTILO CHINCHETA GENERICA (Color se define en JS) */
+        .custom-pin-marker {
+            display: flex; justify-content: center; align-items: center;
+        }
+        .custom-pin-marker svg {
+            width: 40px; height: 40px;
+            filter: drop-shadow(0 3px 3px rgba(0,0,0,0.3));
+        }
 
         /* --- FORMULARIO RSVP --- */
         .rsvp-form { background: white; padding: 30px 20px; border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); width: 100%; margin-top: 20px; }
@@ -232,7 +259,6 @@
             width: 100%; height: auto; max-height: 400px; object-fit: contain; border-radius: 15px; margin-bottom: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
         
-        /* CAMBIO 2: Clases para centrar y justificar en popups */
         .modal-info-center { text-align: center; margin-bottom: 20px; width: 100%; }
         .modal-info-center h3 { font-family: 'Cormorant Garamond'; font-size: 1.8rem; color: var(--secondary); margin-bottom: 5px; }
         .modal-info-center p { color: #444; font-weight: 500; margin-bottom: 5px; }
@@ -357,7 +383,11 @@
 
     <section id="alojamiento">
         <h2>Alojamiento</h2>
-        <span class="subtitle">Opciones en Talavera</span>
+        <div class="text-block reveal">
+            <p>Como la oferta hotelera en Talavera no es muy amplia, os invitamos a reservar cuanto antes vuestro alojamiento para el fin de semana.</p>
+            <p style="font-weight: 500; color: var(--secondary);">¡¡Os animamos a reservar desde el viernes para disfrutar de la preboda!!</p>
+        </div>
+
         <div class="cards-grid">
             <div class="card reveal" onclick="openModal('hotel1')">
                 <div class="icon">🏨</div>
@@ -385,7 +415,7 @@
         
         <div class="text-block reveal">
             <p>Talavera es mi casa y ahora también la de Carlos, que ya se conoce cada rincón como uno más del equipo.</p>
-            <p>Para calentar motores el viernes antes de la preboda o reponer fuerzas el sábado, estos son nuestros sitios de confianza.</p>
+            <p>Estos son nuestros sitios de confianza para calentar motores el viernes antes de la preboda o reponer fuerzas el sábado.</p>
             <p style="font-style: italic; color: var(--secondary); font-weight: 600; margin-top: 20px;">📍 Están todos por la zona del centro, muy cerquita de la Iglesia y del sitio donde celebraremos la preboda:</p>
         </div>
 
@@ -456,7 +486,7 @@
             </div>
             
             <div class="modal-desc-justify">
-                <p>Para aquellos que quieran empezar el fin de semana antes que nadie, Carlos ha organizado un torneo de Golf con su respectivo hoyo 19 el viernes por la mañana.</p>
+                <p>¡Damos el pistoletazo de salida! Para aquellos que quieran empezar el fin de semana antes que nadie, Carlos ha organizado un torneo de golf el viernes por la mañana (incluido el hoyo 19, por supuesto).</p>
             </div>
 
             <form id="golfForm" style="width:100%;">
@@ -501,7 +531,7 @@
 
             <div class="modal-desc-justify">
                 <p>La ceremonia tendrá lugar en el corazón de Talavera. Habrá servicio de autobuses a la salida de la ceremonia hasta la finca.</p>
-                <p style="margin-top:10px; font-style:italic;">Se ruega puntualidad.</p>
+                <p style="font-style:italic;">Se ruega puntualidad.</p>
             </div>
         </div>
     </div>
@@ -512,7 +542,7 @@
             <img src="https://i.imgur.com/XaKG3fN.jpeg" class="modal-header-img" alt="Celebración">
             
             <div class="modal-info-center">
-                <h3>La Casona del Lago - NÜA</h3>
+                <h3>La Casona del Lago - Grupo NÜA</h3>
                 <p>Sábado - Al acabar la Ceremonia</p>
                 <p class="address">Av. de Miramar, 1, Serranillos Playa</p>
             </div>
@@ -557,35 +587,62 @@
         function openModal(id) { document.getElementById('modal-'+id).style.display = 'block'; document.body.style.overflow = 'hidden'; }
         function closeModal(id) { document.getElementById('modal-'+id).style.display = 'none'; document.body.style.overflow = 'auto'; }
 
-        // --- MAPA LEAFLET ---
+        // --- MAPA LEAFLET CONFIGURADO ---
         document.addEventListener('DOMContentLoaded', function() {
-            const map = L.map('map', { scrollWheelZoom: false }).setView([39.9579, -4.832], 17);
+            const map = L.map('map', { scrollWheelZoom: false });
 
             L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
                 attribution: '&copy; OpenStreetMap &copy; CARTO',
                 maxZoom: 20
             }).addTo(map);
 
-            const emojiIcon = L.divIcon({
-                className: 'custom-emoji-marker',
-                html: '<div style="font-size: 2rem;">📍</div>',
-                iconSize: [30, 30],
-                iconAnchor: [15, 30], 
-                popupAnchor: [0, -30]
-            });
+            // FUNCIÓN PARA CREAR CHINCHETAS DE COLORES
+            function getMarkerIcon(color) {
+                // SVG de chincheta con color dinámico
+                const svgIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="40" height="40" fill="${color}" stroke="#333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3" fill="#fff"></circle></svg>`;
+                
+                return L.divIcon({
+                    className: 'custom-pin-marker',
+                    html: svgIcon,
+                    iconSize: [40, 40],
+                    iconAnchor: [20, 40], // Punta de la chincheta
+                    popupAnchor: [0, -40]
+                });
+            }
 
+            // CAMBIO 5: Definición de marcadores con colores
             const markers = [
-                { coords: [39.9585, -4.8333], title: "Casco Viejo", desc: "Cocina tradicional", addr: "Plaza Villatoya, 1" },
-                { coords: [39.9576, -4.8312], title: "Sushido", desc: "Opción favorita si preferís sushi", addr: "C. Arco de San Pedro, 11" },
-                { coords: [39.95775, -4.8311], title: "Cosafina", desc: "Bar Castizo ideal para previas", addr: "C. Arco de San Pedro, 10" },
-                { coords: [39.95745, -4.8313], title: "La Antigua", desc: "No os podéis ir sin probar sus revolconas", addr: "C. Arco de San Pedro, 13" },
-                { coords: [39.9571, -4.8306], title: "Askuabarra", desc: "Parrilla y producto", addr: "Plaza Arzobispo don Pedro Tenorio, 2" }
+                // RECOMENDACIONES (ROJO: #e74c3c)
+                { coords: [39.9585, -4.8333], title: "Casco Viejo", addr: "Plaza Villatoya, 1", color: "#e74c3c" },
+                { coords: [39.9576, -4.8312], title: "Sushido", addr: "C. Arco de San Pedro, 11", color: "#e74c3c" },
+                { coords: [39.95775, -4.8311], title: "Cosafina", addr: "C. Arco de San Pedro, 10", color: "#e74c3c" },
+                { coords: [39.95745, -4.8313], title: "La Antigua", addr: "C. Arco de San Pedro, 13", color: "#e74c3c" },
+                { coords: [39.9571, -4.8306], title: "Askuabarra", addr: "Plaza Arzobispo don Pedro Tenorio, 2", color: "#e74c3c" },
+
+                // IGLESIA Y FINCA (AMARILLO: #f1c40f)
+                { coords: [39.9576, -4.8315], title: "Colegiata Sta María la Mayor", addr: "Plaza del Pan", color: "#f1c40f" },
+                { coords: [39.9880, -4.7800], title: "La Casona del Lago - NÜA", addr: "Serranillos Playa", color: "#f1c40f" }, // Aprox Serranillos
+
+                // PREBODA Y GOLF (AZUL: #3498db)
+                { coords: [39.9605, -4.8320], title: "Misa de 1", addr: "Calle José Luis Gallo, 1", color: "#3498db" },
+                { coords: [39.9750, -4.8600], title: "Palomarejos Golf", addr: "N-Va, Km 113", color: "#3498db" },
+
+                // ALOJAMIENTO (VERDE: #2ecc71)
+                { coords: [39.9630, -4.8250], title: "Hotel Be Live", addr: "Av. Toledo, s/n", color: "#2ecc71" },
+                { coords: [39.9590, -4.8330], title: "Blue Windows", addr: "C. Corredera del Cristo, 18", color: "#2ecc71" },
+                { coords: [39.9580, -4.8340], title: "Santa Rita", addr: "C. Mesones, 3", color: "#2ecc71" }
             ];
 
+            const featureGroup = L.featureGroup().addTo(map);
+
             markers.forEach(m => {
-                L.marker(m.coords, { icon: emojiIcon }).addTo(map)
-                    .bindPopup(`<h3>${m.title}</h3><p>${m.desc}</p><div class="address">📍 ${m.addr}</div>`);
+                L.marker(m.coords, { icon: getMarkerIcon(m.color) })
+                    .addTo(featureGroup)
+                    .bindPopup(`<h3>${m.title}</h3><div class="address">${m.addr}</div>`);
             });
+
+            // Ajustar mapa para ver todos los puntos
+            map.fitBounds(featureGroup.getBounds(), { padding: [20, 20] });
         });
 
         // Formularios
@@ -611,7 +668,7 @@
                 document.getElementById('golfFormMessage').innerText = "¡Inscrito!";
                 this.reset();
             } catch(e) { alert("Error"); }
-            btn.disabled = false; btn.innerText = "INSCRIBIRSE";
+            btn.disabled = false; btn.innerText = "¡Me apunto!";
         });
         
         function toggleAcompanante() {
