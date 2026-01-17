@@ -484,8 +484,10 @@
                 <div class="form-group"><input type="text" id="golf-handicap" name="golf-handicap" placeholder="Handicap" required></div>
                 <div class="form-group"><select id="golf-palos" name="golf-palos" required><option value="">¿Traes palos?</option><option value="Sí">Sí</option><option value="No">No</option></select></div>
                 <div id="golfFormMessage"></div>
-                <button type="submit" id="submitGolfBtn">¡Me apunto!</button>
+                
                 <input type="hidden" name="tipo" value="golf">
+                
+                <button type="submit" id="submitGolfBtn">¡Me apunto!</button>
             </form>
         </div>
     </div>
@@ -551,7 +553,7 @@
 
     <script>
         // PEGA AQUÍ TU URL DE APP SCRIPT
-        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzjm9Gk7j2kClesW7I7S-sR0mDPN42zQfG8sqxfsq9mJnhG3CF9k57flWHwigzXgPR3dQ/exec";
+        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxb9-S1XztFUrjJA2IxFCYEtzjoAf6Pfz3__hurveC2dbyRuP_UIJtrpf_cBVLDCJr6wA/exec";
 
         window.onbeforeunload = function () { window.scrollTo(0, 0); }
         window.onload = function () { window.scrollTo(0, 0); }
@@ -597,16 +599,13 @@
                 popupAnchor: [0, -30]
             });
 
-            // COORDENADAS REVISADAS
+            // MARCADORES
             const markers = [
-                // CASCO ANTIGUO (Separación milimétrica para que se vean todos)
+                // RECOMENDACIONES
                 { coords: [39.9585, -4.8333], title: "Casco Viejo", addr: "Plaza Villatoya, 1" },
-                
-                // CALLE ARCO DE SAN PEDRO (Separamos ligeramente las coords)
                 { coords: [39.9576, -4.8312], title: "Sushido", addr: "C. Arco de San Pedro, 11" },
                 { coords: [39.95775, -4.8311], title: "Cosafina", addr: "C. Arco de San Pedro, 10" },
                 { coords: [39.95745, -4.8313], title: "La Antigua", addr: "C. Arco de San Pedro, 13" },
-                
                 { coords: [39.9571, -4.8306], title: "Askuabarra", addr: "Plaza Arzobispo don Pedro Tenorio, 2" },
 
                 // IGLESIA Y FINCA
@@ -634,12 +633,12 @@
             map.fitBounds(featureGroup.getBounds(), { padding: [20, 20] });
         });
 
-        // Formularios
+        // FORMULARIO BODA (FormData)
         document.getElementById('rsvpForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             const btn = document.getElementById('submitBtn'); btn.disabled = true; btn.innerText = "Enviando...";
             try {
-                // ENVIO NORMAL
+                // Envía normal (multipart/form-data implícito)
                 await fetch(GOOGLE_SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: new FormData(this) });
                 document.getElementById('formMessage').innerText = "¡Recibido!";
                 this.reset();
@@ -647,19 +646,16 @@
             btn.disabled = false; btn.innerText = "ENVIAR CONFIRMACIÓN";
         });
         
+        // FORMULARIO GOLF (AHORA TAMBIÉN FormData)
         document.getElementById('golfForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             const btn = document.getElementById('submitGolfBtn'); btn.disabled = true; btn.innerText = "...";
-            const data = { 
-                tipo: 'golf', // IMPORTANTE PARA EL SCRIPT
-                nombre: document.getElementById('golf-nombre').value, 
-                licencia: document.getElementById('golf-licencia').value, 
-                handicap: document.getElementById('golf-handicap').value, 
-                palos: document.getElementById('golf-palos').value 
-            };
+            
+            // CAMBIO CLAVE: Usamos FormData para que sea idéntico al otro
+            const formData = new FormData(this);
+            
             try {
-                // ENVIO JSON
-                await fetch(GOOGLE_SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data) });
+                await fetch(GOOGLE_SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: formData });
                 document.getElementById('golfFormMessage').innerText = "¡Inscrito!";
                 this.reset();
             } catch(e) { alert("Error"); }
