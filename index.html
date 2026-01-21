@@ -89,13 +89,12 @@
             
             background-image: url('https://i.imgur.com/ODoIZJe.jpeg');
             
-            /* MÓVIL: 'cover' para llenar el 100% haciendo zoom si es necesario */
+            /* MÓVIL: 'cover' para llenar el 100% haciendo zoom */
             background-size: cover; 
             
-            /* AJUSTE CLAVE MÓVIL: 'center 35%'.
-               Centra horizontalmente (protege los cuerpos laterales).
-               Enfoca verticalmente al 35% desde arriba (recorta cielo y suelo si sobra altura). */
-            background-position: center 35%;
+            /* AJUSTE CLAVE MÓVIL CORREGIDO: 75% horizontal, 35% vertical.
+               Desplaza el foco a la derecha (75%) para meter el brazo, recortando el lado izquierdo (paisaje). */
+            background-position: 75% 35%;
              
             background-repeat: no-repeat;
             overflow: hidden;
