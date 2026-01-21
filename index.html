@@ -61,57 +61,67 @@
         nav li { width: 100%; text-align: center; }
         nav a { display: block; padding: 20px; font-size: 1.1rem; color: var(--dark); border-bottom: 1px solid #f5f5f5; text-transform: uppercase; letter-spacing: 1px; text-decoration: none; }
 
-        /* --- HERO (IMAGEN) --- */
+        /* --- HERO (IMAGEN Y TEXTO SUPERPUESTO) --- */
         .hero {
-            /* Altura ajustada para que no ocupe toda la pantalla si se quiere ver el texto de abajo */
-            height: 80vh; min-height: 500px; width: 100%;
-            display: flex; flex-direction: column; 
-            justify-content: flex-end; /* Indicador de scroll abajo */
+            /* Altura completa de la pantalla para eliminar huecos blancos */
+            height: 100vh; 
+            height: 100dvh; /* Mejor para móviles */
+            width: 100%;
+            display: flex; 
+            flex-direction: column; 
+            /* Space-between coloca el texto arriba y el indicador abajo */
+            justify-content: space-between; 
             align-items: center;
             position: relative;
             background-image: url('https://i.imgur.com/A62miVu.png'); 
-            background-size: cover; background-position: center; background-attachment: scroll; 
-            padding: 20px; 
-        }
-        /* Sombra ligera sobre la imagen */
-        .hero::before { content: ''; position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.1); z-index: 0; }
-        
-        .scroll-indicator { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); z-index: 2; animation: bounce 2s infinite; font-size: 2rem; color: white; }
-
-        /* --- NUEVA SECCIÓN DE TÍTULO PRINCIPAL (Debajo de la imagen) --- */
-        #info-principal {
-            padding: 50px 20px 20px 20px;
+            background-size: cover; /* Asegura que la imagen cubra todo el espacio */
+            background-position: center center; 
+            background-attachment: scroll; 
+            /* Padding superior para bajar el texto de la barra de navegación */
+            padding: 110px 20px 30px 20px; 
             text-align: center;
-            background: transparent;
+            overflow: hidden;
         }
-
-        .hero-green-title-container {
+        /* Sombra ligera sobre la imagen para mejorar contraste */
+        .hero::before { content: ''; position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.2); z-index: 0; }
+        
+        .hero-text-overlay {
+            position: relative;
+            z-index: 2;
             display: flex;
             flex-direction: column;
             gap: 5px;
+            margin-top: 2vh; /* Pequeño ajuste adicional hacia abajo */
         }
 
-        /* Títulos más pequeños */
-        .main-title-small {
+        .hero-title-large {
             font-family: 'Cormorant Garamond', serif;
-            color: var(--nav-bg); /* Color verde */
-            font-size: 2.8rem; /* Tamaño reducido */
+            color: var(--nav-bg); /* Color verde solicitado */
+            font-size: 3.2rem;
             font-weight: 700;
             font-style: italic;
             line-height: 1.1;
+            display: block;
+            /* Sombra blanca fuerte para que se lea sobre la imagen */
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.9), 0 0 5px rgba(255, 255, 255, 1);
         }
 
-        .hero-details-small {
+        .hero-subtitle {
             font-family: 'Cormorant Garamond', serif;
             color: var(--nav-bg);
-            font-size: 1.3rem; /* Tamaño reducido */
+            font-size: 1.5rem;
             font-weight: 600;
+            display: block;
+             /* Sombra blanca fuerte */
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.9), 0 0 5px rgba(255, 255, 255, 1);
         }
+
+        .scroll-indicator { position: relative; z-index: 2; animation: bounce 2s infinite; font-size: 2rem; color: white; margin-bottom: 20px; }
 
 
         /* --- CUENTA ATRÁS --- */
         .countdown-section {
-            padding: 20px 20px 40px 20px; /* Ajuste de padding */
+            padding: 50px 20px 10px 20px; /* Ajuste de padding */
             display: flex; justify-content: center; align-items: center; gap: 15px;
             scroll-margin-top: 100px;
         }
@@ -249,9 +259,10 @@
             .cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
             .modal-content { width: 90%; max-width: 500px; height: auto; max-height: 85vh; border-radius: 15px; margin: 5% auto; }
             
-            /* Ajustes para escritorio de los nuevos títulos pequeños */
-            .main-title-small { font-size: 4rem; }
-            .hero-details-small { font-size: 1.8rem; }
+            /* Ajustes para escritorio de los títulos de portada */
+            .hero-title-large { font-size: 5rem; }
+            .hero-subtitle { font-size: 2rem; }
+            
             .countdown-number { font-size: 4rem; }
         }
     </style>
@@ -275,16 +286,13 @@
     </nav>
 
     <div class="hero" id="inicio">
+        <div class="hero-text-overlay">
+            <span class="hero-title-large">¡Nos casamos!</span>
+            <span class="hero-subtitle">03.10.2026</span>
+            <span class="hero-subtitle">Talavera de la Reina</span>
+        </div>
         <div class="scroll-indicator">↓</div>
     </div>
-
-    <section id="info-principal" class="reveal">
-        <div class="hero-green-title-container">
-            <span class="main-title-small">¡Nos casamos!</span>
-            <span class="hero-details-small">03.10.2026</span>
-            <span class="hero-details-small">Talavera de la Reina</span>
-        </div>
-    </section>
 
     <div id="cuenta-atras" class="countdown-section reveal">
         <div class="countdown-item"><span class="countdown-number" id="d-val">0</span><span class="countdown-label">Días</span></div>
