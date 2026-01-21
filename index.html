@@ -63,27 +63,27 @@
 
         /* --- HERO (IMAGEN Y TEXTO SUPERPUESTO) --- */
         .hero {
-            /* Altura completa de la pantalla para eliminar huecos blancos */
             height: 100vh; 
-            height: 100dvh; /* Mejor para móviles */
+            height: 100dvh; 
             width: 100%;
             display: flex; 
             flex-direction: column; 
-            /* Space-between coloca el texto arriba y el indicador abajo */
-            justify-content: space-between; 
+            /* CAMBIO IMPORTANTE: Empujar contenido al final (abajo) */
+            justify-content: flex-end; 
             align-items: center;
             position: relative;
             background-image: url('https://i.imgur.com/A62miVu.png'); 
-            background-size: cover; /* Asegura que la imagen cubra todo el espacio */
-            background-position: center center; 
+            background-size: cover; 
+            /* CAMBIO IMPORTANTE: Anclar la imagen abajo para que siempre se vea la zona blanca */
+            background-position: center bottom; 
             background-attachment: scroll; 
-            /* Padding superior para bajar el texto de la barra de navegación */
-            padding: 110px 20px 30px 20px; 
+            /* Espacio inferior para que el texto no toque el borde de la pantalla */
+            padding-bottom: 90px; 
             text-align: center;
             overflow: hidden;
         }
-        /* Sombra ligera sobre la imagen para mejorar contraste */
-        .hero::before { content: ''; position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.2); z-index: 0; }
+        /* Sombra muy ligera para no oscurecer la zona blanca */
+        .hero::before { content: ''; position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.05); z-index: 0; }
         
         .hero-text-overlay {
             position: relative;
@@ -91,37 +91,36 @@
             display: flex;
             flex-direction: column;
             gap: 5px;
-            margin-top: 2vh; /* Pequeño ajuste adicional hacia abajo */
+            margin-bottom: 30px; /* Separación con la flecha */
         }
 
         .hero-title-large {
             font-family: 'Cormorant Garamond', serif;
-            color: var(--nav-bg); /* Color verde solicitado */
-            font-size: 3.2rem;
+            color: var(--nav-bg); /* Color verde */
+            font-size: 3.5rem;
             font-weight: 700;
             font-style: italic;
             line-height: 1.1;
             display: block;
-            /* Sombra blanca fuerte para que se lea sobre la imagen */
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.9), 0 0 5px rgba(255, 255, 255, 1);
+            /* Sombra blanca suave por si pisa un poco de ropa oscura */
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
         }
 
         .hero-subtitle {
             font-family: 'Cormorant Garamond', serif;
             color: var(--nav-bg);
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             font-weight: 600;
             display: block;
-             /* Sombra blanca fuerte */
-            text-shadow: 0 0 15px rgba(255, 255, 255, 0.9), 0 0 5px rgba(255, 255, 255, 1);
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
         }
 
-        .scroll-indicator { position: relative; z-index: 2; animation: bounce 2s infinite; font-size: 2rem; color: white; margin-bottom: 20px; }
+        .scroll-indicator { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); z-index: 2; animation: bounce 2s infinite; font-size: 2rem; color: var(--nav-bg); }
 
 
         /* --- CUENTA ATRÁS --- */
         .countdown-section {
-            padding: 50px 20px 10px 20px; /* Ajuste de padding */
+            padding: 50px 20px 10px 20px; 
             display: flex; justify-content: center; align-items: center; gap: 15px;
             scroll-margin-top: 100px;
         }
