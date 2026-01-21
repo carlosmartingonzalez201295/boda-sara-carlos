@@ -175,7 +175,7 @@
         .timeline-img-box { 
             width: 130px; height: 130px; 
             border-radius: 50%; 
-            border: 4px solid white; /* Borde blanco base */
+            border: 4px solid white; 
             animation: floating-hard 3s ease-in-out infinite, pulse-ring 2s infinite; 
             overflow: visible; flex-shrink: 0; cursor: pointer; position: relative; z-index: 2; background: white; 
         }
@@ -250,7 +250,6 @@
             box-shadow: 0 4px 10px rgba(84, 98, 57, 0.3); 
             border: none; width: 100%; cursor: pointer;
             transition: transform 0.2s, box-shadow 0.2s;
-            /* CAMBIO: TIPOGRAFÍA BOTÓN */
             font-family: var(--handwriting-font);
             letter-spacing: 1px;
         }
@@ -268,6 +267,49 @@
         }
         .close-modal:hover { transform: rotate(90deg); }
 
+        /* ESTILOS ESPECÍFICOS PARA LAS IMÁGENES DEL MAPA CEREMONIA */
+        .modal-map-wrapper {
+            position: relative;
+            width: 100%;
+            height: 220px; /* Altura fija para forzar misma escala */
+            margin-bottom: 15px;
+            border-radius: 15px;
+            overflow: hidden;
+            background: white; /* Intento de fondo blanco puro */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .modal-map-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Cubrir el área */
+            object-position: center;
+        }
+        
+        /* ZOOM Y REENCUADRE PARA LA IMAGEN DE LA ENTRADA (Para igualar escala) */
+        .img-entrada-zoom {
+            object-fit: cover;
+            object-position: center 85%; /* Enfocar más abajo */
+            transform: scale(1.4); /* Zoom para acercar el plano */
+            transform-origin: center bottom;
+        }
+
+        /* ETIQUETA DE TEXTO DENTRO DE LA IMAGEN */
+        .modal-map-label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            font-family: var(--handwriting-font);
+            font-weight: bold;
+            font-size: 1.1rem; /* Más chiquito */
+            color: var(--nav-bg); /* Verde */
+            background: rgba(255,255,255,0.85); /* Fondo semi-transparente para legibilidad */
+            padding: 8px 0;
+            backdrop-filter: blur(2px);
+        }
+
         .modal-header-img { width: 100%; height: auto; max-height: 400px; object-fit: contain; border-radius: 15px; margin-bottom: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
         .modal-info-center { text-align: center; margin-bottom: 20px; width: 100%; }
         .modal-info-center h3 { font-family: var(--handwriting-font); font-weight: bold; font-size: 2.2rem; color: var(--secondary); margin-bottom: 5px; }
@@ -275,13 +317,6 @@
         .modal-info-center .address { color: #888; font-size: 0.9rem; font-style: italic; }
         .modal-desc-justify { text-align: justify; color: #666; font-size: 0.95rem; width: 100%; margin-bottom: 20px; }
         
-        /* ESTILO PARA LOS SUBTÍTULOS DE FOTO EN EL MODAL CEREMONIA */
-        .photo-caption { 
-            font-family: var(--handwriting-font); font-weight: bold; 
-            font-size: 1.5rem; color: var(--secondary); 
-            text-align: center; margin-bottom: 20px; margin-top: -10px;
-        }
-
         .reveal { opacity: 0; transform: translateY(20px); transition: 0.6s ease; }
         .reveal.active { opacity: 1; transform: translateY(0); }
         @keyframes bounce { 0%, 100% { transform: translate(-50%, 0); } 50% { transform: translate(-50%, -10px); } }
@@ -304,7 +339,6 @@
             .hero-title-large { font-size: 5rem; }
             .hero-subtitle { font-size: 2rem; }
             
-            /* Nombres gigantes en escritorio */
             .names-title { font-size: 5rem; margin-top: 50px; }
 
             .timeline { max-width: 800px; margin: 0 auto; }
@@ -314,6 +348,8 @@
             .modal-content { width: 90%; max-width: 500px; height: auto; max-height: 85vh; border-radius: 15px; margin: 5% auto; }
             
             .countdown-number { font-size: 3.5rem; }
+            /* Ajuste de altura para mapas en escritorio */
+            .modal-map-wrapper { height: 300px; }
         }
     </style>
 </head>
@@ -385,7 +421,7 @@
 
             <div class="timeline-item reveal">
                 <div class="timeline-img-box" onclick="openModal('ceremonia')">
-                    <img src="https://i.imgur.com/JwnzPZE.png" alt="Ceremonia"> 
+                    <img src="https://i.imgur.com/sf46Ij1.png" alt="Ceremonia"> 
                 </div>
                 <div class="timeline-content" onclick="openModal('ceremonia')">
                     <h3>Ceremonia Religiosa</h3>
@@ -580,11 +616,15 @@
         <div class="modal-content">
             <div class="close-modal" onclick="closeModal('ceremonia')">&times;</div>
             
-            <img src="https://i.imgur.com/sf46Ij1.png" class="modal-header-img" style="margin-bottom: 5px;" alt="Entrada">
-            <p class="photo-caption">Entrada de la iglesia</p>
+            <div class="modal-map-wrapper">
+                <img src="https://i.imgur.com/sf46Ij1.png" class="modal-map-img img-entrada-zoom" alt="Entrada">
+                <div class="modal-map-label">Entrada de la iglesia</div>
+            </div>
             
-            <img src="https://i.imgur.com/qztxjkd.png" class="modal-header-img" style="margin-bottom: 5px;" alt="Salida">
-            <p class="photo-caption">Salida de la Iglesia</p>
+            <div class="modal-map-wrapper">
+                <img src="https://i.imgur.com/qztxjkd.png" class="modal-map-img" alt="Salida">
+                <div class="modal-map-label">Salida de la Iglesia</div>
+            </div>
             
             <div class="modal-info-center">
                 <h3>Colegiata Santa María la Mayor</h3>
