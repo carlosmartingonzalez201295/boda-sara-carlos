@@ -39,7 +39,6 @@
             content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-image: var(--pattern-bg);
             background-repeat: repeat; background-size: 300px;
-            /* CAMBIO 2: AUMENTO DE OPACIDAD DEL FONDO ESTAMPADO */
             opacity: 0.3; 
             z-index: -1; pointer-events: none;
         }
@@ -119,25 +118,33 @@
         }
         .countdown-item { display: flex; flex-direction: column; align-items: center; }
         
-        /* CAMBIO 1: COLOR VERDE EN CUENTA ATRÁS */
         .countdown-number, .countdown-label {
             font-family: 'Montserrat', sans-serif; font-size: 0.85rem; 
-            color: var(--nav-bg); /* Verde */
+            color: var(--nav-bg); 
             font-weight: 600; text-transform: uppercase; line-height: 1.2; letter-spacing: 0.5px; text-align: center;
         }
-        .countdown-number { background: transparent; box-shadow: none; border: none; width: auto; height: auto; margin: 0; padding: 0; }
-        .countdown-label { margin: 0; padding: 0; }
+        .countdown-number { 
+            font-family: 'Cormorant Garamond', serif; 
+            font-size: 3.5rem; 
+            font-weight: 600; 
+            line-height: 1; 
+            margin-bottom: 5px;
+        }
+        .countdown-label { margin: 0; padding: 0; font-size: 0.75rem; letter-spacing: 2px; color: #555; }
 
         /* --- BIENVENIDA --- */
         .text-block { text-align: center; font-size: 1rem; color: #555; margin: -20px auto 30px auto; max-width: 90%; line-height: 1.8; }
         
-        /* CREATIVO: Separador ornamental */
         .ornament-divider {
             text-align: center; margin: 20px 0; font-size: 1.5rem; color: var(--nav-bg); opacity: 0.7;
         }
 
-        /* --- SECCIONES GENERALES --- */
-        section { padding: 50px 20px; width: 100%; max-width: 100%; position: relative; scroll-margin-top: 90px; }
+        /* --- SECCIONES GENERALES (ESPACIADO UNIFICADO) --- */
+        section { 
+            /* Padding unificado para que todos los títulos tengan la misma separación */
+            padding: 40px 20px; 
+            width: 100%; max-width: 100%; position: relative; scroll-margin-top: 90px; 
+        }
         
         h2 { 
             font-family: var(--handwriting-font); font-weight: bold;
@@ -147,21 +154,12 @@
         }
         .subtitle { display: block; text-align: center; font-size: 0.95rem; color: #555; margin: -30px auto 40px auto; font-style: italic; max-width: 90%; }
 
-        /* --- ITINERARIO CON LÍNEA CONECTORA --- */
+        /* --- ITINERARIO --- */
         .timeline { position: relative; margin: 40px 0; padding: 0; display: flex; flex-direction: column; gap: 60px; padding-bottom: 20px; }
         
-        /* CAMBIO 3: LÍNEA DISCONTINUA CENTRAL */
         .timeline::before {
-            content: '';
-            position: absolute;
-            top: 60px; /* Empieza un poco más abajo del primer círculo */
-            bottom: 60px; /* Termina antes del último */
-            left: 50%;
-            width: 2px;
-            border-left: 2px dashed var(--nav-bg); /* Línea discontinua verde */
-            opacity: 0.5; /* Sutil */
-            transform: translateX(-50%);
-            z-index: 0;
+            content: ''; position: absolute; top: 60px; bottom: 60px; left: 50%; width: 2px;
+            border-left: 2px dashed var(--nav-bg); opacity: 0.5; transform: translateX(-50%); z-index: 0;
         }
 
         .timeline-item { display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 1; width: 100%; }
@@ -184,15 +182,12 @@
         .timeline-item:nth-child(even) { flex-direction: row-reverse; }
         .timeline-item:nth-child(even) .timeline-content { text-align: right; padding-right: 15px; }
 
-        /* --- TARJETAS CON HOVER CREATIVO --- */
+        /* --- TARJETAS --- */
         .cards-grid { display: flex; flex-direction: column; gap: 40px; }
         .card { background: transparent; padding: 0; border-radius: 0; box-shadow: none; border: none; text-align: center; transition: transform 0.3s ease; }
         .card-img { width: 100%; height: 200px; object-fit: cover; border-radius: 15px; margin-top: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.15); transition: box-shadow 0.3s ease; }
-        
-        /* CREATIVO: Hover effect */
         .card:hover { transform: translateY(-5px); }
         .card:hover .card-img { box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
-
         .card h3 { font-family: var(--handwriting-font); font-weight: bold; font-size: 2rem; color: var(--secondary); margin-bottom: 10px; }
         .card p { color: #555; font-size: 0.95rem; }
 
@@ -204,7 +199,7 @@
         /* --- CAJA IBAN --- */
         .iban-wrapper { margin-top: 25px; display: inline-block; cursor: pointer; position: relative; width: 100%; max-width: 400px; }
         .iban-box { border: 2px solid var(--nav-bg); background: white; padding: 10px 15px; border-radius: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: background 0.3s, transform 0.2s; }
-        .iban-box:active { background: #f0f0f0; transform: scale(0.98); } /* Pequeño efecto al hacer clic */
+        .iban-box:active { background: #f0f0f0; transform: scale(0.98); } 
         .iban-text { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 1.1rem; color: var(--secondary); letter-spacing: 0.5px; white-space: nowrap; }
         .copy-link { font-size: 0.7rem; color: var(--nav-bg); font-weight: 700; text-transform: uppercase; margin-top: 5px; }
         .copy-feedback { display: none; color: var(--nav-bg); font-size: 0.8rem; margin-top: 5px; font-weight: 600; position: absolute; bottom: -25px; left: 50%; transform: translateX(-50%); white-space: nowrap; }
@@ -217,13 +212,12 @@
         .leaflet-popup-content .address { font-size: 0.8rem; color: #888; border-top: 1px solid #eee; padding-top: 5px; font-style: italic; }
         .custom-pin-marker { display: flex; justify-content: center; align-items: center; font-size: 2.5rem; text-shadow: 0 2px 5px rgba(0,0,0,0.3); }
 
-        /* --- FORMULARIO RSVP CREATIVO --- */
-        .rsvp-form { background: white; padding: 30px 20px; border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); width: 100%; margin-top: 20px; border-top: 4px solid var(--nav-bg); /* Detalle borde superior verde */ }
+        /* --- FORMULARIO RSVP --- */
+        .rsvp-form { background: white; padding: 30px 20px; border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); width: 100%; margin-top: 20px; border-top: 4px solid var(--nav-bg); }
         .form-group { margin-bottom: 20px; }
         label { font-size: 0.9rem; font-weight: 600; color: var(--secondary); margin-bottom: 8px; display: block; }
         input, select, textarea { width: 100%; padding: 12px; font-size: 16px; border: 1px solid #ddd; border-radius: 8px; background: #fafafa; transition:all 0.3s; }
         
-        /* CREATIVO: Foco en inputs */
         input:focus, select:focus, textarea:focus {
             border-color: var(--nav-bg);
             box-shadow: 0 0 0 3px rgba(119, 133, 92, 0.2);
@@ -241,15 +235,12 @@
         }
         button:hover { transform: translateY(-2px); box-shadow: 0 6px 15px rgba(84, 98, 57, 0.4); }
 
-        /* --- MODALES CREATIVOS --- */
+        /* --- MODALES --- */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 2000; backdrop-filter: blur(3px); }
         .modal-content { background: white; width: 100%; height: 100%; max-width: 100%; margin: 0; border-radius: 0; padding: 25px; overflow-y: auto; position: relative; animation: slideUp 0.3s; display: flex; flex-direction: column; align-items: center; }
-        
-        /* CREATIVO: Botón cerrar modal mejorado */
         .close-modal { 
             position: absolute; top: 15px; right: 15px; font-size: 1.5rem; width: 36px; height: 36px; 
-            background: var(--nav-bg); /* Fondo verde */
-            color: white; /* Aspa blanca */
+            background: var(--nav-bg); color: white;
             border-radius: 50%; display: flex; justify-content: center; align-items: center; 
             z-index: 10; cursor: pointer; box-shadow: 0 2px 10px rgba(0,0,0,0.2);
             transition: transform 0.2s;
@@ -286,13 +277,14 @@
             .hero-subtitle { font-size: 2rem; }
             
             .timeline { max-width: 800px; margin: 0 auto; }
-            /* Línea central más larga en escritorio */
             .timeline::before { top: 80px; bottom: 80px; }
 
             .cards-grid { display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 40px; }
             .card { width: 28%; display: flex; flex-direction: column; justify-content: space-between; }
             .card-img { margin-top: auto; }
             .modal-content { width: 90%; max-width: 500px; height: auto; max-height: 85vh; border-radius: 15px; margin: 5% auto; }
+            
+            .countdown-number { font-size: 4.5rem; }
         }
     </style>
 </head>
@@ -436,7 +428,7 @@
                 <img src="https://i.imgur.com/BzGUdYf.jpeg" class="card-img" alt="La Antigua">
             </div>
             <div class="card reveal">
-                <h3>Casco Viejo - Bar and Kitchen</h3>
+                <h3>Casco Viejo</h3>
                 <p>Tapas tradicionales con toques modernos.</p>
                 <img src="https://i.imgur.com/OCSvOus.jpeg" class="card-img" alt="Casco Viejo">
             </div>
@@ -471,7 +463,7 @@
     </section>
 
     <section id="confirmacion">
-        <h2 style="margin-bottom: 40px;">Confirmación</h2>
+        <h2>Confirmación</h2>
         
         <div class="text-block reveal" style="margin-bottom: 30px;">
             <p>Si estáis aquí es porque sois nuestra gente. Gracias por ser nuestro equipo, nuestro apoyo y empezar con nosotros el futuro que empieza.</p>
@@ -646,7 +638,7 @@
 
             // COORDENADAS REFINADAS
             const markers = [
-                { coords: [39.958564, -4.833333], title: "Casco Viejo - Bar and Kitchen", addr: "Plaza Villatoya, 1" },
+                { coords: [39.958564, -4.833333], title: "Casco Viejo", addr: "Plaza Villatoya, 1" },
                 { coords: [39.957600, -4.831150], title: "Sushido", addr: "C. Arco de San Pedro, 11" },
                 { coords: [39.957700, -4.831100], title: "Cosafina", addr: "C. Arco de San Pedro, 10" },
                 { coords: [39.957500, -4.831250], title: "La Antigua", addr: "C. Arco de San Pedro, 13" },
