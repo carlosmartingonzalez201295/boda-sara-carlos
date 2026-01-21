@@ -68,21 +68,17 @@
             width: 100%;
             display: flex; 
             flex-direction: column; 
-            /* CAMBIO IMPORTANTE: Empujar contenido al final (abajo) */
-            justify-content: flex-end; 
+            justify-content: flex-end; /* Texto abajo */
             align-items: center;
             position: relative;
             background-image: url('https://i.imgur.com/A62miVu.png'); 
             background-size: cover; 
-            /* CAMBIO IMPORTANTE: Anclar la imagen abajo para que siempre se vea la zona blanca */
-            background-position: center bottom; 
+            background-position: center bottom; /* Anclado abajo para ver la zona blanca */
             background-attachment: scroll; 
-            /* Espacio inferior para que el texto no toque el borde de la pantalla */
-            padding-bottom: 90px; 
+            padding-bottom: 90px; /* Margen inferior */
             text-align: center;
             overflow: hidden;
         }
-        /* Sombra muy ligera para no oscurecer la zona blanca */
         .hero::before { content: ''; position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.05); z-index: 0; }
         
         .hero-text-overlay {
@@ -91,18 +87,17 @@
             display: flex;
             flex-direction: column;
             gap: 5px;
-            margin-bottom: 30px; /* Separación con la flecha */
+            margin-bottom: 30px;
         }
 
         .hero-title-large {
             font-family: 'Cormorant Garamond', serif;
-            color: var(--nav-bg); /* Color verde */
+            color: var(--nav-bg);
             font-size: 3.5rem;
             font-weight: 700;
             font-style: italic;
             line-height: 1.1;
             display: block;
-            /* Sombra blanca suave por si pisa un poco de ropa oscura */
             text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
         }
 
@@ -335,7 +330,7 @@
 
             <div class="timeline-item reveal">
                 <div class="timeline-img-box" onclick="openModal('ceremonia')">
-                    <img src="https://i.imgur.com/3yS2fNk.jpeg" alt="Ceremonia"> 
+                    <img src="https://i.imgur.com/vudkxUY.png" alt="Ceremonia"> 
                 </div>
                 <div class="timeline-content" onclick="openModal('ceremonia')">
                     <h3>Ceremonia Religiosa</h3>
@@ -431,6 +426,11 @@
     </section>
 
     <section id="confirmacion">
+        <div class="text-block reveal" style="margin-bottom: 30px;">
+            <p>Si estáis aquí es porque sois nuestra gente. Gracias por ser nuestro equipo, nuestro apoyo y empezar con nosotros el futuro que empieza.</p>
+            <p>Para que ese día solo tengáis que preocuparos de disfrutar, porfa, dedicad un minuto a rellenar el cuestionario de confirmación. ¡Preparad las ganas, que nos vemos muy pronto!</p>
+        </div>
+
         <form class="rsvp-form reveal" id="rsvpForm">
             <h2 style="margin-bottom: 20px;">Confirmación</h2>
             <div class="form-group"><label>Nombre y Apellidos</label><input type="text" name="nombre" required></div>
@@ -496,7 +496,7 @@
     <div id="modal-ceremonia" class="modal">
         <div class="modal-content">
             <div class="close-modal" onclick="closeModal('ceremonia')">&times;</div>
-            <img src="https://i.imgur.com/3yS2fNk.jpeg" class="modal-header-img" alt="Ceremonia">
+            <img src="https://i.imgur.com/vudkxUY.png" class="modal-header-img" alt="Ceremonia">
             
             <div class="modal-info-center">
                 <h3>Colegiata Santa María la Mayor</h3>
