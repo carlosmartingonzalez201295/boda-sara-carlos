@@ -42,9 +42,9 @@
 
         /* --- NAVEGACIÓN --- */
         nav {
-            position: fixed; top: 0; left: 0; width: 100%; height: 60px; /* Altura reducida al no haber logo */
+            position: fixed; top: 0; left: 0; width: 100%; height: 60px; 
             z-index: 1000; padding: 0 20px;
-            display: flex; justify-content: flex-end; /* Alineado a la derecha en móvil */
+            display: flex; justify-content: flex-end; 
             align-items: center;
             background: var(--nav-bg); 
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
@@ -85,7 +85,7 @@
         
         .scroll-indicator { position: relative; z-index: 2; animation: bounce 2s infinite; font-size: 2rem; color: var(--nav-bg); }
 
-        /* --- TÍTULO PRINCIPAL (FUERA DE LA FOTO) --- */
+        /* --- TÍTULO PRINCIPAL --- */
         .main-info-section {
             padding: 60px 20px 10px 20px;
             text-align: center;
@@ -144,17 +144,24 @@
             width: 100%;
         }
 
-        /* ANIMACIÓN PULSE */
+        /* ANIMACIÓN DOBLE: FLOTAR + LATIDO */
         @keyframes pulse-ring {
             0% { box-shadow: 0 0 0 0 rgba(119, 133, 92, 0.4); } 
-            70% { box-shadow: 0 0 0 10px rgba(119, 133, 92, 0); }
+            70% { box-shadow: 0 0 0 15px rgba(119, 133, 92, 0); }
             100% { box-shadow: 0 0 0 0 rgba(119, 133, 92, 0); }
+        }
+        
+        @keyframes floating-hard {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+            100% { transform: translateY(0px); }
         }
 
         .timeline-img-box {
             width: 130px; height: 130px;
             border-radius: 50%; border: 4px solid white;
-            animation: pulse-ring 2s infinite;
+            /* Combina flotación y latido para máximo efecto visual */
+            animation: floating-hard 3s ease-in-out infinite, pulse-ring 2s infinite;
             overflow: visible; flex-shrink: 0; cursor: pointer;
             position: relative; z-index: 2; background: white;
         }
@@ -188,7 +195,7 @@
         .timeline-item:nth-child(even) .timeline-content { text-align: right; padding-right: 15px; }
 
         /* --- TARJETAS --- */
-        .cards-grid { display: flex; flex-direction: column; gap: 30px; }
+        .cards-grid { display: flex; flex-direction: column; gap: 40px; }
         
         .card { 
             background: transparent; padding: 0; border-radius: 0; 
@@ -197,10 +204,12 @@
         
         .card-img {
             width: 100%; height: 200px; object-fit: cover; border-radius: 15px;
-            margin-bottom: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            /* CAMBIO: Margen arriba en lugar de abajo porque la imagen ahora va al final */
+            margin-top: 15px; 
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
         }
 
-        .card h3 { font-family: 'Cormorant Garamond'; font-size: 1.7rem; color: var(--secondary); margin-bottom: 5px; font-weight: 600; }
+        .card h3 { font-family: 'Cormorant Garamond'; font-size: 1.7rem; color: var(--secondary); margin-bottom: 10px; font-weight: 600; }
         .card p { color: #555; font-size: 0.95rem; }
 
         /* --- MAPA --- */
@@ -246,7 +255,7 @@
 
         /* --- MEDIA QUERY ESCRITORIO --- */
         @media (min-width: 769px) {
-            nav { padding: 0 50px; justify-content: center; } /* Centrado en escritorio sin logo */
+            nav { padding: 0 50px; justify-content: center; } 
             nav ul { 
                 position: static; height: auto; width: auto; 
                 flex-direction: row; background: transparent; 
@@ -279,7 +288,6 @@
         <div class="menu-toggle" id="mobile-menu">☰</div>
         <ul id="nav-list">
             <li><a href="#inicio">Inicio</a></li>
-            <li><a href="#cuenta-atras">Bienvenida</a></li>
             <li><a href="#itinerario">Itinerario</a></li>
             <li><a href="#alojamiento">Alojamiento</a></li>
             <li><a href="#recomendaciones">Recomendaciones</a></li>
@@ -403,29 +411,29 @@
 
         <div class="cards-grid">
             <div class="card reveal">
-                <img src="https://i.imgur.com/oUrVS6B.jpeg" class="card-img" alt="Cosafina">
                 <h3>Cosafina</h3>
                 <p>Bar castizo ideal para previas. Su gilda es un imprescindible.</p>
+                <img src="https://i.imgur.com/oUrVS6B.jpeg" class="card-img" alt="Cosafina">
             </div>
             <div class="card reveal">
-                <img src="https://i.imgur.com/BzGUdYf.jpeg" class="card-img" alt="La Antigua">
                 <h3>La Antigua</h3>
                 <p>Las revolconas son un must en el grupo de Sara. No os podéis ir de Talavera sin probarlas ;)</p>
+                <img src="https://i.imgur.com/BzGUdYf.jpeg" class="card-img" alt="La Antigua">
             </div>
             <div class="card reveal">
-                <img src="https://i.imgur.com/OCSvOus.jpeg" class="card-img" alt="Casco Viejo">
                 <h3>Casco Viejo</h3>
                 <p>Tapas tradicionales con toques modernos.</p>
+                <img src="https://i.imgur.com/OCSvOus.jpeg" class="card-img" alt="Casco Viejo">
             </div>
             <div class="card reveal">
-                <img src="https://i.imgur.com/aoBU7fM.jpeg" class="card-img" alt="Askuabarra">
                 <h3>Askuabarra</h3>
                 <p>Cocina de producto donde su montadito de steak tartar es de lo mejorcito.</p>
+                <img src="https://i.imgur.com/aoBU7fM.jpeg" class="card-img" alt="Askuabarra">
             </div>
             <div class="card reveal">
-                <img src="https://i.imgur.com/vHYLM4W.jpeg" class="card-img" alt="Sushi Do">
                 <h3>Sushido</h3>
                 <p>Nuestra opción favorita si os apetece cambiar de tercio y os gusta la comida japonesa.</p>
+                <img src="https://i.imgur.com/vHYLM4W.jpeg" class="card-img" alt="Sushi Do">
             </div>
         </div>
     </section>
