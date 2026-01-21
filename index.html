@@ -43,7 +43,7 @@
             opacity: 0.15; z-index: -1; pointer-events: none;
         }
 
-        /* --- NAVEGACIÓN CON DETALLE CREATIVO --- */
+        /* --- NAVEGACIÓN --- */
         nav {
             position: fixed; top: 0; left: 0; width: 100%; height: 60px; 
             z-index: 1000; padding: 0 20px;
@@ -53,9 +53,9 @@
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
-        /* Línea inferior del menú con el estampado (Toque creativo) */
+        /* Línea inferior del menú con el estampado */
         nav::after {
-            content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 5px; /* Más ancho */
+            content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 5px; 
             background-image: var(--pattern-bg); background-size: cover; opacity: 1;
         }
         
@@ -71,7 +71,7 @@
         nav ul.active { transform: translateX(0); }
         nav li { width: 100%; text-align: center; }
         
-        /* Enlaces menú móvil con SEPARADORES ANCHOS ESTAMPADOS */
+        /* Enlaces menú móvil */
         nav a { 
             display: block; padding: 20px; font-size: 1.1rem; color: var(--dark); 
             text-transform: uppercase; letter-spacing: 1px; text-decoration: none;
@@ -80,12 +80,12 @@
         /* Separador creativo ancho */
         nav a::after {
             content: ''; position: absolute; bottom: 0; left: 5%; width: 90%; 
-            height: 4px; /* Separador ancho */
+            height: 4px; 
             background-image: var(--pattern-bg); background-size: cover; 
             opacity: 0.6; border-radius: 2px;
         }
 
-        /* --- HERO (SOLO IMAGEN) --- */
+        /* --- HERO --- */
         .hero {
             height: 100vh; 
             height: 100dvh; 
@@ -147,14 +147,13 @@
         h2 { 
             font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; text-align: center; 
             margin-bottom: 40px; color: var(--secondary); line-height: 1.1;
-            /* Eliminado el estampado de aquí */
         }
 
         .subtitle { display: block; text-align: center; font-size: 0.95rem; color: #555; margin: -30px auto 40px auto; font-style: italic; max-width: 90%; }
         .text-block { text-align: center; font-size: 1rem; color: #555; margin: -20px auto 30px auto; max-width: 90%; line-height: 1.8; }
         .text-block p { margin-bottom: 15px; }
 
-        /* --- ITINERARIO CON AROS ESTAMPADOS --- */
+        /* --- ITINERARIO --- */
         .timeline { 
             position: relative; margin: 40px 0; padding: 0;
             display: flex; flex-direction: column; gap: 60px;
@@ -172,7 +171,6 @@
             width: 100%;
         }
 
-        /* Animaciones para el itinerario */
         @keyframes pulse-ring {
             0% { box-shadow: 0 0 0 0 rgba(119, 133, 92, 0.4); } 
             70% { box-shadow: 0 0 0 15px rgba(119, 133, 92, 0); }
@@ -193,7 +191,7 @@
             position: relative; z-index: 2; background: white;
         }
 
-        /* ARO ESTAMPADO: Mantenemos esto porque pediste dejarlo */
+        /* Anillo estampado */
         .timeline-img-box::before {
             content: ''; position: absolute; 
             top: -6px; left: -6px; right: -6px; bottom: -6px;
@@ -229,10 +227,10 @@
         .timeline-item:nth-child(even) { flex-direction: row-reverse; }
         .timeline-item:nth-child(even) .timeline-content { text-align: right; padding-right: 15px; }
 
-        /* --- TARJETAS (ESTILOS BASE MÓVIL) --- */
+        /* --- TARJETAS (ESTILO BASE MÓVIL) --- */
         .cards-grid { 
             display: flex; 
-            flex-direction: column; /* Columna en móvil */
+            flex-direction: column; /* Vertical en móvil */
             gap: 40px; 
         }
         
@@ -249,7 +247,7 @@
         .card h3 { font-family: 'Cormorant Garamond'; font-size: 1.7rem; color: var(--secondary); margin-bottom: 10px; font-weight: 600; }
         .card p { color: #555; font-size: 0.95rem; }
 
-        /* --- CAJA IBAN LIMPIA --- */
+        /* --- CAJA IBAN --- */
         .iban-container {
             margin-top: 25px;
             padding: 20px 30px;
@@ -257,7 +255,6 @@
             display: inline-block;
             background: white;
             border-radius: 15px;
-            /* Borde sólido verde */
             border: 2px solid var(--nav-bg); 
             box-shadow: 0 5px 20px rgba(0,0,0,0.05);
         }
@@ -333,23 +330,23 @@
             
             .timeline { max-width: 800px; margin: 0 auto; }
             
-            /* FIX ALINEACIÓN TARJETAS ESCRITORIO */
+            /* --- CORRECCIÓN FINAL ALINEACIÓN ESCRITORIO --- */
             .cards-grid { 
                 display: flex; 
-                flex-wrap: wrap; 
-                justify-content: center; /* Centrar elementos en la fila */
+                flex-direction: row; /* Forzamos que sea horizontal */
+                flex-wrap: wrap; /* Permitimos que salten de línea */
+                justify-content: center; /* Centramos el contenido sobrante (las 2 últimas) */
                 gap: 40px; 
             }
             
             .card { 
-                /* 28% asegura que entren 3 por fila cómodamente */
+                /* Ancho calculado para que entren 3 tarjetas exactas en una fila */
                 width: 28%; 
                 display: flex; 
                 flex-direction: column; 
                 justify-content: space-between; 
             }
             
-            /* Esto empuja la imagen abajo para que todas queden alineadas */
             .card-img { margin-top: auto; }
 
             .modal-content { width: 90%; max-width: 500px; height: auto; max-height: 85vh; border-radius: 15px; margin: 5% auto; }
