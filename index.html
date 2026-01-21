@@ -270,28 +270,7 @@
             }
             
             .timeline { max-width: 800px; margin: 0 auto; }
-            
-            /* CAMBIO: ALINEACIÓN RECOMENDACIONES EN ESCRITORIO */
-            .cards-grid { 
-                display: flex; /* Usar Flexbox en lugar de Grid */
-                flex-wrap: wrap; 
-                justify-content: center; /* Centrar elementos */
-                gap: 40px; 
-            }
-            
-            .card {
-                /* Aproximadamente 30% para que quepan 3 por fila */
-                width: 30%; 
-                /* Asegurar que todas las tarjetas tengan la misma altura y la imagen quede abajo */
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between; 
-            }
-            
-            .card-img {
-                margin-top: auto; /* Empuja la imagen al fondo de la tarjeta */
-            }
-
+            .cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
             .modal-content { width: 90%; max-width: 500px; height: auto; max-height: 85vh; border-radius: 15px; margin: 5% auto; }
             
             .main-title { font-size: 5rem; }
