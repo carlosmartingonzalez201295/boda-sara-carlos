@@ -20,7 +20,7 @@
             --light: #fff; 
             --nav-bg: #77855C; /* Verde Sage/Musgo suave */
             
-            /* --- TU ESTAMPADO --- */
+            /* --- TU ESTAMPADO (Solo para detalles, no para el fondo de la foto) --- */
             --pattern-bg: url('https://i.imgur.com/6PHsEEs.jpeg'); 
         }
         
@@ -85,11 +85,14 @@
             opacity: 0.6; border-radius: 2px;
         }
 
-        /* --- HERO (PORTADA AJUSTADA) --- */
+        /* --- HERO (PORTADA ADAPTADA) --- */
         .hero {
-            /* Asegura que ocupe TODA la pantalla del móvil */
-            height: 100vh; 
-            height: 100dvh; 
+            /* EN MÓVIL: Reducimos la altura al 55% de la pantalla.
+               Al hacer la caja más horizontal, la foto horizontal encaja mejor
+               y no recorta a las personas.
+            */
+            height: 55vh; 
+            height: 55dvh; 
             width: 100%;
             
             display: flex; 
@@ -98,37 +101,26 @@
             align-items: center;
             position: relative;
             
-            /* Fondo de relleno (Estampado) para los huecos */
-            background-color: var(--nav-bg);
+            /* Imagen limpia sin estampado de fondo */
+            background-image: url('https://i.imgur.com/ODoIZJe.jpeg'); 
             
-            /* CAPAS DE FONDO: 
-               1. La Foto (Arriba)
-               2. El Estampado (Debajo para rellenar) 
-            */
-            background-image: url('https://i.imgur.com/ODoIZJe.jpeg'), var(--pattern-bg);
-            
-            /* AJUSTE: 
-               contain = La foto se ve entera sin cortes.
-               400px auto = Tamaño del patrón de fondo.
-            */
-            background-size: contain, 400px auto;
-            
-            /* Ambas centradas */
-            background-position: center center, center center;
-            
-            /* La foto no se repite, el patrón sí */
-            background-repeat: no-repeat, repeat;
+            /* Cover llena la caja. Como la caja ahora es más bajita (55vh), 
+               no hace tanto zoom y se ve a las personas */
+            background-size: cover; 
+            background-position: center center; 
+            background-repeat: no-repeat;
             
             padding-bottom: 30px; 
             text-align: center;
             overflow: hidden;
         }
         
-        .scroll-indicator { position: relative; z-index: 2; animation: bounce 2s infinite; font-size: 2rem; color: white; text-shadow: 0 2px 5px rgba(0,0,0,0.5); }
+        /* La flecha solo se ve si la imagen es muy grande, en 55vh puede sobrar */
+        .scroll-indicator { position: relative; z-index: 2; animation: bounce 2s infinite; font-size: 2rem; color: white; text-shadow: 0 2px 5px rgba(0,0,0,0.5); display: none; }
 
         /* --- TÍTULO PRINCIPAL --- */
         .main-info-section {
-            padding: 60px 20px 10px 20px;
+            padding: 40px 20px 10px 20px;
             text-align: center;
             background: transparent;
         }
@@ -152,7 +144,7 @@
 
         /* --- CUENTA ATRÁS --- */
         .countdown-section {
-            padding: 30px 20px 10px 20px; 
+            padding: 20px 20px 10px 20px; 
             display: flex; justify-content: center; align-items: center; gap: 15px;
             scroll-margin-top: 100px;
         }
@@ -330,7 +322,7 @@
         @media (min-width: 769px) {
             nav { padding: 0 50px; justify-content: center; } 
             
-            nav a::after { content: none; } /* Sin separador en escritorio */
+            nav a::after { content: none; } 
 
             nav ul { 
                 position: static; height: auto; width: auto; 
@@ -344,12 +336,15 @@
 
             /* HERO ESCRITORIO */
             .hero {
-                /* Asegura que la foto ocupe todo el ancho */
-                background-size: contain, auto !important; 
-                /* Si la pantalla es muy ancha, el patrón rellena los lados */
-                background-repeat: no-repeat, repeat !important;
+                /* En escritorio SI queremos 100% de la pantalla */
+                height: 100vh !important; 
+                height: 100dvh !important;
+                background-size: cover !important; 
+                background-position: center center !important;
             }
             
+            .scroll-indicator { display: block; } /* Mostrar flecha en escritorio */
+
             .timeline { max-width: 800px; margin: 0 auto; }
             
             /* ALINEACIÓN TARJETAS ESCRITORIO */
