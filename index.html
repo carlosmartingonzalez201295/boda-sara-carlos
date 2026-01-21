@@ -68,14 +68,14 @@
             width: 100%;
             display: flex; 
             flex-direction: column; 
-            justify-content: flex-end; 
+            justify-content: flex-end; /* Texto abajo */
             align-items: center;
             position: relative;
             background-image: url('https://i.imgur.com/A62miVu.png'); 
             background-size: cover; 
-            background-position: center bottom; 
+            background-position: center bottom; /* Anclado abajo para ver la zona blanca */
             background-attachment: scroll; 
-            padding-bottom: 90px; 
+            padding-bottom: 90px; /* Margen inferior */
             text-align: center;
             overflow: hidden;
         }
@@ -354,7 +354,7 @@
 
             <div class="timeline-item reveal">
                 <div class="timeline-img-box" onclick="openModal('ceremonia')">
-                    <img src="https://i.imgur.com/vudkxUY.png" alt="Ceremonia"> 
+                    <img src="https://i.imgur.com/JwnzPZE.png" alt="Ceremonia"> 
                 </div>
                 <div class="timeline-content" onclick="openModal('ceremonia')">
                     <h3>Ceremonia Religiosa</h3>
@@ -520,7 +520,7 @@
     <div id="modal-ceremonia" class="modal">
         <div class="modal-content">
             <div class="close-modal" onclick="closeModal('ceremonia')">&times;</div>
-            <img src="https://i.imgur.com/vudkxUY.png" class="modal-header-img" alt="Ceremonia">
+            <img src="https://i.imgur.com/JwnzPZE.png" class="modal-header-img" alt="Ceremonia">
             
             <div class="modal-info-center">
                 <h3>Colegiata Santa María la Mayor</h3>
