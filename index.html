@@ -175,7 +175,7 @@
         .timeline-img-box { 
             width: 130px; height: 130px; 
             border-radius: 50%; 
-            border: 4px solid white; 
+            border: 4px solid white; /* Borde blanco base */
             animation: floating-hard 3s ease-in-out infinite, pulse-ring 2s infinite; 
             overflow: visible; flex-shrink: 0; cursor: pointer; position: relative; z-index: 2; background: white; 
         }
@@ -274,6 +274,13 @@
         .modal-info-center p { color: #444; font-weight: 500; margin-bottom: 5px; }
         .modal-info-center .address { color: #888; font-size: 0.9rem; font-style: italic; }
         .modal-desc-justify { text-align: justify; color: #666; font-size: 0.95rem; width: 100%; margin-bottom: 20px; }
+        
+        /* ESTILO PARA LOS SUBTÍTULOS DE FOTO EN EL MODAL CEREMONIA */
+        .photo-caption { 
+            font-family: var(--handwriting-font); font-weight: bold; 
+            font-size: 1.5rem; color: var(--secondary); 
+            text-align: center; margin-bottom: 20px; margin-top: -10px;
+        }
 
         .reveal { opacity: 0; transform: translateY(20px); transition: 0.6s ease; }
         .reveal.active { opacity: 1; transform: translateY(0); }
@@ -572,7 +579,12 @@
     <div id="modal-ceremonia" class="modal">
         <div class="modal-content">
             <div class="close-modal" onclick="closeModal('ceremonia')">&times;</div>
-            <img src="https://i.imgur.com/JwnzPZE.png" class="modal-header-img" alt="Ceremonia">
+            
+            <img src="https://i.imgur.com/sf46Ij1.png" class="modal-header-img" style="margin-bottom: 5px;" alt="Entrada">
+            <p class="photo-caption">Entrada de la iglesia</p>
+            
+            <img src="https://i.imgur.com/qztxjkd.png" class="modal-header-img" style="margin-bottom: 5px;" alt="Salida">
+            <p class="photo-caption">Salida de la Iglesia</p>
             
             <div class="modal-info-center">
                 <h3>Colegiata Santa María la Mayor</h3>
@@ -660,7 +672,7 @@
 
             // COORDENADAS REFINADAS
             const markers = [
-                { coords: [39.958564, -4.833333], title: "Casco Viejo - Bar and Kitchen", addr: "Plaza Villatoya, 1" },
+                { coords: [39.958564, -4.833333], title: "Casco Viejo", addr: "Plaza Villatoya, 1" },
                 { coords: [39.957600, -4.831150], title: "Sushido", addr: "C. Arco de San Pedro, 11" },
                 { coords: [39.957700, -4.831100], title: "Cosafina", addr: "C. Arco de San Pedro, 10" },
                 { coords: [39.957500, -4.831250], title: "La Antigua", addr: "C. Arco de San Pedro, 13" },
