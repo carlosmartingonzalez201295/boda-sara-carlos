@@ -18,8 +18,8 @@
             --accent: #faf8f5; 
             --dark: #3d3d3d; 
             --light: #fff; 
-            /* CAMBIO: Nuevo color verde extraído de tu imagen */
-            --nav-bg: #546239; 
+            /* CAMBIO: Color verde más claro y suave (Sage Green) */
+            --nav-bg: #77855C; 
         }
         
         /* --- RESET Y BASE --- */
@@ -57,7 +57,7 @@
             background: white; flex-direction: column; align-items: center; justify-content: flex-start;
             padding-top: 40px; gap: 0; list-style: none;
             transform: translateX(100%); transition: transform 0.3s ease-in-out;
-            display: flex; /* Asegura que sea flexbox */
+            display: flex; 
         }
         nav ul.active { transform: translateX(0); }
         nav li { width: 100%; text-align: center; }
@@ -74,7 +74,7 @@
             align-items: center;
             position: relative;
             background-image: url('https://i.imgur.com/A62miVu.png'); 
-            background-size: cover; /* Por defecto cover para móvil */
+            background-size: cover; 
             background-position: center bottom; 
             background-attachment: scroll; 
             padding-bottom: 90px; 
@@ -101,7 +101,7 @@
             font-style: italic;
             line-height: 1.1;
             display: block;
-            text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.9);
         }
 
         .hero-subtitle {
@@ -110,7 +110,7 @@
             font-size: 1.6rem;
             font-weight: 600;
             display: block;
-            text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.9);
         }
 
         .scroll-indicator { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); z-index: 2; animation: bounce 2s infinite; font-size: 2rem; color: var(--nav-bg); }
@@ -151,10 +151,11 @@
             width: 100%;
         }
 
+        /* ANIMACIÓN PULSE */
         @keyframes pulse-ring {
-            0% { box-shadow: 0 0 0 0 rgba(84, 98, 57, 0.4); } /* Ajustado al nuevo verde */
-            70% { box-shadow: 0 0 0 10px rgba(84, 98, 57, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(84, 98, 57, 0); }
+            0% { box-shadow: 0 0 0 0 rgba(119, 133, 92, 0.4); } /* Ajustado al nuevo verde */
+            70% { box-shadow: 0 0 0 10px rgba(119, 133, 92, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(119, 133, 92, 0); }
         }
 
         .timeline-img-box {
@@ -250,9 +251,8 @@
         @keyframes bounce { 0%, 100% { transform: translate(-50%, 0); } 50% { transform: translate(-50%, -10px); } }
         @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
 
-        /* --- MEDIA QUERY ESCRITORIO (FIXES) --- */
+        /* --- MEDIA QUERY ESCRITORIO --- */
         @media (min-width: 769px) {
-            /* Fix del Menú */
             nav { padding: 0 50px; }
             nav ul { 
                 position: static; height: auto; width: auto; 
@@ -264,23 +264,16 @@
             nav a { color: white; border: none; padding: 10px 15px; font-size: 0.95rem; font-weight: 500; }
             .menu-toggle { display: none; }
 
-            /* Fix del Hero (Portada) */
             .hero {
-                /* Usamos contain para ver la foto entera en pantalla ancha */
                 background-size: contain; 
                 background-repeat: no-repeat;
                 background-position: center bottom;
-                /* El padding-bottom se mantiene para el texto */
             }
             
             .hero-text-overlay {
-                /* Limitamos el ancho del texto en escritorio para que no se vea gigante */
-                max-width: 600px;
-                margin-left: auto;
-                margin-right: auto;
+                max-width: 600px; margin-left: auto; margin-right: auto;
             }
 
-            /* Resto de ajustes escritorio */
             .timeline { max-width: 800px; margin: 0 auto; }
             .cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
             .modal-content { width: 90%; max-width: 500px; height: auto; max-height: 85vh; border-radius: 15px; margin: 5% auto; }
@@ -376,7 +369,7 @@
                 </div>
                 <div class="timeline-content" onclick="openModal('celebracion')">
                     <h3>Celebración</h3>
-                    <p><strong>Sábado - Al acabar la Ceremonia</strong></p>
+                    <p><strong>Sábado - Al finalizar la Ceremonia</strong></p>
                 </div>
             </div>
         </div>
@@ -537,7 +530,8 @@
             </div>
 
             <div class="modal-desc-justify">
-                <p>La ceremonia tendrá lugar en el corazón de Talavera. Habrá servicio de autobuses a la salida de la ceremonia hasta la finca.</p>
+                <p>El enlace religioso se oficiará, D.M., en la Colegiata de Santa María la Mayor, en pleno corazón de Talavera de la Reina.</p>
+                <p>Se dispondrá de servicio de autobuses desde la iglesia hasta la finca al finalizar la ceremonia.</p>
                 <p style="font-style:italic;">Se ruega puntualidad.</p>
             </div>
         </div>
@@ -550,12 +544,12 @@
             
             <div class="modal-info-center">
                 <h3>La Casona del Lago - Grupo NÜA</h3>
-                <p>Sábado - Al acabar la Ceremonia</p>
+                <p>Sábado - Al finalizar la Ceremonia</p>
                 <p class="address">Av. de Miramar, 1, Serranillos Playa</p>
             </div>
 
             <div class="modal-desc-justify">
-                <p>Habrá servicio de autobús al acabar la celebración de vuelta al centro de Talavera.</p>
+                <p>La celebración sigue en la finca. Al terminar, habrá un autobús de vuelta para que podáis darlo todo con nosotros hasta el último minuto</p>
             </div>
         </div>
     </div>
