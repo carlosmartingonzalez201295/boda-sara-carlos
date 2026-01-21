@@ -69,7 +69,7 @@
         nav a { 
             display: block; padding: 25px; 
             font-size: 1.3rem; 
-            color: var(--nav-bg); /* VERDE EN MÓVIL (fondo blanco) */
+            color: var(--nav-bg); /* VERDE EN MÓVIL */
             text-transform: uppercase; letter-spacing: 1px; text-decoration: none;
             position: relative;
             font-family: var(--handwriting-font);
@@ -126,29 +126,28 @@
             font-size: 2rem; color: white; text-shadow: 0 2px 5px rgba(0,0,0,0.5); 
         }
 
-        /* --- CUENTA ATRÁS (CIRCULOS ESTAMPADOS) --- */
+        /* --- CUENTA ATRÁS LIMPIA (SOLO NÚMEROS) --- */
         .countdown-section {
             padding: 40px 20px 20px 20px; 
-            display: flex; justify-content: center; align-items: center; gap: 15px;
+            display: flex; justify-content: center; align-items: center; gap: 20px;
             scroll-margin-top: 100px;
+            background-color: transparent;
         }
+        
         .countdown-item { display: flex; flex-direction: column; align-items: center; }
         
         .countdown-number { 
             font-family: var(--handwriting-font); font-weight: bold;
-            font-size: 2.2rem; 
-            color: #3d3d3d; 
+            font-size: 3.5rem; /* Números grandes */
+            color: var(--nav-bg); /* COLOR VERDE */
             line-height: 1;
-            width: 70px; height: 70px;
-            display: flex; justify-content: center; align-items: center;
-            border-radius: 50%;
-            background-image: var(--pattern-bg); 
-            background-size: cover;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-            border: 2px solid white;
+            width: auto; height: auto;
+            background: transparent;
+            box-shadow: none;
+            border: none;
         }
         
-        .countdown-label { font-family: 'Montserrat', sans-serif; font-size: 0.75rem; letter-spacing: 2px; color: #555; margin-top: 8px; text-transform: uppercase; }
+        .countdown-label { font-family: 'Montserrat', sans-serif; font-size: 0.75rem; letter-spacing: 2px; color: #555; margin-top: 5px; text-transform: uppercase; }
 
         /* --- BIENVENIDA --- */
         .text-block { text-align: center; font-size: 1rem; color: #555; margin: -20px auto 30px auto; max-width: 90%; line-height: 1.8; }
@@ -198,49 +197,19 @@
         .tapeo-subtitle {
             font-family: var(--handwriting-font);
             font-weight: bold;
-            font-size: 1.5rem;
+            font-size: 1.3rem; /* Más pequeño */
             color: var(--secondary);
             text-align: center;
             margin-bottom: 20px;
             display: block;
         }
 
-        /* --- CAJA IBAN CON BOTÓN COPIAR --- */
-        .iban-wrapper {
-            margin-top: 25px;
-            display: inline-block;
-            cursor: pointer;
-            position: relative;
-            width: 100%;
-            max-width: 400px; /* Ancho máximo */
-        }
-        
-        .iban-box {
-            border: 2px solid var(--nav-bg);
-            background: white;
-            padding: 10px 15px;
-            border-radius: 12px;
-            display: flex;
-            flex-direction: column; /* Vertical */
-            align-items: center;
-            justify-content: center;
-            transition: background 0.3s;
-        }
+        /* --- CAJA IBAN --- */
+        .iban-wrapper { margin-top: 25px; display: inline-block; cursor: pointer; position: relative; width: 100%; max-width: 400px; }
+        .iban-box { border: 2px solid var(--nav-bg); background: white; padding: 10px 15px; border-radius: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: background 0.3s; }
         .iban-box:active { background: #f0f0f0; }
-
-        .iban-text { 
-            font-family: 'Cormorant Garamond', serif; 
-            font-weight: 700; font-size: 1.1rem; /* Más pequeño para que quepa */
-            color: var(--secondary); letter-spacing: 0.5px;
-            white-space: nowrap; /* Evita salto de línea */
-        }
-        
-        .copy-link { 
-            font-size: 0.7rem; color: var(--nav-bg); 
-            font-weight: 700; text-transform: uppercase; 
-            margin-top: 5px; 
-        }
-        
+        .iban-text { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 1.1rem; color: var(--secondary); letter-spacing: 0.5px; white-space: nowrap; }
+        .copy-link { font-size: 0.7rem; color: var(--nav-bg); font-weight: 700; text-transform: uppercase; margin-top: 5px; }
         .copy-feedback { display: none; color: var(--nav-bg); font-size: 0.8rem; margin-top: 5px; font-weight: 600; position: absolute; bottom: -25px; left: 50%; transform: translateX(-50%); white-space: nowrap; }
 
         /* --- MAPA --- */
@@ -287,7 +256,6 @@
             nav a::after { content: none; } 
             nav ul { position: static; height: auto; width: auto; flex-direction: row; background: transparent; transform: none; padding: 0; box-shadow: none; justify-content: center; }
             nav li { width: auto; margin: 0 15px; }
-            /* MENU ESCRITORIO: LETRAS BLANCAS */
             nav a { color: white !important; border: none; padding: 10px 15px; font-size: 1.1rem; } 
             .menu-toggle { display: none; }
 
@@ -305,7 +273,7 @@
             .card-img { margin-top: auto; }
             .modal-content { width: 90%; max-width: 500px; height: auto; max-height: 85vh; border-radius: 15px; margin: 5% auto; }
             
-            .countdown-number { font-size: 3rem; width: 100px; height: 100px; }
+            .countdown-number { font-size: 4.5rem; }
         }
     </style>
 </head>
@@ -427,7 +395,13 @@
     <section id="recomendaciones">
         <h2>Recomendaciones</h2>
         
-        <p class="tapeo-subtitle">Mis favoritos de tapeo y cervecitas</p>
+        <div class="text-block reveal">
+            <p>Talavera es mi casa y ahora también la de Carlos, que ya se conoce cada rincón como uno más del equipo.</p>
+            <p>Estos son nuestros sitios de confianza para calentar motores el viernes antes de la preboda o reponer fuerzas el sábado.</p>
+            <p style="font-style: italic; color: var(--secondary); font-weight: 600; margin-top: 20px;">📍 Están todos por la zona del centro, muy cerquita de la Iglesia y del sitio donde celebraremos la preboda:</p>
+        </div>
+
+        <p class="tapeo-subtitle">Nuestros favoritos de tapeo y cervecitas</p>
 
         <div class="cards-grid">
             <div class="card reveal">
