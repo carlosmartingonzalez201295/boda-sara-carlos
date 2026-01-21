@@ -277,10 +277,10 @@
         /* --- ESTILOS ESPECÍFICOS PARA EL MODAL CEREMONIA (NUEVO) --- */
         .ceremonia-maps-white-bg {
             background: white; /* Fondo blanco puro compartido */
-            padding: 20px 10px;
+            padding: 25px 15px;
             border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08); /* Sombra suave */
-            margin-bottom: 25px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1); /* Sombra suave para resaltar el bloque blanco */
+            margin-bottom: 30px;
             width: 100%;
             display: flex;
             flex-direction: column;
@@ -288,21 +288,38 @@
         }
         .map-unit {
             width: 100%;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             text-align: center;
+            overflow: hidden; /* Necesario para el zoom */
+            border-radius: 10px;
         }
         .map-unit:last-child { margin-bottom: 0; }
-        .map-unit img {
+        
+        /* Clase específica para el zoom en la entrada */
+        .img-entrada-zoomed {
+            width: 100%;
+            height: 250px; /* Altura fija para forzar el encuadre */
+            object-fit: cover; /* Cubrir el área */
+            object-position: center 60%; /* Enfocar un poco más abajo del centro */
+            transform: scale(1.25); /* Zoom del 25% */
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        /* Estilo para la segunda imagen (sin zoom forzado, 'contain' va bien) */
+        .img-salida-contain {
             width: 100%;
             height: auto;
-            max-height: 220px; /* Altura controlada */
+            max-height: 250px;
             object-fit: contain;
-            margin-bottom: 5px;
+            margin-bottom: 10px;
+            display: block;
         }
+
         .map-caption {
             font-family: var(--handwriting-font);
             color: var(--nav-bg); /* Verde */
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             font-weight: bold;
             margin: 0;
         }
@@ -340,7 +357,7 @@
             .countdown-number { font-size: 3.5rem; }
             
             /* Ajuste escritorio para mapas */
-             .map-unit img { max-height: 280px; }
+             .img-entrada-zoomed, .img-salida-contain { height: 300px; max-height: 300px; }
         }
     </style>
 </head>
@@ -412,7 +429,7 @@
 
             <div class="timeline-item reveal">
                 <div class="timeline-img-box" onclick="openModal('ceremonia')">
-                    <img src="https://i.imgur.com/sf46Ij1.png" alt="Ceremonia"> 
+                    <img src="https://i.imgur.com/QDGdxoI.png" alt="Ceremonia"> 
                 </div>
                 <div class="timeline-content" onclick="openModal('ceremonia')">
                     <h3>Ceremonia Religiosa</h3>
@@ -609,11 +626,11 @@
             
             <div class="ceremonia-maps-white-bg">
                 <div class="map-unit">
-                    <img src="https://i.imgur.com/QDGdxoI.png" alt="Entrada Iglesia">
+                    <img src="https://i.imgur.com/QDGdxoI.png" class="img-entrada-zoomed" alt="Entrada Iglesia">
                     <p class="map-caption">Entrada de la iglesia</p>
                 </div>
                 <div class="map-unit">
-                    <img src="https://i.imgur.com/c3gKjIw.png" alt="Salida Iglesia">
+                    <img src="https://i.imgur.com/c3gKjIw.png" class="img-salida-contain" alt="Salida Iglesia">
                     <p class="map-caption">Salida de la iglesia</p>
                 </div>
             </div>
