@@ -160,7 +160,6 @@
         .timeline-img-box {
             width: 130px; height: 130px;
             border-radius: 50%; border: 4px solid white;
-            /* Combina flotación y latido para máximo efecto visual */
             animation: floating-hard 3s ease-in-out infinite, pulse-ring 2s infinite;
             overflow: visible; flex-shrink: 0; cursor: pointer;
             position: relative; z-index: 2; background: white;
@@ -204,9 +203,7 @@
         
         .card-img {
             width: 100%; height: 200px; object-fit: cover; border-radius: 15px;
-            /* CAMBIO: Margen arriba en lugar de abajo porque la imagen ahora va al final */
-            margin-top: 15px; 
-            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            margin-top: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.15);
         }
 
         .card h3 { font-family: 'Cormorant Garamond'; font-size: 1.7rem; color: var(--secondary); margin-bottom: 10px; font-weight: 600; }
@@ -476,6 +473,15 @@
             <div id="formMessage" style="margin-top:15px; text-align:center; font-weight:600;"></div>
             <button type="submit" id="submitBtn">ENVIAR CONFIRMACIÓN</button>
         </form>
+    </section>
+
+    <section id="regalo" class="reveal">
+        <h2>Regalo</h2>
+        <div class="text-block">
+            <p>Vuestra compañía es nuestro mejor regalo.</p>
+            <p>Si queréis tener un detalle con nosotros, nos hará muy felices que nos ayudéis con nuestro viaje:</p>
+            <p style="font-weight: 600; font-size: 1.2rem; margin-top: 20px; color: var(--nav-bg);">[IBAN]</p>
+        </div>
     </section>
 
     <div id="modal-golf" class="modal">
