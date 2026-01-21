@@ -18,8 +18,7 @@
             --accent: #faf8f5; 
             --dark: #3d3d3d; 
             --light: #fff; 
-            /* CAMBIO: Color verde más claro y suave (Sage Green) */
-            --nav-bg: #77855C; 
+            --nav-bg: #77855C; /* Verde Sage/Musgo suave */
         }
         
         /* --- RESET Y BASE --- */
@@ -49,7 +48,15 @@
             background: var(--nav-bg); 
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
-        .nav-logo img { height: 75px; filter: grayscale(100%) contrast(500%); mix-blend-mode: screen; }
+        
+        /* LOGO MÓVIL: Más grande y corrección de fondo */
+        .nav-logo img { 
+            height: 85px; /* Más grande en móvil */
+            filter: grayscale(100%) contrast(500%); 
+            mix-blend-mode: screen; /* Esto elimina el fondo negro si la imagen es negra sobre fondo oscuro */
+            /* Si la imagen es transparente, mix-blend-mode no es necesario, pero ayuda si tiene fondo negro */
+        }
+        
         .menu-toggle { font-size: 2rem; color: white; cursor: pointer; padding: 10px; }
         
         nav ul {
@@ -63,14 +70,14 @@
         nav li { width: 100%; text-align: center; }
         nav a { display: block; padding: 20px; font-size: 1.1rem; color: var(--dark); border-bottom: 1px solid #f5f5f5; text-transform: uppercase; letter-spacing: 1px; text-decoration: none; }
 
-        /* --- HERO (IMAGEN Y TEXTO SUPERPUESTO) --- */
+        /* --- HERO --- */
         .hero {
             height: 100vh; 
             height: 100dvh; 
             width: 100%;
             display: flex; 
             flex-direction: column; 
-            justify-content: flex-end; /* Texto abajo */
+            justify-content: flex-end; 
             align-items: center;
             position: relative;
             background-image: url('https://i.imgur.com/A62miVu.png'); 
@@ -115,7 +122,6 @@
 
         .scroll-indicator { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); z-index: 2; animation: bounce 2s infinite; font-size: 2rem; color: var(--nav-bg); }
 
-
         /* --- CUENTA ATRÁS --- */
         .countdown-section {
             padding: 50px 20px 10px 20px; 
@@ -151,9 +157,8 @@
             width: 100%;
         }
 
-        /* ANIMACIÓN PULSE */
         @keyframes pulse-ring {
-            0% { box-shadow: 0 0 0 0 rgba(119, 133, 92, 0.4); } /* Ajustado al nuevo verde */
+            0% { box-shadow: 0 0 0 0 rgba(119, 133, 92, 0.4); } 
             70% { box-shadow: 0 0 0 10px rgba(119, 133, 92, 0); }
             100% { box-shadow: 0 0 0 0 rgba(119, 133, 92, 0); }
         }
@@ -210,6 +215,32 @@
         .card h3 { font-family: 'Cormorant Garamond'; font-size: 1.7rem; color: var(--secondary); margin-bottom: 5px; font-weight: 600; }
         .card p { color: #555; font-size: 0.95rem; }
 
+        /* --- DRESSCODE --- */
+        .dresscode-box {
+            text-align: center;
+            background-color: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.05);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .dresscode-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+        .dresscode-list li {
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            color: #555;
+        }
+        .dresscode-list strong {
+            color: var(--nav-bg);
+            font-family: 'Cormorant Garamond';
+            font-size: 1.3rem;
+        }
+
         /* --- MAPA --- */
         #map { height: 450px; width: 100%; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); margin-bottom: 20px; z-index: 1; }
         .leaflet-popup-content-wrapper { border-radius: 10px; font-family: 'Montserrat', sans-serif; }
@@ -263,6 +294,7 @@
             nav li { width: auto; margin-left: 10px; }
             nav a { color: white; border: none; padding: 10px 15px; font-size: 0.95rem; font-weight: 500; }
             .menu-toggle { display: none; }
+            .nav-logo img { height: 75px; } /* Tamaño normal en escritorio */
 
             .hero {
                 background-size: contain; 
@@ -442,6 +474,17 @@
         </div>
     </section>
 
+    <section id="dresscode" class="reveal">
+        <h2>Dresscode</h2>
+        <div class="dresscode-box">
+            <p>Agradecemos amablemente :)</p>
+            <ul class="dresscode-list">
+                <li><strong>Chicos:</strong> Etiqueta (traje y corbata)</li>
+                <li><strong>Chicas:</strong> Evitar el color blanco</li>
+            </ul>
+        </div>
+    </section>
+
     <section id="mapa">
         <h2>Mapa</h2>
         <div class="text-block reveal">
@@ -549,7 +592,7 @@
             </div>
 
             <div class="modal-desc-justify">
-                <p>La celebración sigue en la finca. Al terminar, habrá un autobús de vuelta para que podáis darlo todo con nosotros hasta el último minuto</p>
+                <p>La celebración sigue en la finca. Al terminar, habrá un autobús de vuelta para que podáis darlo todo con nosotros hasta el último minuto.</p>
             </div>
         </div>
     </div>
