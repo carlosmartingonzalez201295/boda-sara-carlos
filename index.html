@@ -35,7 +35,6 @@
             overflow-x: hidden;
         }
 
-        /* FONDO ESTAMPADO GENERAL (SE VE EN LA CUENTA ATRÁS) */
         body::before {
             content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-image: var(--pattern-bg);
@@ -88,8 +87,8 @@
         }
 
         .hero::before {
-            content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 50%;
-            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 40%;
+            background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
             z-index: 1;
         }
         
@@ -97,26 +96,13 @@
             position: relative; z-index: 2; text-align: center; padding-bottom: 40px; width: 100%;
         }
 
-        /* NUEVO: NOMBRES DE LOS NOVIOS */
-        .hero-names {
-            font-family: 'Cormorant Garamond', serif; 
-            font-style: italic;
-            font-weight: 600;
-            color: #fff;
-            font-size: 4.5rem; 
-            line-height: 0.9;
-            display: block;
-            margin-bottom: 15px;
-            text-shadow: 0 2px 15px rgba(0,0,0,0.4);
-        }
-
         .hero-title-large {
-            font-family: var(--handwriting-font); font-weight: bold; color: #fff; font-size: 2.5rem; line-height: 1;
+            font-family: var(--handwriting-font); font-weight: bold; color: #fff; font-size: 3.8rem; line-height: 1;
             display: block; text-shadow: 0 2px 10px rgba(0,0,0,0.3); margin-bottom: 5px;
         }
 
         .hero-subtitle {
-            font-family: var(--handwriting-font); font-weight: bold; color: #fff; font-size: 1.4rem; display: block;
+            font-family: var(--handwriting-font); font-weight: bold; color: #fff; font-size: 1.6rem; display: block;
             text-shadow: 0 2px 10px rgba(0,0,0,0.3); letter-spacing: 1px;
         }
         
@@ -125,38 +111,39 @@
             z-index: 2; animation: bounce 2s infinite; font-size: 2rem; color: white; text-shadow: 0 2px 5px rgba(0,0,0,0.5); 
         }
 
-        /* --- CUENTA ATRÁS PEQUEÑA Y LIMPIA --- */
+        /* --- NOMBRES SARA & CARLOS (TITULO INTERMEDIO) --- */
+        .names-title {
+            font-family: var(--handwriting-font);
+            font-weight: bold;
+            color: var(--nav-bg); /* Verde */
+            font-size: 3.5rem;
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 10px;
+            line-height: 1;
+            display: block;
+        }
+
+        /* --- CUENTA ATRÁS --- */
         .countdown-section {
-            padding: 30px 20px 10px 20px; 
+            padding: 10px 20px 20px 20px; /* Menos padding arriba porque están los nombres */
             display: flex; justify-content: center; align-items: center; 
-            gap: 15px; /* Espacio reducido */
-            scroll-margin-top: 100px; 
-            background-color: transparent; /* Transparente para que se vea el fondo de la web */
+            gap: 15px; background-color: transparent;
         }
         .countdown-item { display: flex; flex-direction: column; align-items: center; }
         
-        /* Números limpios en verde */
-        .countdown-number {
+        .countdown-number { 
             font-family: 'Cormorant Garamond', serif; 
-            font-size: 2.5rem; /* Tamaño contenido */
+            font-size: 2.5rem; 
             color: var(--nav-bg); 
             font-weight: 700;
             line-height: 1; 
-            background: transparent; 
-            box-shadow: none; 
-            border: none;
-            width: auto; height: auto;
-            margin-bottom: 0;
+            background: transparent; box-shadow: none; border: none;
+            width: auto; height: auto; margin-bottom: 0;
         }
         
         .countdown-label { 
-            font-family: 'Montserrat', sans-serif; 
-            font-size: 0.65rem; 
-            letter-spacing: 1px; 
-            color: #555; 
-            margin-top: 2px; 
-            text-transform: uppercase; 
-            font-weight: 600;
+            font-family: 'Montserrat', sans-serif; font-size: 0.65rem; letter-spacing: 1px; color: #555; margin-top: 2px; text-transform: uppercase; font-weight: 600;
         }
 
         /* --- BIENVENIDA --- */
@@ -173,10 +160,8 @@
         }
         .subtitle { display: block; text-align: center; font-size: 0.95rem; color: #555; margin: -30px auto 40px auto; font-style: italic; max-width: 90%; }
 
-        /* --- ITINERARIO (SIN LÍNEA, CON BORDES ESTAMPADOS) --- */
+        /* --- ITINERARIO --- */
         .timeline { position: relative; margin: 40px 0; padding: 0; display: flex; flex-direction: column; gap: 60px; padding-bottom: 20px; }
-        
-        /* Eliminada la línea discontinua */
         .timeline::before { display: none; }
 
         .timeline-item { display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 1; width: 100%; }
@@ -187,17 +172,16 @@
         .timeline-img-box { 
             width: 130px; height: 130px; 
             border-radius: 50%; 
-            /* Quitamos el borde verde sólido, usamos el anillo estampado */
             border: 4px solid white; 
             animation: floating-hard 3s ease-in-out infinite, pulse-ring 2s infinite; 
             overflow: visible; flex-shrink: 0; cursor: pointer; position: relative; z-index: 2; background: white; 
         }
         
-        /* ANILLO ESTAMPADO RESTAURADO */
+        /* ANILLO ESTAMPADO */
         .timeline-img-box::before {
             content: ''; position: absolute; top: -6px; left: -6px; right: -6px; bottom: -6px;
             background-image: var(--pattern-bg); background-size: cover; 
-            border-radius: 50%; z-index: -1; opacity: 1; /* Opacidad total para que se vea bien */
+            border-radius: 50%; z-index: -1; opacity: 1;
         }
 
         .timeline-img-box::after { content: "+"; position: absolute; bottom: 0; right: 0; background-color: var(--nav-bg); color: white; width: 35px; height: 35px; border-radius: 50%; border: 2px solid white; display: flex; justify-content: center; align-items: center; font-size: 1.5rem; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.3); z-index: 10; }
@@ -304,10 +288,12 @@
                 background-position: center 25%;
             }
             .hero-content { padding-bottom: 60px; }
-            .hero-names { font-size: 6rem; }
-            .hero-title-large { font-size: 3.5rem; }
+            .hero-title-large { font-size: 5rem; }
             .hero-subtitle { font-size: 2rem; }
             
+            /* Nombres gigantes en escritorio */
+            .names-title { font-size: 5rem; margin-top: 50px; }
+
             .timeline { max-width: 800px; margin: 0 auto; }
             .cards-grid { display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 40px; }
             .card { width: 28%; display: flex; flex-direction: column; justify-content: space-between; }
@@ -335,13 +321,14 @@
 
     <div class="hero" id="inicio">
         <div class="hero-content">
-            <span class="hero-names">Sara & Carlos</span>
             <span class="hero-title-large">¡Nos casamos!</span>
             <span class="hero-subtitle">03.10.2026</span>
             <span class="hero-subtitle">Talavera de la Reina</span>
             <div class="scroll-indicator">↓</div>
         </div>
     </div>
+
+    <h1 class="names-title reveal">Sara & Carlos</h1>
 
     <div id="cuenta-atras" class="countdown-section reveal">
         <div class="countdown-item"><span class="countdown-number" id="d-val">0</span><span class="countdown-label">Días</span></div>
@@ -358,6 +345,8 @@
         </div>
     </section>
 
+    <div class="ornament-divider reveal">🌿</div>
+
     <section id="itinerario">
         <h2>Itinerario</h2>
         <p class="subtitle">Haz clic en las imágenes para ver los detalles</p>
@@ -369,7 +358,7 @@
                 </div>
                 <div class="timeline-content" onclick="openModal('golf')">
                     <h3>Torneo de Golf</h3>
-                    <p><strong>Viernes - 09:30h</strong></p>
+                    <p><strong>Viernes 02 - 09:30h</strong></p>
                 </div>
             </div>
             
@@ -379,7 +368,7 @@
                 </div>
                 <div class="timeline-content" onclick="openModal('preboda')">
                     <h3>Preboda</h3>
-                    <p><strong>Viernes - 21:00h</strong></p>
+                    <p><strong>Viernes 02 - 21:00h</strong></p>
                 </div>
             </div>
 
@@ -389,7 +378,7 @@
                 </div>
                 <div class="timeline-content" onclick="openModal('ceremonia')">
                     <h3>Ceremonia Religiosa</h3>
-                    <p><strong>Sábado - 17:00h</strong></p>
+                    <p><strong>Sábado 03 - 17:00h</strong></p>
                 </div>
             </div>
 
@@ -399,7 +388,7 @@
                 </div>
                 <div class="timeline-content" onclick="openModal('celebracion')">
                     <h3>Celebración</h3>
-                    <p><strong>Sábado - Al finalizar la Ceremonia</strong></p>
+                    <p><strong>Sábado 03 - Al finalizar la Ceremonia</strong></p>
                 </div>
             </div>
         </div>
@@ -538,7 +527,7 @@
             
             <div class="modal-info-center">
                 <h3>Palomarejos Golf</h3>
-                <p>Viernes • 09:30h</p>
+                <p>Viernes 02 • 09:30h</p>
                 <p class="address">N-Va, Km 113, Talavera de la Reina</p>
             </div>
             
@@ -565,7 +554,7 @@
             
             <div class="modal-info-center">
                 <h3>Misa de 1</h3>
-                <p>Viernes • 21:00h</p>
+                <p>Viernes 02 • 21:00h</p>
                 <p class="address">Calle José Luis Gallo, 1</p>
             </div>
 
@@ -583,7 +572,7 @@
             
             <div class="modal-info-center">
                 <h3>Colegiata Santa María la Mayor</h3>
-                <p>Sábado • 17:00h</p>
+                <p>Sábado 03 • 17:00h</p>
                 <p class="address">Plaza del Pan</p>
             </div>
 
@@ -602,7 +591,7 @@
             
             <div class="modal-info-center">
                 <h3>La Casona del Lago - Grupo NÜA</h3>
-                <p>Sábado - Al finalizar la Ceremonia</p>
+                <p>Sábado 03 - Al finalizar la Ceremonia</p>
                 <p class="address">Av. de Miramar, 1, Serranillos Playa</p>
             </div>
 
