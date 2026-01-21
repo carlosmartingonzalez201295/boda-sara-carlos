@@ -267,49 +267,6 @@
         }
         .close-modal:hover { transform: rotate(90deg); }
 
-        /* ESTILOS ESPECÍFICOS PARA LAS IMÁGENES DEL MAPA CEREMONIA */
-        .modal-map-wrapper {
-            position: relative;
-            width: 100%;
-            height: 220px; /* Altura fija para forzar misma escala */
-            margin-bottom: 15px;
-            border-radius: 15px;
-            overflow: hidden;
-            background: white; /* Intento de fondo blanco puro */
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        .modal-map-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* Cubrir el área */
-            object-position: center;
-        }
-        
-        /* ZOOM Y REENCUADRE PARA LA IMAGEN DE LA ENTRADA (Para igualar escala) */
-        .img-entrada-zoom {
-            object-fit: cover;
-            object-position: center 85%; /* Enfocar más abajo */
-            transform: scale(1.4); /* Zoom para acercar el plano */
-            transform-origin: center bottom;
-        }
-
-        /* ETIQUETA DE TEXTO DENTRO DE LA IMAGEN */
-        .modal-map-label {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            text-align: center;
-            font-family: var(--handwriting-font);
-            font-weight: bold;
-            font-size: 1.1rem; /* Más chiquito */
-            color: var(--nav-bg); /* Verde */
-            background: rgba(255,255,255,0.85); /* Fondo semi-transparente para legibilidad */
-            padding: 8px 0;
-            backdrop-filter: blur(2px);
-        }
-
         .modal-header-img { width: 100%; height: auto; max-height: 400px; object-fit: contain; border-radius: 15px; margin-bottom: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
         .modal-info-center { text-align: center; margin-bottom: 20px; width: 100%; }
         .modal-info-center h3 { font-family: var(--handwriting-font); font-weight: bold; font-size: 2.2rem; color: var(--secondary); margin-bottom: 5px; }
@@ -317,6 +274,39 @@
         .modal-info-center .address { color: #888; font-size: 0.9rem; font-style: italic; }
         .modal-desc-justify { text-align: justify; color: #666; font-size: 0.95rem; width: 100%; margin-bottom: 20px; }
         
+        /* --- ESTILOS ESPECÍFICOS PARA EL MODAL CEREMONIA (NUEVO) --- */
+        .ceremonia-maps-white-bg {
+            background: white; /* Fondo blanco puro compartido */
+            padding: 20px 10px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08); /* Sombra suave */
+            margin-bottom: 25px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .map-unit {
+            width: 100%;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        .map-unit:last-child { margin-bottom: 0; }
+        .map-unit img {
+            width: 100%;
+            height: auto;
+            max-height: 220px; /* Altura controlada */
+            object-fit: contain;
+            margin-bottom: 5px;
+        }
+        .map-caption {
+            font-family: var(--handwriting-font);
+            color: var(--nav-bg); /* Verde */
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin: 0;
+        }
+
         .reveal { opacity: 0; transform: translateY(20px); transition: 0.6s ease; }
         .reveal.active { opacity: 1; transform: translateY(0); }
         @keyframes bounce { 0%, 100% { transform: translate(-50%, 0); } 50% { transform: translate(-50%, -10px); } }
@@ -348,8 +338,9 @@
             .modal-content { width: 90%; max-width: 500px; height: auto; max-height: 85vh; border-radius: 15px; margin: 5% auto; }
             
             .countdown-number { font-size: 3.5rem; }
-            /* Ajuste de altura para mapas en escritorio */
-            .modal-map-wrapper { height: 300px; }
+            
+            /* Ajuste escritorio para mapas */
+             .map-unit img { max-height: 280px; }
         }
     </style>
 </head>
@@ -616,14 +607,15 @@
         <div class="modal-content">
             <div class="close-modal" onclick="closeModal('ceremonia')">&times;</div>
             
-            <div class="modal-map-wrapper">
-                <img src="https://i.imgur.com/sf46Ij1.png" class="modal-map-img img-entrada-zoom" alt="Entrada">
-                <div class="modal-map-label">Entrada de la iglesia</div>
-            </div>
-            
-            <div class="modal-map-wrapper">
-                <img src="https://i.imgur.com/qztxjkd.png" class="modal-map-img" alt="Salida">
-                <div class="modal-map-label">Salida de la Iglesia</div>
+            <div class="ceremonia-maps-white-bg">
+                <div class="map-unit">
+                    <img src="https://i.imgur.com/QDGdxoI.png" alt="Entrada Iglesia">
+                    <p class="map-caption">Entrada de la iglesia</p>
+                </div>
+                <div class="map-unit">
+                    <img src="https://i.imgur.com/c3gKjIw.png" alt="Salida Iglesia">
+                    <p class="map-caption">Salida de la iglesia</p>
+                </div>
             </div>
             
             <div class="modal-info-center">
