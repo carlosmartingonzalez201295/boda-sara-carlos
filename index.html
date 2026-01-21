@@ -113,38 +113,26 @@
 
         /* --- CUENTA ATRÁS --- */
         .countdown-section {
-            padding: 30px 20px 10px 20px; display: flex; justify-content: center; align-items: center; 
-            gap: 15px; scroll-margin-top: 100px; background-color: transparent;
+            padding: 40px 20px 20px 20px; display: flex; justify-content: center; align-items: center; 
+            gap: 20px; scroll-margin-top: 100px; background-color: transparent;
         }
         .countdown-item { display: flex; flex-direction: column; align-items: center; }
         
-        .countdown-number, .countdown-label {
-            font-family: 'Montserrat', sans-serif; font-size: 0.85rem; 
-            color: var(--nav-bg); 
-            font-weight: 600; text-transform: uppercase; line-height: 1.2; letter-spacing: 0.5px; text-align: center;
-        }
         .countdown-number { 
-            font-family: 'Cormorant Garamond', serif; 
+            font-family: var(--handwriting-font); font-weight: bold;
             font-size: 3.5rem; 
-            font-weight: 600; 
-            line-height: 1; 
-            margin-bottom: 5px;
+            color: var(--nav-bg); 
+            line-height: 1; margin: 0; padding: 0;
+            background: transparent; box-shadow: none; border: none;
         }
-        .countdown-label { margin: 0; padding: 0; font-size: 0.75rem; letter-spacing: 2px; color: #555; }
+        
+        .countdown-label { font-family: 'Montserrat', sans-serif; font-size: 0.75rem; letter-spacing: 2px; color: #555; margin-top: 5px; text-transform: uppercase; }
 
         /* --- BIENVENIDA --- */
         .text-block { text-align: center; font-size: 1rem; color: #555; margin: -20px auto 30px auto; max-width: 90%; line-height: 1.8; }
         
-        .ornament-divider {
-            text-align: center; margin: 20px 0; font-size: 1.5rem; color: var(--nav-bg); opacity: 0.7;
-        }
-
-        /* --- SECCIONES GENERALES (ESPACIADO UNIFICADO) --- */
-        section { 
-            /* Padding unificado para que todos los títulos tengan la misma separación */
-            padding: 40px 20px; 
-            width: 100%; max-width: 100%; position: relative; scroll-margin-top: 90px; 
-        }
+        /* --- SECCIONES GENERALES --- */
+        section { padding: 40px 20px; width: 100%; max-width: 100%; position: relative; scroll-margin-top: 90px; }
         
         h2 { 
             font-family: var(--handwriting-font); font-weight: bold;
@@ -154,12 +142,28 @@
         }
         .subtitle { display: block; text-align: center; font-size: 0.95rem; color: #555; margin: -30px auto 40px auto; font-style: italic; max-width: 90%; }
 
-        /* --- ITINERARIO --- */
+        /* --- ITINERARIO MEJORADO --- */
         .timeline { position: relative; margin: 40px 0; padding: 0; display: flex; flex-direction: column; gap: 60px; padding-bottom: 20px; }
         
+        /* LÍNEA DE MAPA CON MOVIMIENTO */
         .timeline::before {
-            content: ''; position: absolute; top: 60px; bottom: 60px; left: 50%; width: 2px;
-            border-left: 2px dashed var(--nav-bg); opacity: 0.5; transform: translateX(-50%); z-index: 0;
+            content: '';
+            position: absolute;
+            top: 60px; bottom: 60px; left: 50%;
+            width: 4px;
+            /* Degradado para simular linea discontinua */
+            background-image: linear-gradient(to bottom, var(--nav-bg) 50%, transparent 50%);
+            background-size: 4px 20px; /* Tamaño del "dash" */
+            background-repeat: repeat-y;
+            transform: translateX(-50%);
+            z-index: 0; /* DETRÁS DE TODO */
+            opacity: 0.6;
+            animation: moveLine 1s linear infinite; /* Movimiento */
+        }
+
+        @keyframes moveLine {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 20px; }
         }
 
         .timeline-item { display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 1; width: 100%; }
@@ -167,16 +171,33 @@
         @keyframes pulse-ring { 0% { box-shadow: 0 0 0 0 rgba(119, 133, 92, 0.4); } 70% { box-shadow: 0 0 0 15px rgba(119, 133, 92, 0); } 100% { box-shadow: 0 0 0 0 rgba(119, 133, 92, 0); } }
         @keyframes floating-hard { 0% { transform: translateY(0px); } 50% { transform: translateY(-12px); } 100% { transform: translateY(0px); } }
 
-        .timeline-img-box { width: 130px; height: 130px; border-radius: 50%; border: 4px solid white; animation: floating-hard 3s ease-in-out infinite, pulse-ring 2s infinite; overflow: visible; flex-shrink: 0; cursor: pointer; position: relative; z-index: 2; background: white; }
-        .timeline-img-box::before { content: ''; position: absolute; top: -6px; left: -6px; right: -6px; bottom: -6px; background-image: var(--pattern-bg); background-size: cover; border-radius: 50%; z-index: -1; opacity: 0.8; }
+        .timeline-img-box { 
+            width: 130px; height: 130px; 
+            border-radius: 50%; 
+            /* CAMBIO: Borde verde sólido */
+            border: 4px solid var(--nav-bg); 
+            animation: floating-hard 3s ease-in-out infinite, pulse-ring 2s infinite; 
+            overflow: visible; flex-shrink: 0; cursor: pointer; position: relative; z-index: 2; background: white; 
+        }
+        
+        /* Eliminado el anillo estampado anterior */
+        .timeline-img-box::before { display: none; }
+
         .timeline-img-box::after { content: "+"; position: absolute; bottom: 0; right: 0; background-color: var(--nav-bg); color: white; width: 35px; height: 35px; border-radius: 50%; border: 2px solid white; display: flex; justify-content: center; align-items: center; font-size: 1.5rem; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.3); z-index: 10; }
         .timeline-img-box img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; transition: transform 0.3s; display: block; }
         .timeline-img-box:active img { transform: scale(0.95); }
         .img-preboda { object-position: top center !important; }
 
-        .timeline-content { width: 55%; padding: 0 10px; display: flex; flex-direction: column; justify-content: center; }
+        .timeline-content { 
+            width: 55%; padding: 0 10px; display: flex; flex-direction: column; justify-content: center; 
+            /* Fondo blanco semitransparente opcional para asegurar legibilidad si la línea pasara cerca, aunque con z-index 0 no debería tapar */
+            background: rgba(250, 248, 245, 0.8); 
+            backdrop-filter: blur(2px);
+            border-radius: 10px;
+        }
         .timeline-content h3 { font-family: var(--handwriting-font); font-weight: bold; font-size: 1.6rem; color: var(--secondary); margin-bottom: 5px; line-height: 1.1; }
         .timeline-content p { font-size: 0.9rem; margin-bottom: 2px; color: #555; }
+        
         .timeline-item:nth-child(odd) { flex-direction: row; }
         .timeline-item:nth-child(odd) .timeline-content { text-align: left; padding-left: 15px; }
         .timeline-item:nth-child(even) { flex-direction: row-reverse; }
@@ -238,6 +259,8 @@
         /* --- MODALES --- */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 2000; backdrop-filter: blur(3px); }
         .modal-content { background: white; width: 100%; height: 100%; max-width: 100%; margin: 0; border-radius: 0; padding: 25px; overflow-y: auto; position: relative; animation: slideUp 0.3s; display: flex; flex-direction: column; align-items: center; }
+        
+        /* Botón cerrar mejorado */
         .close-modal { 
             position: absolute; top: 15px; right: 15px; font-size: 1.5rem; width: 36px; height: 36px; 
             background: var(--nav-bg); color: white;
@@ -326,8 +349,6 @@
             <p>¡Nos vemos muy pronto!</p>
         </div>
     </section>
-
-    <div class="ornament-divider reveal">🌿</div>
 
     <section id="itinerario">
         <h2>Itinerario</h2>
