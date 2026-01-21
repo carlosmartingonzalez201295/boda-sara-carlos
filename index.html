@@ -85,20 +85,27 @@
             opacity: 0.6; border-radius: 2px;
         }
 
-        /* --- HERO --- */
+        /* --- HERO (PORTADA) --- */
         .hero {
+            /* Forzar altura completa del dispositivo (móvil y escritorio) */
             height: 100vh; 
             height: 100dvh; 
             width: 100%;
+            
             display: flex; 
             flex-direction: column; 
             justify-content: flex-end; 
             align-items: center;
             position: relative;
-            background-image: url('https://i.imgur.com/A62miVu.png'); 
+            
+            background-image: url('https://i.imgur.com/ODoIZJe.jpeg'); 
+            
+            /* CLAVE: Cover asegura que llene todo sin deformarse, recortando lo necesario */
             background-size: cover; 
-            background-position: center bottom; 
+            /* CLAVE: Center Center enfoca el medio de la foto (la pareja) */
+            background-position: center center; 
             background-attachment: scroll; 
+            
             padding-bottom: 30px; 
             text-align: center;
             overflow: hidden;
@@ -171,6 +178,7 @@
             width: 100%;
         }
 
+        /* ANIMACIÓN DOBLE */
         @keyframes pulse-ring {
             0% { box-shadow: 0 0 0 0 rgba(119, 133, 92, 0.4); } 
             70% { box-shadow: 0 0 0 15px rgba(119, 133, 92, 0); }
@@ -322,25 +330,26 @@
             nav a { color: white; border: none; padding: 10px 15px; font-size: 0.95rem; font-weight: 500; }
             .menu-toggle { display: none; }
 
+            /* HERO ESCRITORIO */
             .hero {
-                background-size: contain; 
-                background-repeat: no-repeat;
-                background-position: center bottom;
+                /* Forzamos cover para que llene la pantalla completa horizontal */
+                background-size: cover !important; 
+                background-position: center center !important;
             }
             
             .timeline { max-width: 800px; margin: 0 auto; }
             
-            /* --- CORRECCIÓN FINAL ALINEACIÓN ESCRITORIO --- */
+            /* ALINEACIÓN TARJETAS ESCRITORIO */
             .cards-grid { 
                 display: flex; 
-                flex-direction: row; /* Forzamos que sea horizontal */
-                flex-wrap: wrap; /* Permitimos que salten de línea */
-                justify-content: center; /* Centramos el contenido sobrante (las 2 últimas) */
+                flex-direction: row; 
+                flex-wrap: wrap; 
+                justify-content: center; 
                 gap: 40px; 
             }
             
             .card { 
-                /* Ancho calculado para que entren 3 tarjetas exactas en una fila */
+                /* 30% aprox para 3 columnas */
                 width: 28%; 
                 display: flex; 
                 flex-direction: column; 
