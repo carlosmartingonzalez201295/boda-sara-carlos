@@ -19,11 +19,7 @@
             --dark: #3d3d3d; 
             --light: #fff; 
             --nav-bg: #77855C; /* Verde Sage */
-            
-            /* CAMBIO 1: NUEVO ESTAMPADO */
             --pattern-bg: url('https://i.imgur.com/feTyvjy.jpeg'); 
-            
-            /* FUENTE MANUSCRITA */
             --handwriting-font: 'Bradley Hand ITC', 'Bradley Hand', 'Noteworthy', 'Segoe Print', cursive;
         }
         
@@ -41,9 +37,11 @@
 
         body::before {
             content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: var(--pattern-bg); /* Usando el nuevo patrón */
+            background-image: var(--pattern-bg);
             background-repeat: repeat; background-size: 300px;
-            opacity: 0.15; z-index: -1; pointer-events: none;
+            /* CAMBIO 2: AUMENTO DE OPACIDAD DEL FONDO ESTAMPADO */
+            opacity: 0.3; 
+            z-index: -1; pointer-events: none;
         }
 
         /* --- NAVEGACIÓN --- */
@@ -69,20 +67,14 @@
         nav li { width: 100%; text-align: center; }
         
         nav a { 
-            display: block; padding: 25px; 
-            font-size: 1.3rem; 
-            color: var(--nav-bg); 
+            display: block; padding: 25px; font-size: 1.3rem; color: var(--nav-bg); 
             text-transform: uppercase; letter-spacing: 1px; text-decoration: none;
-            position: relative;
-            font-family: var(--handwriting-font);
-            font-weight: bold;
+            position: relative; font-family: var(--handwriting-font); font-weight: bold;
         }
         
         nav a::after {
-            content: ''; position: absolute; bottom: 0; left: 15%; width: 70%; 
-            height: 4px; 
-            background-image: var(--pattern-bg); background-size: cover; 
-            opacity: 0.6; border-radius: 2px;
+            content: ''; position: absolute; bottom: 0; left: 15%; width: 70%; height: 4px; 
+            background-image: var(--pattern-bg); background-size: cover; opacity: 0.6; border-radius: 2px;
         }
 
         /* --- HERO --- */
@@ -91,11 +83,7 @@
             display: flex; flex-direction: column; justify-content: flex-end; align-items: center;
             position: relative;
             background-image: url('https://i.imgur.com/ODoIZJe.jpeg'); 
-            
-            /* MÓVIL: Ajuste izquierda (25%) para no cortar cuerpos */
-            background-size: cover; 
-            background-position: 25% 35%; 
-            background-repeat: no-repeat;
+            background-size: cover; background-position: 25% 35%; background-repeat: no-repeat;
             overflow: hidden;
         }
 
@@ -106,69 +94,48 @@
         }
         
         .hero-content {
-            position: relative; z-index: 2; text-align: center;
-            padding-bottom: 40px; width: 100%;
+            position: relative; z-index: 2; text-align: center; padding-bottom: 40px; width: 100%;
         }
 
         .hero-title-large {
-            font-family: var(--handwriting-font); font-weight: bold;
-            color: #fff; font-size: 3.8rem; line-height: 1;
+            font-family: var(--handwriting-font); font-weight: bold; color: #fff; font-size: 3.8rem; line-height: 1;
             display: block; text-shadow: 0 2px 10px rgba(0,0,0,0.3); margin-bottom: 5px;
         }
 
         .hero-subtitle {
-            font-family: var(--handwriting-font); font-weight: bold;
-            color: #fff; font-size: 1.6rem; display: block;
+            font-family: var(--handwriting-font); font-weight: bold; color: #fff; font-size: 1.6rem; display: block;
             text-shadow: 0 2px 10px rgba(0,0,0,0.3); letter-spacing: 1px;
         }
         
         .scroll-indicator { 
             position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);
-            z-index: 2; animation: bounce 2s infinite; 
-            font-size: 2rem; color: white; text-shadow: 0 2px 5px rgba(0,0,0,0.5); 
+            z-index: 2; animation: bounce 2s infinite; font-size: 2rem; color: white; text-shadow: 0 2px 5px rgba(0,0,0,0.5); 
         }
 
-        /* --- CAMBIO 2: CUENTA ATRÁS PEQUEÑA Y UNIFORME --- */
+        /* --- CUENTA ATRÁS --- */
         .countdown-section {
-            padding: 30px 20px 10px 20px; /* Menos padding */
-            display: flex; justify-content: center; align-items: center; 
-            gap: 15px; /* Menos espacio entre elementos */
-            scroll-margin-top: 100px;
-            background-color: transparent;
+            padding: 30px 20px 10px 20px; display: flex; justify-content: center; align-items: center; 
+            gap: 15px; scroll-margin-top: 100px; background-color: transparent;
         }
+        .countdown-item { display: flex; flex-direction: column; align-items: center; }
         
-        .countdown-item { 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-        }
-        
-        /* Estilo unificado para números y letras */
+        /* CAMBIO 1: COLOR VERDE EN CUENTA ATRÁS */
         .countdown-number, .countdown-label {
-            font-family: 'Montserrat', sans-serif; /* Misma fuente */
-            font-size: 0.85rem; /* Mismo tamaño pequeño */
-            color: #555; /* Mismo color gris oscuro uniformado */
-            font-weight: 600; 
-            text-transform: uppercase;
-            line-height: 1.2;
-            letter-spacing: 0.5px;
-            text-align: center;
+            font-family: 'Montserrat', sans-serif; font-size: 0.85rem; 
+            color: var(--nav-bg); /* Verde */
+            font-weight: 600; text-transform: uppercase; line-height: 1.2; letter-spacing: 0.5px; text-align: center;
         }
-        
-        /* Limpieza de estilos anteriores */
-        .countdown-number {
-            background: transparent;
-            box-shadow: none; border: none;
-            width: auto; height: auto;
-            margin: 0; padding: 0;
-        }
-        .countdown-label {
-            margin: 0; padding: 0;
-        }
+        .countdown-number { background: transparent; box-shadow: none; border: none; width: auto; height: auto; margin: 0; padding: 0; }
+        .countdown-label { margin: 0; padding: 0; }
 
         /* --- BIENVENIDA --- */
         .text-block { text-align: center; font-size: 1rem; color: #555; margin: -20px auto 30px auto; max-width: 90%; line-height: 1.8; }
         
+        /* CREATIVO: Separador ornamental */
+        .ornament-divider {
+            text-align: center; margin: 20px 0; font-size: 1.5rem; color: var(--nav-bg); opacity: 0.7;
+        }
+
         /* --- SECCIONES GENERALES --- */
         section { padding: 50px 20px; width: 100%; max-width: 100%; position: relative; scroll-margin-top: 90px; }
         
@@ -180,9 +147,23 @@
         }
         .subtitle { display: block; text-align: center; font-size: 0.95rem; color: #555; margin: -30px auto 40px auto; font-style: italic; max-width: 90%; }
 
-        /* --- ITINERARIO --- */
+        /* --- ITINERARIO CON LÍNEA CONECTORA --- */
         .timeline { position: relative; margin: 40px 0; padding: 0; display: flex; flex-direction: column; gap: 60px; padding-bottom: 20px; }
-        .timeline::before { display: none; }
+        
+        /* CAMBIO 3: LÍNEA DISCONTINUA CENTRAL */
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 60px; /* Empieza un poco más abajo del primer círculo */
+            bottom: 60px; /* Termina antes del último */
+            left: 50%;
+            width: 2px;
+            border-left: 2px dashed var(--nav-bg); /* Línea discontinua verde */
+            opacity: 0.5; /* Sutil */
+            transform: translateX(-50%);
+            z-index: 0;
+        }
+
         .timeline-item { display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 1; width: 100%; }
 
         @keyframes pulse-ring { 0% { box-shadow: 0 0 0 0 rgba(119, 133, 92, 0.4); } 70% { box-shadow: 0 0 0 15px rgba(119, 133, 92, 0); } 100% { box-shadow: 0 0 0 0 rgba(119, 133, 92, 0); } }
@@ -203,28 +184,27 @@
         .timeline-item:nth-child(even) { flex-direction: row-reverse; }
         .timeline-item:nth-child(even) .timeline-content { text-align: right; padding-right: 15px; }
 
-        /* --- TARJETAS --- */
+        /* --- TARJETAS CON HOVER CREATIVO --- */
         .cards-grid { display: flex; flex-direction: column; gap: 40px; }
-        .card { background: transparent; padding: 0; border-radius: 0; box-shadow: none; border: none; text-align: center; }
-        .card-img { width: 100%; height: 200px; object-fit: cover; border-radius: 15px; margin-top: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.15); }
+        .card { background: transparent; padding: 0; border-radius: 0; box-shadow: none; border: none; text-align: center; transition: transform 0.3s ease; }
+        .card-img { width: 100%; height: 200px; object-fit: cover; border-radius: 15px; margin-top: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.15); transition: box-shadow 0.3s ease; }
+        
+        /* CREATIVO: Hover effect */
+        .card:hover { transform: translateY(-5px); }
+        .card:hover .card-img { box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
+
         .card h3 { font-family: var(--handwriting-font); font-weight: bold; font-size: 2rem; color: var(--secondary); margin-bottom: 10px; }
         .card p { color: #555; font-size: 0.95rem; }
 
         /* --- SUBTÍTULO TAPEO --- */
         .tapeo-subtitle {
-            font-family: var(--handwriting-font);
-            font-weight: bold;
-            font-size: 1.3rem; /* Más pequeño */
-            color: var(--secondary);
-            text-align: center;
-            margin-bottom: 20px;
-            display: block;
+            font-family: var(--handwriting-font); font-weight: bold; font-size: 1.3rem; color: var(--secondary); text-align: center; margin-bottom: 20px; display: block;
         }
 
         /* --- CAJA IBAN --- */
         .iban-wrapper { margin-top: 25px; display: inline-block; cursor: pointer; position: relative; width: 100%; max-width: 400px; }
-        .iban-box { border: 2px solid var(--nav-bg); background: white; padding: 10px 15px; border-radius: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: background 0.3s; }
-        .iban-box:active { background: #f0f0f0; }
+        .iban-box { border: 2px solid var(--nav-bg); background: white; padding: 10px 15px; border-radius: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: background 0.3s, transform 0.2s; }
+        .iban-box:active { background: #f0f0f0; transform: scale(0.98); } /* Pequeño efecto al hacer clic */
         .iban-text { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 1.1rem; color: var(--secondary); letter-spacing: 0.5px; white-space: nowrap; }
         .copy-link { font-size: 0.7rem; color: var(--nav-bg); font-weight: 700; text-transform: uppercase; margin-top: 5px; }
         .copy-feedback { display: none; color: var(--nav-bg); font-size: 0.8rem; margin-top: 5px; font-weight: 600; position: absolute; bottom: -25px; left: 50%; transform: translateX(-50%); white-space: nowrap; }
@@ -237,24 +217,45 @@
         .leaflet-popup-content .address { font-size: 0.8rem; color: #888; border-top: 1px solid #eee; padding-top: 5px; font-style: italic; }
         .custom-pin-marker { display: flex; justify-content: center; align-items: center; font-size: 2.5rem; text-shadow: 0 2px 5px rgba(0,0,0,0.3); }
 
-        /* --- FORMULARIO RSVP --- */
-        .rsvp-form { background: white; padding: 30px 20px; border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); width: 100%; margin-top: 20px; }
+        /* --- FORMULARIO RSVP CREATIVO --- */
+        .rsvp-form { background: white; padding: 30px 20px; border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); width: 100%; margin-top: 20px; border-top: 4px solid var(--nav-bg); /* Detalle borde superior verde */ }
         .form-group { margin-bottom: 20px; }
         label { font-size: 0.9rem; font-weight: 600; color: var(--secondary); margin-bottom: 8px; display: block; }
-        input, select, textarea { width: 100%; padding: 12px; font-size: 16px; border: 1px solid #ddd; border-radius: 8px; background: #fafafa; }
+        input, select, textarea { width: 100%; padding: 12px; font-size: 16px; border: 1px solid #ddd; border-radius: 8px; background: #fafafa; transition:all 0.3s; }
+        
+        /* CREATIVO: Foco en inputs */
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--nav-bg);
+            box-shadow: 0 0 0 3px rgba(119, 133, 92, 0.2);
+            outline: none;
+            background: white;
+        }
         
         button { 
             padding: 16px; font-size: 1rem; border-radius: 10px; 
             background: var(--nav-bg); 
             color: white; font-weight: 600; 
             box-shadow: 0 4px 10px rgba(84, 98, 57, 0.3); 
-            border: none; width: 100%; cursor: pointer; 
+            border: none; width: 100%; cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
+        button:hover { transform: translateY(-2px); box-shadow: 0 6px 15px rgba(84, 98, 57, 0.4); }
 
-        /* --- MODALES --- */
+        /* --- MODALES CREATIVOS --- */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 2000; backdrop-filter: blur(3px); }
         .modal-content { background: white; width: 100%; height: 100%; max-width: 100%; margin: 0; border-radius: 0; padding: 25px; overflow-y: auto; position: relative; animation: slideUp 0.3s; display: flex; flex-direction: column; align-items: center; }
-        .close-modal { position: absolute; top: 15px; right: 15px; font-size: 2rem; width: 40px; height: 40px; background: rgba(255,255,255,0.8); border-radius: 50%; display: flex; justify-content: center; align-items: center; color: #333; z-index: 10; cursor: pointer; }
+        
+        /* CREATIVO: Botón cerrar modal mejorado */
+        .close-modal { 
+            position: absolute; top: 15px; right: 15px; font-size: 1.5rem; width: 36px; height: 36px; 
+            background: var(--nav-bg); /* Fondo verde */
+            color: white; /* Aspa blanca */
+            border-radius: 50%; display: flex; justify-content: center; align-items: center; 
+            z-index: 10; cursor: pointer; box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            transition: transform 0.2s;
+        }
+        .close-modal:hover { transform: rotate(90deg); }
+
         .modal-header-img { width: 100%; height: auto; max-height: 400px; object-fit: contain; border-radius: 15px; margin-bottom: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
         .modal-info-center { text-align: center; margin-bottom: 20px; width: 100%; }
         .modal-info-center h3 { font-family: var(--handwriting-font); font-weight: bold; font-size: 2.2rem; color: var(--secondary); margin-bottom: 5px; }
@@ -285,13 +286,13 @@
             .hero-subtitle { font-size: 2rem; }
             
             .timeline { max-width: 800px; margin: 0 auto; }
+            /* Línea central más larga en escritorio */
+            .timeline::before { top: 80px; bottom: 80px; }
+
             .cards-grid { display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 40px; }
             .card { width: 28%; display: flex; flex-direction: column; justify-content: space-between; }
             .card-img { margin-top: auto; }
             .modal-content { width: 90%; max-width: 500px; height: auto; max-height: 85vh; border-radius: 15px; margin: 5% auto; }
-            
-            /* Elimino el override de tamaño gigante en escritorio para la cuenta atrás */
-            /* .countdown-number { font-size: 4.5rem; } */
         }
     </style>
 </head>
@@ -326,13 +327,15 @@
         <div class="countdown-item"><span class="countdown-number" id="s-val">0</span><span class="countdown-label">Segundos</span></div>
     </div>
 
-    <section id="bienvenida" style="padding-bottom: 0;">
+    <section id="bienvenida" style="padding-bottom: 20px;">
         <div class="text-block reveal">
             <p>¡Hola a todos! Hemos preparado este espacio para que podáis consultar toda la información necesaria sobre nuestra boda. Dicen que la felicidad se multiplica cuando se comparte y nosotros tenemos la suerte de teneros a vosotros.</p>
             <p>En esta forma de ser nosotros, tan real y tan compartida, es donde aquí empieza mucho.</p>
             <p>¡Nos vemos muy pronto!</p>
         </div>
     </section>
+
+    <div class="ornament-divider reveal">🌿</div>
 
     <section id="itinerario">
         <h2>Itinerario</h2>
