@@ -18,7 +18,7 @@
             --accent: #faf8f5; 
             --dark: #3d3d3d; 
             --light: #fff; 
-            --nav-bg: #77855C; /* Verde Sage/Musgo suave */
+            --nav-bg: #77855C; /* Verde Sage */
             --pattern-bg: url('https://i.imgur.com/6PHsEEs.jpeg'); 
         }
         
@@ -48,12 +48,8 @@
             display: flex; justify-content: flex-end; 
             align-items: center;
             background: var(--nav-bg); 
+            /* Quitada la línea de borde estampada de aquí, solo sombra suave */
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        nav::after {
-            content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 5px; 
-            background-image: var(--pattern-bg); background-size: cover; opacity: 1;
         }
         
         .menu-toggle { font-size: 2rem; color: white; cursor: pointer; padding: 10px; }
@@ -61,77 +57,183 @@
         nav ul {
             position: fixed; top: 60px; left: 0; width: 100%; height: calc(100vh - 60px);
             background: white; flex-direction: column; align-items: center; justify-content: flex-start;
-            padding-top: 40px; gap: 0; list-style: none;
+            padding-top: 20px; gap: 0; list-style: none;
             transform: translateX(100%); transition: transform 0.3s ease-in-out;
             display: flex; 
         }
         nav ul.active { transform: translateX(0); }
         nav li { width: 100%; text-align: center; }
         
+        /* ENLACES MENÚ MÓVIL */
         nav a { 
-            display: block; padding: 20px; font-size: 1.1rem; color: var(--dark); 
+            display: block; padding: 25px; font-size: 1.2rem; color: var(--dark); 
             text-transform: uppercase; letter-spacing: 1px; text-decoration: none;
             position: relative;
-        }
-        nav a::after {
-            content: ''; position: absolute; bottom: 0; left: 5%; width: 90%; 
-            height: 4px; 
-            background-image: var(--pattern-bg); background-size: cover; 
-            opacity: 0.6; border-radius: 2px;
-        }
-
-        /* --- HERO (PORTADA MÓVIL AJUSTADA) --- */
-        .hero {
-            /* MÓVIL: Altura reducida al 75% para evitar que 'cover' recorte los lados (el brazo) */
-            height: 75vh; 
-            height: 75dvh; 
-            width: 100%;
-            
-            display: flex; flex-direction: column; justify-content: flex-end; align-items: center;
-            position: relative;
-            
-            /* Imagen de portada vertical */
-            background-image: url('https://i.imgur.com/ODoIZJe.jpeg'); 
-            
-            /* 'cover' llena la caja. Al ser la caja más baja, no hace tanto zoom. */
-            background-size: cover; 
-            background-position: center center; 
-            background-repeat: no-repeat;
-            
-            padding-bottom: 30px; text-align: center; overflow: hidden;
+            font-family: 'Cormorant Garamond', serif; /* Toque más elegante en el menú */
+            font-weight: 600;
         }
         
-        /* Ocultamos flecha en móvil si no es pantalla completa */
-        .scroll-indicator { position: relative; z-index: 2; animation: bounce 2s infinite; font-size: 2rem; color: white; text-shadow: 0 2px 5px rgba(0,0,0,0.5); display: none; }
+        /* SEPARADORES ESTAMPADOS GRUESOS EN MÓVIL */
+        nav a::after {
+            content: ''; position: absolute; bottom: 0; left: 15%; width: 70%; 
+            height: 6px; /* Más grueso */
+            background-image: var(--pattern-bg); background-size: cover; 
+            opacity: 1; border-radius: 4px; /* Bordes redondeados */
+        }
 
-        /* --- TÍTULO PRINCIPAL --- */
-        .main-info-section { padding: 40px 20px 10px 20px; text-align: center; background: transparent; }
-        .main-title { font-family: 'Cormorant Garamond', serif; color: var(--nav-bg); font-size: 3.5rem; font-weight: 700; font-style: italic; line-height: 1.1; display: block; margin-bottom: 10px; }
-        .main-subtitle { font-family: 'Cormorant Garamond', serif; color: var(--nav-bg); font-size: 1.5rem; font-weight: 600; display: block; }
+        /* --- HERO (PORTADA INTELIGENTE) --- */
+        .hero {
+            height: 100vh; 
+            height: 100dvh; 
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            background-color: var(--nav-bg); /* Fondo base verde */
+        }
 
-        /* --- CUENTA ATRÁS --- */
-        .countdown-section { padding: 20px 20px 10px 20px; display: flex; justify-content: center; align-items: center; gap: 15px; scroll-margin-top: 100px; }
-        .countdown-item { display: flex; flex-direction: column; align-items: center; }
-        .countdown-number { font-family: 'Cormorant Garamond', serif; font-size: 3rem; color: var(--nav-bg); font-weight: 600; line-height: 1; }
-        .countdown-label { font-family: 'Montserrat', sans-serif; font-size: 0.7rem; letter-spacing: 1px; color: #666; margin-top: 5px; }
+        /* LA IMAGEN DE FONDO */
+        .hero-bg {
+            position: absolute; top: 0; left: 0; width: 100%;
+            /* EN MÓVIL: La foto ocupa el 65% de la altura. 
+               El resto (abajo) queda libre para el texto. */
+            height: 65%; 
+            background-image: url('https://i.imgur.com/ODoIZJe.jpeg');
+            background-size: cover;
+            background-position: center center;
+            /* Máscara suave para unir foto y fondo verde */
+            mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+            z-index: 0;
+        }
+
+        /* CONTENEDOR DE TEXTO PORTADA */
+        .hero-content {
+            position: absolute;
+            bottom: 0; left: 0; width: 100%;
+            height: 40%; /* Se solapa un poco con la foto */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
+            padding-bottom: 20px;
+        }
+
+        .hero-title-large {
+            font-family: 'Cormorant Garamond', serif;
+            color: #fff; /* Blanco sobre el fondo verde */
+            font-size: 3.5rem;
+            font-weight: 700;
+            font-style: italic;
+            line-height: 1;
+            display: block;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .hero-subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            color: #fff;
+            font-size: 1.4rem;
+            font-weight: 600;
+            display: block;
+            margin-top: 5px;
+            letter-spacing: 1px;
+        }
+
+        .scroll-indicator { 
+            margin-top: 20px;
+            animation: bounce 2s infinite; 
+            font-size: 2rem; color: rgba(255,255,255,0.7); 
+        }
+
+        /* --- CUENTA ATRÁS CREATIVA (CON ESTAMPADO) --- */
+        .countdown-section {
+            padding: 40px 20px;
+            display: flex; justify-content: center; align-items: center; gap: 15px;
+            scroll-margin-top: 100px;
+            position: relative;
+            background-color: white; /* Fondo limpio para el patrón */
+            margin-bottom: 20px;
+        }
+        
+        /* Fondo estampado sutil detrás de la cuenta atrás */
+        .countdown-section::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: var(--pattern-bg); 
+            background-size: 300px;
+            opacity: 0.15; /* Muy suave */
+            z-index: 0;
+        }
+
+        .countdown-item { 
+            display: flex; flex-direction: column; align-items: center; 
+            position: relative; z-index: 1; 
+        }
+        
+        .countdown-number { 
+            font-family: 'Cormorant Garamond', serif; 
+            font-size: 2.5rem; 
+            color: var(--nav-bg); 
+            font-weight: 600; 
+            line-height: 1;
+            background: white;
+            width: 70px; height: 70px;
+            display: flex; justify-content: center; align-items: center;
+            border-radius: 50%;
+            /* Borde creativo con el estampado */
+            border: 3px solid transparent;
+            background-image: linear-gradient(white, white), var(--pattern-bg);
+            background-origin: border-box;
+            background-clip: content-box, border-box;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .countdown-label { font-family: 'Montserrat', sans-serif; font-size: 0.7rem; letter-spacing: 1px; color: #555; margin-top: 8px; font-weight: 600; text-transform: uppercase; }
+
+        /* --- BIENVENIDA (TEXTO NORMAL) --- */
+        .text-block { text-align: center; font-size: 1rem; color: #555; margin: -20px auto 30px auto; max-width: 90%; line-height: 1.8; }
+        
+        /* Estilo para el "Hola a todos" integrado */
+        .intro-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            color: var(--secondary);
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: block;
+        }
 
         /* --- SECCIONES GENERALES --- */
         section { padding: 50px 20px; width: 100%; max-width: 100%; position: relative; scroll-margin-top: 90px; }
-        h2 { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; text-align: center; margin-bottom: 40px; color: var(--secondary); line-height: 1.1; }
+        
+        h2 { 
+            font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; text-align: center; 
+            margin-bottom: 40px; color: var(--secondary); line-height: 1.1;
+        }
         .subtitle { display: block; text-align: center; font-size: 0.95rem; color: #555; margin: -30px auto 40px auto; font-style: italic; max-width: 90%; }
-        .text-block { text-align: center; font-size: 1rem; color: #555; margin: -20px auto 30px auto; max-width: 90%; line-height: 1.8; }
-        .text-block p { margin-bottom: 15px; }
 
         /* --- ITINERARIO --- */
         .timeline { position: relative; margin: 40px 0; padding: 0; display: flex; flex-direction: column; gap: 60px; padding-bottom: 20px; }
-        .timeline::before { display: none; }
         .timeline-item { display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 1; width: 100%; }
 
         @keyframes pulse-ring { 0% { box-shadow: 0 0 0 0 rgba(119, 133, 92, 0.4); } 70% { box-shadow: 0 0 0 15px rgba(119, 133, 92, 0); } 100% { box-shadow: 0 0 0 0 rgba(119, 133, 92, 0); } }
         @keyframes floating-hard { 0% { transform: translateY(0px); } 50% { transform: translateY(-12px); } 100% { transform: translateY(0px); } }
 
-        .timeline-img-box { width: 130px; height: 130px; border-radius: 50%; border: 4px solid white; animation: floating-hard 3s ease-in-out infinite, pulse-ring 2s infinite; overflow: visible; flex-shrink: 0; cursor: pointer; position: relative; z-index: 2; background: white; }
-        .timeline-img-box::before { content: ''; position: absolute; top: -6px; left: -6px; right: -6px; bottom: -6px; background-image: var(--pattern-bg); background-size: cover; border-radius: 50%; z-index: -1; opacity: 0.8; }
+        .timeline-img-box {
+            width: 130px; height: 130px;
+            border-radius: 50%; border: 4px solid white;
+            animation: floating-hard 3s ease-in-out infinite, pulse-ring 2s infinite;
+            overflow: visible; flex-shrink: 0; cursor: pointer;
+            position: relative; z-index: 2; background: white;
+        }
+        /* Anillo estampado */
+        .timeline-img-box::before {
+            content: ''; position: absolute; top: -6px; left: -6px; right: -6px; bottom: -6px;
+            background-image: var(--pattern-bg); background-size: cover;
+            border-radius: 50%; z-index: -1; opacity: 0.8;
+        }
         .timeline-img-box::after { content: "+"; position: absolute; bottom: 0; right: 0; background-color: var(--nav-bg); color: white; width: 35px; height: 35px; border-radius: 50%; border: 2px solid white; display: flex; justify-content: center; align-items: center; font-size: 1.5rem; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.3); z-index: 10; }
         .timeline-img-box img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; transition: transform 0.3s; display: block; }
         .timeline-img-box:active img { transform: scale(0.95); }
@@ -196,31 +298,37 @@
             nav a { color: white; border: none; padding: 10px 15px; font-size: 0.95rem; font-weight: 500; }
             .menu-toggle { display: none; }
 
-            /* HERO ESCRITORIO: ZOOM ENCUADRADO (CABEZA Y CUERPO) */
+            /* HERO ESCRITORIO: FOTO COMPLETA + TEXTO SUPERPUESTO */
             .hero {
-                /* Volvemos a pantalla completa en escritorio */
-                height: 100vh !important; 
-                height: 100dvh !important;
-                
-                /* 'cover' hace el zoom para llenar el ancho */
-                background-size: cover !important; 
-                
-                /* CLAVE: 'center 25%' alinea el foco verticalmente al 25% desde arriba.
-                   Esto baja el encuadre, salvando las cabezas y cortando un poco de arriba y abajo. */
-                background-position: center 25% !important;
-                background-repeat: no-repeat !important;
+                background-color: var(--nav-bg);
             }
-            
-            .scroll-indicator { display: block; } /* Mostramos flecha en escritorio */
-            
+            .hero-bg {
+                /* En escritorio la foto ocupa todo el alto */
+                height: 100%; 
+                background-size: cover; 
+                background-position: center 25%; /* Ajuste para cabezas */
+                mask-image: none; /* Quitamos la máscara en escritorio para que se vea nítida */
+                -webkit-mask-image: none;
+            }
+            /* En escritorio el texto flota sobre la foto con sombra */
+            .hero-content {
+                height: 100%;
+                justify-content: flex-end;
+                padding-bottom: 50px;
+                background: linear-gradient(to top, rgba(0,0,0,0.4), transparent); /* Sombra para leer texto */
+            }
+            .hero-title-large { text-shadow: 0 2px 20px rgba(0,0,0,0.5); }
+            .hero-subtitle { text-shadow: 0 2px 20px rgba(0,0,0,0.5); }
+
             .timeline { max-width: 800px; margin: 0 auto; }
             .cards-grid { display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 40px; }
             .card { width: 28%; display: flex; flex-direction: column; justify-content: space-between; }
             .card-img { margin-top: auto; }
             .modal-content { width: 90%; max-width: 500px; height: auto; max-height: 85vh; border-radius: 15px; margin: 5% auto; }
+            
             .main-title { font-size: 5rem; }
             .main-subtitle { font-size: 2rem; }
-            .countdown-number { font-size: 4rem; }
+            .countdown-number { font-size: 4rem; width: 100px; height: 100px; }
         }
     </style>
 </head>
@@ -240,13 +348,14 @@
     </nav>
 
     <div class="hero" id="inicio">
-        <div class="scroll-indicator">↓</div>
-    </div>
-
-    <div class="main-info-section reveal">
-        <span class="main-title">¡Nos casamos!</span>
-        <span class="main-subtitle">03.10.2026</span>
-        <span class="main-subtitle">Talavera de la Reina</span>
+        <div class="hero-bg"></div>
+        
+        <div class="hero-content">
+            <span class="hero-title-large">¡Nos casamos!</span>
+            <span class="hero-subtitle">03.10.2026</span>
+            <span class="hero-subtitle">Talavera de la Reina</span>
+            <div class="scroll-indicator">↓</div>
+        </div>
     </div>
 
     <div id="cuenta-atras" class="countdown-section reveal">
@@ -258,7 +367,7 @@
 
     <section id="bienvenida" style="padding-bottom: 0;">
         <div class="text-block reveal">
-            <h2 style="font-size: 2rem; margin-bottom: 20px;">¡Hola a todos!</h2>
+            <span class="intro-title">¡Hola a todos!</span>
             <p>Hemos preparado este espacio para que podáis consultar toda la información necesaria sobre nuestra boda.</p>
             <p><strong>Dicen que la felicidad se multiplica cuando se comparte y nosotros tenemos la suerte de teneros a vosotros.</strong> Nos hace muy felices que forméis parte de este día tan especial para nosotros.</p>
             <p>En esta forma de ser nosotros, tan real y tan compartida, es donde aquí empieza mucho.</p>
