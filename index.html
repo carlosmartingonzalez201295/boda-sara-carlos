@@ -80,11 +80,11 @@
             opacity: 0.6; border-radius: 2px;
         }
 
-        /* --- HERO (PORTADA MÓVIL BASE) --- */
+        /* --- HERO (PORTADA MÓVIL AJUSTADA) --- */
         .hero {
-            /* MÓVIL: Pantalla completa vertical */
-            height: 100vh; 
-            height: 100dvh; 
+            /* MÓVIL: Altura reducida al 75% para evitar que 'cover' recorte los lados (el brazo) */
+            height: 75vh; 
+            height: 75dvh; 
             width: 100%;
             
             display: flex; flex-direction: column; justify-content: flex-end; align-items: center;
@@ -93,7 +93,7 @@
             /* Imagen de portada vertical */
             background-image: url('https://i.imgur.com/ODoIZJe.jpeg'); 
             
-            /* MÓVIL: 'cover' llena la pantalla vertical perfectamente sin cortar */
+            /* 'cover' llena la caja. Al ser la caja más baja, no hace tanto zoom. */
             background-size: cover; 
             background-position: center center; 
             background-repeat: no-repeat;
@@ -101,15 +101,16 @@
             padding-bottom: 30px; text-align: center; overflow: hidden;
         }
         
-        .scroll-indicator { position: relative; z-index: 2; animation: bounce 2s infinite; font-size: 2rem; color: white; text-shadow: 0 2px 5px rgba(0,0,0,0.5); }
+        /* Ocultamos flecha en móvil si no es pantalla completa */
+        .scroll-indicator { position: relative; z-index: 2; animation: bounce 2s infinite; font-size: 2rem; color: white; text-shadow: 0 2px 5px rgba(0,0,0,0.5); display: none; }
 
         /* --- TÍTULO PRINCIPAL --- */
-        .main-info-section { padding: 60px 20px 10px 20px; text-align: center; background: transparent; }
+        .main-info-section { padding: 40px 20px 10px 20px; text-align: center; background: transparent; }
         .main-title { font-family: 'Cormorant Garamond', serif; color: var(--nav-bg); font-size: 3.5rem; font-weight: 700; font-style: italic; line-height: 1.1; display: block; margin-bottom: 10px; }
         .main-subtitle { font-family: 'Cormorant Garamond', serif; color: var(--nav-bg); font-size: 1.5rem; font-weight: 600; display: block; }
 
         /* --- CUENTA ATRÁS --- */
-        .countdown-section { padding: 30px 20px 10px 20px; display: flex; justify-content: center; align-items: center; gap: 15px; scroll-margin-top: 100px; }
+        .countdown-section { padding: 20px 20px 10px 20px; display: flex; justify-content: center; align-items: center; gap: 15px; scroll-margin-top: 100px; }
         .countdown-item { display: flex; flex-direction: column; align-items: center; }
         .countdown-number { font-family: 'Cormorant Garamond', serif; font-size: 3rem; color: var(--nav-bg); font-weight: 600; line-height: 1; }
         .countdown-label { font-family: 'Montserrat', sans-serif; font-size: 0.7rem; letter-spacing: 1px; color: #666; margin-top: 5px; }
@@ -195,16 +196,22 @@
             nav a { color: white; border: none; padding: 10px 15px; font-size: 0.95rem; font-weight: 500; }
             .menu-toggle { display: none; }
 
-            /* HERO ESCRITORIO: ZOOM ALINEADO ARRIBA */
+            /* HERO ESCRITORIO: ZOOM ENCUADRADO (CABEZA Y CUERPO) */
             .hero {
+                /* Volvemos a pantalla completa en escritorio */
                 height: 100vh !important; 
                 height: 100dvh !important;
-                /* 'cover' hace el zoom para llenar la pantalla */
+                
+                /* 'cover' hace el zoom para llenar el ancho */
                 background-size: cover !important; 
-                /* 'center top' alinea la foto arriba. Si corta, corta de abajo. */
-                background-position: center top !important;
+                
+                /* CLAVE: 'center 25%' alinea el foco verticalmente al 25% desde arriba.
+                   Esto baja el encuadre, salvando las cabezas y cortando un poco de arriba y abajo. */
+                background-position: center 25% !important;
                 background-repeat: no-repeat !important;
             }
+            
+            .scroll-indicator { display: block; } /* Mostramos flecha en escritorio */
             
             .timeline { max-width: 800px; margin: 0 auto; }
             .cards-grid { display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 40px; }
