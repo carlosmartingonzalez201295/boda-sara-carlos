@@ -68,14 +68,14 @@
             width: 100%;
             display: flex; 
             flex-direction: column; 
-            justify-content: flex-end; /* Texto abajo */
+            justify-content: flex-end; 
             align-items: center;
             position: relative;
             background-image: url('https://i.imgur.com/A62miVu.png'); 
             background-size: cover; 
-            background-position: center bottom; /* Anclado abajo para ver la zona blanca */
+            background-position: center bottom; 
             background-attachment: scroll; 
-            padding-bottom: 90px; /* Margen inferior */
+            padding-bottom: 90px; 
             text-align: center;
             overflow: hidden;
         }
@@ -148,23 +148,45 @@
             width: 100%;
         }
 
-        @keyframes floating {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-8px); }
-            100% { transform: translateY(0px); }
+        /* NUEVA ANIMACIÓN: Pulse / Onda expansiva para indicar click */
+        @keyframes pulse-ring {
+            0% { box-shadow: 0 0 0 0 rgba(54, 89, 66, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(54, 89, 66, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(54, 89, 66, 0); }
         }
 
         .timeline-img-box {
             width: 130px; height: 130px;
             border-radius: 50%; border: 4px solid white;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-            overflow: hidden; flex-shrink: 0; cursor: pointer;
+            /* Aplicamos la nueva animación */
+            animation: pulse-ring 2s infinite;
+            overflow: visible; /* Permitir que salga el icono + */
+            flex-shrink: 0; cursor: pointer;
             position: relative; z-index: 2; background: white;
-            animation: floating 4s ease-in-out infinite;
         }
-        .timeline-item:nth-child(even) .timeline-img-box { animation-delay: 2s; }
+        
+        /* Icono "+" superpuesto */
+        .timeline-img-box::after {
+            content: "+";
+            position: absolute;
+            bottom: 0; right: 0;
+            background-color: var(--nav-bg);
+            color: white;
+            width: 35px; height: 35px;
+            border-radius: 50%;
+            border: 2px solid white;
+            display: flex; justify-content: center; align-items: center;
+            font-size: 1.5rem; font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            z-index: 10;
+        }
 
-        .timeline-img-box img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
+        .timeline-img-box img { 
+            width: 100%; height: 100%; object-fit: cover; 
+            border-radius: 50%; /* Forzar redondeo a la imagen interna */
+            transition: transform 0.3s; 
+            display: block; /* Eliminar espacio fantasma */
+        }
         .timeline-img-box:active img { transform: scale(0.95); }
 
         .img-preboda { object-position: top center !important; }
@@ -307,6 +329,8 @@
 
     <section id="itinerario">
         <h2>Itinerario</h2>
+        <p class="subtitle">Haz clic en las imágenes para ver los detalles</p>
+
         <div class="timeline">
             <div class="timeline-item reveal">
                 <div class="timeline-img-box" onclick="openModal('golf')">
