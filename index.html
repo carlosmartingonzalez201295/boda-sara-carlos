@@ -9,7 +9,7 @@
     
     <style>
         /* --- FUENTES --- */
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600;1,700&family=Montserrat:wght@300;400;500;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600;1,700&family=Montserrat:wght@300;400;500;600&display=swap');
         
         /* --- VARIABLES --- */
         :root { 
@@ -22,8 +22,11 @@
             --pattern-bg: url('https://i.imgur.com/feTyvjy.jpeg'); 
             --paper-texture: url('https://i.imgur.com/0pkprZl.jpeg');
             
-            /* FUENTE ÚNICA PARA TÍTULOS Y PORTADA */
+            /* FUENTE GENERAL */
             --handwriting-font: 'Bradley Hand ITC', 'Bradley Hand', 'Noteworthy', 'Segoe Print', cursive;
+            
+            /* FUENTE PORTADA */
+            --cover-font: 'Great Vibes', cursive;
         }
         
         /* --- RESET Y BASE --- */
@@ -46,34 +49,26 @@
             z-index: -1; pointer-events: none;
         }
 
-        /* --- NAVEGACIÓN --- */
+        /* --- NAVEGACIÓN (BARRA SUPERIOR) --- */
         nav {
-            position: fixed; top: 0; left: 0; width: 100%; 
-            height: 70px; /* Un poco más alto para que quepa bien el logo */
+            position: fixed; top: 0; left: 0; width: 100%; height: 60px; 
             z-index: 1000; padding: 0 20px;
-            display: flex; justify-content: space-between; 
+            display: flex; justify-content: flex-end; 
             align-items: center;
             background-image: var(--paper-texture); 
             background-repeat: repeat;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
-        /* CAMBIO: LOGO CONTENIDO EN EL PANEL */
-        .nav-logo-custom {
-            height: 60px; /* Ocupa casi todo el alto del menú */
-            width: auto;
-            object-fit: contain; /* Asegura que no se deforme */
-            display: block;
-        }
-
         .menu-toggle { font-size: 2rem; color: var(--nav-bg); cursor: pointer; padding: 10px; display: block; }
         
+        /* --- MENÚ DESPLEGABLE --- */
         nav ul {
-            position: fixed; top: 70px; /* Ajustado a la nueva altura del menú */
+            position: fixed; top: 60px; 
             right: 0; 
             width: 300px; 
             max-width: 80%; 
-            height: calc(100vh - 70px);
+            height: calc(100vh - 60px);
             background-image: var(--paper-texture);
             background-repeat: repeat;
             flex-direction: column; align-items: center; justify-content: flex-start;
@@ -102,52 +97,56 @@
         /* --- HERO --- */
         .hero {
             height: 100vh; height: 100dvh; width: 100%;
-            /* Quitamos flex center para usar posicionamiento absoluto */
-            display: block; 
-            position: relative;
+            display: block; position: relative;
             background-image: url('https://i.imgur.com/ODoIZJe.jpeg'); 
             background-size: cover; background-position: 25% 35%; background-repeat: no-repeat;
             overflow: hidden;
         }
 
         .hero::before {
-            content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 50%;
+            content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 60%;
             background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
             z-index: 1;
         }
         
-        /* CAMBIO 1: GRUPO SARA Y CARLOS + FECHA (ARRIBA DERECHA) */
+        /* CAMBIO: AJUSTE DE ESTILO SEGÚN REFERENCIA LAURA Y MATEO */
         .hero-top-right {
             position: absolute;
-            top: 15%; /* Ajusta esto para subir/bajar */
-            right: 8%; /* Ajusta esto para mover izq/der */
-            text-align: right;
+            top: 18%; /* Bajado un poco para que no quede pegado al techo */
+            right: 8%;
+            text-align: right; /* Alineado a la derecha como el ejemplo */
             z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end; /* Alinea los elementos a la derecha dentro del flex */
         }
 
         .hero-names {
             font-family: var(--handwriting-font);
             font-weight: bold;
             color: var(--nav-bg); /* VERDE CORPORATIVO */
-            font-size: 3.5rem; 
+            /* TAMAÑO REDUCIDO PARA PARECERSE AL EJEMPLO */
+            font-size: 2.2rem; 
             line-height: 1;
             margin: 0; padding: 0;
             display: block;
-            /* Sombra blanca suave para que se lea si hay pelo oscuro detrás */
-            text-shadow: 0 0 15px rgba(255,255,255,0.6);
+            text-shadow: 0 0 15px rgba(255,255,255,0.7);
+            letter-spacing: 1px;
+            text-transform: uppercase; /* El ejemplo estaba en mayúsculas */
         }
 
         .hero-date {
             font-family: var(--handwriting-font);
             font-weight: bold;
             color: var(--nav-bg); /* VERDE CORPORATIVO */
-            font-size: 2rem; 
-            margin-top: 5px;
+            /* TAMAÑO MÁS PEQUEÑO Y PROPORCIONADO */
+            font-size: 1.5rem; 
+            margin-top: 2px;
             display: block;
-            text-shadow: 0 0 15px rgba(255,255,255,0.6);
+            text-shadow: 0 0 15px rgba(255,255,255,0.7);
+            letter-spacing: 2px; /* Un poco de aire entre números */
         }
 
-        /* CAMBIO 2: TALAVERA (ABAJO) */
         .hero-bottom-center {
             position: absolute;
             bottom: 40px;
@@ -159,7 +158,6 @@
         .hero-location {
             font-family: var(--handwriting-font);
             font-weight: bold;
-            /* Blanco para leerse sobre el degradado oscuro, verde no se vería bien aquí */
             color: #f0f0f0; 
             font-size: 1.8rem;
             text-shadow: 0 2px 5px rgba(0,0,0,0.5);
@@ -388,8 +386,8 @@
             .hero { background-size: cover; background-position: center 25%; }
             .hero-content { padding-bottom: 60px; }
             
-            .names-title-hero { font-size: 5rem; } 
-            .hero-subtitle { font-size: 2.2rem; }
+            .names-title-hero { font-size: 4rem; } /* Más grande en PC pero sin pasarse */
+            .hero-subtitle { font-size: 2rem; }
 
             .hero-top-right { top: 15%; right: 10%; }
             .hero-bottom-center { bottom: 60px; }
@@ -409,7 +407,6 @@
 <body>
     
     <nav id="navbar">
-        <img src="https://i.imgur.com/OqzTZa8.png" alt="Logo Sara y Carlos" class="nav-logo-custom">
         <div class="menu-toggle" id="mobile-menu">☰</div>
         <ul id="nav-list">
             <li><a href="#inicio">Inicio</a></li>
@@ -424,8 +421,8 @@
 
     <div class="hero" id="inicio">
         <div class="hero-top-right">
-            <span class="hero-names">Sara y Carlos</span>
-            <span class="hero-date">3.10.26</span>
+            <span class="hero-names">SARA Y CARLOS</span>
+            <span class="hero-date">3.10.2026</span>
         </div>
 
         <div class="hero-bottom-center">
