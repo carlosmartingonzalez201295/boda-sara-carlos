@@ -152,9 +152,29 @@
         /* --- BIENVENIDA --- */
         .text-block { text-align: center; font-size: 1rem; color: #555; margin: -20px auto 30px auto; max-width: 90%; line-height: 1.8; }
         
-        /* --- SECCIONES GENERALES --- */
-        section { padding: 40px 20px; width: 100%; max-width: 100%; position: relative; scroll-margin-top: 90px; }
+        /* --- SECCIONES GENERALES Y SEPARADORES SUTILES --- */
+        section { 
+            padding: 40px 20px 60px 20px; /* Más padding abajo para el separador */
+            width: 100%; max-width: 100%; position: relative; scroll-margin-top: 90px; 
+        }
         
+        /* LÍNEA SEPARADORA SUTIL EN VERDE */
+        #itinerario::after,
+        #alojamiento::after,
+        #recomendaciones::after,
+        #dresscode::after,
+        #mapa::after,
+        #confirmacion::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 15%; /* No llega hasta los bordes */
+            width: 70%;
+            height: 1px; /* Línea muy fina */
+            background-color: var(--nav-bg); /* Color verde corporativo */
+            opacity: 0.3; /* Muy sutil */
+        }
+
         h2 { 
             font-family: var(--handwriting-font); font-weight: bold;
             font-size: 3rem; text-align: center; 
@@ -177,7 +197,8 @@
             border-radius: 50%; 
             border: 4px solid white; 
             animation: floating-hard 3s ease-in-out infinite, pulse-ring 2s infinite; 
-            overflow: visible; flex-shrink: 0; cursor: pointer; position: relative; z-index: 2; background: white; 
+            overflow: hidden; /* Importante para el zoom */
+            flex-shrink: 0; cursor: pointer; position: relative; z-index: 2; background: white; 
         }
         
         /* ANILLO ESTAMPADO */
@@ -191,6 +212,13 @@
         .timeline-img-box img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; transition: transform 0.3s; display: block; }
         .timeline-img-box:active img { transform: scale(0.95); }
         .img-preboda { object-position: top center !important; }
+
+        /* ZOOM ESPECÍFICO PARA LA MINIATURA DE LA IGLESIA */
+        /* Se aplica solo a la imagen con ese nombre exacto dentro del círculo */
+        .timeline-img-box img[src*="QDGdxoI.png"] {
+            transform: scale(1.8); /* Zoom fuerte */
+            object-position: center 60%; /* Re-centrar para ver la puerta */
+        }
 
         .timeline-content { width: 55%; padding: 0 10px; display: flex; flex-direction: column; justify-content: center; }
         .timeline-content h3 { font-family: var(--handwriting-font); font-weight: bold; font-size: 1.6rem; color: var(--secondary); margin-bottom: 5px; line-height: 1.1; }
@@ -296,7 +324,7 @@
         }
         .map-unit:last-child { margin-bottom: 0; }
         
-        /* Clase específica para el zoom en la entrada */
+        /* Clase específica para el zoom en la entrada DENTRO DEL MODAL */
         .img-entrada-zoomed {
             width: 100%;
             height: 250px; /* Altura fija */
@@ -529,7 +557,7 @@
         <h2>Dresscode</h2>
         <div class="text-block">
             <p style="font-style: italic; margin-bottom: 20px;">Agradecemos amablemente :)</p>
-            <p><strong>Chicos:</strong> Etiqueta (traje y corbata)</p>
+            <p><strong>Chicos:</strong> Traje y corbata</p>
             <p><strong>Chicas:</strong> Evitar el color blanco</p>
         </div>
     </section>
