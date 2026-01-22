@@ -184,11 +184,12 @@
         /* --- BIENVENIDA --- */
         .text-block { text-align: center; font-size: 1rem; color: #555; margin: -20px auto 30px auto; max-width: 90%; line-height: 1.8; }
         
-        /* CLASE ESPECIAL PARA LA FRASE DESTACADA (VERDE) */
+        /* CLASE ESPECIAL PARA LA FRASE DESTACADA (VERDE Y MANUSCRITO) */
         .highlight-phrase {
             font-family: var(--handwriting-font); /* Fuente de títulos */
             font-weight: bold;
             color: var(--nav-bg); /* COLOR VERDE CORPORATIVO */
+            font-size: 1.3rem;
         }
 
         /* --- SECCIONES GENERALES --- */
@@ -295,6 +296,17 @@
             text-decoration: underline; /* Subrayado para indicar enlace */
         }
         .copy-feedback { display: none; color: var(--nav-bg); font-size: 0.8rem; margin-top: 5px; font-weight: 600; position: absolute; bottom: -25px; left: 50%; transform: translateX(-50%); white-space: nowrap; }
+
+        /* --- DRESSCODE IMAGEN --- */
+        .dresscode-image-container {
+            text-align: center;
+            margin-top: 25px; /* Espacio respecto al texto */
+            margin-bottom: 10px; /* Espacio antes de la línea divisoria */
+        }
+        .dresscode-image-container img {
+            max-width: 200px; /* Tamaño máximo controlado */
+            height: auto;
+        }
 
         /* --- IMAGEN FINAL FOOTER --- */
         .footer-image-container {
@@ -614,9 +626,12 @@
     <section id="dresscode" class="reveal">
         <h2>Dresscode</h2>
         <div class="text-block">
-            <p style="font-style: italic; margin-bottom: 20px;">Agradecemos amablemente :)</p>
+            <p class="highlight-phrase" style="margin-bottom: 15px;">Agradecemos amablemente :)</p>
             <p><strong>Chicos:</strong> Traje y corbata</p>
             <p><strong>Chicas:</strong> Evitar el color blanco</p>
+        </div>
+        <div class="dresscode-image-container">
+            <img src="https://i.imgur.com/BNWsUuS.png" alt="Dresscode iconos">
         </div>
     </section>
 
