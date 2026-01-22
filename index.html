@@ -9,7 +9,7 @@
     
     <style>
         /* --- FUENTES --- */
-        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600;1,700&family=Montserrat:wght@300;400;500;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600;1,700&family=Montserrat:wght@300;400;500;600&display=swap');
         
         /* --- VARIABLES --- */
         :root { 
@@ -22,11 +22,8 @@
             --pattern-bg: url('https://i.imgur.com/feTyvjy.jpeg'); 
             --paper-texture: url('https://i.imgur.com/0pkprZl.jpeg');
             
-            /* FUENTE GENERAL */
+            /* FUENTE ÚNICA PARA TÍTULOS Y PORTADA */
             --handwriting-font: 'Bradley Hand ITC', 'Bradley Hand', 'Noteworthy', 'Segoe Print', cursive;
-            
-            /* FUENTE PORTADA */
-            --cover-font: 'Great Vibes', cursive;
         }
         
         /* --- RESET Y BASE --- */
@@ -49,42 +46,36 @@
             z-index: -1; pointer-events: none;
         }
 
-        /* --- NAVEGACIÓN (BARRA SUPERIOR) --- */
+        /* --- NAVEGACIÓN --- */
         nav {
-            position: fixed; top: 0; left: 0; width: 100%; height: 60px; 
+            position: fixed; top: 0; left: 0; width: 100%; 
+            height: 70px; /* Un poco más alto para que quepa bien el logo */
             z-index: 1000; padding: 0 20px;
-            /* Flexbox para separar Logo (izq) y Menú (der) */
             display: flex; justify-content: space-between; 
             align-items: center;
-            
-            /* FONDO RÚSTICO */
             background-image: var(--paper-texture); 
             background-repeat: repeat;
-            
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
-        /* CAMBIO: LOGO IMAGEN NORMAL */
+        /* CAMBIO: LOGO CONTENIDO EN EL PANEL */
         .nav-logo-custom {
-            height: 50px; /* Altura que cabe en la barra */
-            width: auto;  /* Ancho automático para no deformar */
+            height: 60px; /* Ocupa casi todo el alto del menú */
+            width: auto;
+            object-fit: contain; /* Asegura que no se deforme */
             display: block;
-            margin-top: 5px; /* Pequeño ajuste visual */
         }
 
         .menu-toggle { font-size: 2rem; color: var(--nav-bg); cursor: pointer; padding: 10px; display: block; }
         
-        /* --- MENÚ DESPLEGABLE --- */
         nav ul {
-            position: fixed; top: 60px; 
+            position: fixed; top: 70px; /* Ajustado a la nueva altura del menú */
             right: 0; 
             width: 300px; 
             max-width: 80%; 
-            height: calc(100vh - 60px);
-            
+            height: calc(100vh - 70px);
             background-image: var(--paper-texture);
             background-repeat: repeat;
-            
             flex-direction: column; align-items: center; justify-content: flex-start;
             padding-top: 20px; gap: 0; list-style: none;
             transform: translateX(100%); transition: transform 0.3s ease-in-out;
@@ -111,7 +102,8 @@
         /* --- HERO --- */
         .hero {
             height: 100vh; height: 100dvh; width: 100%;
-            display: flex; flex-direction: column; justify-content: flex-end; align-items: center;
+            /* Quitamos flex center para usar posicionamiento absoluto */
+            display: block; 
             position: relative;
             background-image: url('https://i.imgur.com/ODoIZJe.jpeg'); 
             background-size: cover; background-position: 25% 35%; background-repeat: no-repeat;
@@ -119,41 +111,64 @@
         }
 
         .hero::before {
-            content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 60%;
+            content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 50%;
             background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
             z-index: 1;
         }
         
-        .hero-content {
-            position: relative; z-index: 2; text-align: center; padding-bottom: 50px; width: 100%;
-            display: flex; flex-direction: column; align-items: center; 
+        /* CAMBIO 1: GRUPO SARA Y CARLOS + FECHA (ARRIBA DERECHA) */
+        .hero-top-right {
+            position: absolute;
+            top: 15%; /* Ajusta esto para subir/bajar */
+            right: 8%; /* Ajusta esto para mover izq/der */
+            text-align: right;
+            z-index: 2;
         }
 
-        .names-title-hero {
-            font-family: var(--cover-font); 
-            font-weight: 400;
-            color: #e8f0e0; 
-            font-size: 3rem; 
-            line-height: 1.1;
+        .hero-names {
+            font-family: var(--handwriting-font);
+            font-weight: bold;
+            color: var(--nav-bg); /* VERDE CORPORATIVO */
+            font-size: 3.5rem; 
+            line-height: 1;
+            margin: 0; padding: 0;
             display: block;
-            margin-bottom: 5px;
-            text-shadow: 0 2px 15px rgba(0,0,0,0.6); 
-            text-align: center;
-            width: 100%;
+            /* Sombra blanca suave para que se lea si hay pelo oscuro detrás */
+            text-shadow: 0 0 15px rgba(255,255,255,0.6);
         }
 
-        .hero-subtitle {
-            font-family: var(--cover-font); 
-            font-weight: 400; 
-            color: #e8f0e0; 
-            font-size: 1.8rem; display: block;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.6); 
+        .hero-date {
+            font-family: var(--handwriting-font);
+            font-weight: bold;
+            color: var(--nav-bg); /* VERDE CORPORATIVO */
+            font-size: 2rem; 
+            margin-top: 5px;
+            display: block;
+            text-shadow: 0 0 15px rgba(255,255,255,0.6);
+        }
+
+        /* CAMBIO 2: TALAVERA (ABAJO) */
+        .hero-bottom-center {
+            position: absolute;
+            bottom: 40px;
+            left: 0; width: 100%;
+            text-align: center;
+            z-index: 2;
+        }
+
+        .hero-location {
+            font-family: var(--handwriting-font);
+            font-weight: bold;
+            /* Blanco para leerse sobre el degradado oscuro, verde no se vería bien aquí */
+            color: #f0f0f0; 
+            font-size: 1.8rem;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.5);
             letter-spacing: 1px;
         }
-        
+
         .scroll-indicator { 
-            position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);
-            z-index: 2; animation: bounce 2s infinite; font-size: 2rem; color: #e8f0e0; text-shadow: 0 2px 5px rgba(0,0,0,0.5); 
+            display: block; margin: 10px auto 0 auto;
+            animation: bounce 2s infinite; font-size: 2rem; color: white; text-shadow: 0 2px 5px rgba(0,0,0,0.5); 
         }
 
         /* --- CUENTA ATRÁS --- */
@@ -190,7 +205,7 @@
         }
         .subtitle { display: block; text-align: center; font-size: 0.95rem; color: #555; margin: -30px auto 40px auto; font-style: italic; max-width: 90%; }
 
-        /* --- ITINERARIO (SIN LÍNEAS) --- */
+        /* --- ITINERARIO --- */
         .timeline { position: relative; margin: 40px 0; padding: 0; display: flex; flex-direction: column; gap: 40px; padding-bottom: 20px; }
         .timeline::before { display: none; }
 
@@ -205,7 +220,7 @@
             border: 4px solid white; 
             animation: floating-hard 3s ease-in-out infinite, pulse-ring 2s infinite; 
             position: relative; z-index: 5; 
-            background-color: white; /* FONDO BLANCO */
+            background-color: white; 
             overflow: visible; flex-shrink: 0; cursor: pointer;
             margin-left: auto; margin-right: auto;
         }
@@ -373,8 +388,11 @@
             .hero { background-size: cover; background-position: center 25%; }
             .hero-content { padding-bottom: 60px; }
             
-            .names-title-hero { font-size: 7rem; } 
-            .hero-subtitle { font-size: 2.5rem; }
+            .names-title-hero { font-size: 5rem; } 
+            .hero-subtitle { font-size: 2.2rem; }
+
+            .hero-top-right { top: 15%; right: 10%; }
+            .hero-bottom-center { bottom: 60px; }
             
             .timeline { max-width: 800px; margin: 0 auto; }
             .cards-grid { display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 40px; }
@@ -383,7 +401,6 @@
             .modal-content { width: 90%; max-width: 500px; height: auto; max-height: 85vh; border-radius: 15px; margin: 5% auto; }
             
             .countdown-number { font-size: 3.5rem; }
-            /* Escritorio también muestra imágenes enteras */
             .img-entrada-zoomed { height: 300px; }
             .img-salida-contain { max-height: 300px; }
         }
@@ -406,10 +423,13 @@
     </nav>
 
     <div class="hero" id="inicio">
-        <div class="hero-content">
-            <span class="names-title-hero">Sara y Carlos</span>
-            <span class="hero-subtitle">03.10.2026</span>
-            <span class="hero-subtitle">Talavera de la Reina</span>
+        <div class="hero-top-right">
+            <span class="hero-names">Sara y Carlos</span>
+            <span class="hero-date">3.10.26</span>
+        </div>
+
+        <div class="hero-bottom-center">
+            <span class="hero-location">Talavera de la Reina</span>
             <div class="scroll-indicator">↓</div>
         </div>
     </div>
