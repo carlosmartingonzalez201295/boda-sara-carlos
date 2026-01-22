@@ -20,8 +20,6 @@
             --light: #fff; 
             --nav-bg: #77855C; /* Verde Sage */
             --pattern-bg: url('https://i.imgur.com/feTyvjy.jpeg'); 
-            
-            /* VUELTA A BRADLEY HAND ITC */
             --handwriting-font: 'Bradley Hand ITC', 'Bradley Hand', 'Noteworthy', 'Segoe Print', cursive;
         }
         
@@ -37,7 +35,6 @@
             overflow-x: hidden;
         }
 
-        /* FONDO ESTAMPADO GENERAL */
         body::before {
             content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-image: var(--pattern-bg);
@@ -46,40 +43,46 @@
             z-index: -1; pointer-events: none;
         }
 
-        /* --- NAVEGACIÓN (SIEMPRE HAMBURGUESA) --- */
+        /* --- NAVEGACIÓN (PANEL LATERAL DERECHO) --- */
         nav {
             position: fixed; top: 0; left: 0; width: 100%; height: 60px; 
             z-index: 1000; padding: 0 20px;
-            display: flex; justify-content: flex-end; /* Siempre a la derecha */
+            display: flex; justify-content: flex-end; /* Alineado a la derecha */
             align-items: center;
-            background: var(--nav-bg); 
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        /* El botón siempre visible */
-        .menu-toggle { 
-            font-size: 2rem; color: white; cursor: pointer; padding: 10px; display: block; 
+            background: transparent; /* Fondo transparente inicialmente para que se vea la foto */
+            transition: background 0.3s;
         }
         
-        /* El menú siempre es desplegable */
+        /* Fondo verde al hacer scroll (opcional, o dejarlo siempre verde) */
+        nav.scrolled { background: var(--nav-bg); box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        /* Para asegurar legibilidad siempre, lo dejamos verde fijo */
+        nav { background: var(--nav-bg); box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+
+        .menu-toggle { font-size: 2rem; color: white; cursor: pointer; padding: 10px; display: block; }
+        
         nav ul {
-            position: fixed; top: 60px; left: 0; width: 100%; height: calc(100vh - 60px);
-            background: white; flex-direction: column; align-items: center; justify-content: flex-start;
+            position: fixed; top: 60px; 
+            right: 0; /* Pegado a la derecha */
+            left: auto; /* No ocupa toda la pantalla */
+            width: 300px; /* Ancho del panel */
+            max-width: 80%; /* Para móviles muy pequeños */
+            height: calc(100vh - 60px);
+            background: white; 
+            flex-direction: column; align-items: center; justify-content: flex-start;
             padding-top: 20px; gap: 0; list-style: none;
-            transform: translateX(100%); transition: transform 0.3s ease-in-out;
+            transform: translateX(100%); /* Oculto a la derecha */
+            transition: transform 0.3s ease-in-out;
             display: flex; 
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1); /* Sombra lateral */
         }
-        nav ul.active { transform: translateX(0); }
+        
+        nav ul.active { transform: translateX(0); } /* Se muestra */
         nav li { width: 100%; text-align: center; }
         
         nav a { 
-            display: block; padding: 25px; 
-            font-size: 1.3rem; 
-            color: var(--nav-bg); /* Verde */
+            display: block; padding: 20px; font-size: 1.2rem; color: var(--nav-bg); 
             text-transform: uppercase; letter-spacing: 1px; text-decoration: none;
-            position: relative; 
-            font-family: var(--handwriting-font); 
-            font-weight: bold;
+            position: relative; font-family: var(--handwriting-font); font-weight: bold;
         }
         
         nav a::after {
@@ -87,55 +90,44 @@
             background-image: var(--pattern-bg); background-size: cover; opacity: 0.6; border-radius: 2px;
         }
 
-        /* --- HERO (PORTADA) --- */
+        /* --- HERO --- */
         .hero {
             height: 100vh; height: 100dvh; width: 100%;
             display: flex; flex-direction: column; justify-content: flex-end; align-items: center;
             position: relative;
             background-image: url('https://i.imgur.com/ODoIZJe.jpeg'); 
-            
-            /* Ajuste de imagen (Móvil y Escritorio base) */
-            background-size: cover; 
-            background-position: 25% 35%; /* Mantiene el foco en los novios */
-            background-repeat: no-repeat;
+            background-size: cover; background-position: 25% 35%; background-repeat: no-repeat;
             overflow: hidden;
         }
 
-        /* Quitamos el degradado oscuro porque ahora usamos caja blanca */
-        .hero::before { content: none; }
+        /* Degradado inferior suave para leer el texto blanco */
+        .hero::before {
+            content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 60%;
+            background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
+            z-index: 1;
+        }
         
         .hero-content {
-            position: relative; z-index: 2; text-align: center; 
-            padding-bottom: 60px; width: 100%;
-            display: flex; justify-content: center;
+            position: relative; z-index: 2; text-align: center; padding-bottom: 50px; width: 100%;
         }
 
-        /* CAJA TRANSPARENTE PARA EL TEXTO VERDE */
-        .hero-text-box {
-            background: rgba(255, 255, 255, 0.75); /* Fondo blanco con transparencia */
-            padding: 20px 40px;
-            border-radius: 20px;
-            backdrop-filter: blur(3px);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            max-width: 90%;
-        }
-
-        .hero-title-large {
-            font-family: var(--handwriting-font); 
-            font-weight: bold; 
-            color: var(--nav-bg); /* VERDE CORPORATIVO */
-            font-size: 3.5rem; 
+        .names-title-hero {
+            font-family: var(--handwriting-font);
+            font-weight: bold;
+            color: #fff; /* BLANCO */
+            font-size: 3.5rem; /* Tamaño móvil base */
             line-height: 1;
-            display: block; 
+            display: block;
             margin-bottom: 10px;
+            text-shadow: 0 2px 15px rgba(0,0,0,0.6); /* Sombra fuerte para contraste */
+            white-space: nowrap; /* Mantiene en una línea */
         }
 
         .hero-subtitle {
-            font-family: var(--handwriting-font); 
-            font-weight: bold; 
-            color: var(--nav-bg); /* VERDE CORPORATIVO */
-            font-size: 1.5rem; 
-            display: block;
+            font-family: var(--handwriting-font); font-weight: bold; 
+            color: #fff; /* BLANCO */
+            font-size: 1.4rem; display: block;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.6); 
             letter-spacing: 1px;
         }
         
@@ -146,7 +138,7 @@
 
         /* --- CUENTA ATRÁS --- */
         .countdown-section {
-            padding: 10px 20px 20px 20px; 
+            padding: 30px 20px 10px 20px; 
             display: flex; justify-content: center; align-items: center; 
             gap: 15px; 
             scroll-margin-top: 100px; 
@@ -171,22 +163,18 @@
         /* --- BIENVENIDA --- */
         .text-block { text-align: center; font-size: 1rem; color: #555; margin: -20px auto 30px auto; max-width: 90%; line-height: 1.8; }
         
-        /* --- SECCIONES GENERALES Y SEPARADORES SUTILES --- */
-        section { 
-            padding: 40px 20px 60px 20px; 
-            width: 100%; max-width: 100%; position: relative; scroll-margin-top: 90px; 
-        }
+        /* --- SECCIONES GENERALES --- */
+        section { padding: 40px 20px 60px 20px; width: 100%; max-width: 100%; position: relative; scroll-margin-top: 90px; }
         
+        /* Línea separadora sutil */
         #itinerario::after, #alojamiento::after, #recomendaciones::after, #dresscode::after, #mapa::after, #confirmacion::after {
             content: ''; position: absolute; bottom: 0; left: 15%; width: 70%; height: 1px; 
             background-color: var(--nav-bg); opacity: 0.3;
         }
 
         h2 { 
-            font-family: var(--handwriting-font); 
-            font-weight: bold;
-            font-size: 3rem; 
-            text-align: center; 
+            font-family: var(--handwriting-font); font-weight: bold;
+            font-size: 3rem; text-align: center; 
             margin-bottom: 40px; color: var(--secondary); line-height: 1.1;
             margin-left: auto; margin-right: auto; width: 100%;
         }
@@ -206,7 +194,7 @@
             border-radius: 50%; 
             border: 4px solid white; 
             animation: floating-hard 3s ease-in-out infinite, pulse-ring 2s infinite; 
-            overflow: hidden; /* IMPORTANTE: Para que el zoom no se salga */
+            overflow: hidden; /* IMPORTANTE para el zoom */
             flex-shrink: 0; cursor: pointer; position: relative; z-index: 2; background: white; 
         }
         
@@ -230,14 +218,7 @@
         }
 
         .timeline-content { width: 55%; padding: 0 10px; display: flex; flex-direction: column; justify-content: center; }
-        
-        .timeline-content h3 { 
-            font-family: var(--handwriting-font); 
-            font-weight: bold;
-            font-size: 1.6rem; 
-            color: var(--secondary); margin-bottom: 5px; line-height: 1.1; 
-        }
-        
+        .timeline-content h3 { font-family: var(--handwriting-font); font-weight: bold; font-size: 1.6rem; color: var(--secondary); margin-bottom: 5px; line-height: 1.1; }
         .timeline-content p { font-size: 0.9rem; margin-bottom: 2px; color: #555; }
         .timeline-item:nth-child(odd) { flex-direction: row; }
         .timeline-item:nth-child(odd) .timeline-content { text-align: left; padding-left: 15px; }
@@ -250,13 +231,7 @@
         .card-img { width: 100%; height: 200px; object-fit: cover; border-radius: 15px; margin-top: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.15); transition: box-shadow 0.3s ease; }
         .card:hover { transform: translateY(-5px); }
         .card:hover .card-img { box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
-        
-        .card h3 { 
-            font-family: var(--handwriting-font); 
-            font-weight: bold;
-            font-size: 2rem; 
-            color: var(--secondary); margin-bottom: 10px; 
-        }
+        .card h3 { font-family: var(--handwriting-font); font-weight: bold; font-size: 2rem; color: var(--secondary); margin-bottom: 10px; }
         .card p { color: #555; font-size: 0.95rem; }
 
         /* --- SUBTÍTULO TAPEO --- */
@@ -319,19 +294,12 @@
 
         .modal-header-img { width: 100%; height: auto; max-height: 400px; object-fit: contain; border-radius: 15px; margin-bottom: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
         .modal-info-center { text-align: center; margin-bottom: 20px; width: 100%; }
-        
-        .modal-info-center h3 { 
-            font-family: var(--handwriting-font); 
-            font-weight: bold; 
-            font-size: 2.2rem; 
-            color: var(--secondary); margin-bottom: 5px; 
-        }
-        
+        .modal-info-center h3 { font-family: var(--handwriting-font); font-weight: bold; font-size: 2.2rem; color: var(--secondary); margin-bottom: 5px; }
         .modal-info-center p { color: #444; font-weight: 500; margin-bottom: 5px; }
         .modal-info-center .address { color: #888; font-size: 0.9rem; font-style: italic; }
         .modal-desc-justify { text-align: justify; color: #666; font-size: 0.95rem; width: 100%; margin-bottom: 20px; }
         
-        /* --- ESTILOS ESPECÍFICOS MODAL CEREMONIA --- */
+        /* --- ESTILOS ESPECÍFICOS PARA EL MODAL CEREMONIA --- */
         .ceremonia-maps-white-bg {
             background: white; padding: 25px 15px; border-radius: 15px; box-shadow: 0 5px 25px rgba(0,0,0,0.1); 
             margin-bottom: 30px; width: 100%; display: flex; flex-direction: column; align-items: center;
@@ -358,22 +326,16 @@
         @media (min-width: 769px) {
             nav { padding: 0 50px; justify-content: center; } 
             
-            /* FORZAMOS HAMBURGUESA EN ESCRITORIO TAMBIÉN */
-            nav ul { position: fixed; top: 60px; left: 0; width: 100%; height: calc(100vh - 60px); background: white; flex-direction: column; padding-top: 20px; transform: translateX(100%); display: flex; }
-            nav ul.active { transform: translateX(0); }
-            nav li { width: 100%; text-align: center; margin: 0; }
-            nav a { color: var(--nav-bg); padding: 25px; font-size: 1.3rem; border: none; }
-            .menu-toggle { display: block; } /* Hamburguesa visible siempre */
+            /* MENU ESCRITORIO = PANEL LATERAL */
+            .menu-toggle { display: block; }
+            nav ul { width: 350px; } /* Un poco más ancho en escritorio */
 
             .hero { background-size: cover; background-position: center 25%; }
             .hero-content { padding-bottom: 60px; }
             
-            .hero-title-large { font-size: 5rem; }
+            .names-title-hero { font-size: 6rem; }
             .hero-subtitle { font-size: 2rem; }
             
-            /* Nombres en escritorio */
-            .names-title { font-size: 5rem; margin-top: 50px; }
-
             .timeline { max-width: 800px; margin: 0 auto; }
             .cards-grid { display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 40px; }
             .card { width: 28%; display: flex; flex-direction: column; justify-content: space-between; }
@@ -402,11 +364,9 @@
 
     <div class="hero" id="inicio">
         <div class="hero-content">
-            <div class="hero-text-box">
-                <span class="hero-title-large">Sara y Carlos</span>
-                <span class="hero-subtitle">03.10.2026</span>
-                <span class="hero-subtitle">Talavera de la Reina</span>
-            </div>
+            <span class="names-title-hero">Sara y Carlos</span>
+            <span class="hero-subtitle">03.10.2026</span>
+            <span class="hero-subtitle">Talavera de la Reina</span>
             <div class="scroll-indicator">↓</div>
         </div>
     </div>
@@ -425,6 +385,8 @@
             <p>¡Nos vemos muy pronto!</p>
         </div>
     </section>
+
+    <div style="text-align:center; font-size:1.5rem; color:var(--nav-bg); opacity:0.6; margin: 20px 0;">🌿</div>
 
     <section id="itinerario">
         <h2>Itinerario</h2>
