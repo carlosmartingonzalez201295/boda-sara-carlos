@@ -9,8 +9,7 @@
     
     <style>
         /* --- FUENTES --- */
-        /* Importamos Montserrat y GREAT VIBES (Estilo Dafont/Caligrafía) */
-        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600;1,700&family=Montserrat:wght@300;400;500;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600;1,700&family=Montserrat:wght@300;400;500;600&display=swap');
         
         /* --- VARIABLES --- */
         :root { 
@@ -22,8 +21,8 @@
             --nav-bg: #77855C; /* Verde Sage */
             --pattern-bg: url('https://i.imgur.com/feTyvjy.jpeg'); 
             
-            /* FUENTE ESTILO DAFONT (Script elegante) */
-            --script-font: 'Great Vibes', cursive;
+            /* VUELTA A BRADLEY HAND ITC */
+            --handwriting-font: 'Bradley Hand ITC', 'Bradley Hand', 'Noteworthy', 'Segoe Print', cursive;
         }
         
         /* --- RESET Y BASE --- */
@@ -47,18 +46,22 @@
             z-index: -1; pointer-events: none;
         }
 
-        /* --- NAVEGACIÓN --- */
+        /* --- NAVEGACIÓN (SIEMPRE HAMBURGUESA) --- */
         nav {
             position: fixed; top: 0; left: 0; width: 100%; height: 60px; 
             z-index: 1000; padding: 0 20px;
-            display: flex; justify-content: flex-end; 
+            display: flex; justify-content: flex-end; /* Siempre a la derecha */
             align-items: center;
             background: var(--nav-bg); 
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
-        .menu-toggle { font-size: 2rem; color: white; cursor: pointer; padding: 10px; }
+        /* El botón siempre visible */
+        .menu-toggle { 
+            font-size: 2rem; color: white; cursor: pointer; padding: 10px; display: block; 
+        }
         
+        /* El menú siempre es desplegable */
         nav ul {
             position: fixed; top: 60px; left: 0; width: 100%; height: calc(100vh - 60px);
             background: white; flex-direction: column; align-items: center; justify-content: flex-start;
@@ -71,13 +74,12 @@
         
         nav a { 
             display: block; padding: 25px; 
-            font-size: 1.8rem; /* Aumentado para la letra script */
-            color: var(--nav-bg); 
-            text-decoration: none;
+            font-size: 1.3rem; 
+            color: var(--nav-bg); /* Verde */
+            text-transform: uppercase; letter-spacing: 1px; text-decoration: none;
             position: relative; 
-            font-family: var(--script-font); 
-            font-weight: 400; /* No necesita negrita, se emborrona */
-            letter-spacing: 1px;
+            font-family: var(--handwriting-font); 
+            font-weight: bold;
         }
         
         nav a::after {
@@ -85,42 +87,56 @@
             background-image: var(--pattern-bg); background-size: cover; opacity: 0.6; border-radius: 2px;
         }
 
-        /* --- HERO --- */
+        /* --- HERO (PORTADA) --- */
         .hero {
             height: 100vh; height: 100dvh; width: 100%;
             display: flex; flex-direction: column; justify-content: flex-end; align-items: center;
             position: relative;
             background-image: url('https://i.imgur.com/ODoIZJe.jpeg'); 
-            background-size: cover; background-position: 25% 35%; background-repeat: no-repeat;
+            
+            /* Ajuste de imagen (Móvil y Escritorio base) */
+            background-size: cover; 
+            background-position: 25% 35%; /* Mantiene el foco en los novios */
+            background-repeat: no-repeat;
             overflow: hidden;
         }
 
-        .hero::before {
-            content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 50%;
-            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
-            z-index: 1;
-        }
+        /* Quitamos el degradado oscuro porque ahora usamos caja blanca */
+        .hero::before { content: none; }
         
         .hero-content {
-            position: relative; z-index: 2; text-align: center; padding-bottom: 40px; width: 100%;
+            position: relative; z-index: 2; text-align: center; 
+            padding-bottom: 60px; width: 100%;
+            display: flex; justify-content: center;
+        }
+
+        /* CAJA TRANSPARENTE PARA EL TEXTO VERDE */
+        .hero-text-box {
+            background: rgba(255, 255, 255, 0.75); /* Fondo blanco con transparencia */
+            padding: 20px 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(3px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            max-width: 90%;
         }
 
         .hero-title-large {
-            font-family: var(--script-font); 
-            font-weight: 400; 
-            color: #fff; 
-            font-size: 4rem; /* Más grande */
+            font-family: var(--handwriting-font); 
+            font-weight: bold; 
+            color: var(--nav-bg); /* VERDE CORPORATIVO */
+            font-size: 3.5rem; 
             line-height: 1;
-            display: block; text-shadow: 0 2px 10px rgba(0,0,0,0.3); margin-bottom: 5px;
+            display: block; 
+            margin-bottom: 10px;
         }
 
         .hero-subtitle {
-            font-family: var(--script-font); 
-            font-weight: 400; 
-            color: #fff; 
-            font-size: 2rem; 
+            font-family: var(--handwriting-font); 
+            font-weight: bold; 
+            color: var(--nav-bg); /* VERDE CORPORATIVO */
+            font-size: 1.5rem; 
             display: block;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3); letter-spacing: 1px;
+            letter-spacing: 1px;
         }
         
         .scroll-indicator { 
@@ -128,40 +144,28 @@
             z-index: 2; animation: bounce 2s infinite; font-size: 2rem; color: white; text-shadow: 0 2px 5px rgba(0,0,0,0.5); 
         }
 
-        /* --- NOMBRES SARA Y CARLOS --- */
-        .names-title {
-            font-family: var(--script-font);
-            font-weight: 400;
-            color: var(--nav-bg); 
-            font-size: 5rem; /* Bien grande */
-            text-align: center;
-            margin-top: 30px;
-            margin-bottom: 0px;
-            line-height: 1;
-            display: block;
-        }
-
         /* --- CUENTA ATRÁS --- */
         .countdown-section {
             padding: 10px 20px 20px 20px; 
             display: flex; justify-content: center; align-items: center; 
-            gap: 20px; 
+            gap: 15px; 
             scroll-margin-top: 100px; 
             background-color: transparent;
         }
         .countdown-item { display: flex; flex-direction: column; align-items: center; }
         
         .countdown-number { 
-            font-family: var(--script-font); /* AHORA EN SCRIPT */
-            font-size: 3rem; 
+            font-family: 'Cormorant Garamond', serif; 
+            font-size: 2.5rem; 
             color: var(--nav-bg); 
+            font-weight: 700;
             line-height: 1; 
             background: transparent; box-shadow: none; border: none;
             width: auto; height: auto; margin-bottom: 0;
         }
         
         .countdown-label { 
-            font-family: 'Montserrat', sans-serif; font-size: 0.65rem; letter-spacing: 1px; color: #555; margin-top: -5px; text-transform: uppercase; font-weight: 600;
+            font-family: 'Montserrat', sans-serif; font-size: 0.65rem; letter-spacing: 1px; color: #555; margin-top: 2px; text-transform: uppercase; font-weight: 600;
         }
 
         /* --- BIENVENIDA --- */
@@ -173,18 +177,17 @@
             width: 100%; max-width: 100%; position: relative; scroll-margin-top: 90px; 
         }
         
-        /* Separadores sutiles al final de cada sección */
         #itinerario::after, #alojamiento::after, #recomendaciones::after, #dresscode::after, #mapa::after, #confirmacion::after {
             content: ''; position: absolute; bottom: 0; left: 15%; width: 70%; height: 1px; 
             background-color: var(--nav-bg); opacity: 0.3;
         }
 
         h2 { 
-            font-family: var(--script-font); 
-            font-weight: 400;
-            font-size: 4rem; /* Ajustado para Great Vibes */
+            font-family: var(--handwriting-font); 
+            font-weight: bold;
+            font-size: 3rem; 
             text-align: center; 
-            margin-bottom: 30px; color: var(--secondary); line-height: 1;
+            margin-bottom: 40px; color: var(--secondary); line-height: 1.1;
             margin-left: auto; margin-right: auto; width: 100%;
         }
         .subtitle { display: block; text-align: center; font-size: 0.95rem; color: #555; margin: -30px auto 40px auto; font-style: italic; max-width: 90%; }
@@ -203,7 +206,7 @@
             border-radius: 50%; 
             border: 4px solid white; 
             animation: floating-hard 3s ease-in-out infinite, pulse-ring 2s infinite; 
-            overflow: hidden; /* IMPORTANTE para el zoom */
+            overflow: hidden; /* IMPORTANTE: Para que el zoom no se salga */
             flex-shrink: 0; cursor: pointer; position: relative; z-index: 2; background: white; 
         }
         
@@ -220,7 +223,7 @@
         .timeline-img-box:active img { transform: scale(0.95); }
         .img-preboda { object-position: top center !important; }
 
-        /* ZOOM ESPECÍFICO IGLESIA (SOLO DESDE FUERA) */
+        /* ZOOM ESPECÍFICO PARA LA MINIATURA DE LA IGLESIA (SOLO DESDE FUERA) */
         .timeline-img-box img[src*="QDGdxoI.png"] {
             transform: scale(1.8); 
             object-position: center 60%;
@@ -229,10 +232,10 @@
         .timeline-content { width: 55%; padding: 0 10px; display: flex; flex-direction: column; justify-content: center; }
         
         .timeline-content h3 { 
-            font-family: var(--script-font); 
-            font-weight: 400;
-            font-size: 2rem; 
-            color: var(--secondary); margin-bottom: 0px; line-height: 1; 
+            font-family: var(--handwriting-font); 
+            font-weight: bold;
+            font-size: 1.6rem; 
+            color: var(--secondary); margin-bottom: 5px; line-height: 1.1; 
         }
         
         .timeline-content p { font-size: 0.9rem; margin-bottom: 2px; color: #555; }
@@ -249,31 +252,30 @@
         .card:hover .card-img { box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
         
         .card h3 { 
-            font-family: var(--script-font); 
-            font-weight: 400;
-            font-size: 2.5rem; 
-            color: var(--secondary); margin-bottom: 5px; 
+            font-family: var(--handwriting-font); 
+            font-weight: bold;
+            font-size: 2rem; 
+            color: var(--secondary); margin-bottom: 10px; 
         }
         .card p { color: #555; font-size: 0.95rem; }
 
         /* --- SUBTÍTULO TAPEO --- */
         .tapeo-subtitle {
-            font-family: var(--script-font); font-weight: 400; font-size: 1.8rem; color: var(--secondary); text-align: center; margin-bottom: 20px; display: block;
+            font-family: var(--handwriting-font); font-weight: bold; font-size: 1.3rem; color: var(--secondary); text-align: center; margin-bottom: 20px; display: block;
         }
 
         /* --- CAJA IBAN --- */
         .iban-wrapper { margin-top: 25px; display: inline-block; cursor: pointer; position: relative; width: 100%; max-width: 400px; }
         .iban-box { border: 2px solid var(--nav-bg); background: white; padding: 10px 15px; border-radius: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: background 0.3s, transform 0.2s; }
         .iban-box:active { background: #f0f0f0; transform: scale(0.98); } 
-        /* IBAN legible en Cormorant, o Script si prefieres */
-        .iban-text { font-family: var(--script-font); font-weight: 400; font-size: 2rem; color: var(--secondary); letter-spacing: 0.5px; white-space: nowrap; }
+        .iban-text { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 1.1rem; color: var(--secondary); letter-spacing: 0.5px; white-space: nowrap; }
         .copy-link { font-size: 0.7rem; color: var(--nav-bg); font-weight: 700; text-transform: uppercase; margin-top: 5px; font-family: 'Montserrat', sans-serif; }
         .copy-feedback { display: none; color: var(--nav-bg); font-size: 0.8rem; margin-top: 5px; font-weight: 600; position: absolute; bottom: -25px; left: 50%; transform: translateX(-50%); white-space: nowrap; }
 
         /* --- MAPA --- */
         #map { height: 450px; width: 100%; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); margin-bottom: 20px; z-index: 1; }
         .leaflet-popup-content-wrapper { border-radius: 10px; font-family: 'Montserrat', sans-serif; }
-        .leaflet-popup-content h3 { color: var(--secondary); margin: 0 0 5px 0; font-family: var(--script-font); font-size: 1.8rem; }
+        .leaflet-popup-content h3 { color: var(--secondary); margin: 0 0 5px 0; font-family: var(--handwriting-font); font-weight: bold; font-size: 1.4rem; }
         .leaflet-popup-content p { margin: 0; color: #555; font-size: 0.9rem; margin-bottom: 5px; }
         .leaflet-popup-content .address { font-size: 0.8rem; color: #888; border-top: 1px solid #eee; padding-top: 5px; font-style: italic; }
         .custom-pin-marker { display: flex; justify-content: center; align-items: center; font-size: 2.5rem; text-shadow: 0 2px 5px rgba(0,0,0,0.3); }
@@ -292,14 +294,13 @@
         }
         
         button { 
-            padding: 16px; font-size: 1.8rem; border-radius: 10px; 
+            padding: 16px; font-size: 1.3rem; border-radius: 10px; 
             background: var(--nav-bg); 
-            color: white; 
+            color: white; font-weight: bold; 
             box-shadow: 0 4px 10px rgba(84, 98, 57, 0.3); 
             border: none; width: 100%; cursor: pointer;
             transition: transform 0.2s, box-shadow 0.2s;
-            /* BOTÓN EN FORMATO DAFONT/SCRIPT */
-            font-family: var(--script-font);
+            font-family: var(--handwriting-font);
             letter-spacing: 1px;
         }
         button:hover { transform: translateY(-2px); box-shadow: 0 6px 15px rgba(84, 98, 57, 0.4); }
@@ -320,8 +321,9 @@
         .modal-info-center { text-align: center; margin-bottom: 20px; width: 100%; }
         
         .modal-info-center h3 { 
-            font-family: var(--script-font); 
-            font-size: 2.5rem; 
+            font-family: var(--handwriting-font); 
+            font-weight: bold; 
+            font-size: 2.2rem; 
             color: var(--secondary); margin-bottom: 5px; 
         }
         
@@ -343,7 +345,7 @@
         .map-overlay-label {
             position: absolute; bottom: 0; left: 0; width: 100%;
             background: rgba(255,255,255,0.85); color: var(--nav-bg);
-            font-family: var(--script-font); font-size: 1.5rem; 
+            font-family: var(--handwriting-font); font-weight: bold; font-size: 1.1rem; 
             padding: 5px 0; backdrop-filter: blur(2px); z-index: 2;
         }
 
@@ -355,17 +357,22 @@
         /* --- MEDIA QUERY ESCRITORIO --- */
         @media (min-width: 769px) {
             nav { padding: 0 50px; justify-content: center; } 
-            nav a::after { content: none; } 
-            nav ul { position: static; height: auto; width: auto; flex-direction: row; background: transparent; transform: none; padding: 0; box-shadow: none; justify-content: center; }
-            nav li { width: auto; margin: 0 15px; }
-            nav a { color: white !important; border: none; padding: 10px 15px; font-size: 1.5rem; } 
-            .menu-toggle { display: none; }
+            
+            /* FORZAMOS HAMBURGUESA EN ESCRITORIO TAMBIÉN */
+            nav ul { position: fixed; top: 60px; left: 0; width: 100%; height: calc(100vh - 60px); background: white; flex-direction: column; padding-top: 20px; transform: translateX(100%); display: flex; }
+            nav ul.active { transform: translateX(0); }
+            nav li { width: 100%; text-align: center; margin: 0; }
+            nav a { color: var(--nav-bg); padding: 25px; font-size: 1.3rem; border: none; }
+            .menu-toggle { display: block; } /* Hamburguesa visible siempre */
 
             .hero { background-size: cover; background-position: center 25%; }
             .hero-content { padding-bottom: 60px; }
-            .hero-title-large { font-size: 6rem; }
-            .hero-subtitle { font-size: 3rem; }
-            .names-title { font-size: 7rem; margin-top: 50px; }
+            
+            .hero-title-large { font-size: 5rem; }
+            .hero-subtitle { font-size: 2rem; }
+            
+            /* Nombres en escritorio */
+            .names-title { font-size: 5rem; margin-top: 50px; }
 
             .timeline { max-width: 800px; margin: 0 auto; }
             .cards-grid { display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 40px; }
@@ -373,7 +380,7 @@
             .card-img { margin-top: auto; }
             .modal-content { width: 90%; max-width: 500px; height: auto; max-height: 85vh; border-radius: 15px; margin: 5% auto; }
             
-            .countdown-number { font-size: 4rem; }
+            .countdown-number { font-size: 3.5rem; }
             .img-entrada-zoomed, .img-salida-contain { height: 300px; max-height: 300px; }
         }
     </style>
@@ -395,14 +402,14 @@
 
     <div class="hero" id="inicio">
         <div class="hero-content">
-            <span class="hero-title-large">¡Nos casamos!</span>
-            <span class="hero-subtitle">03.10.2026</span>
-            <span class="hero-subtitle">Talavera de la Reina</span>
+            <div class="hero-text-box">
+                <span class="hero-title-large">Sara y Carlos</span>
+                <span class="hero-subtitle">03.10.2026</span>
+                <span class="hero-subtitle">Talavera de la Reina</span>
+            </div>
             <div class="scroll-indicator">↓</div>
         </div>
     </div>
-
-    <h1 class="names-title reveal">Sara y Carlos</h1>
 
     <div id="cuenta-atras" class="countdown-section reveal">
         <div class="countdown-item"><span class="countdown-number" id="d-val">0</span><span class="countdown-label">Días</span></div>
