@@ -18,7 +18,7 @@
             --accent: #faf8f5; 
             --dark: #3d3d3d; 
             --light: #fff; 
-            --nav-bg: #77855C; /* Verde Sage */
+            --nav-bg: #77855C; /* Verde Sage CORPORATIVO */
             --pattern-bg: url('https://i.imgur.com/feTyvjy.jpeg'); 
             --paper-texture: url('https://i.imgur.com/0pkprZl.jpeg');
             
@@ -297,15 +297,38 @@
         }
         .copy-feedback { display: none; color: var(--nav-bg); font-size: 0.8rem; margin-top: 5px; font-weight: 600; position: absolute; bottom: -25px; left: 50%; transform: translateX(-50%); white-space: nowrap; }
 
-        /* --- DRESSCODE IMAGEN --- */
+        /* --- NUEVOS ESTILOS PARA LAS IMÁGENES DECORATIVAS --- */
+        
+        /* Filtro CSS para intentar aproximar el negro al verde corporativo #77855C */
+        .corporate-green-filter {
+            filter: invert(53%) sepia(18%) saturate(882%) hue-rotate(66deg) brightness(92%) contrast(86%);
+            opacity: 0.9; /* Un poco de transparencia para que se integre mejor */
+        }
+
+        /* Imagen bienvenida (debajo de Sara y Carlos) */
+        .welcome-image-container {
+            text-align: center;
+            margin-top: 5px; /* Espacio mínimo */
+            margin-bottom: 0;
+            line-height: 0;
+        }
+        .welcome-image-container img {
+            max-width: 130px; /* Tamaño contenido */
+            height: auto;
+        }
+
+        /* Imagen Dresscode (pegada a la línea) */
         .dresscode-image-container {
             text-align: center;
-            margin-top: 25px; /* Espacio respecto al texto */
-            margin-bottom: 10px; /* Espacio antes de la línea divisoria */
+            margin-top: 5px; /* Espacio mínimo respecto al texto */
+            margin-bottom: 0px; /* PEGADO a la línea de abajo (sin margen) */
+            padding-bottom: 0;
+            line-height: 0;
         }
         .dresscode-image-container img {
-            max-width: 200px; /* Tamaño máximo controlado */
+            max-width: 180px; /* Tamaño contenido para que no agrande la sección */
             height: auto;
+            display: inline-block;
         }
 
         /* --- IMAGEN FINAL FOOTER --- */
@@ -501,6 +524,9 @@
             <p>En esta forma de ser, tan real y tan compartida, es donde aquí empieza mucho.</p>
             <p>¡Nos vemos muy pronto!</p>
             <p class="highlight-phrase" style="margin-top: 15px;">Sara y Carlos</p>
+            <div class="welcome-image-container">
+                <img src="https://i.imgur.com/UdtlBYY.png" alt="Adorno" class="corporate-green-filter">
+            </div>
         </div>
     </section>
 
@@ -631,7 +657,7 @@
             <p><strong>Chicas:</strong> Evitar el color blanco</p>
         </div>
         <div class="dresscode-image-container">
-            <img src="https://i.imgur.com/BNWsUuS.png" alt="Dresscode iconos">
+            <img src="https://i.imgur.com/BNWsUuS.png" alt="Dresscode iconos" class="corporate-green-filter">
         </div>
     </section>
 
