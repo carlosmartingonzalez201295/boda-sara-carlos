@@ -22,6 +22,9 @@
             --pattern-bg: url('https://i.imgur.com/feTyvjy.jpeg'); 
             --paper-texture: url('https://i.imgur.com/0pkprZl.jpeg');
             
+            /* NUEVA VARIABLE PARA EL FONDO DE LA BARRA SUPERIOR */
+            --nav-bar-texture: url('https://i.imgur.com/Pjpx05k.jpeg');
+            
             /* FUENTE GENERAL */
             --handwriting-font: 'Bradley Hand ITC', 'Bradley Hand', 'Noteworthy', 'Segoe Print', cursive;
             
@@ -49,24 +52,26 @@
             z-index: -1; pointer-events: none;
         }
 
-        /* --- NAVEGACIÓN --- */
+        /* --- NAVEGACIÓN (BARRA SUPERIOR) --- */
         nav {
             position: fixed; top: 0; left: 0; width: 100%; height: 60px; 
             z-index: 1000; padding: 0 20px;
-            display: flex; justify-content: space-between; /* Separar Logo y Menú */
+            display: flex; justify-content: space-between; 
             align-items: center;
-            background-image: var(--paper-texture); 
+            
+            /* CAMBIO: AQUI APLICAMOS LA NUEVA TEXTURA SOLO A LA BARRA */
+            background-image: var(--nav-bar-texture); 
             background-repeat: repeat;
+            background-size: cover; /* Para que cubra bien la barra */
+            
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
-        /* LOGO CORREGIDO CON MÁSCARA CSS */
+        /* LOGO CON MÁSCARA CSS */
         .nav-logo-mask {
             width: 55px;
             height: 55px;
-            /* El color de fondo es el color que tendrá el logo */
             background-color: var(--nav-bg);
-            /* La imagen se usa para recortar el fondo */
             -webkit-mask-image: url('https://i.imgur.com/JyieK60.png');
             mask-image: url('https://i.imgur.com/JyieK60.png');
             -webkit-mask-size: contain;
@@ -79,14 +84,18 @@
 
         .menu-toggle { font-size: 2rem; color: var(--nav-bg); cursor: pointer; padding: 10px; display: block; }
         
+        /* --- MENÚ DESPLEGABLE (Mantiene el papel rústico anterior) --- */
         nav ul {
             position: fixed; top: 60px; 
             right: 0; 
             width: 300px; 
             max-width: 80%; 
             height: calc(100vh - 60px);
+            
+            /* ESTE SE QUEDA CON EL PAPEL RÚSTICO CLARO */
             background-image: var(--paper-texture);
             background-repeat: repeat;
+            
             flex-direction: column; align-items: center; justify-content: flex-start;
             padding-top: 20px; gap: 0; list-style: none;
             transform: translateX(100%); transition: transform 0.3s ease-in-out;
@@ -207,8 +216,7 @@
             border: 4px solid white; 
             animation: floating-hard 3s ease-in-out infinite, pulse-ring 2s infinite; 
             position: relative; z-index: 5; 
-            /* CAMBIO: FONDO BLANCO RESTAURADO */
-            background-color: white;
+            background-color: white; /* FONDO BLANCO RESTAURADO */
             overflow: visible; flex-shrink: 0; cursor: pointer;
             margin-left: auto; margin-right: auto;
         }
@@ -225,7 +233,6 @@
         .timeline-img-box:active .timeline-img-clipper img { transform: scale(0.95); }
         .img-preboda { object-position: top center !important; }
         
-        /* Zoom específico para la iglesia desde fuera (sin cambios) */
         .timeline-img-clipper img[src*="QDGdxoI.png"] { transform: scale(1.8); object-position: center 60%; }
 
         .timeline-content { width: 55%; padding: 0 10px; display: flex; flex-direction: column; justify-content: center; position: relative; z-index: 3; }
@@ -330,9 +337,8 @@
         .modal-info-center .address { color: #888; font-size: 0.9rem; font-style: italic; }
         .modal-desc-justify { text-align: justify; color: #666; font-size: 0.95rem; width: 100%; margin-bottom: 20px; }
         
-        /* ESTILOS CEREMONIA MAPS - CAJA BLANCA PARA FOTOS DENTRO DEL MODAL */
+        /* ESTILOS CEREMONIA MAPS */
         .ceremonia-maps-white-bg {
-            /* CAMBIO: Restaurado el fondo blanco para que las fotos de la iglesia resalten */
             background: white; 
             padding: 25px 15px; border-radius: 15px; box-shadow: 0 5px 25px rgba(0,0,0,0.1); 
             margin-bottom: 30px; width: 100%; display: flex; flex-direction: column; align-items: center;
@@ -340,21 +346,20 @@
         .map-unit { width: 100%; margin-bottom: 30px; text-align: center; overflow: hidden; border-radius: 10px; position: relative; }
         .map-unit:last-child { margin-bottom: 0; }
         
-        /* CAMBIO: Imagenes de mapas con estilos diferenciados */
         .img-entrada-zoomed {
             width: 100%;
-            height: 250px; /* Altura fija para que el zoom funcione */
-            object-fit: cover; /* Cubrir el área */
-            object-position: center 60%; /* Centrar en la puerta */
-            transform: scale(1.25); /* Zoom restaurado */
+            height: 250px; 
+            object-fit: cover; 
+            object-position: center 60%; 
+            transform: scale(1.25); 
             display: block;
         }
 
         .img-salida-contain {
             width: 100%;
             height: auto;
-            max-height: 250px; /* Altura máxima */
-            object-fit: contain; /* Se ve entera */
+            max-height: 250px; 
+            object-fit: contain; 
             display: block;
         }
 
@@ -389,7 +394,7 @@
             .modal-content { width: 90%; max-width: 500px; height: auto; max-height: 85vh; border-radius: 15px; margin: 5% auto; }
             
             .countdown-number { font-size: 3.5rem; }
-            /* Ajustes de altura para escritorio en el modal de ceremonia */
+            /* Escritorio también muestra imágenes enteras */
             .img-entrada-zoomed { height: 300px; }
             .img-salida-contain { max-height: 300px; }
         }
