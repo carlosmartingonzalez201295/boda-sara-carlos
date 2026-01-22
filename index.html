@@ -18,7 +18,7 @@
             --accent: #faf8f5; 
             --dark: #3d3d3d; 
             --light: #fff; 
-            --nav-bg: #77855C; /* Verde Sage CORPORATIVO */
+            --nav-bg: #77855C; /* Verde Sage */
             --pattern-bg: url('https://i.imgur.com/feTyvjy.jpeg'); 
             --paper-texture: url('https://i.imgur.com/0pkprZl.jpeg');
             
@@ -53,12 +53,9 @@
         nav {
             position: fixed; top: 0; left: 0; width: 100%; height: 60px; 
             z-index: 1000; padding: 0 15px;
-            
-            /* Layout para centrar logo y poner menú a la derecha */
             display: flex; 
-            justify-content: center; /* Centra el contenido principal (el logo) */
+            justify-content: center; 
             align-items: center;
-            
             background-image: var(--paper-texture); 
             background-repeat: repeat;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
@@ -66,19 +63,15 @@
 
         /* LOGO TRANSPARENTE CORRECTO CENTRADO */
         .nav-logo-stamp {
-            height: 55px; /* Casi todo el alto del menú */
+            height: 55px; 
             width: auto;
-            
-            /* Posicionamiento absoluto para garantizar el centro exacto */
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
-            top: 2.5px; /* Centrado vertical */
-            
+            top: 2.5px; 
             z-index: 1001;
         }
 
-        /* El botón del menú se va a la derecha de forma absoluta */
         .menu-toggle { 
             font-size: 2rem; 
             color: var(--nav-bg); 
@@ -86,7 +79,7 @@
             padding: 10px; 
             display: block; 
             position: absolute; 
-            right: 15px; /* Pegado a la derecha */
+            right: 15px; 
             z-index: 1002; 
         }
         
@@ -122,7 +115,7 @@
             background-image: var(--pattern-bg); background-size: cover; opacity: 0.6; border-radius: 2px;
         }
 
-        /* --- HERO (PORTADA LIMPIA) --- */
+        /* --- HERO --- */
         .hero {
             height: 100vh; height: 100dvh; width: 100%;
             display: flex; flex-direction: column; justify-content: flex-end; align-items: center;
@@ -148,15 +141,14 @@
             z-index: 2; animation: bounce 2s infinite; font-size: 2rem; color: #fff; text-shadow: 0 2px 5px rgba(0,0,0,0.5); 
         }
 
-        /* --- BANNER DE TEXTO ENTRE FOTO Y CUENTA ATRÁS --- */
+        /* --- TEXTO INTRODUCCIÓN --- */
         .intro-text-banner {
             text-align: center;
-            /* Espacio arriba, pegado a la cuenta atrás abajo */
             padding: 40px 20px 0px 20px; 
             font-family: var(--handwriting-font);
             font-weight: bold;
             color: var(--nav-bg); /* Verde corporativo */
-            font-size: 1.8rem; /* Tamaño un poco más grande */
+            font-size: 1.8rem; 
             line-height: 1.3;
             width: 100%;
             max-width: 90%;
@@ -165,7 +157,7 @@
 
         /* --- CUENTA ATRÁS --- */
         .countdown-section {
-            padding: 20px 20px 20px 20px; /* Padding superior reducido para pegarlo al texto */
+            padding: 20px 20px 20px 20px; 
             display: flex; justify-content: center; align-items: center; 
             gap: 15px; scroll-margin-top: 100px; background-color: transparent;
         }
@@ -184,11 +176,11 @@
         /* --- BIENVENIDA --- */
         .text-block { text-align: center; font-size: 1rem; color: #555; margin: -20px auto 30px auto; max-width: 90%; line-height: 1.8; }
         
-        /* CLASE ESPECIAL PARA LA FRASE DESTACADA (VERDE Y MANUSCRITO) */
+        /* CLASE ESPECIAL PARA LA FRASE DESTACADA (VERDE) */
         .highlight-phrase {
-            font-family: var(--handwriting-font); /* Fuente de títulos */
+            font-family: var(--handwriting-font); 
             font-weight: bold;
-            color: var(--nav-bg); /* COLOR VERDE CORPORATIVO */
+            color: var(--nav-bg); 
             font-size: 1.3rem;
         }
 
@@ -260,7 +252,6 @@
         .card p { color: #555; font-size: 0.95rem; }
 
         /* --- CLASE ESPECÍFICA PARA CORREGIR FOTO CANALLA EN MOVIL --- */
-        /* Ajustado al 45% para bajar el foco un poco más */
         .img-canalla { object-position: center 45%; }
 
         /* --- SUBTÍTULO TAPEO --- */
@@ -268,7 +259,7 @@
             font-family: var(--handwriting-font); font-weight: bold; font-size: 1.3rem; color: var(--secondary); text-align: center; margin-bottom: 20px; display: block;
         }
 
-        /* --- CAJA IBAN REDISEÑADA (SIN CAJA, VERDE) --- */
+        /* --- CAJA IBAN --- */
         .iban-wrapper { 
             margin-top: 25px; display: inline-block; cursor: pointer; position: relative; width: 100%; max-width: 400px;
             transition: opacity 0.3s ease;
@@ -276,7 +267,6 @@
         .iban-wrapper:hover { opacity: 0.7; }
         
         .iban-box { 
-            /* SIN BORDE NI FONDO */
             background: transparent;
             padding: 10px 0; 
             display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -284,63 +274,60 @@
         
         .iban-text { 
             font-family: 'Cormorant Garamond', serif; font-weight: 700; 
-            font-size: 1.3rem; /* Un poco más grande */
-            color: var(--nav-bg); /* VERDE CORPORATIVO */
+            font-size: 1.3rem; 
+            color: var(--nav-bg); 
             letter-spacing: 0.5px; white-space: nowrap;
             margin-bottom: 5px;
         }
         .copy-link { 
             font-size: 0.85rem; 
-            color: var(--nav-bg); /* VERDE CORPORATIVO */
+            color: var(--nav-bg); 
             font-weight: 700; text-transform: uppercase; font-family: 'Montserrat', sans-serif; 
-            text-decoration: underline; /* Subrayado para indicar enlace */
+            text-decoration: underline; 
         }
         .copy-feedback { display: none; color: var(--nav-bg); font-size: 0.8rem; margin-top: 5px; font-weight: 600; position: absolute; bottom: -25px; left: 50%; transform: translateX(-50%); white-space: nowrap; }
 
-        /* --- NUEVOS ESTILOS PARA LAS IMÁGENES DECORATIVAS --- */
+        /* --- IMÁGENES DECORATIVAS --- */
         
-        /* Filtro CSS para intentar aproximar el negro al verde corporativo #77855C */
+        /* Filtro CSS para teñir PNGs negros a verde */
         .corporate-green-filter {
             filter: invert(53%) sepia(18%) saturate(882%) hue-rotate(66deg) brightness(92%) contrast(86%);
-            opacity: 0.9; /* Un poco de transparencia para que se integre mejor */
+            opacity: 0.9;
         }
 
-        /* Imagen bienvenida (debajo de Sara y Carlos) */
         .welcome-image-container {
             text-align: center;
-            margin-top: 5px; /* Espacio mínimo */
+            margin-top: 5px; 
             margin-bottom: 0;
             line-height: 0;
         }
         .welcome-image-container img {
-            max-width: 130px; /* Tamaño contenido */
+            max-width: 130px; 
             height: auto;
         }
 
-        /* Imagen Dresscode (pegada a la línea) */
         .dresscode-image-container {
             text-align: center;
-            margin-top: 5px; /* Espacio mínimo respecto al texto */
-            margin-bottom: 0px; /* PEGADO a la línea de abajo (sin margen) */
+            margin-top: 25px; 
+            margin-bottom: 0px; 
             padding-bottom: 0;
             line-height: 0;
         }
         .dresscode-image-container img {
-            max-width: 180px; /* Tamaño contenido para que no agrande la sección */
+            max-width: 180px; 
             height: auto;
             display: inline-block;
         }
 
-        /* --- IMAGEN FINAL FOOTER --- */
         .footer-image-container {
             text-align: center;
-            padding: 40px 20px 60px 20px; /* Espacio generoso arriba y abajo */
+            padding: 40px 20px 60px 20px; 
             width: 100%;
         }
         .footer-image-container img {
             width: auto;
             height: auto;
-            max-width: 150px; /* Tamaño comedido para que quede centrado y elegante */
+            max-width: 150px; 
             display: inline-block;
         }
 
@@ -462,12 +449,9 @@
             .cards-grid { display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 40px; }
             .card { width: 30%; display: flex; flex-direction: column; justify-content: space-between; }
             
-            /* CAMBIO: AUMENTAR ALTURA Y AJUSTAR POSICIÓN EN ESCRITORIO */
             .card-img { 
-                height: 250px; /* Altura aumentada para ver más imagen */
+                height: 250px; 
                 margin-top: auto; 
-                /* Prioriza la parte media-alta (30%) en lugar de arriba del todo, 
-                   mostrando más parte inferior que antes */
                 object-position: center 30%; 
             }
             
@@ -652,7 +636,7 @@
     <section id="dresscode" class="reveal">
         <h2>Dresscode</h2>
         <div class="text-block">
-            <p class="highlight-phrase" style="margin-bottom: 15px;">Agradecemos amablemente :)</p>
+            <p style="font-style: italic; margin-bottom: 20px;">Agradecemos amablemente :)</p>
             <p><strong>Chicos:</strong> Traje y corbata</p>
             <p><strong>Chicas:</strong> Evitar el color blanco</p>
         </div>
