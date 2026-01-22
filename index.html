@@ -54,7 +54,7 @@
             position: fixed; top: 0; left: 0; width: 100%; height: 60px; 
             z-index: 1000; padding: 0 15px;
             
-            /* CAMBIO: Layout para centrar logo y poner menú a la derecha */
+            /* Layout para centrar logo y poner menú a la derecha */
             display: flex; 
             justify-content: center; /* Centra el contenido principal (el logo) */
             align-items: center;
@@ -64,9 +64,9 @@
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
-        /* CAMBIO 1: LOGO CENTRADO Y AJUSTADO AL HUECO */
+        /* CAMBIO 1: LOGO TRANSPARENTE CORRECTO CENTRADO */
         .nav-logo-stamp {
-            height: 55px; /* Casi todo el alto del menú (60px) para que sea grande */
+            height: 55px; /* Casi todo el alto del menú */
             width: auto;
             
             /* Posicionamiento absoluto para garantizar el centro exacto */
@@ -75,9 +75,7 @@
             transform: translateX(-50%);
             top: 2.5px; /* Centrado vertical */
             
-            /* Efectos visuales */
-            mix-blend-mode: multiply;
-            filter: sepia(100%) hue-rotate(60deg) saturate(150%) brightness(0.6);
+            /* FILTROS ELIMINADOS PARA IMAGEN TRANSPARENTE LIMPIA */
             z-index: 1001;
         }
 
@@ -187,11 +185,11 @@
         /* --- BIENVENIDA --- */
         .text-block { text-align: center; font-size: 1rem; color: #555; margin: -20px auto 30px auto; max-width: 90%; line-height: 1.8; }
         
-        /* CAMBIO 2: CLASE ESPECIAL PARA LA FRASE DESTACADA */
+        /* CAMBIO 2: CLASE ESPECIAL PARA LA FRASE DESTACADA (VERDE) */
         .highlight-phrase {
             font-family: var(--handwriting-font); /* Fuente de títulos */
             font-weight: bold;
-            /* Mantenemos el color y tamaño del párrafo padre (#555 y 1rem) */
+            color: var(--nav-bg); /* COLOR VERDE CORPORATIVO */
         }
 
         /* --- SECCIONES GENERALES --- */
@@ -410,7 +408,7 @@
 <body>
     
     <nav id="navbar">
-        <img src="https://i.imgur.com/VX5KIKM.png" alt="Logo Sara y Carlos" class="nav-logo-stamp">
+        <img src="https://i.imgur.com/OqzTZa8.png" alt="Logo Sara y Carlos" class="nav-logo-stamp">
         
         <div class="menu-toggle" id="mobile-menu">☰</div>
         <ul id="nav-list">
@@ -447,7 +445,7 @@
             <p class="highlight-phrase">Dicen que la felicidad se multiplica cuando se comparte y nosotros tenemos la suerte de teneros a vosotros.</p>
             <p>En esta forma de ser, tan real y tan compartida, es donde aquí empieza mucho.</p>
             <p>¡Nos vemos muy pronto!</p>
-            <p style="font-weight: bold; font-family: var(--handwriting-font); font-size: 1.5rem; margin-top: 15px;">Sara y Carlos</p>
+            <p style="font-weight: bold; margin-top: 15px;">Sara y Carlos</p>
         </div>
     </section>
 
