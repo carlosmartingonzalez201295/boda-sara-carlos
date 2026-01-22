@@ -14,7 +14,8 @@
         /* --- VARIABLES --- */
         :root { 
             --primary: #d4a373; 
-            --secondary: #8b7355; 
+            /* CAMBIO: EL COLOR SECUNDARIO AHORA ES EL VERDE CORPORATIVO (ANTES MARRÓN) */
+            --secondary: #77855C; 
             --accent: #faf8f5; 
             --dark: #3d3d3d; 
             --light: #fff; 
@@ -193,6 +194,7 @@
 
         h2 { 
             font-family: var(--handwriting-font); font-weight: bold; font-size: 3rem; text-align: center; 
+            /* AHORA USA EL COLOR SECUNDARIO QUE ES VERDE */
             margin-bottom: 40px; color: var(--secondary); line-height: 1.1; margin-left: auto; margin-right: auto; width: 100%;
         }
         .subtitle { display: block; text-align: center; font-size: 0.95rem; color: #555; margin: -30px auto 40px auto; font-style: italic; max-width: 90%; }
@@ -288,8 +290,6 @@
         .copy-feedback { display: none; color: var(--nav-bg); font-size: 0.8rem; margin-top: 5px; font-weight: 600; position: absolute; bottom: -25px; left: 50%; transform: translateX(-50%); white-space: nowrap; }
 
         /* --- IMÁGENES DECORATIVAS --- */
-        
-        /* Filtro CSS para teñir PNGs negros a verde */
         .corporate-green-filter {
             filter: invert(53%) sepia(18%) saturate(882%) hue-rotate(66deg) brightness(92%) contrast(86%);
             opacity: 0.9;
@@ -636,7 +636,7 @@
     <section id="dresscode" class="reveal">
         <h2>Dresscode</h2>
         <div class="text-block">
-            <p style="font-style: italic; margin-bottom: 20px;">Agradecemos amablemente :)</p>
+            <p style="font-style: italic; margin-bottom: 15px; color: #555;">Agradecemos amablemente :)</p>
             <p><strong>Chicos:</strong> Traje y corbata</p>
             <p><strong>Chicas:</strong> Evitar el color blanco</p>
         </div>
