@@ -172,7 +172,7 @@
         }
         .subtitle { display: block; text-align: center; font-size: 0.95rem; color: #555; margin: -30px auto 40px auto; font-style: italic; max-width: 90%; }
 
-        /* --- ITINERARIO CON LÍNEAS ZIG ZAG MANUALES --- */
+        /* --- ITINERARIO --- */
         .timeline { position: relative; margin: 40px 0; padding: 0; display: flex; flex-direction: column; gap: 0; padding-bottom: 20px; }
         .timeline::before { display: none; }
 
@@ -208,14 +208,14 @@
         .timeline-content h3 { font-family: var(--handwriting-font); font-weight: bold; font-size: 1.6rem; color: var(--secondary); margin-bottom: 5px; line-height: 1.1; }
         .timeline-content p { font-size: 0.9rem; margin-bottom: 2px; color: #555; }
         
-        /* CLASES DE ALINEACIÓN FORZADA (AQUÍ ESTÁ LA MAGIA) */
+        /* ALINEACIÓN FORZADA */
         .item-left { flex-direction: row; }
         .item-left .timeline-content { text-align: left; padding-left: 15px; }
         
         .item-right { flex-direction: row-reverse; }
         .item-right .timeline-content { text-align: right; padding-right: 15px; }
 
-        /* --- CONECTORES ZIG ZAG MANUALES --- */
+        /* --- CONECTORES ZIG ZAG MANUALES (DISCONTINUOS PERO LARGOS) --- */
         .snake-connector {
             width: 100%;
             height: 90px;
@@ -226,16 +226,18 @@
             margin-bottom: -15px;
         }
 
-        /* Curva Izquierda -> Derecha (De Golf a Preboda) */
+        /* CAMBIO: Stroke-dasharray = '15,15' (Trazos de 15px y espacios de 15px) */
+        
+        /* Curva Izquierda -> Derecha */
         .snake-l-to-r {
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M 15,0 C 15,55 85,45 85,100' fill='none' stroke='%2377855C' stroke-width='2' stroke-dasharray='7,7' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M 15,0 C 15,55 85,45 85,100' fill='none' stroke='%2377855C' stroke-width='2' stroke-dasharray='15,15' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E");
             background-repeat: no-repeat;
             background-size: 100% 100%;
         }
 
-        /* Curva Derecha -> Izquierda (De Preboda a Ceremonia) */
+        /* Curva Derecha -> Izquierda */
         .snake-r-to-l {
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M 85,0 C 85,55 15,45 15,100' fill='none' stroke='%2377855C' stroke-width='2' stroke-dasharray='7,7' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M 85,0 C 85,55 15,45 15,100' fill='none' stroke='%2377855C' stroke-width='2' stroke-dasharray='15,15' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E");
             background-repeat: no-repeat;
             background-size: 100% 100%;
         }
