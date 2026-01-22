@@ -52,15 +52,32 @@
         /* --- NAVEGACIÓN (BARRA SUPERIOR) --- */
         nav {
             position: fixed; top: 0; left: 0; width: 100%; height: 60px; 
-            z-index: 1000; padding: 0 20px;
-            display: flex; justify-content: flex-end; /* Alineado a la derecha (sin logo) */
+            z-index: 1000; padding: 0 15px;
+            display: flex; justify-content: space-between; 
             align-items: center;
             
-            /* FONDO RÚSTICO */
+            /* CAMBIO 2: FONDO RÚSTICO RESTAURADO */
             background-image: var(--paper-texture); 
             background-repeat: repeat;
-            
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        /* CAMBIO 1: LOGO VERDE Y TRANSPARENTE */
+        .nav-logo-stamp {
+            height: 90px; /* Tamaño grande para que se vea bien */
+            width: auto;
+            margin-top: 15px; /* Para que cuelgue un poco y destaque */
+            
+            /* TRUCO 1: MULTIPLY elimina el fondo blanco de la imagen */
+            mix-blend-mode: multiply;
+            
+            /* TRUCO 2: FILTRO para convertir el negro en Verde Sage */
+            /* Esto tiñe la tinta negra al color corporativo aproximado */
+            filter: sepia(100%) hue-rotate(60deg) saturate(150%) brightness(0.6);
+            
+            display: block;
+            position: relative;
+            z-index: 1001;
         }
 
         .menu-toggle { font-size: 2rem; color: var(--nav-bg); cursor: pointer; padding: 10px; display: block; }
@@ -72,10 +89,8 @@
             width: 300px; 
             max-width: 80%; 
             height: calc(100vh - 60px);
-            
             background-image: var(--paper-texture);
             background-repeat: repeat;
-            
             flex-direction: column; align-items: center; justify-content: flex-start;
             padding-top: 20px; gap: 0; list-style: none;
             transform: translateX(100%); transition: transform 0.3s ease-in-out;
@@ -383,6 +398,8 @@
 <body>
     
     <nav id="navbar">
+        <img src="https://i.imgur.com/VX5KIKM.png" alt="Logo Sara y Carlos" class="nav-logo-stamp">
+        
         <div class="menu-toggle" id="mobile-menu">☰</div>
         <ul id="nav-list">
             <li><a href="#inicio">Inicio</a></li>
