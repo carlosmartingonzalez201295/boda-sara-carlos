@@ -194,7 +194,7 @@
         /* --- SECCIONES GENERALES --- */
         section { padding: 40px 20px 60px 20px; width: 100%; max-width: 100%; position: relative; scroll-margin-top: 90px; }
         
-        #itinerario::after, #alojamiento::after, #recomendaciones::after, #dresscode::after, #mapa::after, #confirmacion::after {
+        #itinerario::after, #alojamiento::after, #recomendaciones::after, #dresscode::after, #mapa::after, #confirmacion::after, #regalo::after {
             content: ''; position: absolute; bottom: 0; left: 15%; width: 70%; height: 1px; background-color: var(--nav-bg); opacity: 0.3;
         }
 
@@ -267,17 +267,47 @@
             font-family: var(--handwriting-font); font-weight: bold; font-size: 1.3rem; color: var(--secondary); text-align: center; margin-bottom: 20px; display: block;
         }
 
-        /* --- CAJA IBAN --- */
-        .iban-wrapper { margin-top: 25px; display: inline-block; cursor: pointer; position: relative; width: 100%; max-width: 400px; }
-        .iban-box { 
-            border: 2px solid var(--nav-bg); 
-            background: white; 
-            padding: 10px 15px; border-radius: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: background 0.3s, transform 0.2s; 
+        /* --- CAJA IBAN REDISEÑADA (SIN CAJA, VERDE) --- */
+        .iban-wrapper { 
+            margin-top: 25px; display: inline-block; cursor: pointer; position: relative; width: 100%; max-width: 400px;
+            transition: opacity 0.3s ease;
         }
-        .iban-box:active { transform: scale(0.98); opacity: 0.9; } 
-        .iban-text { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 1.1rem; color: var(--secondary); letter-spacing: 0.5px; white-space: nowrap; }
-        .copy-link { font-size: 0.7rem; color: var(--nav-bg); font-weight: 700; text-transform: uppercase; margin-top: 5px; font-family: 'Montserrat', sans-serif; }
+        .iban-wrapper:hover { opacity: 0.7; }
+        
+        .iban-box { 
+            /* SIN BORDE NI FONDO */
+            background: transparent;
+            padding: 10px 0; 
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+        }
+        
+        .iban-text { 
+            font-family: 'Cormorant Garamond', serif; font-weight: 700; 
+            font-size: 1.3rem; /* Un poco más grande */
+            color: var(--nav-bg); /* VERDE CORPORATIVO */
+            letter-spacing: 0.5px; white-space: nowrap;
+            margin-bottom: 5px;
+        }
+        .copy-link { 
+            font-size: 0.85rem; 
+            color: var(--nav-bg); /* VERDE CORPORATIVO */
+            font-weight: 700; text-transform: uppercase; font-family: 'Montserrat', sans-serif; 
+            text-decoration: underline; /* Subrayado para indicar enlace */
+        }
         .copy-feedback { display: none; color: var(--nav-bg); font-size: 0.8rem; margin-top: 5px; font-weight: 600; position: absolute; bottom: -25px; left: 50%; transform: translateX(-50%); white-space: nowrap; }
+
+        /* --- IMAGEN FINAL FOOTER --- */
+        .footer-image-container {
+            text-align: center;
+            padding: 40px 20px 60px 20px; /* Espacio generoso arriba y abajo */
+            width: 100%;
+        }
+        .footer-image-container img {
+            width: auto;
+            height: auto;
+            max-width: 150px; /* Tamaño comedido para que quede centrado y elegante */
+            display: inline-block;
+        }
 
         /* --- MAPA --- */
         #map { height: 450px; width: 100%; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); margin-bottom: 20px; z-index: 1; }
@@ -642,6 +672,10 @@
             </div>
         </div>
     </section>
+
+    <div class="footer-image-container reveal">
+        <img src="https://i.imgur.com/TfGzkWD.png" alt="Final decorativo">
+    </div>
 
     <div id="modal-golf" class="modal">
         <div class="modal-content">
