@@ -53,8 +53,10 @@
         nav {
             position: fixed; top: 0; left: 0; width: 100%; height: 60px; 
             z-index: 1000; padding: 0 15px;
-            /* Space between para separar logo (izq) y menú (der) */
-            display: flex; justify-content: space-between; 
+            
+            /* CAMBIO: Layout para centrar logo y poner menú a la derecha */
+            display: flex; 
+            justify-content: center; /* Centra el contenido principal (el logo) */
             align-items: center;
             
             background-image: var(--paper-texture); 
@@ -62,18 +64,34 @@
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
-        /* CAMBIO 1: LOGO IMAGEN TRANSPARENTE CORRECTO */
-        .nav-logo-custom {
-            height: 55px; /* Altura ajustada para que se vea bien en la barra de 60px */
+        /* CAMBIO 1: LOGO CENTRADO Y AJUSTADO AL HUECO */
+        .nav-logo-stamp {
+            height: 55px; /* Casi todo el alto del menú (60px) para que sea grande */
             width: auto;
-            margin-top: 2px; /* Pequeño ajuste vertical */
-            display: block;
-            position: relative;
+            
+            /* Posicionamiento absoluto para garantizar el centro exacto */
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 2.5px; /* Centrado vertical */
+            
+            /* Efectos visuales */
+            mix-blend-mode: multiply;
+            filter: sepia(100%) hue-rotate(60deg) saturate(150%) brightness(0.6);
             z-index: 1001;
-            /* Sin filtros ni mix-blend-mode, imagen limpia */
         }
 
-        .menu-toggle { font-size: 2rem; color: var(--nav-bg); cursor: pointer; padding: 10px; display: block; position: relative; z-index: 1002; }
+        /* El botón del menú se va a la derecha de forma absoluta */
+        .menu-toggle { 
+            font-size: 2rem; 
+            color: var(--nav-bg); 
+            cursor: pointer; 
+            padding: 10px; 
+            display: block; 
+            position: absolute; 
+            right: 15px; /* Pegado a la derecha */
+            z-index: 1002; 
+        }
         
         /* --- MENÚ DESPLEGABLE --- */
         nav ul {
@@ -169,6 +187,13 @@
         /* --- BIENVENIDA --- */
         .text-block { text-align: center; font-size: 1rem; color: #555; margin: -20px auto 30px auto; max-width: 90%; line-height: 1.8; }
         
+        /* CAMBIO 2: CLASE ESPECIAL PARA LA FRASE DESTACADA */
+        .highlight-phrase {
+            font-family: var(--handwriting-font); /* Fuente de títulos */
+            font-weight: bold;
+            /* Mantenemos el color y tamaño del párrafo padre (#555 y 1rem) */
+        }
+
         /* --- SECCIONES GENERALES --- */
         section { padding: 40px 20px 60px 20px; width: 100%; max-width: 100%; position: relative; scroll-margin-top: 90px; }
         
@@ -385,7 +410,8 @@
 <body>
     
     <nav id="navbar">
-        <img src="https://i.imgur.com/OqzTZa8.png" alt="Logo Sara y Carlos" class="nav-logo-custom">
+        <img src="https://i.imgur.com/VX5KIKM.png" alt="Logo Sara y Carlos" class="nav-logo-stamp">
+        
         <div class="menu-toggle" id="mobile-menu">☰</div>
         <ul id="nav-list">
             <li><a href="#inicio">Inicio</a></li>
@@ -417,9 +443,11 @@
 
     <section id="bienvenida" style="padding-bottom: 20px;">
         <div class="text-block reveal">
-            <p>¡Hola a todos! Hemos preparado este espacio para que podáis consultar toda la información necesaria sobre nuestra boda. Dicen que la felicidad se multiplica cuando se comparte y nosotros tenemos la suerte de teneros a vosotros.</p>
-            <p>En esta forma de ser nosotros, tan real y tan compartida, es donde aquí empieza mucho.</p>
+            <p>¡Hola a todos! Hemos preparado este espacio para que podáis consultar toda la información necesaria sobre nuestra boda.</p> 
+            <p class="highlight-phrase">Dicen que la felicidad se multiplica cuando se comparte y nosotros tenemos la suerte de teneros a vosotros.</p>
+            <p>En esta forma de ser, tan real y tan compartida, es donde aquí empieza mucho.</p>
             <p>¡Nos vemos muy pronto!</p>
+            <p style="font-weight: bold; font-family: var(--handwriting-font); font-size: 1.5rem; margin-top: 15px;">Sara y Carlos</p>
         </div>
     </section>
 
