@@ -9,7 +9,6 @@
     
     <style>
         /* --- FUENTES --- */
-        /* Importamos Montserrat, Cormorant y GREAT VIBES (para la portada) */
         @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600;1,700&family=Montserrat:wght@300;400;500;600&display=swap');
         
         /* --- VARIABLES --- */
@@ -22,10 +21,10 @@
             --nav-bg: #77855C; /* Verde Sage */
             --pattern-bg: url('https://i.imgur.com/feTyvjy.jpeg'); 
             
-            /* FUENTE GENERAL (El resto de la web) */
+            /* FUENTE GENERAL */
             --handwriting-font: 'Bradley Hand ITC', 'Bradley Hand', 'Noteworthy', 'Segoe Print', cursive;
             
-            /* FUENTE PORTADA (Estilo Obayani) */
+            /* FUENTE PORTADA (Estilo Dafont/Obayani) */
             --cover-font: 'Great Vibes', cursive;
         }
         
@@ -62,19 +61,27 @@
         .menu-toggle { font-size: 2rem; color: white; cursor: pointer; padding: 10px; display: block; }
         
         nav ul {
-            position: fixed; top: 60px; right: 0; width: 300px; max-width: 80%; 
+            position: fixed; top: 60px; 
+            right: 0; 
+            width: 300px; 
+            max-width: 80%; 
             height: calc(100vh - 60px);
-            background: white; flex-direction: column; align-items: center; justify-content: flex-start;
+            background: white; 
+            flex-direction: column; align-items: center; justify-content: flex-start;
             padding-top: 20px; gap: 0; list-style: none;
             transform: translateX(100%); transition: transform 0.3s ease-in-out;
-            display: flex; box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            display: flex; 
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
         }
+        
         nav ul.active { transform: translateX(0); }
         nav li { width: 100%; text-align: center; }
         
         nav a { 
-            display: block; padding: 20px; font-size: 1.3rem; 
-            color: var(--nav-bg); text-transform: uppercase; letter-spacing: 1px; text-decoration: none;
+            display: block; padding: 20px; 
+            font-size: 1.3rem; 
+            color: var(--nav-bg); 
+            text-transform: uppercase; letter-spacing: 1px; text-decoration: none;
             position: relative; font-family: var(--handwriting-font); font-weight: bold;
         }
         
@@ -101,26 +108,31 @@
         
         .hero-content {
             position: relative; z-index: 2; text-align: center; padding-bottom: 50px; width: 100%;
+            display: flex; flex-direction: column; align-items: center; /* Centrado flex */
         }
 
-        /* --- CAMBIO 1: FUENTE TIPO DAFONT (GREAT VIBES) --- */
+        /* CAMBIO 1: AJUSTE MÓVIL SARA Y CARLOS */
         .names-title-hero {
-            font-family: var(--cover-font); /* Obayani Script style */
-            font-weight: 400; /* Las scripts no necesitan negrita */
-            color: #e8f0e0; 
-            font-size: 5rem; /* Más grande porque esta fuente es fina */
-            line-height: 0.9;
+            font-family: var(--cover-font); /* Dafont Style */
+            font-weight: 400;
+            color: #e8f0e0; /* Verde muy clarito */
+            
+            /* Tamaño móvil ajustado para que no sea gigante */
+            font-size: 3rem; 
+            
+            line-height: 1.1;
             display: block;
             margin-bottom: 5px;
             text-shadow: 0 2px 15px rgba(0,0,0,0.6); 
-            white-space: nowrap; 
+            text-align: center;
+            width: 100%;
         }
 
         .hero-subtitle {
-            font-family: var(--cover-font); /* Obayani Script style */
+            font-family: var(--cover-font); 
             font-weight: 400; 
             color: #e8f0e0; 
-            font-size: 2.2rem; display: block;
+            font-size: 1.8rem; display: block;
             text-shadow: 0 2px 10px rgba(0,0,0,0.6); 
             letter-spacing: 1px;
         }
@@ -164,21 +176,27 @@
         }
         .subtitle { display: block; text-align: center; font-size: 0.95rem; color: #555; margin: -30px auto 40px auto; font-style: italic; max-width: 90%; }
 
-        /* --- ITINERARIO CON LÍNEA CURVA (ZIG-ZAG) --- */
+        /* --- ITINERARIO CON LÍNEA SERPENTEANTE AJUSTADA --- */
         .timeline { position: relative; margin: 40px 0; padding: 0; display: flex; flex-direction: column; gap: 60px; padding-bottom: 20px; }
-        
-        /* CAMBIO 2: LÍNEA CURVA SVG */
-        .timeline::before {
-            content: '';
+        .timeline::before { display: none; }
+
+        /* CAMBIO 2: LÍNEA CURVA ESTRATÉGICA */
+        /* Esta línea se coloca en el centro absoluto. Al tener un ancho limitado (50px),
+           y estar los círculos encima (130px), la línea queda "atrapada" detrás de los círculos
+           y NO llega a tocar el texto que está a los lados. */
+        .timeline-bg-line {
             position: absolute;
-            top: 50px; bottom: 50px; left: 50%;
-            width: 60px; /* Ancho de la curva */
+            top: 65px; /* Empieza en el centro del primer círculo */
+            bottom: 65px; /* Termina en el centro del último */
+            left: 50%;
+            width: 50px; /* Ancho restringido */
             transform: translateX(-50%);
-            /* SVG que dibuja una onda sinusoidal (S-curve) discontinua */
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='120' viewBox='0 0 60 120'%3E%3Cpath d='M30,0 Q60,30 30,60 T30,120' fill='none' stroke='%2377855C' stroke-width='2' stroke-dasharray='8,8'/%3E%3C/svg%3E");
+            /* SVG de curva suave vertical */
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='100' viewBox='0 0 50 100'%3E%3Cpath d='M25,0 Q50,25 25,50 T25,100' fill='none' stroke='%2377855C' stroke-width='2' stroke-dasharray='6,6'/%3E%3C/svg%3E");
             background-repeat: repeat-y;
-            opacity: 0.6;
+            opacity: 0.5;
             z-index: 0; /* Detrás de todo */
+            pointer-events: none;
         }
 
         .timeline-item { display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 1; width: 100%; }
@@ -193,6 +211,8 @@
             animation: floating-hard 3s ease-in-out infinite, pulse-ring 2s infinite; 
             position: relative; z-index: 2; background: white; 
             overflow: visible; flex-shrink: 0; cursor: pointer;
+            /* Margen automático para asegurar centrado si flex falla en algún navegador */
+            margin-left: auto; margin-right: auto;
         }
         
         .timeline-img-box::before {
@@ -203,7 +223,10 @@
         .timeline-img-box::after { content: "+"; position: absolute; bottom: 0; right: 0; background-color: var(--nav-bg); color: white; width: 35px; height: 35px; border-radius: 50%; border: 2px solid white; display: flex; justify-content: center; align-items: center; font-size: 1.5rem; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.3); z-index: 10; }
         
         .timeline-img-clipper {
-            width: 100%; height: 100%; border-radius: 50%; overflow: hidden; position: relative;
+            width: 100%; height: 100%;
+            border-radius: 50%;
+            overflow: hidden; 
+            position: relative;
         }
 
         .timeline-img-clipper img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; display: block; }
@@ -212,11 +235,14 @@
 
         .timeline-img-clipper img[src*="QDGdxoI.png"] { transform: scale(1.8); object-position: center 60%; }
 
-        .timeline-content { width: 55%; padding: 0 10px; display: flex; flex-direction: column; justify-content: center; }
+        .timeline-content { width: 55%; padding: 0 10px; display: flex; flex-direction: column; justify-content: center; position: relative; z-index: 3; }
         .timeline-content h3 { font-family: var(--handwriting-font); font-weight: bold; font-size: 1.6rem; color: var(--secondary); margin-bottom: 5px; line-height: 1.1; }
         .timeline-content p { font-size: 0.9rem; margin-bottom: 2px; color: #555; }
+        
+        /* Alternancia */
         .timeline-item:nth-child(odd) { flex-direction: row; }
         .timeline-item:nth-child(odd) .timeline-content { text-align: left; padding-left: 15px; }
+        
         .timeline-item:nth-child(even) { flex-direction: row-reverse; }
         .timeline-item:nth-child(even) .timeline-content { text-align: right; padding-right: 15px; }
 
@@ -327,7 +353,7 @@
             .hero { background-size: cover; background-position: center 25%; }
             .hero-content { padding-bottom: 60px; }
             
-            .names-title-hero { font-size: 8rem; } /* Más grande en PC */
+            .names-title-hero { font-size: 7rem; } /* Más grande en PC */
             .hero-subtitle { font-size: 2.5rem; }
             
             .timeline { max-width: 800px; margin: 0 auto; }
@@ -382,6 +408,8 @@
 
     <section id="itinerario">
         <h2>Itinerario</h2>
+        <div class="timeline-bg-line"></div>
+        
         <p class="subtitle">Haz clic en las imágenes para ver los detalles</p>
 
         <div class="timeline">
