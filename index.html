@@ -49,71 +49,46 @@
             z-index: -1; pointer-events: none;
         }
 
-        /* --- NAVEGACIÓN (BARRA SUPERIOR) --- */
+        /* --- NAVEGACIÓN --- */
         nav {
             position: fixed; top: 0; left: 0; width: 100%; height: 60px; 
             z-index: 1000; padding: 0 15px;
-            
-            /* Layout para centrar logo y poner menú a la derecha */
-            display: flex; 
-            justify-content: center; /* Centra el contenido principal (el logo) */
-            align-items: center;
-            
+            display: flex; justify-content: center; align-items: center;
             background-image: var(--paper-texture); 
             background-repeat: repeat;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
-        /* CAMBIO 1: LOGO TRANSPARENTE CORRECTO CENTRADO */
+        /* LOGO TRANSPARENTE CENTRADO */
         .nav-logo-stamp {
-            height: 55px; /* Casi todo el alto del menú */
+            height: 55px; 
             width: auto;
-            
-            /* Posicionamiento absoluto para garantizar el centro exacto */
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
-            top: 2.5px; /* Centrado vertical */
-            
-            /* FILTROS ELIMINADOS PARA IMAGEN TRANSPARENTE LIMPIA */
+            top: 2.5px; 
             z-index: 1001;
         }
 
-        /* El botón del menú se va a la derecha de forma absoluta */
         .menu-toggle { 
-            font-size: 2rem; 
-            color: var(--nav-bg); 
-            cursor: pointer; 
-            padding: 10px; 
-            display: block; 
-            position: absolute; 
-            right: 15px; /* Pegado a la derecha */
-            z-index: 1002; 
+            font-size: 2rem; color: var(--nav-bg); cursor: pointer; padding: 10px; 
+            display: block; position: absolute; right: 15px; z-index: 1002; 
         }
         
-        /* --- MENÚ DESPLEGABLE --- */
         nav ul {
-            position: fixed; top: 60px; 
-            right: 0; 
-            width: 300px; 
-            max-width: 80%; 
-            height: calc(100vh - 60px);
-            background-image: var(--paper-texture);
-            background-repeat: repeat;
+            position: fixed; top: 60px; right: 0; width: 300px; max-width: 80%; height: calc(100vh - 60px);
+            background-image: var(--paper-texture); background-repeat: repeat;
             flex-direction: column; align-items: center; justify-content: flex-start;
             padding-top: 20px; gap: 0; list-style: none;
             transform: translateX(100%); transition: transform 0.3s ease-in-out;
-            display: flex; 
-            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            display: flex; box-shadow: -5px 0 15px rgba(0,0,0,0.1);
         }
         
         nav ul.active { transform: translateX(0); }
         nav li { width: 100%; text-align: center; }
         
         nav a { 
-            display: block; padding: 20px; 
-            font-size: 1.3rem; 
-            color: var(--nav-bg); 
+            display: block; padding: 20px; font-size: 1.3rem; color: var(--nav-bg); 
             text-transform: uppercase; letter-spacing: 1px; text-decoration: none;
             position: relative; font-family: var(--handwriting-font); font-weight: bold;
         }
@@ -123,7 +98,7 @@
             background-image: var(--pattern-bg); background-size: cover; opacity: 0.6; border-radius: 2px;
         }
 
-        /* --- HERO (PORTADA LIMPIA) --- */
+        /* --- HERO --- */
         .hero {
             height: 100vh; height: 100dvh; width: 100%;
             display: flex; flex-direction: column; justify-content: flex-end; align-items: center;
@@ -149,25 +124,17 @@
             z-index: 2; animation: bounce 2s infinite; font-size: 2rem; color: #fff; text-shadow: 0 2px 5px rgba(0,0,0,0.5); 
         }
 
-        /* --- BANNER DE TEXTO ENTRE FOTO Y CUENTA ATRÁS --- */
+        /* --- TEXTO INTRODUCCIÓN --- */
         .intro-text-banner {
-            text-align: center;
-            /* Espacio arriba, pegado a la cuenta atrás abajo */
-            padding: 40px 20px 0px 20px; 
-            font-family: var(--handwriting-font);
-            font-weight: bold;
-            color: var(--nav-bg); /* Verde corporativo */
-            font-size: 1.8rem; /* Tamaño un poco más grande */
-            line-height: 1.3;
-            width: 100%;
-            max-width: 90%;
-            margin: 0 auto;
+            text-align: center; padding: 40px 20px 0px 20px; 
+            font-family: var(--handwriting-font); font-weight: bold;
+            color: var(--nav-bg); font-size: 1.8rem; line-height: 1.3;
+            width: 100%; max-width: 90%; margin: 0 auto;
         }
 
         /* --- CUENTA ATRÁS --- */
         .countdown-section {
-            padding: 20px 20px 20px 20px; /* Padding superior reducido para pegarlo al texto */
-            display: flex; justify-content: center; align-items: center; 
+            padding: 20px 20px 20px 20px; display: flex; justify-content: center; align-items: center; 
             gap: 15px; scroll-margin-top: 100px; background-color: transparent;
         }
         .countdown-item { display: flex; flex-direction: column; align-items: center; }
@@ -185,11 +152,12 @@
         /* --- BIENVENIDA --- */
         .text-block { text-align: center; font-size: 1rem; color: #555; margin: -20px auto 30px auto; max-width: 90%; line-height: 1.8; }
         
-        /* CAMBIO 2: CLASE ESPECIAL PARA LA FRASE DESTACADA (VERDE) */
+        /* ESTILO PARA FRASES DESTACADAS (VERDE Y MANUSCRITO) */
         .highlight-phrase {
-            font-family: var(--handwriting-font); /* Fuente de títulos */
+            font-family: var(--handwriting-font); 
             font-weight: bold;
-            color: var(--nav-bg); /* COLOR VERDE CORPORATIVO */
+            color: var(--nav-bg); 
+            font-size: 1.3rem; /* Un poco más grande para que se lea bien el manuscrito */
         }
 
         /* --- SECCIONES GENERALES --- */
@@ -207,21 +175,16 @@
 
         /* --- ITINERARIO --- */
         .timeline { position: relative; margin: 40px 0; padding: 0; display: flex; flex-direction: column; gap: 40px; padding-bottom: 20px; }
-        .timeline::before { display: none; }
-
+        
         .timeline-item { display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 2; width: 100%; margin: 0; }
 
         @keyframes pulse-ring { 0% { box-shadow: 0 0 0 0 rgba(119, 133, 92, 0.4); } 70% { box-shadow: 0 0 0 15px rgba(119, 133, 92, 0); } 100% { box-shadow: 0 0 0 0 rgba(119, 133, 92, 0); } }
         @keyframes floating-hard { 0% { transform: translateY(0px); } 50% { transform: translateY(-5px); } 100% { transform: translateY(0px); } }
 
         .timeline-img-box { 
-            width: 130px; height: 130px; 
-            border-radius: 50%; 
-            border: 4px solid white; 
+            width: 130px; height: 130px; border-radius: 50%; border: 4px solid white; 
             animation: floating-hard 3s ease-in-out infinite, pulse-ring 2s infinite; 
-            position: relative; z-index: 5; 
-            background-color: white; 
-            overflow: visible; flex-shrink: 0; cursor: pointer;
+            position: relative; z-index: 5; background-color: white; overflow: visible; flex-shrink: 0; cursor: pointer;
             margin-left: auto; margin-right: auto;
         }
         
@@ -229,14 +192,12 @@
             content: ''; position: absolute; top: -6px; left: -6px; right: -6px; bottom: -6px;
             background-image: var(--pattern-bg); background-size: cover; border-radius: 50%; z-index: -1; opacity: 1;
         }
-
         .timeline-img-box::after { content: "+"; position: absolute; bottom: 0; right: 0; background-color: var(--nav-bg); color: white; width: 35px; height: 35px; border-radius: 50%; border: 2px solid white; display: flex; justify-content: center; align-items: center; font-size: 1.5rem; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.3); z-index: 10; }
         
         .timeline-img-clipper { width: 100%; height: 100%; border-radius: 50%; overflow: hidden; position: relative; }
         .timeline-img-clipper img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; display: block; }
         .timeline-img-box:active .timeline-img-clipper img { transform: scale(0.95); }
         .img-preboda { object-position: top center !important; }
-        
         .timeline-img-clipper img[src*="QDGdxoI.png"] { transform: scale(1.8); object-position: center 60%; }
 
         .timeline-content { width: 55%; padding: 0 10px; display: flex; flex-direction: column; justify-content: center; position: relative; z-index: 3; }
@@ -245,11 +206,10 @@
         
         .item-left { flex-direction: row; }
         .item-left .timeline-content { text-align: left; padding-left: 15px; }
-        
         .item-right { flex-direction: row-reverse; }
         .item-right .timeline-content { text-align: right; padding-right: 15px; }
 
-        /* --- TARJETAS --- */
+        /* --- TARJETAS RECOMENDACIONES (GRID 3x2 EN ESCRITORIO) --- */
         .cards-grid { display: flex; flex-direction: column; gap: 40px; }
         .card { background: transparent; padding: 0; border-radius: 0; box-shadow: none; border: none; text-align: center; transition: transform 0.3s ease; }
         .card-img { width: 100%; height: 200px; object-fit: cover; border-radius: 15px; margin-top: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.15); transition: box-shadow 0.3s ease; }
@@ -266,8 +226,7 @@
         /* --- CAJA IBAN --- */
         .iban-wrapper { margin-top: 25px; display: inline-block; cursor: pointer; position: relative; width: 100%; max-width: 400px; }
         .iban-box { 
-            border: 2px solid var(--nav-bg); 
-            background: white; 
+            border: 2px solid var(--nav-bg); background: white; 
             padding: 10px 15px; border-radius: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: background 0.3s, transform 0.2s; 
         }
         .iban-box:active { transform: scale(0.98); opacity: 0.9; } 
@@ -302,38 +261,17 @@
         .form-group { margin-bottom: 20px; }
         label { font-size: 0.9rem; font-weight: 600; color: var(--secondary); margin-bottom: 8px; display: block; }
         input, select, textarea { width: 100%; padding: 12px; font-size: 16px; border: 1px solid #ddd; border-radius: 8px; background: #fafafa; transition:all 0.3s; }
-        
-        input:focus, select:focus, textarea:focus {
-            border-color: var(--nav-bg);
-            box-shadow: 0 0 0 3px rgba(119, 133, 92, 0.2);
-            outline: none;
-            background-image: var(--paper-texture);
-        }
-        
+        input:focus, select:focus, textarea:focus { border-color: var(--nav-bg); box-shadow: 0 0 0 3px rgba(119, 133, 92, 0.2); outline: none; background-image: var(--paper-texture); }
         button#submitBtn { 
-            padding: 16px; font-size: 1.3rem; border-radius: 10px; 
-            background: var(--secondary); 
-            color: white; font-weight: bold; 
-            box-shadow: 0 4px 10px rgba(139, 115, 85, 0.3); 
-            border: none; width: 100%; cursor: pointer;
-            transition: transform 0.2s; font-family: var(--handwriting-font); letter-spacing: 1px;
+            padding: 16px; font-size: 1.3rem; border-radius: 10px; background: var(--secondary); color: white; font-weight: bold; 
+            box-shadow: 0 4px 10px rgba(139, 115, 85, 0.3); border: none; width: 100%; cursor: pointer; transition: transform 0.2s; font-family: var(--handwriting-font); letter-spacing: 1px;
         }
 
         /* --- MODALES --- */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 2000; backdrop-filter: blur(3px); }
-        .modal-content { 
-            background-image: var(--paper-texture); background-repeat: repeat;
-            width: 100%; height: 100%; max-width: 100%; margin: 0; border-radius: 0; padding: 25px; overflow-y: auto; position: relative; animation: slideUp 0.3s; display: flex; flex-direction: column; align-items: center; 
-        }
-        .close-modal { 
-            position: absolute; top: 15px; right: 15px; font-size: 1.5rem; width: 36px; height: 36px; 
-            background: var(--nav-bg); color: white;
-            border-radius: 50%; display: flex; justify-content: center; align-items: center; 
-            z-index: 10; cursor: pointer; box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-            transition: transform 0.2s;
-        }
+        .modal-content { background-image: var(--paper-texture); background-repeat: repeat; width: 100%; height: 100%; max-width: 100%; margin: 0; border-radius: 0; padding: 25px; overflow-y: auto; position: relative; animation: slideUp 0.3s; display: flex; flex-direction: column; align-items: center; }
+        .close-modal { position: absolute; top: 15px; right: 15px; font-size: 1.5rem; width: 36px; height: 36px; background: var(--nav-bg); color: white; border-radius: 50%; display: flex; justify-content: center; align-items: center; z-index: 10; cursor: pointer; box-shadow: 0 2px 10px rgba(0,0,0,0.2); transition: transform 0.2s; }
         .close-modal:hover { transform: rotate(90deg); }
-
         .modal-header-img { width: 100%; height: auto; max-height: 400px; object-fit: contain; border-radius: 15px; margin-bottom: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
         .modal-info-center { text-align: center; margin-bottom: 20px; width: 100%; }
         .modal-info-center h3 { font-family: var(--handwriting-font); font-weight: bold; font-size: 2.2rem; color: var(--secondary); margin-bottom: 5px; }
@@ -341,38 +279,12 @@
         .modal-info-center .address { color: #888; font-size: 0.9rem; font-style: italic; }
         .modal-desc-justify { text-align: justify; color: #666; font-size: 0.95rem; width: 100%; margin-bottom: 20px; }
         
-        /* ESTILOS CEREMONIA MAPS */
-        .ceremonia-maps-white-bg {
-            background: white; 
-            padding: 25px 15px; border-radius: 15px; box-shadow: 0 5px 25px rgba(0,0,0,0.1); 
-            margin-bottom: 30px; width: 100%; display: flex; flex-direction: column; align-items: center;
-        }
+        .ceremonia-maps-white-bg { background: white; padding: 25px 15px; border-radius: 15px; box-shadow: 0 5px 25px rgba(0,0,0,0.1); margin-bottom: 30px; width: 100%; display: flex; flex-direction: column; align-items: center; }
         .map-unit { width: 100%; margin-bottom: 30px; text-align: center; overflow: hidden; border-radius: 10px; position: relative; }
         .map-unit:last-child { margin-bottom: 0; }
-        
-        .img-entrada-zoomed {
-            width: 100%;
-            height: 250px; 
-            object-fit: cover; 
-            object-position: center 60%; 
-            transform: scale(1.25); 
-            display: block;
-        }
-
-        .img-salida-contain {
-            width: 100%;
-            height: auto;
-            max-height: 250px; 
-            object-fit: contain; 
-            display: block;
-        }
-
-        .map-overlay-label {
-            position: absolute; bottom: 0; left: 0; width: 100%;
-            background: rgba(255,255,255,0.85); color: var(--nav-bg);
-            font-family: var(--handwriting-font); font-weight: bold; font-size: 1.1rem; 
-            padding: 5px 0; backdrop-filter: blur(2px); z-index: 2;
-        }
+        .img-entrada-zoomed { width: 100%; height: 250px; object-fit: cover; object-position: center 60%; transform: scale(1.25); display: block; }
+        .img-salida-contain { width: 100%; height: auto; max-height: 250px; object-fit: contain; display: block; }
+        .map-overlay-label { position: absolute; bottom: 0; left: 0; width: 100%; background: rgba(255,255,255,0.85); color: var(--nav-bg); font-family: var(--handwriting-font); font-weight: bold; font-size: 1.1rem; padding: 5px 0; backdrop-filter: blur(2px); z-index: 2; }
 
         .reveal { opacity: 0; transform: translateY(20px); transition: 0.6s ease; }
         .reveal.active { opacity: 1; transform: translateY(0); }
@@ -389,8 +301,9 @@
             .hero-content { padding-bottom: 60px; }
             
             .timeline { max-width: 800px; margin: 0 auto; }
+            /* GRID 3 COLUMNAS */
             .cards-grid { display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 40px; }
-            .card { width: 28%; display: flex; flex-direction: column; justify-content: space-between; }
+            .card { width: 30%; display: flex; flex-direction: column; justify-content: space-between; }
             .card-img { margin-top: auto; }
             .modal-content { width: 90%; max-width: 500px; height: auto; max-height: 85vh; border-radius: 15px; margin: 5% auto; }
             
@@ -399,7 +312,6 @@
             .img-salida-contain { max-height: 300px; }
         }
 
-        /* Ajuste para móvil del texto de introducción */
         @media (max-width: 480px) {
             .intro-text-banner { font-size: 1.5rem; }
         }
@@ -445,7 +357,7 @@
             <p class="highlight-phrase">Dicen que la felicidad se multiplica cuando se comparte y nosotros tenemos la suerte de teneros a vosotros.</p>
             <p>En esta forma de ser, tan real y tan compartida, es donde aquí empieza mucho.</p>
             <p>¡Nos vemos muy pronto!</p>
-            <p style="font-weight: bold; margin-top: 15px;">Sara y Carlos</p>
+            <p class="highlight-phrase" style="margin-top: 15px;">Sara y Carlos</p>
         </div>
     </section>
 
@@ -559,6 +471,11 @@
                 <h3>Sushido</h3>
                 <p>Nuestra opción favorita si os apetece cambiar de tercio y os gusta la comida japonesa.</p>
                 <img src="https://i.imgur.com/vHYLM4W.jpeg" class="card-img" alt="Sushi Do">
+            </div>
+            <div class="card reveal">
+                <h3>Canalla Food & Drinks</h3>
+                <p>Tacos muy top y cerveza bien fría.</p>
+                <img src="https://i.imgur.com/aEyXHLd.jpeg" class="card-img" alt="Canalla Food & Drinks">
             </div>
         </div>
     </section>
@@ -794,7 +711,9 @@
                 { coords: [39.975000, -4.861800], title: "Palomarejos Golf", addr: "N-Va, Km 113" },
                 { coords: [39.963172, -4.825597], title: "Hotel Be Live", addr: "Av. Toledo, s/n" },
                 { coords: [39.959145, -4.833321], title: "Blue Windows", addr: "C. Corredera del Cristo, 18" },
-                { coords: [39.958156, -4.834167], title: "Santa Rita", addr: "C. Mesones, 3" }
+                { coords: [39.958156, -4.834167], title: "Santa Rita", addr: "C. Mesones, 3" },
+                // NUEVA UBICACIÓN
+                { coords: [39.961012, -4.832712], title: "Canalla Food & Drinks", addr: "C. Teatro, 4" }
             ];
 
             const featureGroup = L.featureGroup().addTo(map);
