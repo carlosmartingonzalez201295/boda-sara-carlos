@@ -9,7 +9,8 @@
     
     <style>
         /* --- FUENTES --- */
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600;1,700&family=Montserrat:wght@300;400;500;600&display=swap');
+        /* Importamos Montserrat, Cormorant y GREAT VIBES (para la portada) */
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600;1,700&family=Montserrat:wght@300;400;500;600&display=swap');
         
         /* --- VARIABLES --- */
         :root { 
@@ -21,8 +22,11 @@
             --nav-bg: #77855C; /* Verde Sage */
             --pattern-bg: url('https://i.imgur.com/feTyvjy.jpeg'); 
             
-            /* FUENTE BRADLEY HAND */
+            /* FUENTE GENERAL (El resto de la web) */
             --handwriting-font: 'Bradley Hand ITC', 'Bradley Hand', 'Noteworthy', 'Segoe Print', cursive;
+            
+            /* FUENTE PORTADA (Estilo Obayani) */
+            --cover-font: 'Great Vibes', cursive;
         }
         
         /* --- RESET Y BASE --- */
@@ -37,7 +41,6 @@
             overflow-x: hidden;
         }
 
-        /* FONDO ESTAMPADO GENERAL */
         body::before {
             content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-image: var(--pattern-bg);
@@ -50,7 +53,7 @@
         nav {
             position: fixed; top: 0; left: 0; width: 100%; height: 60px; 
             z-index: 1000; padding: 0 20px;
-            display: flex; justify-content: flex-end; /* SIEMPRE A LA DERECHA */
+            display: flex; justify-content: flex-end; 
             align-items: center;
             background: var(--nav-bg); 
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
@@ -59,27 +62,19 @@
         .menu-toggle { font-size: 2rem; color: white; cursor: pointer; padding: 10px; display: block; }
         
         nav ul {
-            position: fixed; top: 60px; 
-            right: 0; /* Pegado a la derecha */
-            width: 300px; /* Panel lateral */
-            max-width: 80%; 
+            position: fixed; top: 60px; right: 0; width: 300px; max-width: 80%; 
             height: calc(100vh - 60px);
-            background: white; 
-            flex-direction: column; align-items: center; justify-content: flex-start;
+            background: white; flex-direction: column; align-items: center; justify-content: flex-start;
             padding-top: 20px; gap: 0; list-style: none;
             transform: translateX(100%); transition: transform 0.3s ease-in-out;
-            display: flex; 
-            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            display: flex; box-shadow: -5px 0 15px rgba(0,0,0,0.1);
         }
-        
         nav ul.active { transform: translateX(0); }
         nav li { width: 100%; text-align: center; }
         
         nav a { 
-            display: block; padding: 20px; 
-            font-size: 1.3rem; 
-            color: var(--nav-bg); 
-            text-transform: uppercase; letter-spacing: 1px; text-decoration: none;
+            display: block; padding: 20px; font-size: 1.3rem; 
+            color: var(--nav-bg); text-transform: uppercase; letter-spacing: 1px; text-decoration: none;
             position: relative; font-family: var(--handwriting-font); font-weight: bold;
         }
         
@@ -98,7 +93,6 @@
             overflow: hidden;
         }
 
-        /* Degradado inferior para contraste */
         .hero::before {
             content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 60%;
             background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
@@ -109,23 +103,24 @@
             position: relative; z-index: 2; text-align: center; padding-bottom: 50px; width: 100%;
         }
 
+        /* --- CAMBIO 1: FUENTE TIPO DAFONT (GREAT VIBES) --- */
         .names-title-hero {
-            font-family: var(--handwriting-font);
-            font-weight: bold;
-            /* COLOR VERDE MUY CLARITO / CREMA */
+            font-family: var(--cover-font); /* Obayani Script style */
+            font-weight: 400; /* Las scripts no necesitan negrita */
             color: #e8f0e0; 
-            font-size: 3.5rem; 
-            line-height: 1;
+            font-size: 5rem; /* Más grande porque esta fuente es fina */
+            line-height: 0.9;
             display: block;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
             text-shadow: 0 2px 15px rgba(0,0,0,0.6); 
             white-space: nowrap; 
         }
 
         .hero-subtitle {
-            font-family: var(--handwriting-font); font-weight: bold; 
-            color: #e8f0e0; /* MISMO VERDE MUY CLARO */
-            font-size: 1.4rem; display: block;
+            font-family: var(--cover-font); /* Obayani Script style */
+            font-weight: 400; 
+            color: #e8f0e0; 
+            font-size: 2.2rem; display: block;
             text-shadow: 0 2px 10px rgba(0,0,0,0.6); 
             letter-spacing: 1px;
         }
@@ -159,7 +154,6 @@
         /* --- SECCIONES GENERALES --- */
         section { padding: 40px 20px 60px 20px; width: 100%; max-width: 100%; position: relative; scroll-margin-top: 90px; }
         
-        /* Separador sutil */
         #itinerario::after, #alojamiento::after, #recomendaciones::after, #dresscode::after, #mapa::after, #confirmacion::after {
             content: ''; position: absolute; bottom: 0; left: 15%; width: 70%; height: 1px; background-color: var(--nav-bg); opacity: 0.3;
         }
@@ -170,54 +164,52 @@
         }
         .subtitle { display: block; text-align: center; font-size: 0.95rem; color: #555; margin: -30px auto 40px auto; font-style: italic; max-width: 90%; }
 
-        /* --- ITINERARIO CORREGIDO (MÁS AFUERA DEL CÍRCULO) --- */
+        /* --- ITINERARIO CON LÍNEA CURVA (ZIG-ZAG) --- */
         .timeline { position: relative; margin: 40px 0; padding: 0; display: flex; flex-direction: column; gap: 60px; padding-bottom: 20px; }
-        .timeline::before { display: none; }
+        
+        /* CAMBIO 2: LÍNEA CURVA SVG */
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 50px; bottom: 50px; left: 50%;
+            width: 60px; /* Ancho de la curva */
+            transform: translateX(-50%);
+            /* SVG que dibuja una onda sinusoidal (S-curve) discontinua */
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='120' viewBox='0 0 60 120'%3E%3Cpath d='M30,0 Q60,30 30,60 T30,120' fill='none' stroke='%2377855C' stroke-width='2' stroke-dasharray='8,8'/%3E%3C/svg%3E");
+            background-repeat: repeat-y;
+            opacity: 0.6;
+            z-index: 0; /* Detrás de todo */
+        }
 
         .timeline-item { display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 1; width: 100%; }
 
         @keyframes pulse-ring { 0% { box-shadow: 0 0 0 0 rgba(119, 133, 92, 0.4); } 70% { box-shadow: 0 0 0 15px rgba(119, 133, 92, 0); } 100% { box-shadow: 0 0 0 0 rgba(119, 133, 92, 0); } }
         @keyframes floating-hard { 0% { transform: translateY(0px); } 50% { transform: translateY(-12px); } 100% { transform: translateY(0px); } }
 
-        /* Contenedor principal del círculo (NO TIENE OVERFLOW HIDDEN para dejar salir el +) */
         .timeline-img-box { 
             width: 130px; height: 130px; 
             border-radius: 50%; 
             border: 4px solid white; 
             animation: floating-hard 3s ease-in-out infinite, pulse-ring 2s infinite; 
             position: relative; z-index: 2; background: white; 
-            /* Importante: visible para que se vea el + */
-            overflow: visible; 
-            flex-shrink: 0; cursor: pointer;
+            overflow: visible; flex-shrink: 0; cursor: pointer;
         }
         
-        /* Círculo estampado detrás */
         .timeline-img-box::before {
             content: ''; position: absolute; top: -6px; left: -6px; right: -6px; bottom: -6px;
             background-image: var(--pattern-bg); background-size: cover; border-radius: 50%; z-index: -1; opacity: 1;
         }
 
-        /* El símbolo + (Fuera del círculo) */
-        .timeline-img-box::after { 
-            content: "+"; position: absolute; bottom: 0; right: 0; 
-            background-color: var(--nav-bg); color: white; width: 35px; height: 35px; 
-            border-radius: 50%; border: 2px solid white; display: flex; justify-content: center; align-items: center; 
-            font-size: 1.5rem; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.3); z-index: 10; 
-        }
+        .timeline-img-box::after { content: "+"; position: absolute; bottom: 0; right: 0; background-color: var(--nav-bg); color: white; width: 35px; height: 35px; border-radius: 50%; border: 2px solid white; display: flex; justify-content: center; align-items: center; font-size: 1.5rem; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.3); z-index: 10; }
         
-        /* Contenedor INTERNO para recortar la imagen (esto permite el zoom sin salirse del círculo) */
         .timeline-img-clipper {
-            width: 100%; height: 100%;
-            border-radius: 50%;
-            overflow: hidden; /* Aquí cortamos la imagen */
-            position: relative;
+            width: 100%; height: 100%; border-radius: 50%; overflow: hidden; position: relative;
         }
 
         .timeline-img-clipper img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; display: block; }
         .timeline-img-box:active .timeline-img-clipper img { transform: scale(0.95); }
         .img-preboda { object-position: top center !important; }
 
-        /* Zoom específico iglesia desde fuera */
         .timeline-img-clipper img[src*="QDGdxoI.png"] { transform: scale(1.8); object-position: center 60%; }
 
         .timeline-content { width: 55%; padding: 0 10px; display: flex; flex-direction: column; justify-content: center; }
@@ -327,7 +319,7 @@
 
         /* --- MEDIA QUERY ESCRITORIO --- */
         @media (min-width: 769px) {
-            nav { padding: 0 50px; justify-content: flex-end; } /* A la derecha */
+            nav { padding: 0 50px; justify-content: flex-end; } 
             
             .menu-toggle { display: block; }
             nav ul { width: 350px; }
@@ -335,8 +327,8 @@
             .hero { background-size: cover; background-position: center 25%; }
             .hero-content { padding-bottom: 60px; }
             
-            .names-title-hero { font-size: 6rem; }
-            .hero-subtitle { font-size: 2rem; }
+            .names-title-hero { font-size: 8rem; } /* Más grande en PC */
+            .hero-subtitle { font-size: 2.5rem; }
             
             .timeline { max-width: 800px; margin: 0 auto; }
             .cards-grid { display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 40px; }
