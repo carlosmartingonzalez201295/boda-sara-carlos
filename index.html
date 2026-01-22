@@ -24,7 +24,7 @@
             /* FUENTE GENERAL */
             --handwriting-font: 'Bradley Hand ITC', 'Bradley Hand', 'Noteworthy', 'Segoe Print', cursive;
             
-            /* FUENTE PORTADA (Estilo Dafont/Obayani) */
+            /* FUENTE PORTADA */
             --cover-font: 'Great Vibes', cursive;
         }
         
@@ -112,10 +112,10 @@
         }
 
         .names-title-hero {
-            font-family: var(--cover-font); /* Dafont Style */
+            font-family: var(--cover-font); 
             font-weight: 400;
             color: #e8f0e0; 
-            font-size: 3rem; /* Tamaño móvil ajustado */
+            font-size: 3rem; 
             line-height: 1.1;
             display: block;
             margin-bottom: 5px;
@@ -172,13 +172,8 @@
         }
         .subtitle { display: block; text-align: center; font-size: 0.95rem; color: #555; margin: -30px auto 40px auto; font-style: italic; max-width: 90%; }
 
-        /* --- ITINERARIO CON LÍNEA SERPENTEANTE MANUAL --- */
-        .timeline { 
-            position: relative; margin: 40px 0; padding: 0; 
-            display: flex; flex-direction: column; gap: 0; /* Quitamos gap para controlar la altura con los separadores */
-            padding-bottom: 20px; 
-        }
-        /* Quitamos líneas automáticas anteriores */
+        /* --- ITINERARIO CON LÍNEAS ZIG ZAG MANUALES --- */
+        .timeline { position: relative; margin: 40px 0; padding: 0; display: flex; flex-direction: column; gap: 0; padding-bottom: 20px; }
         .timeline::before { display: none; }
 
         .timeline-item { display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 2; width: 100%; margin: 0; }
@@ -191,8 +186,9 @@
             border-radius: 50%; 
             border: 4px solid white; 
             animation: floating-hard 3s ease-in-out infinite, pulse-ring 2s infinite; 
-            position: relative; z-index: 5; background: white; /* Z-Index alto para tapar la línea */
+            position: relative; z-index: 5; background: white; 
             overflow: visible; flex-shrink: 0; cursor: pointer;
+            margin-left: auto; margin-right: auto;
         }
         
         .timeline-img-box::before {
@@ -202,10 +198,7 @@
 
         .timeline-img-box::after { content: "+"; position: absolute; bottom: 0; right: 0; background-color: var(--nav-bg); color: white; width: 35px; height: 35px; border-radius: 50%; border: 2px solid white; display: flex; justify-content: center; align-items: center; font-size: 1.5rem; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.3); z-index: 10; }
         
-        .timeline-img-clipper {
-            width: 100%; height: 100%; border-radius: 50%; overflow: hidden; position: relative;
-        }
-
+        .timeline-img-clipper { width: 100%; height: 100%; border-radius: 50%; overflow: hidden; position: relative; }
         .timeline-img-clipper img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; display: block; }
         .timeline-img-box:active .timeline-img-clipper img { transform: scale(0.95); }
         .img-preboda { object-position: top center !important; }
@@ -215,30 +208,32 @@
         .timeline-content h3 { font-family: var(--handwriting-font); font-weight: bold; font-size: 1.6rem; color: var(--secondary); margin-bottom: 5px; line-height: 1.1; }
         .timeline-content p { font-size: 0.9rem; margin-bottom: 2px; color: #555; }
         
-        .timeline-item:nth-child(odd) { flex-direction: row; }
-        .timeline-item:nth-child(odd) .timeline-content { text-align: left; padding-left: 15px; }
-        .timeline-item:nth-child(even) { flex-direction: row-reverse; }
-        .timeline-item:nth-child(even) .timeline-content { text-align: right; padding-right: 15px; }
+        /* CLASES DE ALINEACIÓN FORZADA (AQUÍ ESTÁ LA MAGIA) */
+        .item-left { flex-direction: row; }
+        .item-left .timeline-content { text-align: left; padding-left: 15px; }
+        
+        .item-right { flex-direction: row-reverse; }
+        .item-right .timeline-content { text-align: right; padding-right: 15px; }
 
-        /* --- CONECTORES ZIG ZAG MANUALES (SNAKE) --- */
+        /* --- CONECTORES ZIG ZAG MANUALES --- */
         .snake-connector {
             width: 100%;
-            height: 90px; /* Altura de la separación entre círculos */
+            height: 90px;
             position: relative;
-            z-index: 0; /* Detrás de todo */
+            z-index: 0; 
             pointer-events: none;
-            margin-top: -15px; /* Pequeño ajuste para que entre bien bajo el circulo */
+            margin-top: -15px; 
             margin-bottom: -15px;
         }
 
-        /* Curva Izquierda -> Derecha */
+        /* Curva Izquierda -> Derecha (De Golf a Preboda) */
         .snake-l-to-r {
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M 15,0 C 15,55 85,45 85,100' fill='none' stroke='%2377855C' stroke-width='2' stroke-dasharray='7,7' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E");
             background-repeat: no-repeat;
             background-size: 100% 100%;
         }
 
-        /* Curva Derecha -> Izquierda */
+        /* Curva Derecha -> Izquierda (De Preboda a Ceremonia) */
         .snake-r-to-l {
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M 85,0 C 85,55 15,45 15,100' fill='none' stroke='%2377855C' stroke-width='2' stroke-dasharray='7,7' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E");
             background-repeat: no-repeat;
@@ -414,7 +409,7 @@
 
         <div class="timeline">
             
-            <div class="timeline-item reveal">
+            <div class="timeline-item item-left reveal">
                 <div class="timeline-img-box" onclick="openModal('golf')">
                     <div class="timeline-img-clipper"><img src="https://i.imgur.com/GEZh21g.jpeg" alt="Golf"></div>
                 </div>
@@ -426,7 +421,7 @@
 
             <div class="snake-connector snake-l-to-r reveal"></div>
             
-            <div class="timeline-item reveal">
+            <div class="timeline-item item-right reveal">
                 <div class="timeline-img-box" onclick="openModal('preboda')">
                     <div class="timeline-img-clipper"><img src="https://i.imgur.com/0khwPw5.jpeg" alt="Preboda" class="img-preboda"></div>
                 </div>
@@ -438,7 +433,7 @@
 
             <div class="snake-connector snake-r-to-l reveal"></div>
 
-            <div class="timeline-item reveal">
+            <div class="timeline-item item-left reveal">
                 <div class="timeline-img-box" onclick="openModal('ceremonia')">
                     <div class="timeline-img-clipper"><img src="https://i.imgur.com/QDGdxoI.png" alt="Ceremonia"></div>
                 </div>
@@ -450,7 +445,7 @@
 
             <div class="snake-connector snake-l-to-r reveal"></div>
 
-            <div class="timeline-item reveal">
+            <div class="timeline-item item-right reveal">
                 <div class="timeline-img-box" onclick="openModal('celebracion')">
                     <div class="timeline-img-clipper"><img src="https://i.imgur.com/XaKG3fN.jpeg" alt="Celebración"></div>
                 </div>
