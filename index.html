@@ -251,6 +251,7 @@
         /* --- TARJETAS --- */
         .cards-grid { display: flex; flex-direction: column; gap: 40px; }
         .card { background: transparent; padding: 0; border-radius: 0; box-shadow: none; border: none; text-align: center; transition: transform 0.3s ease; }
+        /* Altura base para móvil */
         .card-img { width: 100%; height: 200px; object-fit: cover; border-radius: 15px; margin-top: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.15); transition: box-shadow 0.3s ease; }
         .card:hover { transform: translateY(-5px); }
         .card:hover .card-img { box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
@@ -395,10 +396,13 @@
             .cards-grid { display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 40px; }
             .card { width: 30%; display: flex; flex-direction: column; justify-content: space-between; }
             
-            /* REGLA ESPECÍFICA PARA ESCRITORIO: ALINEAR TODAS LAS FOTOS ARRIBA */
+            /* CAMBIO: AUMENTAR ALTURA Y AJUSTAR POSICIÓN EN ESCRITORIO */
             .card-img { 
+                height: 250px; /* Altura aumentada para ver más imagen */
                 margin-top: auto; 
-                object-position: top center; /* Alineación TOP para escritorio */
+                /* Prioriza la parte media-alta (30%) en lugar de arriba del todo, 
+                   mostrando más parte inferior que antes */
+                object-position: center 30%; 
             }
             
             .modal-content { width: 90%; max-width: 500px; height: auto; max-height: 85vh; border-radius: 15px; margin: 5% auto; }
@@ -808,6 +812,7 @@
                 { coords: [39.963172, -4.825597], title: "Hotel Be Live", addr: "Av. Toledo, s/n" },
                 { coords: [39.959145, -4.833321], title: "Blue Windows", addr: "C. Corredera del Cristo, 18" },
                 { coords: [39.958156, -4.834167], title: "Santa Rita", addr: "C. Mesones, 3" },
+                // NUEVA UBICACIÓN
                 { coords: [39.961012, -4.832712], title: "Canalla Food & Drinks", addr: "C. Teatro, 4" }
             ];
 
