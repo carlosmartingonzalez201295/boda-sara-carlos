@@ -20,6 +20,8 @@
             --light: #fff; 
             --nav-bg: #77855C; /* Verde Sage */
             --pattern-bg: url('https://i.imgur.com/feTyvjy.jpeg'); 
+            /* NUEVA VARIABLE PARA EL FONDO DE PAPEL TEXTURIZADO */
+            --paper-texture: url('https://i.imgur.com/0pkprZl.jpeg');
             
             /* FUENTE GENERAL */
             --handwriting-font: 'Bradley Hand ITC', 'Bradley Hand', 'Noteworthy', 'Segoe Print', cursive;
@@ -66,7 +68,9 @@
             width: 300px; 
             max-width: 80%; 
             height: calc(100vh - 60px);
-            background: white; 
+            /* CAMBIO: Fondo de papel en lugar de blanco */
+            background-image: var(--paper-texture);
+            background-repeat: repeat;
             flex-direction: column; align-items: center; justify-content: flex-start;
             padding-top: 20px; gap: 0; list-style: none;
             transform: translateX(100%); transition: transform 0.3s ease-in-out;
@@ -172,8 +176,8 @@
         }
         .subtitle { display: block; text-align: center; font-size: 0.95rem; color: #555; margin: -30px auto 40px auto; font-style: italic; max-width: 90%; }
 
-        /* --- ITINERARIO --- */
-        .timeline { position: relative; margin: 40px 0; padding: 0; display: flex; flex-direction: column; gap: 0; padding-bottom: 20px; }
+        /* --- ITINERARIO (SIN LÍNEAS) --- */
+        .timeline { position: relative; margin: 40px 0; padding: 0; display: flex; flex-direction: column; gap: 40px; /* Gap recuperado al quitar las líneas */ padding-bottom: 20px; }
         .timeline::before { display: none; }
 
         .timeline-item { display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 2; width: 100%; margin: 0; }
@@ -184,13 +188,16 @@
         .timeline-img-box { 
             width: 130px; height: 130px; 
             border-radius: 50%; 
-            border: 4px solid white; 
+            border: 4px solid white; /* Mantenemos el borde blanco para contraste */
             animation: floating-hard 3s ease-in-out infinite, pulse-ring 2s infinite; 
-            position: relative; z-index: 5; background: white; 
+            position: relative; z-index: 5; 
+            /* CAMBIO: Fondo de papel en lugar de blanco */
+            background-image: var(--paper-texture); background-size: cover;
             overflow: visible; flex-shrink: 0; cursor: pointer;
             margin-left: auto; margin-right: auto;
         }
         
+        /* El patrón de fondo detrás del círculo se mantiene */
         .timeline-img-box::before {
             content: ''; position: absolute; top: -6px; left: -6px; right: -6px; bottom: -6px;
             background-image: var(--pattern-bg); background-size: cover; border-radius: 50%; z-index: -1; opacity: 1;
@@ -215,33 +222,6 @@
         .item-right { flex-direction: row-reverse; }
         .item-right .timeline-content { text-align: right; padding-right: 15px; }
 
-        /* --- CONECTORES ZIG ZAG MANUALES (DISCONTINUOS PERO LARGOS) --- */
-        .snake-connector {
-            width: 100%;
-            height: 90px;
-            position: relative;
-            z-index: 0; 
-            pointer-events: none;
-            margin-top: -15px; 
-            margin-bottom: -15px;
-        }
-
-        /* CAMBIO: Stroke-dasharray = '15,15' (Trazos de 15px y espacios de 15px) */
-        
-        /* Curva Izquierda -> Derecha */
-        .snake-l-to-r {
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M 15,0 C 15,55 85,45 85,100' fill='none' stroke='%2377855C' stroke-width='2' stroke-dasharray='15,15' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-size: 100% 100%;
-        }
-
-        /* Curva Derecha -> Izquierda */
-        .snake-r-to-l {
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M 85,0 C 85,55 15,45 15,100' fill='none' stroke='%2377855C' stroke-width='2' stroke-dasharray='15,15' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-size: 100% 100%;
-        }
-
         /* --- TARJETAS --- */
         .cards-grid { display: flex; flex-direction: column; gap: 40px; }
         .card { background: transparent; padding: 0; border-radius: 0; box-shadow: none; border: none; text-align: center; transition: transform 0.3s ease; }
@@ -258,8 +238,13 @@
 
         /* --- CAJA IBAN --- */
         .iban-wrapper { margin-top: 25px; display: inline-block; cursor: pointer; position: relative; width: 100%; max-width: 400px; }
-        .iban-box { border: 2px solid var(--nav-bg); background: white; padding: 10px 15px; border-radius: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: background 0.3s, transform 0.2s; }
-        .iban-box:active { background: #f0f0f0; transform: scale(0.98); } 
+        .iban-box { 
+            border: 2px solid var(--nav-bg); 
+            /* CAMBIO: Fondo de papel en lugar de blanco */
+            background-image: var(--paper-texture); background-repeat: repeat;
+            padding: 10px 15px; border-radius: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: background 0.3s, transform 0.2s; 
+        }
+        .iban-box:active { transform: scale(0.98); opacity: 0.9; } 
         .iban-text { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 1.1rem; color: var(--secondary); letter-spacing: 0.5px; white-space: nowrap; }
         .copy-link { font-size: 0.7rem; color: var(--nav-bg); font-weight: 700; text-transform: uppercase; margin-top: 5px; font-family: 'Montserrat', sans-serif; }
         .copy-feedback { display: none; color: var(--nav-bg); font-size: 0.8rem; margin-top: 5px; font-weight: 600; position: absolute; bottom: -25px; left: 50%; transform: translateX(-50%); white-space: nowrap; }
@@ -273,7 +258,11 @@
         .custom-pin-marker { display: flex; justify-content: center; align-items: center; font-size: 2.5rem; text-shadow: 0 2px 5px rgba(0,0,0,0.3); }
 
         /* --- FORMULARIO RSVP --- */
-        .rsvp-form { background: white; padding: 30px 20px; border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); width: 100%; margin-top: 20px; border-top: 4px solid var(--nav-bg); }
+        .rsvp-form { 
+            /* CAMBIO: Fondo de papel en lugar de blanco */
+            background-image: var(--paper-texture); background-repeat: repeat;
+            padding: 30px 20px; border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); width: 100%; margin-top: 20px; border-top: 4px solid var(--nav-bg); 
+        }
         .form-group { margin-bottom: 20px; }
         label { font-size: 0.9rem; font-weight: 600; color: var(--secondary); margin-bottom: 8px; display: block; }
         input, select, textarea { width: 100%; padding: 12px; font-size: 16px; border: 1px solid #ddd; border-radius: 8px; background: #fafafa; transition:all 0.3s; }
@@ -282,7 +271,8 @@
             border-color: var(--nav-bg);
             box-shadow: 0 0 0 3px rgba(119, 133, 92, 0.2);
             outline: none;
-            background: white;
+            /* CAMBIO: Al hacer foco, también usa el papel, no blanco puro */
+            background-image: var(--paper-texture);
         }
         
         button { 
@@ -299,7 +289,11 @@
 
         /* --- MODALES --- */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 2000; backdrop-filter: blur(3px); }
-        .modal-content { background: white; width: 100%; height: 100%; max-width: 100%; margin: 0; border-radius: 0; padding: 25px; overflow-y: auto; position: relative; animation: slideUp 0.3s; display: flex; flex-direction: column; align-items: center; }
+        .modal-content { 
+            /* CAMBIO: Fondo de papel en lugar de blanco */
+            background-image: var(--paper-texture); background-repeat: repeat;
+            width: 100%; height: 100%; max-width: 100%; margin: 0; border-radius: 0; padding: 25px; overflow-y: auto; position: relative; animation: slideUp 0.3s; display: flex; flex-direction: column; align-items: center; 
+        }
         .close-modal { 
             position: absolute; top: 15px; right: 15px; font-size: 1.5rem; width: 36px; height: 36px; 
             background: var(--nav-bg); color: white;
@@ -318,7 +312,11 @@
         
         /* ESTILOS CEREMONIA MAPS */
         .ceremonia-maps-white-bg {
-            background: white; padding: 25px 15px; border-radius: 15px; box-shadow: 0 5px 25px rgba(0,0,0,0.1); 
+            /* CAMBIO: Se quita el fondo blanco para que coja el del modal */
+            background: transparent;
+            padding: 25px 15px; border-radius: 15px; 
+            /* Se quita la sombra para que no se vea un recuadro */
+            box-shadow: none;
             margin-bottom: 30px; width: 100%; display: flex; flex-direction: column; align-items: center;
         }
         .map-unit { width: 100%; margin-bottom: 30px; text-align: center; overflow: hidden; border-radius: 10px; position: relative; }
@@ -360,9 +358,6 @@
             
             .countdown-number { font-size: 3.5rem; }
             .img-entrada-zoomed, .img-salida-contain { height: 300px; max-height: 300px; }
-            
-            /* Ajuste de curvas en escritorio (más anchas) */
-            .snake-connector { height: 120px; margin-top: -20px; margin-bottom: -20px; }
         }
     </style>
 </head>
@@ -421,8 +416,6 @@
                 </div>
             </div>
 
-            <div class="snake-connector snake-l-to-r reveal"></div>
-            
             <div class="timeline-item item-right reveal">
                 <div class="timeline-img-box" onclick="openModal('preboda')">
                     <div class="timeline-img-clipper"><img src="https://i.imgur.com/0khwPw5.jpeg" alt="Preboda" class="img-preboda"></div>
@@ -433,8 +426,6 @@
                 </div>
             </div>
 
-            <div class="snake-connector snake-r-to-l reveal"></div>
-
             <div class="timeline-item item-left reveal">
                 <div class="timeline-img-box" onclick="openModal('ceremonia')">
                     <div class="timeline-img-clipper"><img src="https://i.imgur.com/QDGdxoI.png" alt="Ceremonia"></div>
@@ -444,8 +435,6 @@
                     <p><strong>Sábado 03 - 17:00h</strong></p>
                 </div>
             </div>
-
-            <div class="snake-connector snake-l-to-r reveal"></div>
 
             <div class="timeline-item item-right reveal">
                 <div class="timeline-img-box" onclick="openModal('celebracion')">
