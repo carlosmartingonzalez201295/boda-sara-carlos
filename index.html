@@ -20,6 +20,8 @@
             --light: #fff; 
             --nav-bg: #77855C; /* Verde Sage */
             --pattern-bg: url('https://i.imgur.com/feTyvjy.jpeg'); 
+            
+            /* FUENTE BRADLEY HAND */
             --handwriting-font: 'Bradley Hand ITC', 'Bradley Hand', 'Noteworthy', 'Segoe Print', cursive;
         }
         
@@ -35,6 +37,7 @@
             overflow-x: hidden;
         }
 
+        /* FONDO ESTAMPADO GENERAL */
         body::before {
             content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-image: var(--pattern-bg);
@@ -43,44 +46,39 @@
             z-index: -1; pointer-events: none;
         }
 
-        /* --- NAVEGACIÓN (PANEL LATERAL DERECHO) --- */
+        /* --- NAVEGACIÓN --- */
         nav {
             position: fixed; top: 0; left: 0; width: 100%; height: 60px; 
             z-index: 1000; padding: 0 20px;
-            display: flex; justify-content: flex-end; /* Alineado a la derecha */
+            display: flex; justify-content: flex-end; /* SIEMPRE A LA DERECHA */
             align-items: center;
-            background: transparent; /* Fondo transparente inicialmente para que se vea la foto */
-            transition: background 0.3s;
+            background: var(--nav-bg); 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
-        
-        /* Fondo verde al hacer scroll (opcional, o dejarlo siempre verde) */
-        nav.scrolled { background: var(--nav-bg); box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        /* Para asegurar legibilidad siempre, lo dejamos verde fijo */
-        nav { background: var(--nav-bg); box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
 
         .menu-toggle { font-size: 2rem; color: white; cursor: pointer; padding: 10px; display: block; }
         
         nav ul {
             position: fixed; top: 60px; 
             right: 0; /* Pegado a la derecha */
-            left: auto; /* No ocupa toda la pantalla */
-            width: 300px; /* Ancho del panel */
-            max-width: 80%; /* Para móviles muy pequeños */
+            width: 300px; /* Panel lateral */
+            max-width: 80%; 
             height: calc(100vh - 60px);
             background: white; 
             flex-direction: column; align-items: center; justify-content: flex-start;
             padding-top: 20px; gap: 0; list-style: none;
-            transform: translateX(100%); /* Oculto a la derecha */
-            transition: transform 0.3s ease-in-out;
+            transform: translateX(100%); transition: transform 0.3s ease-in-out;
             display: flex; 
-            box-shadow: -5px 0 15px rgba(0,0,0,0.1); /* Sombra lateral */
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
         }
         
-        nav ul.active { transform: translateX(0); } /* Se muestra */
+        nav ul.active { transform: translateX(0); }
         nav li { width: 100%; text-align: center; }
         
         nav a { 
-            display: block; padding: 20px; font-size: 1.2rem; color: var(--nav-bg); 
+            display: block; padding: 20px; 
+            font-size: 1.3rem; 
+            color: var(--nav-bg); 
             text-transform: uppercase; letter-spacing: 1px; text-decoration: none;
             position: relative; font-family: var(--handwriting-font); font-weight: bold;
         }
@@ -100,10 +98,10 @@
             overflow: hidden;
         }
 
-        /* Degradado inferior suave para leer el texto blanco */
+        /* Degradado inferior para contraste */
         .hero::before {
             content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 60%;
-            background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
+            background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
             z-index: 1;
         }
         
@@ -114,18 +112,19 @@
         .names-title-hero {
             font-family: var(--handwriting-font);
             font-weight: bold;
-            color: #fff; /* BLANCO */
-            font-size: 3.5rem; /* Tamaño móvil base */
+            /* COLOR VERDE MUY CLARITO / CREMA */
+            color: #e8f0e0; 
+            font-size: 3.5rem; 
             line-height: 1;
             display: block;
             margin-bottom: 10px;
-            text-shadow: 0 2px 15px rgba(0,0,0,0.6); /* Sombra fuerte para contraste */
-            white-space: nowrap; /* Mantiene en una línea */
+            text-shadow: 0 2px 15px rgba(0,0,0,0.6); 
+            white-space: nowrap; 
         }
 
         .hero-subtitle {
             font-family: var(--handwriting-font); font-weight: bold; 
-            color: #fff; /* BLANCO */
+            color: #e8f0e0; /* MISMO VERDE MUY CLARO */
             font-size: 1.4rem; display: block;
             text-shadow: 0 2px 10px rgba(0,0,0,0.6); 
             letter-spacing: 1px;
@@ -133,26 +132,20 @@
         
         .scroll-indicator { 
             position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);
-            z-index: 2; animation: bounce 2s infinite; font-size: 2rem; color: white; text-shadow: 0 2px 5px rgba(0,0,0,0.5); 
+            z-index: 2; animation: bounce 2s infinite; font-size: 2rem; color: #e8f0e0; text-shadow: 0 2px 5px rgba(0,0,0,0.5); 
         }
 
         /* --- CUENTA ATRÁS --- */
         .countdown-section {
             padding: 30px 20px 10px 20px; 
             display: flex; justify-content: center; align-items: center; 
-            gap: 15px; 
-            scroll-margin-top: 100px; 
-            background-color: transparent;
+            gap: 15px; scroll-margin-top: 100px; background-color: transparent;
         }
         .countdown-item { display: flex; flex-direction: column; align-items: center; }
         
         .countdown-number { 
-            font-family: 'Cormorant Garamond', serif; 
-            font-size: 2.5rem; 
-            color: var(--nav-bg); 
-            font-weight: 700;
-            line-height: 1; 
-            background: transparent; box-shadow: none; border: none;
+            font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: var(--nav-bg); 
+            font-weight: 700; line-height: 1; background: transparent; box-shadow: none; border: none;
             width: auto; height: auto; margin-bottom: 0;
         }
         
@@ -166,21 +159,18 @@
         /* --- SECCIONES GENERALES --- */
         section { padding: 40px 20px 60px 20px; width: 100%; max-width: 100%; position: relative; scroll-margin-top: 90px; }
         
-        /* Línea separadora sutil */
+        /* Separador sutil */
         #itinerario::after, #alojamiento::after, #recomendaciones::after, #dresscode::after, #mapa::after, #confirmacion::after {
-            content: ''; position: absolute; bottom: 0; left: 15%; width: 70%; height: 1px; 
-            background-color: var(--nav-bg); opacity: 0.3;
+            content: ''; position: absolute; bottom: 0; left: 15%; width: 70%; height: 1px; background-color: var(--nav-bg); opacity: 0.3;
         }
 
         h2 { 
-            font-family: var(--handwriting-font); font-weight: bold;
-            font-size: 3rem; text-align: center; 
-            margin-bottom: 40px; color: var(--secondary); line-height: 1.1;
-            margin-left: auto; margin-right: auto; width: 100%;
+            font-family: var(--handwriting-font); font-weight: bold; font-size: 3rem; text-align: center; 
+            margin-bottom: 40px; color: var(--secondary); line-height: 1.1; margin-left: auto; margin-right: auto; width: 100%;
         }
         .subtitle { display: block; text-align: center; font-size: 0.95rem; color: #555; margin: -30px auto 40px auto; font-style: italic; max-width: 90%; }
 
-        /* --- ITINERARIO --- */
+        /* --- ITINERARIO CORREGIDO (MÁS AFUERA DEL CÍRCULO) --- */
         .timeline { position: relative; margin: 40px 0; padding: 0; display: flex; flex-direction: column; gap: 60px; padding-bottom: 20px; }
         .timeline::before { display: none; }
 
@@ -189,33 +179,46 @@
         @keyframes pulse-ring { 0% { box-shadow: 0 0 0 0 rgba(119, 133, 92, 0.4); } 70% { box-shadow: 0 0 0 15px rgba(119, 133, 92, 0); } 100% { box-shadow: 0 0 0 0 rgba(119, 133, 92, 0); } }
         @keyframes floating-hard { 0% { transform: translateY(0px); } 50% { transform: translateY(-12px); } 100% { transform: translateY(0px); } }
 
+        /* Contenedor principal del círculo (NO TIENE OVERFLOW HIDDEN para dejar salir el +) */
         .timeline-img-box { 
             width: 130px; height: 130px; 
             border-radius: 50%; 
             border: 4px solid white; 
             animation: floating-hard 3s ease-in-out infinite, pulse-ring 2s infinite; 
-            overflow: hidden; /* IMPORTANTE para el zoom */
-            flex-shrink: 0; cursor: pointer; position: relative; z-index: 2; background: white; 
+            position: relative; z-index: 2; background: white; 
+            /* Importante: visible para que se vea el + */
+            overflow: visible; 
+            flex-shrink: 0; cursor: pointer;
         }
         
-        /* ANILLO ESTAMPADO */
+        /* Círculo estampado detrás */
         .timeline-img-box::before {
             content: ''; position: absolute; top: -6px; left: -6px; right: -6px; bottom: -6px;
-            background-image: var(--pattern-bg); background-size: cover; 
-            border-radius: 50%; z-index: -1; opacity: 1;
+            background-image: var(--pattern-bg); background-size: cover; border-radius: 50%; z-index: -1; opacity: 1;
         }
 
-        .timeline-img-box::after { content: "+"; position: absolute; bottom: 0; right: 0; background-color: var(--nav-bg); color: white; width: 35px; height: 35px; border-radius: 50%; border: 2px solid white; display: flex; justify-content: center; align-items: center; font-size: 1.5rem; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.3); z-index: 10; }
+        /* El símbolo + (Fuera del círculo) */
+        .timeline-img-box::after { 
+            content: "+"; position: absolute; bottom: 0; right: 0; 
+            background-color: var(--nav-bg); color: white; width: 35px; height: 35px; 
+            border-radius: 50%; border: 2px solid white; display: flex; justify-content: center; align-items: center; 
+            font-size: 1.5rem; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.3); z-index: 10; 
+        }
         
-        .timeline-img-box img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; transition: transform 0.3s; display: block; }
-        .timeline-img-box:active img { transform: scale(0.95); }
+        /* Contenedor INTERNO para recortar la imagen (esto permite el zoom sin salirse del círculo) */
+        .timeline-img-clipper {
+            width: 100%; height: 100%;
+            border-radius: 50%;
+            overflow: hidden; /* Aquí cortamos la imagen */
+            position: relative;
+        }
+
+        .timeline-img-clipper img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; display: block; }
+        .timeline-img-box:active .timeline-img-clipper img { transform: scale(0.95); }
         .img-preboda { object-position: top center !important; }
 
-        /* ZOOM ESPECÍFICO PARA LA MINIATURA DE LA IGLESIA (SOLO DESDE FUERA) */
-        .timeline-img-box img[src*="QDGdxoI.png"] {
-            transform: scale(1.8); 
-            object-position: center 60%;
-        }
+        /* Zoom específico iglesia desde fuera */
+        .timeline-img-clipper img[src*="QDGdxoI.png"] { transform: scale(1.8); object-position: center 60%; }
 
         .timeline-content { width: 55%; padding: 0 10px; display: flex; flex-direction: column; justify-content: center; }
         .timeline-content h3 { font-family: var(--handwriting-font); font-weight: bold; font-size: 1.6rem; color: var(--secondary); margin-bottom: 5px; line-height: 1.1; }
@@ -299,7 +302,7 @@
         .modal-info-center .address { color: #888; font-size: 0.9rem; font-style: italic; }
         .modal-desc-justify { text-align: justify; color: #666; font-size: 0.95rem; width: 100%; margin-bottom: 20px; }
         
-        /* --- ESTILOS ESPECÍFICOS PARA EL MODAL CEREMONIA --- */
+        /* ESTILOS CEREMONIA MAPS */
         .ceremonia-maps-white-bg {
             background: white; padding: 25px 15px; border-radius: 15px; box-shadow: 0 5px 25px rgba(0,0,0,0.1); 
             margin-bottom: 30px; width: 100%; display: flex; flex-direction: column; align-items: center;
@@ -324,11 +327,10 @@
 
         /* --- MEDIA QUERY ESCRITORIO --- */
         @media (min-width: 769px) {
-            nav { padding: 0 50px; justify-content: center; } 
+            nav { padding: 0 50px; justify-content: flex-end; } /* A la derecha */
             
-            /* MENU ESCRITORIO = PANEL LATERAL */
             .menu-toggle { display: block; }
-            nav ul { width: 350px; } /* Un poco más ancho en escritorio */
+            nav ul { width: 350px; }
 
             .hero { background-size: cover; background-position: center 25%; }
             .hero-content { padding-bottom: 60px; }
@@ -386,8 +388,6 @@
         </div>
     </section>
 
-    <div style="text-align:center; font-size:1.5rem; color:var(--nav-bg); opacity:0.6; margin: 20px 0;">🌿</div>
-
     <section id="itinerario">
         <h2>Itinerario</h2>
         <p class="subtitle">Haz clic en las imágenes para ver los detalles</p>
@@ -395,7 +395,9 @@
         <div class="timeline">
             <div class="timeline-item reveal">
                 <div class="timeline-img-box" onclick="openModal('golf')">
-                    <img src="https://i.imgur.com/GEZh21g.jpeg" alt="Golf">
+                    <div class="timeline-img-clipper">
+                        <img src="https://i.imgur.com/GEZh21g.jpeg" alt="Golf">
+                    </div>
                 </div>
                 <div class="timeline-content" onclick="openModal('golf')">
                     <h3>Torneo de Golf</h3>
@@ -405,7 +407,9 @@
             
             <div class="timeline-item reveal">
                 <div class="timeline-img-box" onclick="openModal('preboda')">
-                    <img src="https://i.imgur.com/0khwPw5.jpeg" alt="Preboda" class="img-preboda">
+                    <div class="timeline-img-clipper">
+                        <img src="https://i.imgur.com/0khwPw5.jpeg" alt="Preboda" class="img-preboda">
+                    </div>
                 </div>
                 <div class="timeline-content" onclick="openModal('preboda')">
                     <h3>Preboda</h3>
@@ -415,7 +419,9 @@
 
             <div class="timeline-item reveal">
                 <div class="timeline-img-box" onclick="openModal('ceremonia')">
-                    <img src="https://i.imgur.com/QDGdxoI.png" alt="Ceremonia"> 
+                    <div class="timeline-img-clipper">
+                        <img src="https://i.imgur.com/QDGdxoI.png" alt="Ceremonia"> 
+                    </div>
                 </div>
                 <div class="timeline-content" onclick="openModal('ceremonia')">
                     <h3>Ceremonia Religiosa</h3>
@@ -425,7 +431,9 @@
 
             <div class="timeline-item reveal">
                 <div class="timeline-img-box" onclick="openModal('celebracion')">
-                    <img src="https://i.imgur.com/XaKG3fN.jpeg" alt="Celebración">
+                    <div class="timeline-img-clipper">
+                        <img src="https://i.imgur.com/XaKG3fN.jpeg" alt="Celebración">
+                    </div>
                 </div>
                 <div class="timeline-content" onclick="openModal('celebracion')">
                     <h3>Celebración</h3>
@@ -444,19 +452,16 @@
 
         <div class="cards-grid">
             <div class="card reveal" onclick="openModal('hotel1')">
-                <div class="icon">🏨</div>
                 <h3>Hotel Be Live</h3>
                 <p>⭐⭐⭐⭐</p>
                 <p style="color: var(--primary); font-weight:600; margin-top:5px; font-size:0.9rem;">👉 Ver detalles</p>
             </div>
             <div class="card reveal" onclick="openModal('apt1')">
-                <div class="icon">🏡</div>
                 <h3>Blue Windows</h3>
                 <p>Apartamentos</p>
                 <p style="color: var(--primary); font-weight:600; margin-top:5px; font-size:0.9rem;">👉 Ver detalles</p>
             </div>
             <div class="card reveal" onclick="openModal('apt2')">
-                <div class="icon">🏡</div>
                 <h3>Santa Rita</h3>
                 <p>B&Boutique</p>
                 <p style="color: var(--primary); font-weight:600; margin-top:5px; font-size:0.9rem;">👉 Ver detalles</p>
@@ -652,9 +657,9 @@
         </div>
     </div>
 
-    <div id="modal-hotel1" class="modal"><div class="modal-content"><div class="close-modal" onclick="closeModal('hotel1')">&times;</div><div style="font-size:3rem; margin-bottom:10px;">🏨</div><h3>Hotel Be Live</h3><p>Av. Toledo, s/n</p><div style="text-align:left; width:100%; margin-top:20px; background:#fafafa; padding:20px; border-radius:10px;"><strong>💰 96€/noche aprox</strong><br><br><strong>🎁 Código Boda:</strong><br>BODA CARLOS Y SARA<br>Loc: 25GTV174</div></div></div>
-    <div id="modal-apt1" class="modal"><div class="modal-content"><div class="close-modal" onclick="closeModal('apt1')">&times;</div><div style="font-size:3rem; margin-bottom:10px;">🏡</div><h3>Blue Windows</h3><p>C. Corredera del Cristo, 18</p><p style="margin-top:20px;">925 80 24 28</p></div></div>
-    <div id="modal-apt2" class="modal"><div class="modal-content"><div class="close-modal" onclick="closeModal('apt2')">&times;</div><div style="font-size:3rem; margin-bottom:10px;">🏡</div><h3>Santa Rita</h3><p>C. Mesones, 3</p><p style="margin-top:20px;">925 80 17 17</p></div></div>
+    <div id="modal-hotel1" class="modal"><div class="modal-content"><div class="close-modal" onclick="closeModal('hotel1')">&times;</div><h3>Hotel Be Live</h3><p>Av. Toledo, s/n</p><div style="text-align:left; width:100%; margin-top:20px; background:#fafafa; padding:20px; border-radius:10px;"><strong>💰 96€/noche aprox</strong><br><br><strong>🎁 Código Boda:</strong><br>BODA CARLOS Y SARA<br>Loc: 25GTV174</div></div></div>
+    <div id="modal-apt1" class="modal"><div class="modal-content"><div class="close-modal" onclick="closeModal('apt1')">&times;</div><h3>Blue Windows</h3><p>C. Corredera del Cristo, 18</p><p style="margin-top:20px;">925 80 24 28</p></div></div>
+    <div id="modal-apt2" class="modal"><div class="modal-content"><div class="close-modal" onclick="closeModal('apt2')">&times;</div><h3>Santa Rita</h3><p>C. Mesones, 3</p><p style="margin-top:20px;">925 80 17 17</p></div></div>
     
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
