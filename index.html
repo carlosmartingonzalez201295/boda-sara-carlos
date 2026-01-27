@@ -144,20 +144,15 @@
             font-family: 'Montserrat', sans-serif; font-size: 0.65rem; letter-spacing: 1px; color: #555; margin-top: 2px; text-transform: uppercase; font-weight: 600;
         }
 
-        /* --- BLOQUES DE TEXTO (AHORA CON TEXTURA DE PAPEL PARA DAR VIDA) --- */
+        /* --- BLOQUES DE TEXTO (RESTAURADOS AL ORIGINAL SIN FONDO) --- */
         .text-block { 
             text-align: center; 
             font-size: 1rem; 
             color: #555; 
+            margin: -20px auto 30px auto; 
             max-width: 90%; 
-            line-height: 1.8;
-            /* NUEVO: Textura de papel, padding y sombra para que parezca una tarjeta */
-            background-image: var(--paper-texture);
-            background-repeat: repeat;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05); /* Sombra muy sutil */
-            margin: 20px auto 40px auto; /* Margen ajustado */
+            line-height: 1.8; 
+            /* Se han eliminado background, padding, border-radius y box-shadow */
         }
         
         /* CLASE ESPECIAL PARA LA FRASE DESTACADA (VERDE) */
@@ -350,20 +345,19 @@
         .map-unit { width: 100%; margin-bottom: 30px; text-align: center; overflow: hidden; border-radius: 10px; position: relative; }
         .map-unit:last-child { margin-bottom: 0; }
         
-        /* CORRECCIÓN ZOOM ENTRADA: SE VUELVE A APLICAR SCALE */
+        /* CAMBIO: AUMENTO SIGNIFICATIVO DEL ZOOM PARA IGUALAR ESCALA */
         .img-entrada-zoomed {
             width: 100%;
             height: 250px; 
             object-fit: cover; 
             object-position: center 60%; 
-            transform: scale(1.25); /* ZOOM APLICADO */
+            transform: scale(1.7); /* Scale aumentado de 1.25 a 1.7 */
             display: block;
         }
 
-        /* CORRECCIÓN IMAGEN SALIDA: SIN MAX-HEIGHT PARA QUE NO SE CORTE */
         .img-salida-contain {
             width: 100%;
-            height: auto; /* Altura automática */
+            height: auto;
             object-fit: contain; 
             display: block;
         }
@@ -405,7 +399,6 @@
             .countdown-number { font-size: 3.5rem; }
             .img-entrada-zoomed { height: 300px; }
             
-            /* EN ESCRITORIO TAMBIÉN QUITAMOS EL LÍMITE DE ALTURA A LA IMAGEN DE SALIDA */
             .img-salida-contain { max-height: none; } 
         }
 
