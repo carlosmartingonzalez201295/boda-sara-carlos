@@ -14,13 +14,14 @@
         /* --- VARIABLES --- */
         :root { 
             --primary: #d4a373; 
-            /* CORRECCIÓN: COLOR SECUNDARIO VUELVE A SER VERDE CORPORATIVO */
-            --secondary: #77855C; 
+            --secondary: #77855C; /* Verde Corporativo */
             --accent: #faf8f5; 
             --dark: #3d3d3d; 
             --light: #fff; 
             --nav-bg: #77855C; /* Verde Sage */
+            /* Patrón de fondo sutil general */
             --pattern-bg: url('https://i.imgur.com/feTyvjy.jpeg'); 
+            /* Textura de papel para elementos destacados */
             --paper-texture: url('https://i.imgur.com/0pkprZl.jpeg');
             
             /* FUENTE GENERAL */
@@ -54,63 +55,37 @@
         nav {
             position: fixed; top: 0; left: 0; width: 100%; height: 60px; 
             z-index: 1000; padding: 0 15px;
-            
-            display: flex; 
-            justify-content: center; 
-            align-items: center;
-            
+            display: flex; justify-content: center; align-items: center;
             background-color: #fdfbf7; /* Blanco roto */
             background-image: none; 
-            
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
         /* LOGO CON FILTRO VERDE */
         .nav-logo-stamp {
-            height: 55px; 
-            width: auto;
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            top: 2.5px; 
-            z-index: 1001;
+            height: 55px; width: auto; position: absolute; left: 50%; transform: translateX(-50%); top: 2.5px; z-index: 1001;
             filter: brightness(0) saturate(100%) invert(53%) sepia(18%) saturate(882%) hue-rotate(66deg) brightness(92%) contrast(86%);
         }
 
         .menu-toggle { 
-            font-size: 2rem; 
-            color: var(--nav-bg); 
-            cursor: pointer; 
-            padding: 10px; 
-            display: block; 
-            position: absolute; 
-            right: 15px; 
-            z-index: 1002; 
+            font-size: 2rem; color: var(--nav-bg); cursor: pointer; padding: 10px; display: block; position: absolute; right: 15px; z-index: 1002; 
         }
         
         /* --- MENÚ DESPLEGABLE --- */
         nav ul {
-            position: fixed; top: 60px; 
-            right: 0; 
-            width: 300px; 
-            max-width: 80%; 
-            height: calc(100vh - 60px);
-            background-image: var(--paper-texture);
-            background-repeat: repeat;
+            position: fixed; top: 60px; right: 0; width: 300px; max-width: 80%; height: calc(100vh - 60px);
+            background-image: var(--paper-texture); background-repeat: repeat;
             flex-direction: column; align-items: center; justify-content: flex-start;
             padding-top: 20px; gap: 0; list-style: none;
             transform: translateX(100%); transition: transform 0.3s ease-in-out;
-            display: flex; 
-            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            display: flex; box-shadow: -5px 0 15px rgba(0,0,0,0.1);
         }
         
         nav ul.active { transform: translateX(0); }
         nav li { width: 100%; text-align: center; }
         
         nav a { 
-            display: block; padding: 20px; 
-            font-size: 1.3rem; 
-            color: var(--nav-bg); 
+            display: block; padding: 20px; font-size: 1.3rem; color: var(--nav-bg); 
             text-transform: uppercase; letter-spacing: 1px; text-decoration: none;
             position: relative; font-family: var(--handwriting-font); font-weight: bold;
         }
@@ -148,22 +123,13 @@
 
         /* --- TEXTO INTRODUCCIÓN --- */
         .intro-text-banner {
-            text-align: center;
-            padding: 40px 20px 0px 20px; 
-            font-family: var(--handwriting-font);
-            font-weight: bold;
-            color: var(--nav-bg); 
-            font-size: 1.8rem; 
-            line-height: 1.3;
-            width: 100%;
-            max-width: 90%;
-            margin: 0 auto;
+            text-align: center; padding: 40px 20px 0px 20px; font-family: var(--handwriting-font);
+            font-weight: bold; color: var(--nav-bg); font-size: 1.8rem; line-height: 1.3; width: 100%; max-width: 90%; margin: 0 auto;
         }
 
         /* --- CUENTA ATRÁS --- */
         .countdown-section {
-            padding: 20px 20px 20px 20px; 
-            display: flex; justify-content: center; align-items: center; 
+            padding: 20px 20px 20px 20px; display: flex; justify-content: center; align-items: center; 
             gap: 15px; scroll-margin-top: 100px; background-color: transparent;
         }
         .countdown-item { display: flex; flex-direction: column; align-items: center; }
@@ -178,15 +144,25 @@
             font-family: 'Montserrat', sans-serif; font-size: 0.65rem; letter-spacing: 1px; color: #555; margin-top: 2px; text-transform: uppercase; font-weight: 600;
         }
 
-        /* --- BIENVENIDA --- */
-        .text-block { text-align: center; font-size: 1rem; color: #555; margin: -20px auto 30px auto; max-width: 90%; line-height: 1.8; }
+        /* --- BLOQUES DE TEXTO (AHORA CON TEXTURA DE PAPEL PARA DAR VIDA) --- */
+        .text-block { 
+            text-align: center; 
+            font-size: 1rem; 
+            color: #555; 
+            max-width: 90%; 
+            line-height: 1.8;
+            /* NUEVO: Textura de papel, padding y sombra para que parezca una tarjeta */
+            background-image: var(--paper-texture);
+            background-repeat: repeat;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05); /* Sombra muy sutil */
+            margin: 20px auto 40px auto; /* Margen ajustado */
+        }
         
         /* CLASE ESPECIAL PARA LA FRASE DESTACADA (VERDE) */
         .highlight-phrase {
-            font-family: var(--handwriting-font); 
-            font-weight: bold;
-            color: var(--nav-bg); 
-            font-size: 1.3rem;
+            font-family: var(--handwriting-font); font-weight: bold; color: var(--nav-bg); font-size: 1.3rem;
         }
 
         /* --- SECCIONES GENERALES --- */
@@ -198,7 +174,6 @@
 
         h2 { 
             font-family: var(--handwriting-font); font-weight: bold; font-size: 3rem; text-align: center; 
-            /* AHORA USA EL COLOR SECUNDARIO QUE ES VERDE */
             margin-bottom: 40px; color: var(--secondary); line-height: 1.1; margin-left: auto; margin-right: auto; width: 100%;
         }
         .subtitle { display: block; text-align: center; font-size: 0.95rem; color: #555; margin: -30px auto 40px auto; font-style: italic; max-width: 90%; }
@@ -213,14 +188,9 @@
         @keyframes floating-hard { 0% { transform: translateY(0px); } 50% { transform: translateY(-5px); } 100% { transform: translateY(0px); } }
 
         .timeline-img-box { 
-            width: 130px; height: 130px; 
-            border-radius: 50%; 
-            border: 4px solid white; 
+            width: 130px; height: 130px; border-radius: 50%; border: 4px solid white; 
             animation: floating-hard 3s ease-in-out infinite, pulse-ring 2s infinite; 
-            position: relative; z-index: 5; 
-            background-color: white; 
-            overflow: visible; flex-shrink: 0; cursor: pointer;
-            margin-left: auto; margin-right: auto;
+            position: relative; z-index: 5; background-color: white; overflow: visible; flex-shrink: 0; cursor: pointer; margin: 0 auto;
         }
         
         .timeline-img-box::before {
@@ -273,23 +243,14 @@
         .iban-wrapper:hover { opacity: 0.7; }
         
         .iban-box { 
-            background: transparent;
-            padding: 10px 0; 
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            background: transparent; padding: 10px 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
         }
         
         .iban-text { 
-            font-family: 'Cormorant Garamond', serif; font-weight: 700; 
-            font-size: 1.3rem; 
-            color: var(--nav-bg); 
-            letter-spacing: 0.5px; white-space: nowrap;
-            margin-bottom: 5px;
+            font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 1.3rem; color: var(--nav-bg); letter-spacing: 0.5px; white-space: nowrap; margin-bottom: 5px;
         }
         .copy-link { 
-            font-size: 0.85rem; 
-            color: var(--nav-bg); 
-            font-weight: 700; text-transform: uppercase; font-family: 'Montserrat', sans-serif; 
-            text-decoration: underline; 
+            font-size: 0.85rem; color: var(--nav-bg); font-weight: 700; text-transform: uppercase; font-family: 'Montserrat', sans-serif; text-decoration: underline; 
         }
         .copy-feedback { display: none; color: var(--nav-bg); font-size: 0.8rem; margin-top: 5px; font-weight: 600; position: absolute; bottom: -25px; left: 50%; transform: translateX(-50%); white-space: nowrap; }
 
@@ -300,40 +261,19 @@
         }
 
         .welcome-image-container {
-            text-align: center;
-            margin-top: 5px; 
-            margin-bottom: 0;
-            line-height: 0;
+            text-align: center; margin-top: 5px; margin-bottom: 0; line-height: 0;
         }
-        .welcome-image-container img {
-            max-width: 130px; 
-            height: auto;
-        }
+        .welcome-image-container img { max-width: 130px; height: auto; }
 
         .dresscode-image-container {
-            text-align: center;
-            margin-top: 25px; 
-            margin-bottom: 0px; 
-            padding-bottom: 0;
-            line-height: 0;
+            text-align: center; margin-top: 25px; margin-bottom: 0px; padding-bottom: 0; line-height: 0;
         }
-        .dresscode-image-container img {
-            max-width: 180px; 
-            height: auto;
-            display: inline-block;
-        }
+        .dresscode-image-container img { max-width: 180px; height: auto; display: inline-block; }
 
         .footer-image-container {
-            text-align: center;
-            padding: 40px 20px 60px 20px; 
-            width: 100%;
+            text-align: center; padding: 40px 20px 60px 20px; width: 100%;
         }
-        .footer-image-container img {
-            width: auto;
-            height: auto;
-            max-width: 150px; 
-            display: inline-block;
-        }
+        .footer-image-container img { width: auto; height: auto; max-width: 150px; display: inline-block; }
 
         /* --- MAPA --- */
         #map { height: 450px; width: 100%; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); margin-bottom: 20px; z-index: 1; }
@@ -410,12 +350,13 @@
         .map-unit { width: 100%; margin-bottom: 30px; text-align: center; overflow: hidden; border-radius: 10px; position: relative; }
         .map-unit:last-child { margin-bottom: 0; }
         
+        /* CORRECCIÓN ZOOM ENTRADA: SE VUELVE A APLICAR SCALE */
         .img-entrada-zoomed {
             width: 100%;
             height: 250px; 
             object-fit: cover; 
             object-position: center 60%; 
-            transform: scale(1.25); 
+            transform: scale(1.25); /* ZOOM APLICADO */
             display: block;
         }
 
