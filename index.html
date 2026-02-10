@@ -6,7 +6,7 @@
     <title>Sara y Carlos</title>
     
     <style>
-        /* --- FUENTES: AÑADIDA "CINZEL" PARA ESTILO ROYAL --- */
+        /* --- FUENTES --- */
         @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Permanent+Marker&family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600;1,700&family=Montserrat:wght@300;400;500;600&display=swap');
         
         /* --- VARIABLES --- */
@@ -23,7 +23,6 @@
             /* FUENTES */
             --handwriting-font: 'Bradley Hand ITC', 'Bradley Hand', 'Noteworthy', 'Segoe Print', cursive;
             --crayon-font: 'Permanent Marker', cursive;
-            /* NUEVA FUENTE ESTILO ROYAL */
             --royal-font: 'Cinzel', serif; 
         }
         
@@ -61,7 +60,7 @@
             height: 50px; width: auto; 
             position: absolute; left: 20px; top: 50%; transform: translateY(-50%);
             z-index: 1001;
-            filter: brightness(0) invert(1); /* Logo blanco */
+            filter: brightness(0) invert(1);
         }
 
         .menu-toggle { 
@@ -95,7 +94,7 @@
             display: flex;
             flex-direction: column;
             justify-content: center; 
-            align-items: flex-end; /* Alineado a la derecha */
+            align-items: flex-end; 
             position: relative;
             padding-top: 60px; 
             padding-bottom: 20px;
@@ -103,37 +102,34 @@
             /* IMAGEN DE FONDO */
             background-image: url('https://i.imgur.com/gsqT5lg.jpeg');
             background-size: cover;
-            background-position: center center;
+            /* CAMBIO: Center TOP para asegurar cabezas en PC */
+            background-position: center top; 
             background-repeat: no-repeat;
         }
 
-        /* Contenedor para el texto a la derecha */
         .hero-right-container {
             text-align: right;
             margin-right: 8%; 
-            /* CAMBIO: SUBIDO MÁS (AUMENTADO MARGIN-BOTTOM) */
             margin-bottom: 45%; 
             z-index: 2;
         }
 
         .hero-names {
-            /* CAMBIO: FUENTE ROYAL (CINZEL) Y MÁS PEQUEÑO */
             font-family: var(--royal-font); 
             color: var(--secondary); 
-            font-size: 1.5rem; /* Más pequeño */
+            font-size: 1.5rem; 
             font-weight: 600;
             line-height: 1.1;
             margin-bottom: 8px;
             text-transform: uppercase;
-            letter-spacing: 2px; /* Espaciado estilo Royal */
+            letter-spacing: 2px; 
             text-shadow: 0 1px 3px rgba(255,255,255,0.9); 
         }
 
         .hero-date {
-            /* CAMBIO: FUENTE ROYAL (CINZEL) Y MÁS PEQUEÑO */
             font-family: var(--royal-font);
             color: var(--secondary);
-            font-size: 1.1rem; /* Más pequeño */
+            font-size: 1.1rem; 
             font-weight: 600;
             line-height: 1;
             letter-spacing: 2px;
@@ -156,13 +152,41 @@
         h2 { font-family: var(--handwriting-font); font-weight: bold; font-size: 3rem; text-align: center; margin-bottom: 40px; color: var(--secondary); line-height: 1.1; }
         .subtitle { display: block; text-align: center; font-size: 0.95rem; color: #555; margin: -30px auto 40px auto; font-style: italic; max-width: 90%; }
 
-        /* --- ITINERARIO --- */
+        /* --- ITINERARIO CON MÁS MOVIMIENTO --- */
         .timeline { position: relative; margin: 40px 0; padding: 0; display: flex; flex-direction: column; gap: 40px; padding-bottom: 20px; }
         .timeline-item { display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 2; width: 100%; }
         
-        .timeline-img-box { width: 130px; height: 130px; border-radius: 50%; border: 4px solid white; position: relative; z-index: 5; background-color: white; overflow: visible; flex-shrink: 0; cursor: pointer; margin: 0 auto; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        /* Animación PULSO más fuerte y rápida */
+        @keyframes pulse-intense { 
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(119, 133, 92, 0.7); } 
+            70% { transform: scale(1.02); box-shadow: 0 0 0 15px rgba(119, 133, 92, 0); } 
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(119, 133, 92, 0); } 
+        }
+        
+        /* Animación del símbolo + */
+        @keyframes plus-bounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+        }
+
+        .timeline-img-box { 
+            width: 130px; height: 130px; border-radius: 50%; border: 4px solid white; 
+            position: relative; z-index: 5; background-color: white; overflow: visible; flex-shrink: 0; cursor: pointer; margin: 0 auto; 
+            /* APLICADA ANIMACIÓN INTENSA */
+            animation: pulse-intense 1.5s infinite ease-in-out;
+        }
+        
         .timeline-img-box::before { content: ''; position: absolute; top: -6px; left: -6px; right: -6px; bottom: -6px; background-image: var(--pattern-bg); background-size: cover; border-radius: 50%; z-index: -1; opacity: 1; }
-        .timeline-img-box::after { content: "+"; position: absolute; bottom: 0; right: 0; background-color: var(--nav-bg); color: white; width: 35px; height: 35px; border-radius: 50%; border: 2px solid white; display: flex; justify-content: center; align-items: center; font-size: 1.5rem; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.3); z-index: 10; }
+        
+        .timeline-img-box::after { 
+            content: "+"; position: absolute; bottom: 0; right: 0; 
+            background-color: var(--nav-bg); color: white; 
+            width: 35px; height: 35px; border-radius: 50%; border: 2px solid white; 
+            display: flex; justify-content: center; align-items: center; 
+            font-size: 1.5rem; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.3); z-index: 10;
+            /* EL SÍMBOLO + TAMBIÉN SE MUEVE */
+            animation: plus-bounce 1.5s infinite;
+        }
         
         .timeline-img-clipper { width: 100%; height: 100%; border-radius: 50%; overflow: hidden; position: relative; }
         .timeline-img-clipper img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; display: block; }
@@ -183,7 +207,7 @@
         .card h3 { font-family: var(--handwriting-font); font-weight: bold; font-size: 2.2rem; color: var(--secondary); margin-bottom: 10px; }
         .card p { color: #555; font-size: 1.1rem; }
         .img-canalla { object-position: center 45%; }
-        .tapeo-subtitle { font-family: var(--handwriting-font); font-weight: bold; font-size: 1.5rem; color: var(--secondary); text-align: center; margin-bottom: 20px; display: block; }
+        /* .tapeo-subtitle ELIMINADO SEGÚN PETICIÓN */
 
         /* --- MAPA Y ENLACE --- */
         .map-frame-container {
@@ -201,7 +225,7 @@
         .map-text-link::before { content: '→'; font-size: 1.2rem; animation: arrow-bounce 1s infinite ease-in-out; }
         .map-text-link span { display: block; } 
 
-        /* --- RSVP --- */
+        /* --- RSVP TEXTO CREATIVO --- */
         .rsvp-accordion-wrapper { width: 100%; margin-top: 20px; text-align: center; }
         .rsvp-toggle-text {
             background: none; border: none; box-shadow: none; color: var(--nav-bg); 
@@ -253,7 +277,6 @@
         .map-unit { width: 100%; margin-bottom: 30px; text-align: center; overflow: hidden; border-radius: 10px; position: relative; }
         .map-unit:last-child { margin-bottom: 0; }
         
-        /* CORRECCIÓN IGLESIA: Misma escala visual */
         .img-entrada-zoomed { width: 100%; height: 250px; object-fit: cover; object-position: center center; display: block; }
         .img-salida-contain { width: 100%; height: 250px; object-fit: cover; object-position: center center; display: block; }
 
@@ -262,6 +285,7 @@
         @keyframes bounce { 0%, 100% { transform: translate(-50%, 0); } 50% { transform: translate(-50%, -10px); } }
         @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
 
+        /* --- MEDIA QUERY ESCRITORIO --- */
         @media (min-width: 769px) {
             nav { padding: 0 50px; } .menu-toggle { display: block; } nav ul { width: 350px; }
             /* Ajuste del margen en pantallas grandes */
@@ -275,16 +299,6 @@
             .modal-content { width: 90%; max-width: 500px; height: auto; max-height: 85vh; border-radius: 15px; margin: 5% auto; }
             .img-entrada-zoomed { height: 300px; }
             .img-salida-contain { height: 300px; } 
-        }
-        /* AJUSTES MÓVIL ESPECÍFICOS PARA LA POSICIÓN DEL TEXTO */
-        @media (max-width: 768px) { 
-            /* CAMBIO: SUBIMOS EL TEXTO MUCHO MÁS PARA LIBRAR LA CABEZA (45% bottom) */
-            .hero-right-container { margin-right: 5%; margin-bottom: 45%; } 
-            .hero-names { font-size: 1.5rem; }
-            .hero-date { font-size: 1.1rem; }
-        }
-        @media (max-width: 480px) { 
-            .hero-right-container { margin-bottom: 50%; } /* Aún más arriba en pantallas muy pequeñas */
         }
     </style>
 </head>
@@ -365,10 +379,9 @@
         <h2>Recomendaciones</h2>
         <div class="text-block reveal">
             <p>Talavera es mi casa y ahora también la de Carlos, que ya se conoce cada rincón como uno más del equipo.</p>
-            <p>Estos son nuestros favoritos de confianza de tapeo y cervecitas para calentar motores el viernes antes de la preboda o reponer fuerzas el sábado.</p>
+            <p>Estos son nuestros favoritos de tapeo y cervecitas para calentar motores el viernes antes de la preboda o reponer fuerzas el sábado.</p>
             <p style="font-style: italic; color: var(--secondary); font-weight: 600; margin-top: 20px;">📍 Están todos por la zona del centro, muy cerquita de la Iglesia y del sitio donde celebraremos la preboda:</p>
         </div>
-        <p class="tapeo-subtitle">Nuestros favoritos de tapeo y cervecitas</p>
         <div class="cards-grid">
             <div class="card reveal"><h3>Cosafina</h3><p>Bar castizo ideal para previas. Su gilda es un imprescindible.</p><img src="https://i.imgur.com/oUrVS6B.jpeg" class="card-img" alt="Cosafina"></div>
             <div class="card reveal"><h3>La Antigua</h3><p>Las revolconas son un must en el grupo. No os podéis ir de Talavera sin probarlas ;)</p><img src="https://i.imgur.com/BzGUdYf.jpeg" class="card-img" alt="La Antigua"></div>
