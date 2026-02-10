@@ -6,8 +6,8 @@
     <title>Sara y Carlos</title>
     
     <style>
-        /* --- FUENTES --- */
-        @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600;1,700&family=Montserrat:wght@300;400;500;600&display=swap');
+        /* --- FUENTES: AÑADIDA "CINZEL" PARA ESTILO ROYAL --- */
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Permanent+Marker&family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600;1,700&family=Montserrat:wght@300;400;500;600&display=swap');
         
         /* --- VARIABLES --- */
         :root { 
@@ -23,6 +23,8 @@
             /* FUENTES */
             --handwriting-font: 'Bradley Hand ITC', 'Bradley Hand', 'Noteworthy', 'Segoe Print', cursive;
             --crayon-font: 'Permanent Marker', cursive;
+            /* NUEVA FUENTE ESTILO ROYAL */
+            --royal-font: 'Cinzel', serif; 
         }
         
         /* --- RESET Y BASE --- */
@@ -86,51 +88,56 @@
         }
         nav a::after { content: ''; position: absolute; bottom: 0; left: 15%; width: 70%; height: 4px; background-image: var(--pattern-bg); background-size: cover; opacity: 0.6; border-radius: 2px; }
 
-        /* --- NUEVO HERO CON IMAGEN COMPLETA --- */
+        /* --- HERO --- */
         .polaroid-hero {
             min-height: 100vh;
             width: 100%;
             display: flex;
             flex-direction: column;
-            /* Alineación para poner el texto a la derecha y centrado verticalmente */
             justify-content: center; 
-            align-items: flex-end;
+            align-items: flex-end; /* Alineado a la derecha */
             position: relative;
             padding-top: 60px; 
             padding-bottom: 20px;
             
-            /* NUEVA IMAGEN DE FONDO COMPLETA */
+            /* IMAGEN DE FONDO */
             background-image: url('https://i.imgur.com/gsqT5lg.jpeg');
             background-size: cover;
-            background-position: center center; /* Centrada para que no se corten los dibujos */
+            background-position: center center;
             background-repeat: no-repeat;
         }
 
         /* Contenedor para el texto a la derecha */
         .hero-right-container {
             text-align: right;
-            margin-right: 8%; /* Margen derecho para que no se pegue al borde */
-            margin-bottom: 15%; /* Ajuste vertical para que cuadre con los dibujos */
+            margin-right: 8%; 
+            /* CAMBIO: SUBIDO MÁS (AUMENTADO MARGIN-BOTTOM) */
+            margin-bottom: 45%; 
             z-index: 2;
         }
 
         .hero-names {
-            font-family: var(--handwriting-font); /* Misma fuente de títulos */
-            color: var(--secondary); /* Verde corporativo */
-            font-size: 2.8rem; /* Grande pero menos que los H2 (3rem) */
-            font-weight: bold;
+            /* CAMBIO: FUENTE ROYAL (CINZEL) Y MÁS PEQUEÑO */
+            font-family: var(--royal-font); 
+            color: var(--secondary); 
+            font-size: 1.5rem; /* Más pequeño */
+            font-weight: 600;
             line-height: 1.1;
-            margin-bottom: 5px;
-            text-shadow: 0 1px 3px rgba(255,255,255,0.8); /* Sombra sutil para asegurar lectura */
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 2px; /* Espaciado estilo Royal */
+            text-shadow: 0 1px 3px rgba(255,255,255,0.9); 
         }
 
         .hero-date {
-            font-family: var(--handwriting-font);
+            /* CAMBIO: FUENTE ROYAL (CINZEL) Y MÁS PEQUEÑO */
+            font-family: var(--royal-font);
             color: var(--secondary);
-            font-size: 2rem;
-            font-weight: bold;
+            font-size: 1.1rem; /* Más pequeño */
+            font-weight: 600;
             line-height: 1;
-            text-shadow: 0 1px 3px rgba(255,255,255,0.8);
+            letter-spacing: 2px;
+            text-shadow: 0 1px 3px rgba(255,255,255,0.9);
         }
 
         .scroll-indicator { 
@@ -147,7 +154,7 @@
         #itinerario::after, #alojamiento::after, #recomendaciones::after, #dresscode::after, #mapa::after, #confirmacion::after, #regalo::after { content: ''; position: absolute; bottom: 0; left: 15%; width: 70%; height: 1px; background-color: var(--nav-bg); opacity: 0.3; }
 
         h2 { font-family: var(--handwriting-font); font-weight: bold; font-size: 3rem; text-align: center; margin-bottom: 40px; color: var(--secondary); line-height: 1.1; }
-        .subtitle { display: block; text-align: center; font-size: 0.95rem; color: #555; margin: -30px auto 40px auto; font-style: italic; }
+        .subtitle { display: block; text-align: center; font-size: 0.95rem; color: #555; margin: -30px auto 40px auto; font-style: italic; max-width: 90%; }
 
         /* --- ITINERARIO --- */
         .timeline { position: relative; margin: 40px 0; padding: 0; display: flex; flex-direction: column; gap: 40px; padding-bottom: 20px; }
@@ -178,7 +185,7 @@
         .img-canalla { object-position: center 45%; }
         .tapeo-subtitle { font-family: var(--handwriting-font); font-weight: bold; font-size: 1.5rem; color: var(--secondary); text-align: center; margin-bottom: 20px; display: block; }
 
-        /* --- MAPA Y ENLACE TEXTO --- */
+        /* --- MAPA Y ENLACE --- */
         .map-frame-container {
             width: 100%; height: 350px; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.15); margin-bottom: 20px;
         }
@@ -194,7 +201,7 @@
         .map-text-link::before { content: '→'; font-size: 1.2rem; animation: arrow-bounce 1s infinite ease-in-out; }
         .map-text-link span { display: block; } 
 
-        /* --- RSVP TEXTO CREATIVO --- */
+        /* --- RSVP --- */
         .rsvp-accordion-wrapper { width: 100%; margin-top: 20px; text-align: center; }
         .rsvp-toggle-text {
             background: none; border: none; box-shadow: none; color: var(--nav-bg); 
@@ -204,7 +211,6 @@
         }
         .rsvp-toggle-text::before { content: '→'; font-size: 1.4rem; font-family: var(--crayon-font); animation: arrow-bounce 1s infinite ease-in-out; }
         .rsvp-text-group { text-align: left; }
-        
         .rsvp-main-text { display: block; font-family: var(--crayon-font); font-size: 1.4rem; font-weight: normal; }
         .rsvp-sub-text { display: block; font-family: var(--crayon-font); font-size: 0.9rem; font-weight: normal; margin-top: 2px; }
 
@@ -256,13 +262,12 @@
         @keyframes bounce { 0%, 100% { transform: translate(-50%, 0); } 50% { transform: translate(-50%, -10px); } }
         @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
 
-        /* --- MEDIA QUERY ESCRITORIO --- */
         @media (min-width: 769px) {
             nav { padding: 0 50px; } .menu-toggle { display: block; } nav ul { width: 350px; }
             /* Ajuste del margen en pantallas grandes */
             .hero-right-container { margin-right: 15%; margin-bottom: 5%; }
-            .hero-names { font-size: 3.5rem; }
-            .hero-date { font-size: 2.5rem; }
+            .hero-names { font-size: 3rem; }
+            .hero-date { font-size: 2rem; }
             .timeline { max-width: 800px; margin: 0 auto; }
             .cards-grid { display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 40px; }
             .card { width: 30%; display: flex; flex-direction: column; justify-content: space-between; }
@@ -271,14 +276,15 @@
             .img-entrada-zoomed { height: 300px; }
             .img-salida-contain { height: 300px; } 
         }
-        /* AJUSTES MÓVIL ESPECÍFICOS PARA EL TEXTO DE PORTADA */
+        /* AJUSTES MÓVIL ESPECÍFICOS PARA LA POSICIÓN DEL TEXTO */
         @media (max-width: 768px) { 
-            .hero-right-container { margin-right: 5%; margin-bottom: 30%; } /* Más abajo en móvil para evitar dibujos */
-            .hero-names { font-size: 2.2rem; }
-            .hero-date { font-size: 1.6rem; }
+            /* CAMBIO: SUBIMOS EL TEXTO MUCHO MÁS PARA LIBRAR LA CABEZA (45% bottom) */
+            .hero-right-container { margin-right: 5%; margin-bottom: 45%; } 
+            .hero-names { font-size: 1.5rem; }
+            .hero-date { font-size: 1.1rem; }
         }
         @media (max-width: 480px) { 
-            .hero-right-container { margin-bottom: 40%; } /* Aún más abajo en pantallas muy pequeñas */
+            .hero-right-container { margin-bottom: 50%; } /* Aún más arriba en pantallas muy pequeñas */
         }
     </style>
 </head>
@@ -321,7 +327,7 @@
 
     <section id="itinerario">
         <h2>Itinerario</h2>
-        <p class="subtitle">Haz clic en las imágenes para ver los detalles</p>
+        <p class="subtitle">La celebración de todo el finde será en Talavera de la Reina, haz clic en las imágenes para ver los detalles</p>
         <div class="timeline">
             <div class="timeline-item item-left reveal">
                 <div class="timeline-img-box" onclick="openModal('golf')"><div class="timeline-img-clipper"><img src="https://i.imgur.com/GEZh21g.jpeg" alt="Golf"></div></div>
@@ -329,7 +335,7 @@
             </div>
             <div class="timeline-item item-right reveal">
                 <div class="timeline-img-box" onclick="openModal('preboda')"><div class="timeline-img-clipper"><img src="https://i.imgur.com/0khwPw5.jpeg" alt="Preboda" class="img-preboda"></div></div>
-                <div class="timeline-content" onclick="openModal('preboda')"><h3>Preboda</h3><p><strong>Viernes 02 - 21:00h</strong></p></div>
+                <div class="timeline-content" onclick="openModal('preboda')"><h3>Preboda</h3><p><strong>Viernes 02 - Por confirmar</strong></p></div>
             </div>
             <div class="timeline-item item-left reveal">
                 <div class="timeline-img-box" onclick="openModal('ceremonia')"><div class="timeline-img-clipper"><img src="https://i.imgur.com/QDGdxoI.png" alt="Ceremonia"></div></div>
@@ -359,13 +365,13 @@
         <h2>Recomendaciones</h2>
         <div class="text-block reveal">
             <p>Talavera es mi casa y ahora también la de Carlos, que ya se conoce cada rincón como uno más del equipo.</p>
-            <p>Estos son nuestros sitios de confianza para calentar motores el viernes antes de la preboda o reponer fuerzas el sábado.</p>
+            <p>Estos son nuestros favoritos de confianza de tapeo y cervecitas para calentar motores el viernes antes de la preboda o reponer fuerzas el sábado.</p>
             <p style="font-style: italic; color: var(--secondary); font-weight: 600; margin-top: 20px;">📍 Están todos por la zona del centro, muy cerquita de la Iglesia y del sitio donde celebraremos la preboda:</p>
         </div>
         <p class="tapeo-subtitle">Nuestros favoritos de tapeo y cervecitas</p>
         <div class="cards-grid">
             <div class="card reveal"><h3>Cosafina</h3><p>Bar castizo ideal para previas. Su gilda es un imprescindible.</p><img src="https://i.imgur.com/oUrVS6B.jpeg" class="card-img" alt="Cosafina"></div>
-            <div class="card reveal"><h3>La Antigua</h3><p>Las revolconas son un must en el grupo de Sara. No os podéis ir de Talavera sin probarlas ;)</p><img src="https://i.imgur.com/BzGUdYf.jpeg" class="card-img" alt="La Antigua"></div>
+            <div class="card reveal"><h3>La Antigua</h3><p>Las revolconas son un must en el grupo. No os podéis ir de Talavera sin probarlas ;)</p><img src="https://i.imgur.com/BzGUdYf.jpeg" class="card-img" alt="La Antigua"></div>
             <div class="card reveal"><h3>Casco Viejo</h3><p>Tapas tradicionales con toques modernos.</p><img src="https://i.imgur.com/OCSvOus.jpeg" class="card-img" alt="Casco Viejo"></div>
             <div class="card reveal"><h3>Askuabarra</h3><p>Cocina de producto donde su montadito de steak tartar es de lo mejorcito.</p><img src="https://i.imgur.com/aoBU7fM.jpeg" class="card-img" alt="Askuabarra"></div>
             <div class="card reveal"><h3>Sushido</h3><p>Nuestra opción favorita si os apetece cambiar de tercio y os gusta la comida japonesa.</p><img src="https://i.imgur.com/vHYLM4W.jpeg" class="card-img" alt="Sushi Do"></div>
@@ -476,7 +482,7 @@
         <div class="modal-content">
             <div class="close-modal" onclick="closeModal('preboda')">×</div>
             <img src="https://i.imgur.com/0khwPw5.jpeg" class="modal-header-img" style="object-position: top center;" alt="Preboda">
-            <div class="modal-info-center"><h3>Misa de 1</h3><p>Viernes 02 • 21:00h</p><p class="address">Calle José Luis Gallo, 1</p></div>
+            <div class="modal-info-center"><h3>Misa de 1</h3><p>Viernes 02 • Por confirmar</p><p class="address">Calle José Luis Gallo, 1</p></div>
             <div class="modal-desc-justify"><p>Para ir calentando el terreno... ¡tendremos preboda el viernes! Os confirmaremos la hora exacta más adelante :) Pero id reservando el hueco para el primer brindis.</p><p>Gracias por desplazaros para acompañarnos; teneros cerca ya desde el día anterior nos hace muchísima ilusión (y es la excusa perfecta para empezar por todo lo alto el fin de semana).</p></div>
         </div>
     </div>
