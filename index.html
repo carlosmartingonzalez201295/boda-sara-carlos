@@ -5,11 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Sara y Carlos</title>
     
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
-    
     <style>
         /* --- FUENTES --- */
-        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600;1,700&family=Montserrat:wght@300;400;500;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=The+Girl+Next+Door&family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600;1,700&family=Montserrat:wght@300;400;500;600&display=swap');
         
         /* --- VARIABLES --- */
         :root { 
@@ -19,13 +17,11 @@
             --dark: #3d3d3d; 
             --light: #fff; 
             --nav-bg: #77855C; /* Verde Sage */
-            /* Patrón de fondo sutil general */
             --pattern-bg: url('https://i.imgur.com/feTyvjy.jpeg'); 
-            /* Textura de papel para elementos destacados */
             --paper-texture: url('https://i.imgur.com/0pkprZl.jpeg');
             
             /* FUENTE GENERAL */
-            --handwriting-font: 'Bradley Hand ITC', 'Bradley Hand', 'Noteworthy', 'Segoe Print', cursive;
+            --handwriting-font: 'The Girl Next Door', cursive;
             
             /* FUENTE PORTADA */
             --cover-font: 'Great Vibes', cursive;
@@ -35,12 +31,13 @@
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         
         body { 
-            font-family: 'Montserrat', sans-serif; 
+            font-family: 'The Girl Next Door', cursive; 
             color: var(--dark); 
             line-height: 1.6; 
             background-color: #faf8f5; 
             position: relative;
             overflow-x: hidden;
+            font-size: 1.1rem; 
         }
 
         body::before {
@@ -56,7 +53,7 @@
             position: fixed; top: 0; left: 0; width: 100%; height: 60px; 
             z-index: 1000; padding: 0 15px;
             display: flex; justify-content: center; align-items: center;
-            background-color: #fdfbf7; /* Blanco roto */
+            background-color: #fdfbf7; 
             background-image: none; 
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
@@ -85,7 +82,8 @@
         nav li { width: 100%; text-align: center; }
         
         nav a { 
-            display: block; padding: 20px; font-size: 1.3rem; color: var(--nav-bg); 
+            display: block; padding: 20px; font-size: 1.4rem; 
+            color: var(--nav-bg); 
             text-transform: uppercase; letter-spacing: 1px; text-decoration: none;
             position: relative; font-family: var(--handwriting-font); font-weight: bold;
         }
@@ -124,7 +122,8 @@
         /* --- TEXTO INTRODUCCIÓN --- */
         .intro-text-banner {
             text-align: center; padding: 40px 20px 0px 20px; font-family: var(--handwriting-font);
-            font-weight: bold; color: var(--nav-bg); font-size: 1.8rem; line-height: 1.3; width: 100%; max-width: 90%; margin: 0 auto;
+            font-weight: bold; color: var(--nav-bg); font-size: 2rem; 
+            line-height: 1.3; width: 100%; max-width: 90%; margin: 0 auto;
         }
 
         /* --- CUENTA ATRÁS --- */
@@ -141,23 +140,14 @@
         }
         
         .countdown-label { 
-            font-family: 'Montserrat', sans-serif; font-size: 0.65rem; letter-spacing: 1px; color: #555; margin-top: 2px; text-transform: uppercase; font-weight: 600;
+            font-family: var(--handwriting-font); font-size: 0.8rem; letter-spacing: 1px; color: #555; margin-top: 2px; text-transform: uppercase; font-weight: 600;
         }
 
-        /* --- BLOQUES DE TEXTO (RESTAURADOS AL ORIGINAL SIN FONDO) --- */
-        .text-block { 
-            text-align: center; 
-            font-size: 1rem; 
-            color: #555; 
-            margin: -20px auto 30px auto; 
-            max-width: 90%; 
-            line-height: 1.8; 
-            /* Se han eliminado background, padding, border-radius y box-shadow */
-        }
+        /* --- BIENVENIDA --- */
+        .text-block { text-align: center; font-size: 1.2rem; color: #555; margin: -20px auto 30px auto; max-width: 90%; line-height: 1.8; }
         
-        /* CLASE ESPECIAL PARA LA FRASE DESTACADA (VERDE) */
         .highlight-phrase {
-            font-family: var(--handwriting-font); font-weight: bold; color: var(--nav-bg); font-size: 1.3rem;
+            font-family: var(--handwriting-font); font-weight: bold; color: var(--nav-bg); font-size: 1.4rem;
         }
 
         /* --- SECCIONES GENERALES --- */
@@ -168,10 +158,10 @@
         }
 
         h2 { 
-            font-family: var(--handwriting-font); font-weight: bold; font-size: 3rem; text-align: center; 
+            font-family: var(--handwriting-font); font-weight: bold; font-size: 3.2rem; text-align: center; 
             margin-bottom: 40px; color: var(--secondary); line-height: 1.1; margin-left: auto; margin-right: auto; width: 100%;
         }
-        .subtitle { display: block; text-align: center; font-size: 0.95rem; color: #555; margin: -30px auto 40px auto; font-style: italic; max-width: 90%; }
+        .subtitle { display: block; text-align: center; font-size: 1.1rem; color: #555; margin: -30px auto 40px auto; font-style: italic; max-width: 90%; }
 
         /* --- ITINERARIO --- */
         .timeline { position: relative; margin: 40px 0; padding: 0; display: flex; flex-direction: column; gap: 40px; padding-bottom: 20px; }
@@ -203,8 +193,8 @@
         .timeline-img-clipper img[src*="QDGdxoI.png"] { transform: scale(1.8); object-position: center 60%; }
 
         .timeline-content { width: 55%; padding: 0 10px; display: flex; flex-direction: column; justify-content: center; position: relative; z-index: 3; }
-        .timeline-content h3 { font-family: var(--handwriting-font); font-weight: bold; font-size: 1.6rem; color: var(--secondary); margin-bottom: 5px; line-height: 1.1; }
-        .timeline-content p { font-size: 0.9rem; margin-bottom: 2px; color: #555; }
+        .timeline-content h3 { font-family: var(--handwriting-font); font-weight: bold; font-size: 1.8rem; color: var(--secondary); margin-bottom: 5px; line-height: 1.1; }
+        .timeline-content p { font-size: 1rem; margin-bottom: 2px; color: #555; }
         
         .item-left { flex-direction: row; }
         .item-left .timeline-content { text-align: left; padding-left: 15px; }
@@ -219,15 +209,15 @@
         .card-img { width: 100%; height: 200px; object-fit: cover; border-radius: 15px; margin-top: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.15); transition: box-shadow 0.3s ease; }
         .card:hover { transform: translateY(-5px); }
         .card:hover .card-img { box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
-        .card h3 { font-family: var(--handwriting-font); font-weight: bold; font-size: 2rem; color: var(--secondary); margin-bottom: 10px; }
-        .card p { color: #555; font-size: 0.95rem; }
+        .card h3 { font-family: var(--handwriting-font); font-weight: bold; font-size: 2.2rem; color: var(--secondary); margin-bottom: 10px; }
+        .card p { color: #555; font-size: 1.1rem; }
 
         /* --- CLASE ESPECÍFICA PARA CORREGIR FOTO CANALLA EN MOVIL --- */
         .img-canalla { object-position: center 45%; }
 
         /* --- SUBTÍTULO TAPEO --- */
         .tapeo-subtitle {
-            font-family: var(--handwriting-font); font-weight: bold; font-size: 1.3rem; color: var(--secondary); text-align: center; margin-bottom: 20px; display: block;
+            font-family: var(--handwriting-font); font-weight: bold; font-size: 1.5rem; color: var(--secondary); text-align: center; margin-bottom: 20px; display: block;
         }
 
         /* --- CAJA IBAN --- */
@@ -242,10 +232,10 @@
         }
         
         .iban-text { 
-            font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 1.3rem; color: var(--nav-bg); letter-spacing: 0.5px; white-space: nowrap; margin-bottom: 5px;
+            font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 1.4rem; color: var(--nav-bg); letter-spacing: 0.5px; white-space: nowrap; margin-bottom: 5px;
         }
         .copy-link { 
-            font-size: 0.85rem; color: var(--nav-bg); font-weight: 700; text-transform: uppercase; font-family: 'Montserrat', sans-serif; text-decoration: underline; 
+            font-size: 0.95rem; color: var(--nav-bg); font-weight: 700; text-transform: uppercase; font-family: var(--handwriting-font); text-decoration: underline; 
         }
         .copy-feedback { display: none; color: var(--nav-bg); font-size: 0.8rem; margin-top: 5px; font-weight: 600; position: absolute; bottom: -25px; left: 50%; transform: translateX(-50%); white-space: nowrap; }
 
@@ -270,18 +260,42 @@
         }
         .footer-image-container img { width: auto; height: auto; max-width: 150px; display: inline-block; }
 
-        /* --- MAPA --- */
-        #map { height: 450px; width: 100%; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); margin-bottom: 20px; z-index: 1; }
-        .leaflet-popup-content-wrapper { border-radius: 10px; font-family: 'Montserrat', sans-serif; }
-        .leaflet-popup-content h3 { color: var(--secondary); margin: 0 0 5px 0; font-family: var(--handwriting-font); font-weight: bold; font-size: 1.4rem; }
-        .leaflet-popup-content p { margin: 0; color: #555; font-size: 0.9rem; margin-bottom: 5px; }
-        .leaflet-popup-content .address { font-size: 0.8rem; color: #888; border-top: 1px solid #eee; padding-top: 5px; font-style: italic; }
-        .custom-pin-marker { display: flex; justify-content: center; align-items: center; font-size: 2.5rem; text-shadow: 0 2px 5px rgba(0,0,0,0.3); }
+        /* --- BOTÓN MAPA GOOGLE --- */
+        .map-link-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .map-btn {
+            display: inline-block;
+            padding: 16px 24px;
+            font-size: 1.4rem;
+            border-radius: 10px;
+            background: var(--secondary);
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(119, 133, 92, 0.4); /* Sombra verdosa */
+            border: none;
+            cursor: pointer;
+            text-decoration: none; /* Quitar subrayado del enlace */
+            font-family: var(--handwriting-font);
+            letter-spacing: 1px;
+            transition: transform 0.2s, background-color 0.3s;
+            text-align: center;
+        }
+
+        .map-btn:hover {
+            transform: translateY(-2px);
+            opacity: 0.95;
+        }
 
         /* --- FORMULARIO RSVP --- */
         .rsvp-accordion-wrapper { width: 100%; margin-top: 20px; }
         .rsvp-toggle-btn {
-            padding: 16px; font-size: 1.3rem; border-radius: 10px; background: var(--nav-bg); color: white; 
+            padding: 16px; font-size: 1.4rem; border-radius: 10px; background: var(--nav-bg); color: white; 
             font-weight: bold; box-shadow: 0 4px 10px rgba(84, 98, 57, 0.3); border: none; width: 100%; 
             cursor: pointer; font-family: var(--handwriting-font); letter-spacing: 1px;
             transition: transform 0.2s, background-color 0.3s; margin-bottom: 10px;
@@ -295,8 +309,8 @@
             padding: 30px 20px; border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); width: 100%; border-top: 4px solid var(--nav-bg); 
         }
         .form-group { margin-bottom: 20px; }
-        label { font-size: 0.9rem; font-weight: 600; color: var(--secondary); margin-bottom: 8px; display: block; }
-        input, select, textarea { width: 100%; padding: 12px; font-size: 16px; border: 1px solid #ddd; border-radius: 8px; background: #fafafa; transition:all 0.3s; }
+        label { font-size: 1.1rem; font-weight: 600; color: var(--secondary); margin-bottom: 8px; display: block; font-family: var(--handwriting-font); }
+        input, select, textarea { width: 100%; padding: 12px; font-size: 1.1rem; border: 1px solid #ddd; border-radius: 8px; background: #fafafa; transition:all 0.3s; font-family: var(--handwriting-font); }
         
         input:focus, select:focus, textarea:focus {
             border-color: var(--nav-bg);
@@ -306,7 +320,7 @@
         }
         
         button#submitBtn { 
-            padding: 16px; font-size: 1.3rem; border-radius: 10px; 
+            padding: 16px; font-size: 1.4rem; border-radius: 10px; 
             background: var(--secondary); 
             color: white; font-weight: bold; 
             box-shadow: 0 4px 10px rgba(139, 115, 85, 0.3); 
@@ -333,8 +347,8 @@
         .modal-info-center { text-align: center; margin-bottom: 20px; width: 100%; }
         .modal-info-center h3 { font-family: var(--handwriting-font); font-weight: bold; font-size: 2.2rem; color: var(--secondary); margin-bottom: 5px; }
         .modal-info-center p { color: #444; font-weight: 500; margin-bottom: 5px; }
-        .modal-info-center .address { color: #888; font-size: 0.9rem; font-style: italic; }
-        .modal-desc-justify { text-align: justify; color: #666; font-size: 0.95rem; width: 100%; margin-bottom: 20px; }
+        .modal-info-center .address { color: #888; font-size: 1rem; font-style: italic; }
+        .modal-desc-justify { text-align: justify; color: #666; font-size: 1.1rem; width: 100%; margin-bottom: 20px; }
         
         /* ESTILOS CEREMONIA MAPS */
         .ceremonia-maps-white-bg {
@@ -590,7 +604,9 @@
         <div class="text-block reveal">
             <p>Aquí os dejamos un mapa para que podáis localizar con facilidad todos los sitios que os hemos dejado en la web</p>
         </div>
-        <div id="map" class="reveal"></div>
+        <div class="map-link-container reveal">
+            <a href="https://www.google.com/maps/search/Colegiata+Santa+Mar%C3%ADa+la+Mayor+Talavera+de+la+Reina" target="_blank" class="map-btn">VER UBICACIONES EN GOOGLE MAPS</a>
+        </div>
     </section>
 
     <section id="confirmacion">
@@ -737,8 +753,6 @@
     <div id="modal-apt1" class="modal"><div class="modal-content"><div class="close-modal" onclick="closeModal('apt1')">&times;</div><h3>Blue Windows</h3><p>C. Corredera del Cristo, 18</p><p style="margin-top:20px;">925 80 24 28</p></div></div>
     <div id="modal-apt2" class="modal"><div class="modal-content"><div class="close-modal" onclick="closeModal('apt2')">&times;</div><h3>Santa Rita</h3><p>C. Mesones, 3</p><p style="margin-top:20px;">925 80 17 17</p></div></div>
     
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-
     <script>
         // PEGA AQUÍ TU URL DE APP SCRIPT
         const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzrJwolceA5-RvZgFqfbBT-Qp9_DB_v3U7YWjy4L-plFPQgBkCJEl_jlI4bSvXjFIIyXA/exec";
@@ -780,52 +794,6 @@
                 setTimeout(() => { feedback.style.display = 'none'; }, 2000);
             });
         }
-
-        // --- MAPA LEAFLET ---
-        document.addEventListener('DOMContentLoaded', function() {
-            const map = L.map('map', { scrollWheelZoom: false });
-
-            L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-                attribution: '&copy; OpenStreetMap &copy; CARTO',
-                maxZoom: 20
-            }).addTo(map);
-
-            const emojiIcon = L.divIcon({
-                className: 'custom-pin-marker',
-                html: '<div>📍</div>',
-                iconSize: [40, 40],
-                iconAnchor: [20, 40], 
-                popupAnchor: [0, -30]
-            });
-
-            // COORDENADAS REFINADAS
-            const markers = [
-                { coords: [39.958564, -4.833333], title: "Casco Viejo", addr: "Plaza Villatoya, 1" },
-                { coords: [39.957600, -4.831150], title: "Sushido", addr: "C. Arco de San Pedro, 11" },
-                { coords: [39.957700, -4.831100], title: "Cosafina", addr: "C. Arco de San Pedro, 10" },
-                { coords: [39.957500, -4.831250], title: "La Antigua", addr: "C. Arco de San Pedro, 13" },
-                { coords: [39.957155, -4.830589], title: "Askuabarra", addr: "Plaza Arzobispo don Pedro Tenorio, 2" },
-                { coords: [39.957600, -4.831600], title: "Colegiata Sta María la Mayor", addr: "Plaza del Pan" },
-                { coords: [39.993070, -4.786250], title: "La Casona del Lago - NÜA", addr: "Serranillos Playa" }, 
-                { coords: [39.960380, -4.831880], title: "Misa de 1", addr: "Calle José Luis Gallo, 1" },
-                { coords: [39.975000, -4.861800], title: "Palomarejos Golf", addr: "N-Va, Km 113" },
-                { coords: [39.963172, -4.825597], title: "Hotel Be Live", addr: "Av. Toledo, s/n" },
-                { coords: [39.959145, -4.833321], title: "Blue Windows", addr: "C. Corredera del Cristo, 18" },
-                { coords: [39.958156, -4.834167], title: "Santa Rita", addr: "C. Mesones, 3" },
-                // NUEVA UBICACIÓN
-                { coords: [39.961012, -4.832712], title: "Canalla Food & Drinks", addr: "C. Teatro, 4" }
-            ];
-
-            const featureGroup = L.featureGroup().addTo(map);
-
-            markers.forEach(m => {
-                L.marker(m.coords, { icon: emojiIcon })
-                    .addTo(featureGroup)
-                    .bindPopup(`<h3>${m.title}</h3><div class="address">${m.addr}</div>`);
-            });
-
-            map.fitBounds(featureGroup.getBounds(), { padding: [20, 20] });
-        });
 
         // Formularios
         document.getElementById('rsvpForm').addEventListener('submit', async function(e) {
