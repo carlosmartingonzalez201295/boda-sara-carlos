@@ -7,21 +7,8 @@
     
     <style>
         /* --- FUENTES --- */
-        /* Usamos CINZEL como sustituta perfecta de Royal Brand para esta previsualización */
-        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Permanent+Marker&family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600;1,700&family=Montserrat:wght@300;400;500;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Permanent+Marker&family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600;1,700&family=Montserrat:wght@300;400;500;600&display=swap');
         
-        /* NOTA PARA CUANDO TENGAS LA WEB EN TU SERVIDOR:
-           Si quieres usar tu archivo RoyalBrand-Regular.otf real, 
-           tendrías que subir el archivo y usar este código:
-           
-           @font-face {
-               font-family: 'Royal Brand';
-               src: url('RoyalBrand-Regular.otf') format('opentype');
-           }
-           
-           Y luego cambiar abajo var(--royal-font) a 'Royal Brand', sans-serif;
-        */
-
         /* --- VARIABLES --- */
         :root { 
             --primary: #d4a373; 
@@ -100,96 +87,60 @@
         }
         nav a::after { content: ''; position: absolute; bottom: 0; left: 15%; width: 70%; height: 4px; background-image: var(--pattern-bg); background-size: cover; opacity: 0.6; border-radius: 2px; }
 
-        /* --- HERO ESTILO IMAGEN DE REFERENCIA --- */
+        /* --- HERO RESTAURADO (IMAGEN COMPLETA) --- */
         .polaroid-hero {
             min-height: 100vh;
             width: 100%;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start; /* Alineación superior */
-            align-items: center;
+            /* Alineación para poner el texto a la derecha y abajo */
+            justify-content: center; 
+            align-items: flex-end;
             position: relative;
-            padding-top: 80px; 
-            padding-bottom: 40px;
+            padding-top: 60px; 
+            padding-bottom: 20px;
             
-            /* FONDO FLORAL */
-            background-image: url('https://i.imgur.com/feTyvjy.jpeg'); /* Fondo floral patrón */
-            background-size: 300px;
-            background-repeat: repeat;
+            /* TU IMAGEN ORIGINAL CON FONDO Y MARCO */
+            background-image: url('https://i.imgur.com/gsqT5lg.jpeg');
+            background-size: cover;
+            background-position: center top; /* Asegura que se vean las caras */
+            background-repeat: no-repeat;
         }
 
-        /* Capa suave para que se lea mejor */
-        .polaroid-hero::after {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(250, 248, 245, 0.5); /* Color crema muy transparente */
-            z-index: 0;
+        /* Contenedor texto derecha */
+        .hero-right-container {
+            text-align: right;
+            margin-right: 8%; 
+            /* TEXTO SUBIDO PARA QUE NO ROCE LA CABEZA */
+            margin-bottom: 55%; 
+            z-index: 2;
         }
 
-        .hero-content-wrapper {
-            position: relative; z-index: 2;
-            display: flex; flex-direction: column; align-items: center;
-            width: 100%;
-        }
-
-        .polaroid-frame {
-            background: white;
-            padding: 12px 12px 12px 12px; /* Marco blanco uniforme y fino */
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-            width: 85%; max-width: 350px;
-            margin-bottom: 25px; /* Espacio antes de los nombres */
-            transform: rotate(0deg); /* Recto como en la foto de referencia */
-        }
-        
-        .polaroid-img {
-            width: 100%; height: auto; display: block; 
-            filter: grayscale(100%); /* Blanco y negro */
-        }
-
-        /* NOMBRES ESTILO ROYAL BRAND */
         .hero-names {
-            font-family: var(--royal-font); 
-            color: #2c2c2c; /* Color oscuro casi negro como en la referencia */
-            font-size: 1.8rem; 
-            font-weight: 500;
-            line-height: 1.2;
+            font-family: var(--royal-font); /* Estilo Royal Brand (Cinzel) */
+            color: var(--secondary); 
+            font-size: 1.6rem; /* Tamaño elegante */
+            font-weight: 600;
+            line-height: 1.1;
+            margin-bottom: 5px;
             text-transform: uppercase;
-            letter-spacing: 2px; 
-            margin-bottom: 10px;
-            text-align: center;
+            letter-spacing: 2px;
+            text-shadow: 0 1px 3px rgba(255,255,255,0.9); /* Sombra para leer bien */
         }
 
         .hero-date {
             font-family: var(--royal-font);
-            color: #555; /* Gris oscuro */
-            font-size: 1.2rem; 
-            font-weight: 400;
+            color: var(--secondary);
+            font-size: 1.2rem;
+            font-weight: 600;
             line-height: 1;
-            letter-spacing: 1px;
-            margin-bottom: 20px;
-            text-align: center;
+            letter-spacing: 2px;
+            text-shadow: 0 1px 3px rgba(255,255,255,0.9);
         }
 
-        /* CUENTA ATRÁS */
-        .hero-countdown {
-            padding: 0px 20px; display: flex; justify-content: center; align-items: center; gap: 15px; background: transparent;
-            margin-bottom: 10px;
-        }
-        
-        .hero-countdown .countdown-number { 
-            font-family: 'Cormorant Garamond', serif; 
-            font-size: 1.5rem; 
-            color: #444; 
-            font-weight: 600; 
-        }
-        .hero-countdown .countdown-label { 
-            font-family: var(--royal-font); font-size: 0.5rem; letter-spacing: 1px; 
-            color: #666; font-weight: 600; text-transform: uppercase; margin-top: 2px;
-        }
-
-        /* FLECHAS DECORATIVAS ABAJO */
-        .scroll-arrows {
-            color: #333; font-size: 1.5rem; margin-top: 10px;
-            animation: bounce 2s infinite; line-height: 0.8;
+        .scroll-indicator { 
+            position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
+            z-index: 2; animation: bounce 2s infinite; font-size: 2rem; color: var(--secondary);
         }
 
         /* --- TEXTOS --- */
@@ -203,7 +154,7 @@
         h2 { font-family: var(--handwriting-font); font-weight: bold; font-size: 3rem; text-align: center; margin-bottom: 40px; color: var(--secondary); line-height: 1.1; }
         .subtitle { display: block; text-align: center; font-size: 0.95rem; color: #555; margin: -30px auto 40px auto; font-style: italic; max-width: 90%; }
 
-        /* --- ITINERARIO CON MÁS MOVIMIENTO --- */
+        /* --- ITINERARIO CON MOVIMIENTO --- */
         .timeline { position: relative; margin: 40px 0; padding: 0; display: flex; flex-direction: column; gap: 40px; padding-bottom: 20px; }
         .timeline-item { display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 2; width: 100%; }
         
@@ -219,9 +170,7 @@
             position: relative; z-index: 5; background-color: white; overflow: visible; flex-shrink: 0; cursor: pointer; margin: 0 auto; 
             animation: pulse-intense 1.5s infinite ease-in-out;
         }
-        
         .timeline-img-box::before { content: ''; position: absolute; top: -6px; left: -6px; right: -6px; bottom: -6px; background-image: var(--pattern-bg); background-size: cover; border-radius: 50%; z-index: -1; opacity: 1; }
-        
         .timeline-img-box::after { 
             content: "+"; position: absolute; bottom: 0; right: 0; 
             background-color: var(--nav-bg); color: white; 
@@ -330,12 +279,9 @@
         /* --- MEDIA QUERY ESCRITORIO --- */
         @media (min-width: 769px) {
             nav { padding: 0 50px; } .menu-toggle { display: block; } nav ul { width: 350px; }
-            
-            /* HERO PC: Estructura adaptada */
-            .polaroid-hero { 
-                /* Mismo fondo floral, composición centrada */
-            }
-            .hero-names { font-size: 4rem; }
+            /* Ajuste del margen en pantallas grandes */
+            .hero-right-container { margin-right: 15%; margin-bottom: 10%; }
+            .hero-names { font-size: 3.5rem; }
             .hero-date { font-size: 2.5rem; }
             
             .timeline { max-width: 800px; margin: 0 auto; }
@@ -345,6 +291,12 @@
             .modal-content { width: 90%; max-width: 500px; height: auto; max-height: 85vh; border-radius: 15px; margin: 5% auto; }
             .img-entrada-zoomed { height: 300px; }
             .img-salida-contain { height: 300px; } 
+        }
+        
+        /* MEDIA QUERY MOVIL */
+        @media (max-width: 768px) { 
+            /* MARGEN INFERIOR 55% PARA SUBIR EL TEXTO Y NO ROCE LA CABEZA */
+            .hero-right-container { margin-right: 5%; margin-bottom: 55%; } 
         }
     </style>
 </head>
@@ -365,22 +317,11 @@
     </nav>
 
     <div class="polaroid-hero" id="inicio">
-        <div class="hero-content-wrapper">
-            <div class="polaroid-frame">
-                <img src="https://i.imgur.com/OdxUWWR.jpeg" alt="Sara y Carlos" class="polaroid-img">
-            </div>
-
+        <div class="hero-right-container">
             <h1 class="hero-names">Sara y Carlos</h1>
-            <h2 class="hero-date">31/05/2024 18:00</h2> <div id="cuenta-atras" class="hero-countdown">
-                <div class="countdown-item"><span class="countdown-number" id="d-val">0</span><span class="countdown-label">Días</span></div>
-                <div class="countdown-item"><span class="countdown-number" id="h-val">0</span><span class="countdown-label">Horas</span></div>
-                <div class="countdown-item"><span class="countdown-number" id="m-val">0</span><span class="countdown-label">Minutos</span></div>
-            </div>
-
-            <div class="scroll-arrows">
-                ˅<br>˅<br>˅
-            </div>
+            <h2 class="hero-date">3.10.2026</h2>
         </div>
+        <div class="scroll-indicator">↓</div>
     </div>
 
     <section id="bienvenida" style="padding-bottom: 20px;">
@@ -632,19 +573,6 @@
             field.style.display = val === 'Sí' ? 'block' : 'none';
             document.getElementById('nombreAcompanante').required = (val === 'Sí');
         }
-        const weddingDate = new Date('2026-10-03T18:00:00').getTime();
-        setInterval(() => {
-            const now = new Date().getTime();
-            const dist = weddingDate - now;
-            const d = Math.floor(dist / (1000 * 60 * 60 * 24));
-            const h = Math.floor((dist % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const m = Math.floor((dist % (1000 * 60 * 60)) / (1000 * 60));
-            const s = Math.floor((dist % (1000 * 60)) / 1000);
-            document.getElementById('d-val').innerText = d;
-            document.getElementById('h-val').innerText = h < 10 ? '0'+h : h;
-            document.getElementById('m-val').innerText = m < 10 ? '0'+m : m;
-            document.getElementById('s-val').innerText = s < 10 ? '0'+s : s;
-        }, 1000);
     </script>
 </body>
 </html>
