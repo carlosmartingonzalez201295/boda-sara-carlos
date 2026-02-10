@@ -16,14 +16,12 @@
             --accent: #faf8f5; 
             --dark: #3d3d3d; 
             --light: #fff; 
-            --nav-bg: #77855C; /* Verde Sage */
+            --nav-bg: #77855C; 
             --pattern-bg: url('https://i.imgur.com/feTyvjy.jpeg'); 
             --paper-texture: url('https://i.imgur.com/0pkprZl.jpeg');
             
-            /* FUENTE MANUSCRITA (Títulos) */
+            /* FUENTES */
             --handwriting-font: 'Bradley Hand ITC', 'Bradley Hand', 'Noteworthy', 'Segoe Print', cursive;
-            
-            /* FUENTE PORTADA */
             --cover-font: 'Great Vibes', cursive;
         }
         
@@ -31,7 +29,6 @@
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         
         body { 
-            /* FUENTE DE CUERPO (Montserrat) */
             font-family: 'Montserrat', sans-serif; 
             color: var(--dark); 
             line-height: 1.6; 
@@ -64,9 +61,7 @@
             filter: brightness(0) saturate(100%) invert(53%) sepia(18%) saturate(882%) hue-rotate(66deg) brightness(92%) contrast(86%);
         }
 
-        .menu-toggle { 
-            font-size: 2rem; color: var(--nav-bg); cursor: pointer; padding: 10px; display: block; position: absolute; right: 15px; z-index: 1002; 
-        }
+        .menu-toggle { font-size: 2rem; color: var(--nav-bg); cursor: pointer; padding: 10px; display: block; position: absolute; right: 15px; z-index: 1002; }
         
         nav ul {
             position: fixed; top: 60px; right: 0; width: 300px; max-width: 80%; height: calc(100vh - 60px);
@@ -81,16 +76,11 @@
         nav li { width: 100%; text-align: center; }
         
         nav a { 
-            display: block; padding: 20px; font-size: 1.3rem; 
-            color: var(--nav-bg); 
+            display: block; padding: 20px; font-size: 1.3rem; color: var(--nav-bg); 
             text-transform: uppercase; letter-spacing: 1px; text-decoration: none;
             position: relative; font-family: var(--handwriting-font); font-weight: bold;
         }
-        
-        nav a::after {
-            content: ''; position: absolute; bottom: 0; left: 15%; width: 70%; height: 4px; 
-            background-image: var(--pattern-bg); background-size: cover; opacity: 0.6; border-radius: 2px;
-        }
+        nav a::after { content: ''; position: absolute; bottom: 0; left: 15%; width: 70%; height: 4px; background-image: var(--pattern-bg); background-size: cover; opacity: 0.6; border-radius: 2px; }
 
         /* --- HERO --- */
         .hero {
@@ -101,82 +91,43 @@
             background-size: cover; background-position: 25% 35%; background-repeat: no-repeat;
             overflow: hidden;
         }
-
-        .hero::before {
-            content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 30%;
-            background: linear-gradient(to top, rgba(0,0,0,0.4), transparent);
-            z-index: 1;
-        }
-        
-        .hero-content {
-            position: relative; z-index: 2; text-align: center; padding-bottom: 50px; width: 100%;
-            display: flex; flex-direction: column; align-items: center; 
-        }
-        
-        .scroll-indicator { 
-            position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);
-            z-index: 2; animation: bounce 2s infinite; font-size: 2rem; color: #fff; text-shadow: 0 2px 5px rgba(0,0,0,0.5); 
-        }
+        .hero::before { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 30%; background: linear-gradient(to top, rgba(0,0,0,0.4), transparent); z-index: 1; }
+        .hero-content { position: relative; z-index: 2; text-align: center; padding-bottom: 50px; width: 100%; display: flex; flex-direction: column; align-items: center; }
+        .scroll-indicator { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); z-index: 2; animation: bounce 2s infinite; font-size: 2rem; color: #fff; text-shadow: 0 2px 5px rgba(0,0,0,0.5); }
 
         .intro-text-banner {
             text-align: center; padding: 40px 20px 0px 20px; font-family: var(--handwriting-font);
-            font-weight: bold; color: var(--nav-bg); font-size: 2rem; 
-            line-height: 1.3; width: 100%; max-width: 90%; margin: 0 auto;
+            font-weight: bold; color: var(--nav-bg); font-size: 2rem; line-height: 1.3; width: 100%; max-width: 90%; margin: 0 auto;
         }
 
         /* --- CUENTA ATRÁS --- */
-        .countdown-section {
-            padding: 20px 20px 20px 20px; display: flex; justify-content: center; align-items: center; 
-            gap: 15px; scroll-margin-top: 100px; background-color: transparent;
-        }
+        .countdown-section { padding: 20px 20px 20px 20px; display: flex; justify-content: center; align-items: center; gap: 15px; background-color: transparent; }
         .countdown-item { display: flex; flex-direction: column; align-items: center; }
-        
-        .countdown-number { 
-            font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: var(--nav-bg); 
-            font-weight: 700; line-height: 1; background: transparent; box-shadow: none; border: none;
-            width: auto; height: auto; margin-bottom: 0;
-        }
-        
-        .countdown-label { 
-            font-family: 'Montserrat', sans-serif; font-size: 0.65rem; letter-spacing: 1px; color: #555; margin-top: 2px; text-transform: uppercase; font-weight: 600;
-        }
+        .countdown-number { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: var(--nav-bg); font-weight: 700; line-height: 1; background: transparent; width: auto; height: auto; margin-bottom: 0; }
+        .countdown-label { font-family: 'Montserrat', sans-serif; font-size: 0.65rem; letter-spacing: 1px; color: #555; margin-top: 2px; text-transform: uppercase; font-weight: 600; }
 
         /* --- TEXTOS --- */
-        .text-block { 
-            text-align: center; font-size: 1rem; color: #555; margin: -20px auto 30px auto; max-width: 90%; line-height: 1.8; 
-        }
-        
-        .highlight-phrase {
-            font-family: var(--handwriting-font); font-weight: bold; color: var(--nav-bg); font-size: 1.4rem;
-        }
+        .text-block { text-align: center; font-size: 1rem; color: #555; margin: -20px auto 30px auto; max-width: 90%; line-height: 1.8; }
+        .highlight-phrase { font-family: var(--handwriting-font); font-weight: bold; color: var(--nav-bg); font-size: 1.4rem; }
 
         /* --- SECCIONES --- */
         section { padding: 40px 20px 60px 20px; width: 100%; max-width: 100%; position: relative; scroll-margin-top: 90px; }
-        
-        #itinerario::after, #alojamiento::after, #recomendaciones::after, #dresscode::after, #mapa::after, #confirmacion::after, #regalo::after {
-            content: ''; position: absolute; bottom: 0; left: 15%; width: 70%; height: 1px; background-color: var(--nav-bg); opacity: 0.3;
-        }
+        #itinerario::after, #alojamiento::after, #recomendaciones::after, #dresscode::after, #mapa::after, #confirmacion::after, #regalo::after { content: ''; position: absolute; bottom: 0; left: 15%; width: 70%; height: 1px; background-color: var(--nav-bg); opacity: 0.3; }
 
-        h2 { 
-            font-family: var(--handwriting-font); font-weight: bold; font-size: 3rem; text-align: center; 
-            margin-bottom: 40px; color: var(--secondary); line-height: 1.1; margin-left: auto; margin-right: auto; width: 100%;
-        }
+        h2 { font-family: var(--handwriting-font); font-weight: bold; font-size: 3rem; text-align: center; margin-bottom: 40px; color: var(--secondary); line-height: 1.1; margin-left: auto; margin-right: auto; width: 100%; }
         .subtitle { display: block; text-align: center; font-size: 0.95rem; color: #555; margin: -30px auto 40px auto; font-style: italic; max-width: 90%; }
 
         /* --- ITINERARIO --- */
         .timeline { position: relative; margin: 40px 0; padding: 0; display: flex; flex-direction: column; gap: 40px; padding-bottom: 20px; }
-        .timeline::before { display: none; }
         .timeline-item { display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 2; width: 100%; margin: 0; }
+        
         @keyframes pulse-ring { 0% { box-shadow: 0 0 0 0 rgba(119, 133, 92, 0.4); } 70% { box-shadow: 0 0 0 15px rgba(119, 133, 92, 0); } 100% { box-shadow: 0 0 0 0 rgba(119, 133, 92, 0); } }
         @keyframes floating-hard { 0% { transform: translateY(0px); } 50% { transform: translateY(-5px); } 100% { transform: translateY(0px); } }
 
-        .timeline-img-box { 
-            width: 130px; height: 130px; border-radius: 50%; border: 4px solid white; 
-            animation: floating-hard 3s ease-in-out infinite, pulse-ring 2s infinite; 
-            position: relative; z-index: 5; background-color: white; overflow: visible; flex-shrink: 0; cursor: pointer; margin: 0 auto;
-        }
+        .timeline-img-box { width: 130px; height: 130px; border-radius: 50%; border: 4px solid white; animation: floating-hard 3s ease-in-out infinite, pulse-ring 2s infinite; position: relative; z-index: 5; background-color: white; overflow: visible; flex-shrink: 0; cursor: pointer; margin: 0 auto; }
         .timeline-img-box::before { content: ''; position: absolute; top: -6px; left: -6px; right: -6px; bottom: -6px; background-image: var(--pattern-bg); background-size: cover; border-radius: 50%; z-index: -1; opacity: 1; }
         .timeline-img-box::after { content: "+"; position: absolute; bottom: 0; right: 0; background-color: var(--nav-bg); color: white; width: 35px; height: 35px; border-radius: 50%; border: 2px solid white; display: flex; justify-content: center; align-items: center; font-size: 1.5rem; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.3); z-index: 10; }
+        
         .timeline-img-clipper { width: 100%; height: 100%; border-radius: 50%; overflow: hidden; position: relative; }
         .timeline-img-clipper img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; display: block; }
         .timeline-img-box:active .timeline-img-clipper img { transform: scale(0.95); }
@@ -184,72 +135,46 @@
         .timeline-img-clipper img[src*="QDGdxoI.png"] { transform: scale(1.8); object-position: center 60%; }
 
         .timeline-content { width: 55%; padding: 0 10px; display: flex; flex-direction: column; justify-content: center; position: relative; z-index: 3; }
-        .timeline-content h3 { font-family: var(--handwriting-font); font-weight: bold; font-size: 1.6rem; color: var(--secondary); margin-bottom: 5px; line-height: 1.1; }
-        .timeline-content p { font-size: 0.9rem; margin-bottom: 2px; color: #555; }
-        .item-left { flex-direction: row; }
-        .item-left .timeline-content { text-align: left; padding-left: 15px; }
-        .item-right { flex-direction: row-reverse; }
-        .item-right .timeline-content { text-align: right; padding-right: 15px; }
+        .timeline-content h3 { font-family: var(--handwriting-font); font-weight: bold; font-size: 1.8rem; color: var(--secondary); margin-bottom: 5px; line-height: 1.1; }
+        .timeline-content p { font-size: 1rem; margin-bottom: 2px; color: #555; }
+        .item-left { flex-direction: row; } .item-left .timeline-content { text-align: left; padding-left: 15px; }
+        .item-right { flex-direction: row-reverse; } .item-right .timeline-content { text-align: right; padding-right: 15px; }
 
         /* --- TARJETAS --- */
         .cards-grid { display: flex; flex-direction: column; gap: 40px; }
         .card { background: transparent; padding: 0; border-radius: 0; box-shadow: none; border: none; text-align: center; transition: transform 0.3s ease; }
         .card-img { width: 100%; height: 200px; object-fit: cover; border-radius: 15px; margin-top: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.15); transition: box-shadow 0.3s ease; }
-        .card:hover { transform: translateY(-5px); }
-        .card:hover .card-img { box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
-        .card h3 { font-family: var(--handwriting-font); font-weight: bold; font-size: 2rem; color: var(--secondary); margin-bottom: 10px; }
-        .card p { color: #555; font-size: 0.95rem; }
+        .card:hover { transform: translateY(-5px); } .card:hover .card-img { box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
+        .card h3 { font-family: var(--handwriting-font); font-weight: bold; font-size: 2.2rem; color: var(--secondary); margin-bottom: 10px; }
+        .card p { color: #555; font-size: 1.1rem; }
         .img-canalla { object-position: center 45%; }
         .tapeo-subtitle { font-family: var(--handwriting-font); font-weight: bold; font-size: 1.5rem; color: var(--secondary); text-align: center; margin-bottom: 20px; display: block; }
 
-        /* --- ESTILOS MAPA Y ENLACE --- */
+        /* --- MAPA Y ENLACE TEXTO --- */
         .map-frame-container {
-            width: 100%;
-            height: 350px;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-            margin-bottom: 20px;
+            width: 100%; height: 350px; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.15); margin-bottom: 20px;
         }
-        .map-frame-container iframe {
-            width: 100%;
-            height: 100%;
-            border: 0;
-        }
+        .map-frame-container iframe { width: 100%; height: 100%; border: 0; }
+        
+        /* Enlace de mapa solo texto */
         .map-text-link {
-            display: block;
-            text-align: center;
-            font-family: var(--handwriting-font);
-            font-weight: bold;
-            font-size: 1.4rem;
-            color: var(--nav-bg); /* Verde corporativo */
-            text-decoration: underline;
-            cursor: pointer;
-            margin-top: 15px;
-            transition: opacity 0.3s;
+            display: block; text-align: center;
+            font-family: var(--handwriting-font); font-weight: bold; font-size: 1.4rem;
+            color: var(--nav-bg); /* Verde Corporativo */
+            text-decoration: underline; cursor: pointer; margin-top: 15px; transition: opacity 0.3s;
         }
         .map-text-link:hover { opacity: 0.8; }
 
-        /* --- ESTILOS RSVP SOLO TEXTO --- */
+        /* --- RSVP SOLO TEXTO --- */
         .rsvp-accordion-wrapper { width: 100%; margin-top: 20px; text-align: center; }
-        
-        /* Transformado el botón en solo texto */
         .rsvp-toggle-text {
-            background: none;
-            border: none;
-            box-shadow: none;
+            background: none; border: none; box-shadow: none;
             color: var(--nav-bg); /* Verde Corporativo */
-            font-family: var(--handwriting-font);
-            font-size: 1.8rem;
-            font-weight: bold;
-            cursor: pointer;
-            padding: 10px;
-            transition: transform 0.2s, opacity 0.3s;
-            text-decoration: none;
-            display: inline-block;
+            font-family: var(--handwriting-font); font-size: 1.8rem; font-weight: bold;
+            cursor: pointer; padding: 10px; transition: transform 0.2s, opacity 0.3s;
+            text-decoration: none; display: inline-block;
         }
         .rsvp-toggle-text:hover { transform: translateY(-2px); opacity: 0.8; }
-        
         .rsvp-content-hidden { max-height: 0; overflow: hidden; transition: max-height 0.6s ease-out; opacity: 0; }
         .rsvp-content-visible { max-height: 1200px; opacity: 1; transition: max-height 0.8s ease-in, opacity 0.5s ease-in; }
 
@@ -259,11 +184,11 @@
         }
         .form-group { margin-bottom: 20px; text-align: left; }
         label { font-size: 1.1rem; font-weight: 600; color: var(--secondary); margin-bottom: 8px; display: block; font-family: var(--handwriting-font); }
-        input, select, textarea { width: 100%; padding: 12px; font-size: 1rem; border: 1px solid #ddd; border-radius: 8px; background: #fafafa; transition:all 0.3s; font-family: var(--handwriting-font); }
+        input, select, textarea { width: 100%; padding: 12px; font-size: 1.1rem; border: 1px solid #ddd; border-radius: 8px; background: #fafafa; transition:all 0.3s; font-family: var(--handwriting-font); }
         input:focus, select:focus, textarea:focus { border-color: var(--nav-bg); box-shadow: 0 0 0 3px rgba(119, 133, 92, 0.2); outline: none; background-image: var(--paper-texture); }
         
         button#submitBtn { 
-            padding: 16px; font-size: 1.3rem; border-radius: 10px; background: var(--secondary); color: white; font-weight: bold; 
+            padding: 16px; font-size: 1.4rem; border-radius: 10px; background: var(--secondary); color: white; font-weight: bold; 
             box-shadow: 0 4px 10px rgba(139, 115, 85, 0.3); border: none; width: 100%; cursor: pointer; transition: transform 0.2s; font-family: var(--handwriting-font); letter-spacing: 1px;
         }
 
@@ -275,7 +200,7 @@
         .copy-link { font-size: 0.95rem; color: var(--nav-bg); font-weight: 700; text-transform: uppercase; font-family: var(--handwriting-font); text-decoration: underline; }
         .copy-feedback { display: none; color: var(--nav-bg); font-size: 0.8rem; margin-top: 5px; font-weight: 600; position: absolute; bottom: -25px; left: 50%; transform: translateX(-50%); white-space: nowrap; }
 
-        /* --- IMAGENES DECORATIVAS --- */
+        /* --- DECORACIONES --- */
         .corporate-green-filter { filter: invert(53%) sepia(18%) saturate(882%) hue-rotate(66deg) brightness(92%) contrast(86%); opacity: 0.9; }
         .welcome-image-container { text-align: center; margin-top: 5px; margin-bottom: 0; line-height: 0; }
         .welcome-image-container img { max-width: 130px; height: auto; }
@@ -295,13 +220,18 @@
         .modal-info-center p { color: #444; font-weight: 500; margin-bottom: 5px; }
         .modal-info-center .address { color: #888; font-size: 1rem; font-style: italic; }
         .modal-desc-justify { text-align: justify; color: #666; font-size: 1.1rem; width: 100%; margin-bottom: 20px; }
-        
         .ceremonia-maps-white-bg { background: white; padding: 25px 15px; border-radius: 15px; box-shadow: 0 5px 25px rgba(0,0,0,0.1); margin-bottom: 30px; width: 100%; display: flex; flex-direction: column; align-items: center; }
         .map-unit { width: 100%; margin-bottom: 30px; text-align: center; overflow: hidden; border-radius: 10px; position: relative; }
         .map-unit:last-child { margin-bottom: 0; }
         
-        /* CORRECCIÓN 1: IMAGEN ENTRADA IGLESIA BAJADA Y CON ZOOM */
-        .img-entrada-zoomed { width: 100%; height: 250px; object-fit: cover; object-position: center 30%; transform: scale(1.7); display: block; }
+        /* CORRECCIÓN IMAGEN IGLESIA: BAJADA Y CON ZOOM */
+        .img-entrada-zoomed { 
+            width: 100%; height: 250px; 
+            object-fit: cover; 
+            object-position: center 30%; /* Ajustado para bajar el foco */
+            transform: scale(1.7); 
+            display: block; 
+        }
         .img-salida-contain { width: 100%; height: auto; object-fit: contain; display: block; }
 
         .reveal { opacity: 0; transform: translateY(20px); transition: 0.6s ease; }
@@ -438,7 +368,7 @@
             <p>Para que nadie acabe en Portugal (que nos conocemos...), aquí tenéis fichados todos los puntos clave.</p>
         </div>
         <div class="map-frame-container reveal">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12224.582855167093!2d-4.839818818817134!3d39.95777490218754!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd401c183060a0f5%3A0x863339074411130e!2sTalavera%20de%20la%20Reina%2C%20Toledo!5e0!3m2!1ses!2ses!4v1709664000000!5m2!1ses!2ses" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12328.796075936796!2d-4.838575000000001!3d39.9602495!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd401c6c63773b1b%3A0x40340f3be4bc520!2sTalavera%20de%20la%20Reina%2C%20Toledo!5e0!3m2!1ses!2ses!4v1700000000000!5m2!1ses!2ses" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
         <div class="text-block reveal">
             <a href="https://maps.app.goo.gl/cEifnXQ9hwiDCg9L8" target="_blank" class="map-text-link">PINCHA AQUÍ PARA VER LA LISTA COMPLETA EN GOOGLE MAPS</a>
