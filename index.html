@@ -8,6 +8,7 @@
     <style>
         /* --- FUENTES --- */
         @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600;1,700&family=Montserrat:wght@300;400;500;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=The+Girl+Next+Door&display=swap'); /* Por si acaso quisieras usarla luego */
         
         /* --- VARIABLES --- */
         :root { 
@@ -20,8 +21,10 @@
             --pattern-bg: url('https://i.imgur.com/feTyvjy.jpeg'); 
             --paper-texture: url('https://i.imgur.com/0pkprZl.jpeg');
             
-            /* FUENTES */
+            /* FUENTE MANUSCRITA */
             --handwriting-font: 'Bradley Hand ITC', 'Bradley Hand', 'Noteworthy', 'Segoe Print', cursive;
+            
+            /* FUENTE PORTADA */
             --cover-font: 'Great Vibes', cursive;
         }
         
@@ -156,25 +159,46 @@
         }
         .map-frame-container iframe { width: 100%; height: 100%; border: 0; }
         
-        /* Enlace de mapa solo texto */
+        /* Enlace de mapa solo texto, 2 lineas */
         .map-text-link {
             display: block; text-align: center;
-            font-family: var(--handwriting-font); font-weight: bold; font-size: 1.4rem;
+            font-family: var(--handwriting-font); font-weight: bold; font-size: 1.6rem;
             color: var(--nav-bg); /* Verde Corporativo */
-            text-decoration: underline; cursor: pointer; margin-top: 15px; transition: opacity 0.3s;
+            text-decoration: none; /* Quitamos subrayado por defecto */
+            cursor: pointer; margin-top: 15px; transition: opacity 0.3s;
+            line-height: 1.4;
         }
-        .map-text-link:hover { opacity: 0.8; }
+        .map-text-link span { display: block; } /* Forzar salto de linea visual */
+        .map-text-link:hover { opacity: 0.7; }
 
-        /* --- RSVP SOLO TEXTO --- */
+        /* --- RSVP SOLO TEXTO CREATIVO --- */
         .rsvp-accordion-wrapper { width: 100%; margin-top: 20px; text-align: center; }
+        
+        /* Estilo Texto Creativo */
         .rsvp-toggle-text {
             background: none; border: none; box-shadow: none;
             color: var(--nav-bg); /* Verde Corporativo */
-            font-family: var(--handwriting-font); font-size: 1.8rem; font-weight: bold;
-            cursor: pointer; padding: 10px; transition: transform 0.2s, opacity 0.3s;
+            cursor: pointer; padding: 15px; transition: transform 0.2s, opacity 0.3s;
             text-decoration: none; display: inline-block;
+            line-height: 1.1;
         }
-        .rsvp-toggle-text:hover { transform: translateY(-2px); opacity: 0.8; }
+        .rsvp-main-text {
+            display: block;
+            font-family: var(--handwriting-font);
+            font-size: 2.5rem; /* Grande */
+            font-weight: bold;
+        }
+        .rsvp-sub-text {
+            display: block;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem; /* Pequeño */
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 5px;
+        }
+
+        .rsvp-toggle-text:hover { transform: translateY(-3px); opacity: 0.8; }
         .rsvp-content-hidden { max-height: 0; overflow: hidden; transition: max-height 0.6s ease-out; opacity: 0; }
         .rsvp-content-visible { max-height: 1200px; opacity: 1; transition: max-height 0.8s ease-in, opacity 0.5s ease-in; }
 
@@ -224,15 +248,17 @@
         .map-unit { width: 100%; margin-bottom: 30px; text-align: center; overflow: hidden; border-radius: 10px; position: relative; }
         .map-unit:last-child { margin-bottom: 0; }
         
-        /* CORRECCIÓN IMAGEN IGLESIA: BAJADA Y CON ZOOM */
-        .img-entrada-zoomed { 
-            width: 100%; height: 250px; 
-            object-fit: cover; 
-            object-position: center 30%; /* Ajustado para bajar el foco */
-            transform: scale(1.7); 
-            display: block; 
+        /* CORRECCIÓN IGLESIA: MISMA ESCALA (object-fit: cover) Y POSICIÓN AJUSTADA */
+        .church-img-uniform {
+            width: 100%; 
+            height: 250px; 
+            object-fit: cover; /* Ambas llenan el cuadro igual (misma escala visual) */
+            display: block;
         }
-        .img-salida-contain { width: 100%; height: auto; object-fit: contain; display: block; }
+        /* Ajuste específico para que la entrada se vea bien (arco superior) */
+        .pos-entrada { object-position: center 20%; } 
+        /* Ajuste para la salida */
+        .pos-salida { object-position: center center; }
 
         .reveal { opacity: 0; transform: translateY(20px); transition: 0.6s ease; }
         .reveal.active { opacity: 1; transform: translateY(0); }
@@ -248,8 +274,7 @@
             .card-img { height: 250px; margin-top: auto; object-position: center 30%; }
             .modal-content { width: 90%; max-width: 500px; height: auto; max-height: 85vh; border-radius: 15px; margin: 5% auto; }
             .countdown-number { font-size: 3.5rem; }
-            .img-entrada-zoomed { height: 300px; }
-            .img-salida-contain { max-height: none; } 
+            .church-img-uniform { height: 300px; }
         }
         @media (max-width: 480px) { .intro-text-banner { font-size: 1.5rem; } }
     </style>
@@ -365,13 +390,16 @@
     <section id="mapa">
         <h2>Mapa</h2>
         <div class="text-block reveal">
-            <p>Para que nadie acabe en Portugal (que nos conocemos...), aquí tenéis fichados todos los puntos clave.</p>
+            <p>Hemos preparado esta lista directa a Google Maps para que tengáis localizados los sitios clave del finde :)</p>
         </div>
         <div class="map-frame-container reveal">
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12328.796075936796!2d-4.838575000000001!3d39.9602495!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd401c6c63773b1b%3A0x40340f3be4bc520!2sTalavera%20de%20la%20Reina%2C%20Toledo!5e0!3m2!1ses!2ses!4v1700000000000!5m2!1ses!2ses" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
-        <div class="text-block reveal">
-            <a href="https://maps.app.goo.gl/cEifnXQ9hwiDCg9L8" target="_blank" class="map-text-link">PINCHA AQUÍ PARA VER LA LISTA COMPLETA EN GOOGLE MAPS</a>
+        <div class="reveal">
+            <a href="maps.google.com/1" target="_blank" class="map-text-link">
+                <span>Pincha para ver</span>
+                <span>mapa completo</span>
+            </a>
         </div>
     </section>
 
@@ -382,7 +410,10 @@
             <p>Para que ese día solo tengáis que preocuparos de disfrutar, porfa, dedicad un minuto a rellenar el cuestionario de confirmación. ¡Preparad las ganas, que nos vemos muy pronto!</p>
         </div>
         <div class="rsvp-accordion-wrapper reveal">
-            <button class="rsvp-toggle-text" onclick="toggleRSVP()">Rellena el cuestionario ↓</button>
+            <button class="rsvp-toggle-text" onclick="toggleRSVP()">
+                <span class="rsvp-main-text">Rellena el</span>
+                <span class="rsvp-sub-text">cuestionario</span>
+            </button>
             <div id="rsvp-content" class="rsvp-content-hidden">
                 <form class="rsvp-form" id="rsvpForm">
                     <div class="form-group"><label>Nombre y Apellidos</label><input type="text" name="nombre" required></div>
@@ -452,8 +483,14 @@
         <div class="modal-content">
             <div class="close-modal" onclick="closeModal('ceremonia')">×</div>
             <div class="ceremonia-maps-white-bg">
-                <div class="map-unit"><img src="https://i.imgur.com/QDGdxoI.png" class="img-entrada-zoomed" alt="Entrada Iglesia"><div class="map-overlay-label">Entrada de la iglesia</div></div>
-                <div class="map-unit"><img src="https://i.imgur.com/c3gKjIw.png" class="img-salida-contain" alt="Salida Iglesia"><div class="map-overlay-label">Salida de la iglesia</div></div>
+                <div class="map-unit">
+                    <img src="https://i.imgur.com/QDGdxoI.png" class="church-img-uniform pos-entrada" alt="Entrada Iglesia">
+                    <div class="map-overlay-label">Entrada de la iglesia</div>
+                </div>
+                <div class="map-unit">
+                    <img src="https://i.imgur.com/c3gKjIw.png" class="church-img-uniform pos-salida" alt="Salida Iglesia">
+                    <div class="map-overlay-label">Salida de la iglesia</div>
+                </div>
             </div>
             <div class="modal-info-center"><h3>Colegiata Santa María la Mayor</h3><p>Sábado 03 • 17:00h</p><p class="address">Plaza del Pan</p></div>
             <div class="modal-desc-justify"><p>El enlace religioso se oficiará, D.M., en la Colegiata de Santa María la Mayor, en pleno corazón de Talavera de la Reina.</p><p>Se dispondrá de servicio de autobuses desde la iglesia hasta la finca al finalizar la ceremonia.</p><p style="font-style:italic;">Se ruega puntualidad.</p></div>
