@@ -6,9 +6,8 @@
     <title>Sara y Carlos</title>
     
     <style>
-        /* --- FUENTES --- */
-        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600;1,700&family=Montserrat:wght@300;400;500;600&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=The+Girl+Next+Door&display=swap'); /* Por si acaso quisieras usarla luego */
+        /* --- FUENTES: AÑADIDA "PERMANENT MARKER" PARA EL ESTILO CRAYON --- */
+        @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600;1,700&family=Montserrat:wght@300;400;500;600&display=swap');
         
         /* --- VARIABLES --- */
         :root { 
@@ -21,11 +20,11 @@
             --pattern-bg: url('https://i.imgur.com/feTyvjy.jpeg'); 
             --paper-texture: url('https://i.imgur.com/0pkprZl.jpeg');
             
-            /* FUENTE MANUSCRITA */
+            /* FUENTES */
             --handwriting-font: 'Bradley Hand ITC', 'Bradley Hand', 'Noteworthy', 'Segoe Print', cursive;
-            
-            /* FUENTE PORTADA */
             --cover-font: 'Great Vibes', cursive;
+            /* NUEVA FUENTE ESTILO CRAYON/ROTULADOR */
+            --crayon-font: 'Permanent Marker', cursive; 
         }
         
         /* --- RESET Y BASE --- */
@@ -153,49 +152,76 @@
         .img-canalla { object-position: center 45%; }
         .tapeo-subtitle { font-family: var(--handwriting-font); font-weight: bold; font-size: 1.5rem; color: var(--secondary); text-align: center; margin-bottom: 20px; display: block; }
 
-        /* --- MAPA Y ENLACE TEXTO --- */
+        /* --- MAPA Y ENLACE TEXTO CON FLECHA Y NUEVA FUENTE --- */
         .map-frame-container {
             width: 100%; height: 350px; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.15); margin-bottom: 20px;
         }
         .map-frame-container iframe { width: 100%; height: 100%; border: 0; }
         
-        /* Enlace de mapa solo texto, 2 lineas */
+        /* Animación de la flecha */
+        @keyframes arrow-bounce {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(5px); }
+        }
+
         .map-text-link {
-            display: block; text-align: center;
-            font-family: var(--handwriting-font); font-weight: bold; font-size: 1.6rem;
-            color: var(--nav-bg); /* Verde Corporativo */
-            text-decoration: none; /* Quitamos subrayado por defecto */
+            display: flex; flex-direction: row; align-items: center; justify-content: center;
+            text-align: center;
+            font-family: var(--crayon-font); /* Fuente Crayon */
+            font-size: 1.3rem;
+            color: var(--nav-bg); 
+            text-decoration: none; 
             cursor: pointer; margin-top: 15px; transition: opacity 0.3s;
             line-height: 1.4;
+            gap: 10px; /* Espacio entre flecha y texto */
         }
-        .map-text-link span { display: block; } /* Forzar salto de linea visual */
+        
+        .map-text-link::before {
+            content: '→';
+            font-size: 1.5rem;
+            animation: arrow-bounce 1s infinite ease-in-out;
+            display: inline-block;
+        }
+
+        .map-text-link span { display: block; } 
         .map-text-link:hover { opacity: 0.7; }
 
-        /* --- RSVP SOLO TEXTO CREATIVO --- */
+        /* --- RSVP SOLO TEXTO CREATIVO CON FLECHA Y NUEVA FUENTE --- */
         .rsvp-accordion-wrapper { width: 100%; margin-top: 20px; text-align: center; }
         
-        /* Estilo Texto Creativo */
         .rsvp-toggle-text {
             background: none; border: none; box-shadow: none;
-            color: var(--nav-bg); /* Verde Corporativo */
+            color: var(--nav-bg); 
             cursor: pointer; padding: 15px; transition: transform 0.2s, opacity 0.3s;
-            text-decoration: none; display: inline-block;
+            text-decoration: none; 
+            display: flex; align-items: center; justify-content: center; gap: 10px;
             line-height: 1.1;
+            margin: 0 auto;
         }
+        
+        .rsvp-toggle-text::before {
+            content: '→';
+            font-size: 1.8rem;
+            font-family: var(--crayon-font);
+            animation: arrow-bounce 1s infinite ease-in-out;
+        }
+
+        .rsvp-text-group { text-align: left; }
+
         .rsvp-main-text {
             display: block;
-            font-family: var(--handwriting-font);
-            font-size: 2.5rem; /* Grande */
-            font-weight: bold;
+            font-family: var(--crayon-font); /* Fuente Crayon */
+            font-size: 1.8rem; 
+            font-weight: normal;
         }
         .rsvp-sub-text {
             display: block;
             font-family: 'Montserrat', sans-serif;
-            font-size: 0.9rem; /* Pequeño */
+            font-size: 0.8rem; 
             font-weight: 500;
             letter-spacing: 2px;
             text-transform: uppercase;
-            margin-top: 5px;
+            margin-top: 2px;
         }
 
         .rsvp-toggle-text:hover { transform: translateY(-3px); opacity: 0.8; }
@@ -397,8 +423,10 @@
         </div>
         <div class="reveal">
             <a href="maps.google.com/1" target="_blank" class="map-text-link">
-                <span>Pincha para ver</span>
-                <span>mapa completo</span>
+                <div>
+                    <span>Pincha para ver</span>
+                    <span>mapa completo</span>
+                </div>
             </a>
         </div>
     </section>
@@ -411,8 +439,10 @@
         </div>
         <div class="rsvp-accordion-wrapper reveal">
             <button class="rsvp-toggle-text" onclick="toggleRSVP()">
-                <span class="rsvp-main-text">Rellena el</span>
-                <span class="rsvp-sub-text">cuestionario</span>
+                <div class="rsvp-text-group">
+                    <span class="rsvp-main-text">Rellena el</span>
+                    <span class="rsvp-sub-text">cuestionario</span>
+                </div>
             </button>
             <div id="rsvp-content" class="rsvp-content-hidden">
                 <form class="rsvp-form" id="rsvpForm">
