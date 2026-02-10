@@ -87,23 +87,23 @@
         }
         nav a::after { content: ''; position: absolute; bottom: 0; left: 15%; width: 70%; height: 4px; background-image: var(--pattern-bg); background-size: cover; opacity: 0.6; border-radius: 2px; }
 
-        /* --- HERO RESTAURADO (IMAGEN COMPLETA) --- */
+        /* --- HERO (PORTADA) --- */
         .polaroid-hero {
             min-height: 100vh;
             width: 100%;
             display: flex;
             flex-direction: column;
-            /* Alineación para poner el texto a la derecha y abajo */
+            /* Alineación base para MÓVIL (abajo derecha) */
             justify-content: center; 
             align-items: flex-end;
             position: relative;
             padding-top: 60px; 
             padding-bottom: 20px;
             
-            /* TU IMAGEN ORIGINAL CON FONDO Y MARCO */
+            /* IMAGEN DE FONDO MÓVIL (Composición Vertical) */
             background-image: url('https://i.imgur.com/gsqT5lg.jpeg');
             background-size: cover;
-            background-position: center top; /* Asegura que se vean las caras */
+            background-position: center top; 
             background-repeat: no-repeat;
         }
 
@@ -111,21 +111,22 @@
         .hero-right-container {
             text-align: right;
             margin-right: 8%; 
-            /* TEXTO SUBIDO PARA QUE NO ROCE LA CABEZA */
+            /* MÓVIL: Texto subido para no tapar cabezas */
             margin-bottom: 55%; 
             z-index: 2;
         }
 
         .hero-names {
-            font-family: var(--royal-font); /* Estilo Royal Brand (Cinzel) */
+            font-family: var(--royal-font); 
             color: var(--secondary); 
-            font-size: 1.6rem; /* Tamaño elegante */
+            font-size: 1.6rem; 
             font-weight: 600;
             line-height: 1.1;
             margin-bottom: 5px;
             text-transform: uppercase;
             letter-spacing: 2px;
-            text-shadow: 0 1px 3px rgba(255,255,255,0.9); /* Sombra para leer bien */
+            /* Sombra blanca para contraste */
+            text-shadow: 0 0 10px rgba(255,255,255,0.8), 0 0 20px rgba(255,255,255,0.5); 
         }
 
         .hero-date {
@@ -135,7 +136,7 @@
             font-weight: 600;
             line-height: 1;
             letter-spacing: 2px;
-            text-shadow: 0 1px 3px rgba(255,255,255,0.9);
+            text-shadow: 0 0 10px rgba(255,255,255,0.8), 0 0 20px rgba(255,255,255,0.5);
         }
 
         .scroll-indicator { 
@@ -279,10 +280,26 @@
         /* --- MEDIA QUERY ESCRITORIO --- */
         @media (min-width: 769px) {
             nav { padding: 0 50px; } .menu-toggle { display: block; } nav ul { width: 350px; }
-            /* Ajuste del margen en pantallas grandes */
-            .hero-right-container { margin-right: 15%; margin-bottom: 10%; }
-            .hero-names { font-size: 3.5rem; }
-            .hero-date { font-size: 2.5rem; }
+            
+            /* HERO PC: NUEVA IMAGEN DE FONDO PC */
+            .polaroid-hero { 
+                padding-top: 80px; 
+                background-image: url('https://i.imgur.com/6AczGUN.jpeg'); /* FOTO NUEVA PC */
+                background-position: center center; 
+            }
+            
+            /* Texto en PC: Posición absoluta a la derecha */
+            .hero-right-container {
+                position: absolute;
+                top: 50%;
+                right: 5%;
+                transform: translateY(-50%);
+                margin-bottom: 0; /* Reset del margen de móvil */
+                margin-right: 0;
+            }
+
+            .hero-names { font-size: 3.5rem; text-shadow: 0 0 20px rgba(255,255,255,0.9); }
+            .hero-date { font-size: 2.2rem; text-shadow: 0 0 20px rgba(255,255,255,0.9); }
             
             .timeline { max-width: 800px; margin: 0 auto; }
             .cards-grid { display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 40px; }
@@ -291,12 +308,6 @@
             .modal-content { width: 90%; max-width: 500px; height: auto; max-height: 85vh; border-radius: 15px; margin: 5% auto; }
             .img-entrada-zoomed { height: 300px; }
             .img-salida-contain { height: 300px; } 
-        }
-        
-        /* MEDIA QUERY MOVIL */
-        @media (max-width: 768px) { 
-            /* MARGEN INFERIOR 55% PARA SUBIR EL TEXTO Y NO ROCE LA CABEZA */
-            .hero-right-container { margin-right: 5%; margin-bottom: 55%; } 
         }
     </style>
 </head>
@@ -573,6 +584,19 @@
             field.style.display = val === 'Sí' ? 'block' : 'none';
             document.getElementById('nombreAcompanante').required = (val === 'Sí');
         }
+        const weddingDate = new Date('2026-10-03T18:00:00').getTime();
+        setInterval(() => {
+            const now = new Date().getTime();
+            const dist = weddingDate - now;
+            const d = Math.floor(dist / (1000 * 60 * 60 * 24));
+            const h = Math.floor((dist % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((dist % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((dist % (1000 * 60)) / 1000);
+            document.getElementById('d-val').innerText = d;
+            document.getElementById('h-val').innerText = h < 10 ? '0'+h : h;
+            document.getElementById('m-val').innerText = m < 10 ? '0'+m : m;
+            document.getElementById('s-val').innerText = s < 10 ? '0'+s : s;
+        }, 1000);
     </script>
 </body>
 </html>
