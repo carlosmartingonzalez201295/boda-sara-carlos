@@ -6,8 +6,8 @@
     <title>Sara y Carlos</title>
     
     <style>
-        /* --- FUENTES --- */
-        @import url('https://fonts.googleapis.com/css2?family=The+Girl+Next+Door&family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600;1,700&family=Montserrat:wght@300;400;500;600&display=swap');
+        /* --- FUENTES RESTAURADAS --- */
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600;1,700&family=Montserrat:wght@300;400;500;600&display=swap');
         
         /* --- VARIABLES --- */
         :root { 
@@ -20,8 +20,8 @@
             --pattern-bg: url('https://i.imgur.com/feTyvjy.jpeg'); 
             --paper-texture: url('https://i.imgur.com/0pkprZl.jpeg');
             
-            /* FUENTE GENERAL */
-            --handwriting-font: 'The Girl Next Door', cursive;
+            /* FUENTE MANUSCRITA RESTAURADA (Bradley Hand) */
+            --handwriting-font: 'Bradley Hand ITC', 'Bradley Hand', 'Noteworthy', 'Segoe Print', cursive;
             
             /* FUENTE PORTADA */
             --cover-font: 'Great Vibes', cursive;
@@ -31,13 +31,14 @@
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         
         body { 
-            font-family: 'The Girl Next Door', cursive; 
+            /* FUENTE DE CUERPO RESTAURADA (Montserrat) */
+            font-family: 'Montserrat', sans-serif; 
             color: var(--dark); 
             line-height: 1.6; 
             background-color: #faf8f5; 
             position: relative;
             overflow-x: hidden;
-            font-size: 1.1rem; 
+            font-size: 1rem; /* Tamaño estándar original */
         }
 
         body::before {
@@ -82,7 +83,7 @@
         nav li { width: 100%; text-align: center; }
         
         nav a { 
-            display: block; padding: 20px; font-size: 1.4rem; 
+            display: block; padding: 20px; font-size: 1.3rem; 
             color: var(--nav-bg); 
             text-transform: uppercase; letter-spacing: 1px; text-decoration: none;
             position: relative; font-family: var(--handwriting-font); font-weight: bold;
@@ -140,11 +141,11 @@
         }
         
         .countdown-label { 
-            font-family: var(--handwriting-font); font-size: 0.8rem; letter-spacing: 1px; color: #555; margin-top: 2px; text-transform: uppercase; font-weight: 600;
+            font-family: 'Montserrat', sans-serif; font-size: 0.65rem; letter-spacing: 1px; color: #555; margin-top: 2px; text-transform: uppercase; font-weight: 600;
         }
 
         /* --- BIENVENIDA --- */
-        .text-block { text-align: center; font-size: 1.2rem; color: #555; margin: -20px auto 30px auto; max-width: 90%; line-height: 1.8; }
+        .text-block { text-align: center; font-size: 1rem; color: #555; margin: -20px auto 30px auto; max-width: 90%; line-height: 1.8; }
         
         .highlight-phrase {
             font-family: var(--handwriting-font); font-weight: bold; color: var(--nav-bg); font-size: 1.4rem;
@@ -158,10 +159,10 @@
         }
 
         h2 { 
-            font-family: var(--handwriting-font); font-weight: bold; font-size: 3.2rem; text-align: center; 
+            font-family: var(--handwriting-font); font-weight: bold; font-size: 3rem; text-align: center; 
             margin-bottom: 40px; color: var(--secondary); line-height: 1.1; margin-left: auto; margin-right: auto; width: 100%;
         }
-        .subtitle { display: block; text-align: center; font-size: 1.1rem; color: #555; margin: -30px auto 40px auto; font-style: italic; max-width: 90%; }
+        .subtitle { display: block; text-align: center; font-size: 0.95rem; color: #555; margin: -30px auto 40px auto; font-style: italic; max-width: 90%; }
 
         /* --- ITINERARIO --- */
         .timeline { position: relative; margin: 40px 0; padding: 0; display: flex; flex-direction: column; gap: 40px; padding-bottom: 20px; }
@@ -193,8 +194,8 @@
         .timeline-img-clipper img[src*="QDGdxoI.png"] { transform: scale(1.8); object-position: center 60%; }
 
         .timeline-content { width: 55%; padding: 0 10px; display: flex; flex-direction: column; justify-content: center; position: relative; z-index: 3; }
-        .timeline-content h3 { font-family: var(--handwriting-font); font-weight: bold; font-size: 1.8rem; color: var(--secondary); margin-bottom: 5px; line-height: 1.1; }
-        .timeline-content p { font-size: 1rem; margin-bottom: 2px; color: #555; }
+        .timeline-content h3 { font-family: var(--handwriting-font); font-weight: bold; font-size: 1.6rem; color: var(--secondary); margin-bottom: 5px; line-height: 1.1; }
+        .timeline-content p { font-size: 0.9rem; margin-bottom: 2px; color: #555; }
         
         .item-left { flex-direction: row; }
         .item-left .timeline-content { text-align: left; padding-left: 15px; }
@@ -209,15 +210,15 @@
         .card-img { width: 100%; height: 200px; object-fit: cover; border-radius: 15px; margin-top: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.15); transition: box-shadow 0.3s ease; }
         .card:hover { transform: translateY(-5px); }
         .card:hover .card-img { box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
-        .card h3 { font-family: var(--handwriting-font); font-weight: bold; font-size: 2.2rem; color: var(--secondary); margin-bottom: 10px; }
-        .card p { color: #555; font-size: 1.1rem; }
+        .card h3 { font-family: var(--handwriting-font); font-weight: bold; font-size: 2rem; color: var(--secondary); margin-bottom: 10px; }
+        .card p { color: #555; font-size: 0.95rem; }
 
         /* --- CLASE ESPECÍFICA PARA CORREGIR FOTO CANALLA EN MOVIL --- */
         .img-canalla { object-position: center 45%; }
 
         /* --- SUBTÍTULO TAPEO --- */
         .tapeo-subtitle {
-            font-family: var(--handwriting-font); font-weight: bold; font-size: 1.5rem; color: var(--secondary); text-align: center; margin-bottom: 20px; display: block;
+            font-family: var(--handwriting-font); font-weight: bold; font-size: 1.3rem; color: var(--secondary); text-align: center; margin-bottom: 20px; display: block;
         }
 
         /* --- CAJA IBAN --- */
@@ -232,10 +233,10 @@
         }
         
         .iban-text { 
-            font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 1.4rem; color: var(--nav-bg); letter-spacing: 0.5px; white-space: nowrap; margin-bottom: 5px;
+            font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 1.3rem; color: var(--nav-bg); letter-spacing: 0.5px; white-space: nowrap; margin-bottom: 5px;
         }
         .copy-link { 
-            font-size: 0.95rem; color: var(--nav-bg); font-weight: 700; text-transform: uppercase; font-family: var(--handwriting-font); text-decoration: underline; 
+            font-size: 0.85rem; color: var(--nav-bg); font-weight: 700; text-transform: uppercase; font-family: 'Montserrat', sans-serif; text-decoration: underline; 
         }
         .copy-feedback { display: none; color: var(--nav-bg); font-size: 0.8rem; margin-top: 5px; font-weight: 600; position: absolute; bottom: -25px; left: 50%; transform: translateX(-50%); white-space: nowrap; }
 
@@ -272,15 +273,15 @@
         .map-btn {
             display: inline-block;
             padding: 16px 24px;
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             border-radius: 10px;
             background: var(--secondary);
             color: white;
             font-weight: bold;
-            box-shadow: 0 4px 10px rgba(119, 133, 92, 0.4); /* Sombra verdosa */
+            box-shadow: 0 4px 10px rgba(119, 133, 92, 0.4); 
             border: none;
             cursor: pointer;
-            text-decoration: none; /* Quitar subrayado del enlace */
+            text-decoration: none; 
             font-family: var(--handwriting-font);
             letter-spacing: 1px;
             transition: transform 0.2s, background-color 0.3s;
@@ -295,7 +296,7 @@
         /* --- FORMULARIO RSVP --- */
         .rsvp-accordion-wrapper { width: 100%; margin-top: 20px; }
         .rsvp-toggle-btn {
-            padding: 16px; font-size: 1.4rem; border-radius: 10px; background: var(--nav-bg); color: white; 
+            padding: 16px; font-size: 1.3rem; border-radius: 10px; background: var(--nav-bg); color: white; 
             font-weight: bold; box-shadow: 0 4px 10px rgba(84, 98, 57, 0.3); border: none; width: 100%; 
             cursor: pointer; font-family: var(--handwriting-font); letter-spacing: 1px;
             transition: transform 0.2s, background-color 0.3s; margin-bottom: 10px;
@@ -309,8 +310,8 @@
             padding: 30px 20px; border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); width: 100%; border-top: 4px solid var(--nav-bg); 
         }
         .form-group { margin-bottom: 20px; }
-        label { font-size: 1.1rem; font-weight: 600; color: var(--secondary); margin-bottom: 8px; display: block; font-family: var(--handwriting-font); }
-        input, select, textarea { width: 100%; padding: 12px; font-size: 1.1rem; border: 1px solid #ddd; border-radius: 8px; background: #fafafa; transition:all 0.3s; font-family: var(--handwriting-font); }
+        label { font-size: 0.9rem; font-weight: 600; color: var(--secondary); margin-bottom: 8px; display: block; font-family: var(--handwriting-font); }
+        input, select, textarea { width: 100%; padding: 12px; font-size: 1rem; border: 1px solid #ddd; border-radius: 8px; background: #fafafa; transition:all 0.3s; font-family: var(--handwriting-font); }
         
         input:focus, select:focus, textarea:focus {
             border-color: var(--nav-bg);
@@ -320,7 +321,7 @@
         }
         
         button#submitBtn { 
-            padding: 16px; font-size: 1.4rem; border-radius: 10px; 
+            padding: 16px; font-size: 1.3rem; border-radius: 10px; 
             background: var(--secondary); 
             color: white; font-weight: bold; 
             box-shadow: 0 4px 10px rgba(139, 115, 85, 0.3); 
@@ -347,8 +348,8 @@
         .modal-info-center { text-align: center; margin-bottom: 20px; width: 100%; }
         .modal-info-center h3 { font-family: var(--handwriting-font); font-weight: bold; font-size: 2.2rem; color: var(--secondary); margin-bottom: 5px; }
         .modal-info-center p { color: #444; font-weight: 500; margin-bottom: 5px; }
-        .modal-info-center .address { color: #888; font-size: 1rem; font-style: italic; }
-        .modal-desc-justify { text-align: justify; color: #666; font-size: 1.1rem; width: 100%; margin-bottom: 20px; }
+        .modal-info-center .address { color: #888; font-size: 0.9rem; font-style: italic; }
+        .modal-desc-justify { text-align: justify; color: #666; font-size: 0.95rem; width: 100%; margin-bottom: 20px; }
         
         /* ESTILOS CEREMONIA MAPS */
         .ceremonia-maps-white-bg {
@@ -660,7 +661,7 @@
 
     <div id="modal-golf" class="modal">
         <div class="modal-content">
-            <div class="close-modal" onclick="closeModal('golf')">&times;</div>
+            <div class="close-modal" onclick="closeModal('golf')">×</div>
             <img src="https://i.imgur.com/GEZh21g.jpeg" class="modal-header-img" alt="Golf">
             
             <div class="modal-info-center">
@@ -687,7 +688,7 @@
 
     <div id="modal-preboda" class="modal">
         <div class="modal-content">
-            <div class="close-modal" onclick="closeModal('preboda')">&times;</div>
+            <div class="close-modal" onclick="closeModal('preboda')">×</div>
             <img src="https://i.imgur.com/0khwPw5.jpeg" class="modal-header-img" style="object-position: top center;" alt="Preboda">
             
             <div class="modal-info-center">
@@ -705,7 +706,7 @@
 
     <div id="modal-ceremonia" class="modal">
         <div class="modal-content">
-            <div class="close-modal" onclick="closeModal('ceremonia')">&times;</div>
+            <div class="close-modal" onclick="closeModal('ceremonia')">×</div>
             
             <div class="ceremonia-maps-white-bg">
                 <div class="map-unit">
@@ -734,7 +735,7 @@
 
     <div id="modal-celebracion" class="modal">
         <div class="modal-content">
-            <div class="close-modal" onclick="closeModal('celebracion')">&times;</div>
+            <div class="close-modal" onclick="closeModal('celebracion')">×</div>
             <img src="https://i.imgur.com/XaKG3fN.jpeg" class="modal-header-img" alt="Celebración">
             
             <div class="modal-info-center">
@@ -749,12 +750,11 @@
         </div>
     </div>
 
-    <div id="modal-hotel1" class="modal"><div class="modal-content"><div class="close-modal" onclick="closeModal('hotel1')">&times;</div><h3>Hotel Be Live</h3><p>Av. Toledo, s/n</p><div style="text-align:left; width:100%; margin-top:20px; background:#fafafa; padding:20px; border-radius:10px;"><strong>💰 96€/noche aprox</strong><br><br><strong>🎁 Código Boda:</strong><br>BODA CARLOS Y SARA<br>Loc: 25GTV174</div></div></div>
-    <div id="modal-apt1" class="modal"><div class="modal-content"><div class="close-modal" onclick="closeModal('apt1')">&times;</div><h3>Blue Windows</h3><p>C. Corredera del Cristo, 18</p><p style="margin-top:20px;">925 80 24 28</p></div></div>
-    <div id="modal-apt2" class="modal"><div class="modal-content"><div class="close-modal" onclick="closeModal('apt2')">&times;</div><h3>Santa Rita</h3><p>C. Mesones, 3</p><p style="margin-top:20px;">925 80 17 17</p></div></div>
+    <div id="modal-hotel1" class="modal"><div class="modal-content"><div class="close-modal" onclick="closeModal('hotel1')">×</div><h3>Hotel Be Live</h3><p>Av. Toledo, s/n</p><div style="text-align:left; width:100%; margin-top:20px; background:#fafafa; padding:20px; border-radius:10px;"><strong>💰 96€/noche aprox</strong><br><br><strong>🎁 Código Boda:</strong><br>BODA CARLOS Y SARA<br>Loc: 25GTV174</div></div></div>
+    <div id="modal-apt1" class="modal"><div class="modal-content"><div class="close-modal" onclick="closeModal('apt1')">×</div><h3>Blue Windows</h3><p>C. Corredera del Cristo, 18</p><p style="margin-top:20px;">925 80 24 28</p></div></div>
+    <div id="modal-apt2" class="modal"><div class="modal-content"><div class="close-modal" onclick="closeModal('apt2')">×</div><h3>Santa Rita</h3><p>C. Mesones, 3</p><p style="margin-top:20px;">925 80 17 17</p></div></div>
     
     <script>
-        // PEGA AQUÍ TU URL DE APP SCRIPT
         const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzrJwolceA5-RvZgFqfbBT-Qp9_DB_v3U7YWjy4L-plFPQgBkCJEl_jlI4bSvXjFIIyXA/exec";
 
         window.onbeforeunload = function () { window.scrollTo(0, 0); }
@@ -773,7 +773,6 @@
         function openModal(id) { document.getElementById('modal-'+id).style.display = 'block'; document.body.style.overflow = 'hidden'; }
         function closeModal(id) { document.getElementById('modal-'+id).style.display = 'none'; document.body.style.overflow = 'auto'; }
 
-        // --- FUNCIÓN TOGGLE PARA EL FORMULARIO RSVP ---
         function toggleRSVP() {
             var content = document.getElementById('rsvp-content');
             if (content.classList.contains('rsvp-content-visible')) {
@@ -785,7 +784,6 @@
             }
         }
 
-        // --- FUNCIONALIDAD COPIAR IBAN ---
         function copyIBAN() {
             const iban = document.getElementById('ibanText').innerText;
             navigator.clipboard.writeText(iban).then(() => {
@@ -795,7 +793,6 @@
             });
         }
 
-        // Formularios
         document.getElementById('rsvpForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             const btn = document.getElementById('submitBtn'); btn.disabled = true; btn.innerText = "Enviando...";
