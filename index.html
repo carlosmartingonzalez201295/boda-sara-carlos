@@ -6,13 +6,13 @@
     <title>Sara y Carlos</title>
     
     <style>
-        /* --- FUENTES: AÑADIDA "PERMANENT MARKER" PARA EL ESTILO CRAYON --- */
+        /* --- FUENTES --- */
         @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600;1,700&family=Montserrat:wght@300;400;500;600&display=swap');
         
         /* --- VARIABLES --- */
         :root { 
             --primary: #d4a373; 
-            --secondary: #77855C; /* Verde Corporativo */
+            --secondary: #77855C; 
             --accent: #faf8f5; 
             --dark: #3d3d3d; 
             --light: #fff; 
@@ -22,9 +22,7 @@
             
             /* FUENTES */
             --handwriting-font: 'Bradley Hand ITC', 'Bradley Hand', 'Noteworthy', 'Segoe Print', cursive;
-            --cover-font: 'Great Vibes', cursive;
-            /* NUEVA FUENTE ESTILO CRAYON/ROTULADOR */
-            --crayon-font: 'Permanent Marker', cursive; 
+            --crayon-font: 'Permanent Marker', cursive; /* Estilo Crumble/Rotulador */
         }
         
         /* --- RESET Y BASE --- */
@@ -40,6 +38,7 @@
             font-size: 1rem; 
         }
 
+        /* FONDO ESTAMPADO GENERAL (con opacidad suave para el cuerpo) */
         body::before {
             content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-image: var(--pattern-bg);
@@ -54,7 +53,6 @@
             z-index: 1000; padding: 0 15px;
             display: flex; justify-content: center; align-items: center;
             background-color: #fdfbf7; 
-            background-image: none; 
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
@@ -84,49 +82,99 @@
         }
         nav a::after { content: ''; position: absolute; bottom: 0; left: 15%; width: 70%; height: 4px; background-image: var(--pattern-bg); background-size: cover; opacity: 0.6; border-radius: 2px; }
 
-        /* --- HERO --- */
-        .hero {
-            height: 100vh; height: 100dvh; width: 100%;
-            display: flex; flex-direction: column; justify-content: flex-end; align-items: center;
+        /* --- NUEVO HERO TIPO POLAROID --- */
+        .polaroid-hero {
+            min-height: 100vh; /* Ocupa toda la pantalla */
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             position: relative;
-            background-image: url('https://i.imgur.com/ODoIZJe.jpeg'); 
-            background-size: cover; background-position: 25% 35%; background-repeat: no-repeat;
-            overflow: hidden;
+            padding-top: 80px; /* Espacio para el menú */
+            padding-bottom: 40px;
+            
+            /* FONDO ESTAMPADO SIN TRANSPARENCIA (O MENOS TRANSPARENTE) */
+            background-image: var(--pattern-bg);
+            background-size: 300px;
+            background-repeat: repeat;
+            /* Si quieres que se vea tal cual la imagen: */
+            background-color: #faf8f5; 
         }
-        .hero::before { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 30%; background: linear-gradient(to top, rgba(0,0,0,0.4), transparent); z-index: 1; }
-        .hero-content { position: relative; z-index: 2; text-align: center; padding-bottom: 50px; width: 100%; display: flex; flex-direction: column; align-items: center; }
-        .scroll-indicator { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); z-index: 2; animation: bounce 2s infinite; font-size: 2rem; color: #fff; text-shadow: 0 2px 5px rgba(0,0,0,0.5); }
 
+        /* Capa blanca semitransparente para que el fondo no sature (opcional, quitar si quieres el fondo 100% puro) */
+        .polaroid-hero::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(255, 255, 255, 0.4); /* Suaviza un poco el estampado */
+            z-index: 0;
+        }
+
+        .polaroid-frame {
+            position: relative; z-index: 2;
+            background: white;
+            padding: 15px 15px 50px 15px; /* Más padding abajo para el texto */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            width: 85%;
+            max-width: 380px;
+            transform: rotate(-2deg); /* Un toque torcido natural */
+            transition: transform 0.3s;
+            margin-bottom: 20px;
+        }
+        
+        .polaroid-frame:hover { transform: rotate(0deg) scale(1.02); }
+
+        .polaroid-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: grayscale(100%) contrast(1.1); /* Blanco y negro para efecto vintage */
+        }
+
+        .polaroid-caption {
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            font-family: var(--crayon-font); /* Fuente Crayon */
+            font-size: 3rem;
+            color: #222;
+            line-height: 1;
+        }
+
+        .scroll-indicator { 
+            position: relative; z-index: 2; margin-top: 20px; 
+            animation: bounce 2s infinite; font-size: 2rem; color: var(--nav-bg); 
+        }
+
+        /* --- TEXTO INTRODUCCIÓN --- */
         .intro-text-banner {
-            text-align: center; padding: 40px 20px 0px 20px; font-family: var(--handwriting-font);
+            text-align: center; padding: 20px 20px 0px 20px; font-family: var(--handwriting-font);
             font-weight: bold; color: var(--nav-bg); font-size: 2rem; line-height: 1.3; width: 100%; max-width: 90%; margin: 0 auto;
         }
 
         /* --- CUENTA ATRÁS --- */
-        .countdown-section { padding: 20px 20px 20px 20px; display: flex; justify-content: center; align-items: center; gap: 15px; background-color: transparent; }
+        .countdown-section { padding: 20px; display: flex; justify-content: center; align-items: center; gap: 15px; background: transparent; }
         .countdown-item { display: flex; flex-direction: column; align-items: center; }
-        .countdown-number { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: var(--nav-bg); font-weight: 700; line-height: 1; background: transparent; width: auto; height: auto; margin-bottom: 0; }
-        .countdown-label { font-family: 'Montserrat', sans-serif; font-size: 0.65rem; letter-spacing: 1px; color: #555; margin-top: 2px; text-transform: uppercase; font-weight: 600; }
+        .countdown-number { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: var(--nav-bg); font-weight: 700; line-height: 1; }
+        .countdown-label { font-family: 'Montserrat', sans-serif; font-size: 0.65rem; letter-spacing: 1px; color: #555; font-weight: 600; text-transform: uppercase; }
 
         /* --- TEXTOS --- */
         .text-block { text-align: center; font-size: 1rem; color: #555; margin: -20px auto 30px auto; max-width: 90%; line-height: 1.8; }
         .highlight-phrase { font-family: var(--handwriting-font); font-weight: bold; color: var(--nav-bg); font-size: 1.4rem; }
 
         /* --- SECCIONES --- */
-        section { padding: 40px 20px 60px 20px; width: 100%; max-width: 100%; position: relative; scroll-margin-top: 90px; }
+        section { padding: 40px 20px 60px 20px; width: 100%; max-width: 100%; scroll-margin-top: 90px; position: relative; }
         #itinerario::after, #alojamiento::after, #recomendaciones::after, #dresscode::after, #mapa::after, #confirmacion::after, #regalo::after { content: ''; position: absolute; bottom: 0; left: 15%; width: 70%; height: 1px; background-color: var(--nav-bg); opacity: 0.3; }
 
-        h2 { font-family: var(--handwriting-font); font-weight: bold; font-size: 3rem; text-align: center; margin-bottom: 40px; color: var(--secondary); line-height: 1.1; margin-left: auto; margin-right: auto; width: 100%; }
-        .subtitle { display: block; text-align: center; font-size: 0.95rem; color: #555; margin: -30px auto 40px auto; font-style: italic; max-width: 90%; }
+        h2 { font-family: var(--handwriting-font); font-weight: bold; font-size: 3rem; text-align: center; margin-bottom: 40px; color: var(--secondary); line-height: 1.1; }
+        .subtitle { display: block; text-align: center; font-size: 0.95rem; color: #555; margin: -30px auto 40px auto; font-style: italic; }
 
         /* --- ITINERARIO --- */
         .timeline { position: relative; margin: 40px 0; padding: 0; display: flex; flex-direction: column; gap: 40px; padding-bottom: 20px; }
-        .timeline-item { display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 2; width: 100%; margin: 0; }
+        .timeline-item { display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 2; width: 100%; }
         
-        @keyframes pulse-ring { 0% { box-shadow: 0 0 0 0 rgba(119, 133, 92, 0.4); } 70% { box-shadow: 0 0 0 15px rgba(119, 133, 92, 0); } 100% { box-shadow: 0 0 0 0 rgba(119, 133, 92, 0); } }
-        @keyframes floating-hard { 0% { transform: translateY(0px); } 50% { transform: translateY(-5px); } 100% { transform: translateY(0px); } }
-
-        .timeline-img-box { width: 130px; height: 130px; border-radius: 50%; border: 4px solid white; animation: floating-hard 3s ease-in-out infinite, pulse-ring 2s infinite; position: relative; z-index: 5; background-color: white; overflow: visible; flex-shrink: 0; cursor: pointer; margin: 0 auto; }
+        .timeline-img-box { width: 130px; height: 130px; border-radius: 50%; border: 4px solid white; position: relative; z-index: 5; background-color: white; overflow: visible; flex-shrink: 0; cursor: pointer; margin: 0 auto; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
         .timeline-img-box::before { content: ''; position: absolute; top: -6px; left: -6px; right: -6px; bottom: -6px; background-image: var(--pattern-bg); background-size: cover; border-radius: 50%; z-index: -1; opacity: 1; }
         .timeline-img-box::after { content: "+"; position: absolute; bottom: 0; right: 0; background-color: var(--nav-bg); color: white; width: 35px; height: 35px; border-radius: 50%; border: 2px solid white; display: flex; justify-content: center; align-items: center; font-size: 1.5rem; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.3); z-index: 10; }
         
@@ -144,107 +192,77 @@
 
         /* --- TARJETAS --- */
         .cards-grid { display: flex; flex-direction: column; gap: 40px; }
-        .card { background: transparent; padding: 0; border-radius: 0; box-shadow: none; border: none; text-align: center; transition: transform 0.3s ease; }
-        .card-img { width: 100%; height: 200px; object-fit: cover; border-radius: 15px; margin-top: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.15); transition: box-shadow 0.3s ease; }
-        .card:hover { transform: translateY(-5px); } .card:hover .card-img { box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
+        .card { background: transparent; padding: 0; border: none; text-align: center; }
+        .card-img { width: 100%; height: 200px; object-fit: cover; border-radius: 15px; margin-top: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.15); }
         .card h3 { font-family: var(--handwriting-font); font-weight: bold; font-size: 2.2rem; color: var(--secondary); margin-bottom: 10px; }
         .card p { color: #555; font-size: 1.1rem; }
         .img-canalla { object-position: center 45%; }
         .tapeo-subtitle { font-family: var(--handwriting-font); font-weight: bold; font-size: 1.5rem; color: var(--secondary); text-align: center; margin-bottom: 20px; display: block; }
 
-        /* --- MAPA Y ENLACE TEXTO CON FLECHA Y NUEVA FUENTE --- */
+        /* --- MAPA Y ENLACE TEXTO (CAMBIO: SIN NEGRITA) --- */
         .map-frame-container {
             width: 100%; height: 350px; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.15); margin-bottom: 20px;
         }
         .map-frame-container iframe { width: 100%; height: 100%; border: 0; }
         
-        /* Animación de la flecha */
-        @keyframes arrow-bounce {
-            0%, 100% { transform: translateX(0); }
-            50% { transform: translateX(5px); }
-        }
+        /* Animación flecha */
+        @keyframes arrow-bounce { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(5px); } }
 
         .map-text-link {
             display: flex; flex-direction: row; align-items: center; justify-content: center;
             text-align: center;
             font-family: var(--crayon-font); /* Fuente Crayon */
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             color: var(--nav-bg); 
             text-decoration: none; 
-            cursor: pointer; margin-top: 15px; transition: opacity 0.3s;
-            line-height: 1.4;
-            gap: 10px; /* Espacio entre flecha y texto */
+            font-weight: normal; /* SIN NEGRITA */
+            cursor: pointer; margin-top: 15px; 
+            gap: 10px;
         }
-        
-        .map-text-link::before {
-            content: '→';
-            font-size: 1.5rem;
-            animation: arrow-bounce 1s infinite ease-in-out;
-            display: inline-block;
-        }
-
+        .map-text-link::before { content: '→'; font-size: 1.5rem; animation: arrow-bounce 1s infinite ease-in-out; }
         .map-text-link span { display: block; } 
-        .map-text-link:hover { opacity: 0.7; }
 
-        /* --- RSVP SOLO TEXTO CREATIVO CON FLECHA Y NUEVA FUENTE --- */
+        /* --- RSVP TEXTO CREATIVO (CAMBIO: SIN NEGRITA, MISMA FUENTE) --- */
         .rsvp-accordion-wrapper { width: 100%; margin-top: 20px; text-align: center; }
         
         .rsvp-toggle-text {
             background: none; border: none; box-shadow: none;
             color: var(--nav-bg); 
-            cursor: pointer; padding: 15px; transition: transform 0.2s, opacity 0.3s;
+            cursor: pointer; padding: 15px; 
             text-decoration: none; 
             display: flex; align-items: center; justify-content: center; gap: 10px;
-            line-height: 1.1;
-            margin: 0 auto;
+            line-height: 1.1; margin: 0 auto;
         }
-        
-        .rsvp-toggle-text::before {
-            content: '→';
-            font-size: 1.8rem;
-            font-family: var(--crayon-font);
-            animation: arrow-bounce 1s infinite ease-in-out;
-        }
+        .rsvp-toggle-text::before { content: '→'; font-size: 1.8rem; font-family: var(--crayon-font); animation: arrow-bounce 1s infinite ease-in-out; }
 
         .rsvp-text-group { text-align: left; }
 
+        /* CAMBIO: AMBOS TEXTOS CON FUENTE CRAYON Y SIN NEGRITA */
         .rsvp-main-text {
             display: block;
-            font-family: var(--crayon-font); /* Fuente Crayon */
+            font-family: var(--crayon-font); 
             font-size: 1.8rem; 
-            font-weight: normal;
+            font-weight: normal; /* SIN NEGRITA */
         }
         .rsvp-sub-text {
             display: block;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.8rem; 
-            font-weight: 500;
-            letter-spacing: 2px;
-            text-transform: uppercase;
+            font-family: var(--crayon-font); /* AHORA TAMBIÉN CRAYON */
+            font-size: 1.2rem; /* Un poco más grande para que se lea bien en crayon */
+            font-weight: normal; /* SIN NEGRITA */
             margin-top: 2px;
         }
 
-        .rsvp-toggle-text:hover { transform: translateY(-3px); opacity: 0.8; }
         .rsvp-content-hidden { max-height: 0; overflow: hidden; transition: max-height 0.6s ease-out; opacity: 0; }
         .rsvp-content-visible { max-height: 1200px; opacity: 1; transition: max-height 0.8s ease-in, opacity 0.5s ease-in; }
 
-        .rsvp-form { 
-            background-image: var(--paper-texture); background-repeat: repeat;
-            padding: 30px 20px; border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); width: 100%; border-top: 4px solid var(--nav-bg); margin-top: 15px;
-        }
+        .rsvp-form { background-image: var(--paper-texture); padding: 30px 20px; border-radius: 15px; width: 100%; border-top: 4px solid var(--nav-bg); margin-top: 15px; }
         .form-group { margin-bottom: 20px; text-align: left; }
         label { font-size: 1.1rem; font-weight: 600; color: var(--secondary); margin-bottom: 8px; display: block; font-family: var(--handwriting-font); }
-        input, select, textarea { width: 100%; padding: 12px; font-size: 1.1rem; border: 1px solid #ddd; border-radius: 8px; background: #fafafa; transition:all 0.3s; font-family: var(--handwriting-font); }
-        input:focus, select:focus, textarea:focus { border-color: var(--nav-bg); box-shadow: 0 0 0 3px rgba(119, 133, 92, 0.2); outline: none; background-image: var(--paper-texture); }
-        
-        button#submitBtn { 
-            padding: 16px; font-size: 1.4rem; border-radius: 10px; background: var(--secondary); color: white; font-weight: bold; 
-            box-shadow: 0 4px 10px rgba(139, 115, 85, 0.3); border: none; width: 100%; cursor: pointer; transition: transform 0.2s; font-family: var(--handwriting-font); letter-spacing: 1px;
-        }
+        input, select, textarea { width: 100%; padding: 12px; font-size: 1.1rem; border: 1px solid #ddd; border-radius: 8px; background: #fafafa; font-family: var(--handwriting-font); }
+        button#submitBtn { padding: 16px; font-size: 1.4rem; border-radius: 10px; background: var(--secondary); color: white; font-weight: bold; border: none; width: 100%; cursor: pointer; font-family: var(--handwriting-font); letter-spacing: 1px; }
 
         /* --- IBAN --- */
-        .iban-wrapper { margin-top: 25px; display: inline-block; cursor: pointer; position: relative; width: 100%; max-width: 400px; transition: opacity 0.3s ease; }
-        .iban-wrapper:hover { opacity: 0.7; }
+        .iban-wrapper { margin-top: 25px; display: inline-block; cursor: pointer; position: relative; width: 100%; max-width: 400px; }
         .iban-box { background: transparent; padding: 10px 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         .iban-text { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 1.4rem; color: var(--nav-bg); letter-spacing: 0.5px; white-space: nowrap; margin-bottom: 5px; }
         .copy-link { font-size: 0.95rem; color: var(--nav-bg); font-weight: 700; text-transform: uppercase; font-family: var(--handwriting-font); text-decoration: underline; }
@@ -262,8 +280,7 @@
         /* --- MODALES --- */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 2000; backdrop-filter: blur(3px); }
         .modal-content { background-image: var(--paper-texture); background-repeat: repeat; width: 100%; height: 100%; max-width: 100%; margin: 0; border-radius: 0; padding: 25px; overflow-y: auto; position: relative; animation: slideUp 0.3s; display: flex; flex-direction: column; align-items: center; }
-        .close-modal { position: absolute; top: 15px; right: 15px; font-size: 1.5rem; width: 36px; height: 36px; background: var(--nav-bg); color: white; border-radius: 50%; display: flex; justify-content: center; align-items: center; z-index: 10; cursor: pointer; box-shadow: 0 2px 10px rgba(0,0,0,0.2); transition: transform 0.2s; }
-        .close-modal:hover { transform: rotate(90deg); }
+        .close-modal { position: absolute; top: 15px; right: 15px; font-size: 1.5rem; width: 36px; height: 36px; background: var(--nav-bg); color: white; border-radius: 50%; display: flex; justify-content: center; align-items: center; z-index: 10; cursor: pointer; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
         .modal-header-img { width: 100%; height: auto; max-height: 400px; object-fit: contain; border-radius: 15px; margin-bottom: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
         .modal-info-center { text-align: center; margin-bottom: 20px; width: 100%; }
         .modal-info-center h3 { font-family: var(--handwriting-font); font-weight: bold; font-size: 2.2rem; color: var(--secondary); margin-bottom: 5px; }
@@ -274,17 +291,9 @@
         .map-unit { width: 100%; margin-bottom: 30px; text-align: center; overflow: hidden; border-radius: 10px; position: relative; }
         .map-unit:last-child { margin-bottom: 0; }
         
-        /* CORRECCIÓN IGLESIA: MISMA ESCALA (object-fit: cover) Y POSICIÓN AJUSTADA */
-        .church-img-uniform {
-            width: 100%; 
-            height: 250px; 
-            object-fit: cover; /* Ambas llenan el cuadro igual (misma escala visual) */
-            display: block;
-        }
-        /* Ajuste específico para que la entrada se vea bien (arco superior) */
-        .pos-entrada { object-position: center 20%; } 
-        /* Ajuste para la salida */
-        .pos-salida { object-position: center center; }
+        /* CORRECCIÓN IGLESIA: Misma escala visual */
+        .img-entrada-zoomed { width: 100%; height: 250px; object-fit: cover; object-position: center center; display: block; }
+        .img-salida-contain { width: 100%; height: 250px; object-fit: cover; object-position: center center; display: block; }
 
         .reveal { opacity: 0; transform: translateY(20px); transition: 0.6s ease; }
         .reveal.active { opacity: 1; transform: translateY(0); }
@@ -293,14 +302,15 @@
 
         @media (min-width: 769px) {
             nav { padding: 0 50px; } .menu-toggle { display: block; } nav ul { width: 350px; }
-            .hero { background-size: cover; background-position: center 25%; } .hero-content { padding-bottom: 60px; }
+            .polaroid-hero { min-height: 100vh; padding-top: 80px; }
             .timeline { max-width: 800px; margin: 0 auto; }
             .cards-grid { display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 40px; }
             .card { width: 30%; display: flex; flex-direction: column; justify-content: space-between; }
             .card-img { height: 250px; margin-top: auto; object-position: center 30%; }
             .modal-content { width: 90%; max-width: 500px; height: auto; max-height: 85vh; border-radius: 15px; margin: 5% auto; }
             .countdown-number { font-size: 3.5rem; }
-            .church-img-uniform { height: 300px; }
+            .img-entrada-zoomed { height: 300px; }
+            .img-salida-contain { height: 300px; } 
         }
         @media (max-width: 480px) { .intro-text-banner { font-size: 1.5rem; } }
     </style>
@@ -321,8 +331,12 @@
         </ul>
     </nav>
 
-    <div class="hero" id="inicio">
-        <div class="hero-content"><div class="scroll-indicator">↓</div></div>
+    <div class="polaroid-hero" id="inicio">
+        <div class="polaroid-frame">
+            <img src="https://i.imgur.com/PuAnFKv.jpeg" alt="Sara y Carlos" class="polaroid-img">
+            <div class="polaroid-caption">S + C</div>
+        </div>
+        <div class="scroll-indicator">↓</div>
     </div>
 
     <div class="intro-text-banner">3 de Octubre de 2026 · Talavera de la Reina</div>
@@ -514,11 +528,11 @@
             <div class="close-modal" onclick="closeModal('ceremonia')">×</div>
             <div class="ceremonia-maps-white-bg">
                 <div class="map-unit">
-                    <img src="https://i.imgur.com/QDGdxoI.png" class="church-img-uniform pos-entrada" alt="Entrada Iglesia">
+                    <img src="https://i.imgur.com/QDGdxoI.png" class="img-entrada-zoomed" alt="Entrada Iglesia">
                     <div class="map-overlay-label">Entrada de la iglesia</div>
                 </div>
                 <div class="map-unit">
-                    <img src="https://i.imgur.com/c3gKjIw.png" class="church-img-uniform pos-salida" alt="Salida Iglesia">
+                    <img src="https://i.imgur.com/c3gKjIw.png" class="img-salida-contain" alt="Salida Iglesia">
                     <div class="map-overlay-label">Salida de la iglesia</div>
                 </div>
             </div>
