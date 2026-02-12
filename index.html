@@ -40,7 +40,7 @@
             font-size: 1rem; 
         }
 
-        /* --- FONDO PATRÓN FLORAL RESTAURADO EN TODA LA WEB --- */
+        /* --- FONDO PATRÓN FLORAL EN TODA LA WEB --- */
         body::before {
             content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-image: var(--pattern-bg);
@@ -254,11 +254,11 @@
         .footer-image-container { text-align: center; padding: 40px 20px 60px 20px; width: 100%; }
         .footer-image-container img { width: auto; height: auto; max-width: 150px; display: inline-block; }
 
-        /* --- MODALES CON FONDO FLORAL --- */
+        /* --- MODALES CON FONDO FLORAL MENOS TRANSPARENTE --- */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 2000; backdrop-filter: blur(3px); }
         .modal-content { 
-            /* AQUÍ SÍ VA EL FONDO FLORAL CON TRANSPARENCIA */
-            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), var(--floral-bg);
+            /* CAMBIO: Capa blanca al 75% (0.75) para que se vea el fondo floral */
+            background: linear-gradient(rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.75)), var(--floral-bg);
             background-repeat: repeat; background-size: 400px;
             
             width: 100%; height: 100%; max-width: 100%; margin: 0; border-radius: 0; padding: 25px; overflow-y: auto; position: relative; animation: slideUp 0.3s; display: flex; flex-direction: column; align-items: center; 
@@ -286,12 +286,13 @@
         @media (min-width: 769px) {
             nav { padding: 0 50px; } .menu-toggle { display: block; } nav ul { width: 350px; }
             
-            /* HERO PC: IMAGEN COVER, SIN BORDES, CENTRADA ARRIBA */
+            /* HERO PC: NUEVA IMAGEN DE FONDO PC (CONTAIN) */
             .polaroid-hero { 
                 padding-top: 80px; 
                 background-image: url('https://i.imgur.com/6AczGUN.jpeg'); /* FOTO PC */
-                background-size: cover; /* SE EXPANDE PARA CUBRIR TODO */
-                background-position: center top; /* FOCO EN LAS CARAS */
+                background-size: cover; /* SE EXPANDE (COVER) */
+                background-position: center top; /* ENFOQUE ARRIBA */
+                background-color: transparent;
                 height: 100vh;
             }
             
@@ -307,7 +308,7 @@
 
             .hero-names { 
                 font-size: 3.5rem; 
-                text-shadow: 0 0 20px rgba(255,255,255,0.9), 0 2px 5px rgba(255,255,255,1); /* SOMBRA PARA LEER */
+                text-shadow: 0 0 20px rgba(255,255,255,0.9), 0 2px 5px rgba(255,255,255,1); 
                 color: var(--secondary); 
             }
             .hero-date { 
@@ -561,8 +562,11 @@
     
     <script>
         const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzrJwolceA5-RvZgFqfbBT-Qp9_DB_v3U7YWjy4L-plFPQgBkCJEl_jlI4bSvXjFIIyXA/exec";
-        window.onbeforeunload = function () { window.scrollTo(0, 0); }
+        
+        // CORRECCIÓN INICIO MÓVIL: Scroll arriba al cargar
+        window.history.scrollRestoration = 'manual';
         window.onload = function () { window.scrollTo(0, 0); }
+
         const menuToggle = document.getElementById('mobile-menu');
         const navList = document.getElementById('nav-list');
         menuToggle.addEventListener('click', () => { navList.classList.toggle('active'); });
