@@ -17,10 +17,9 @@
             --dark: #3d3d3d; 
             --light: #fff; 
             --nav-bg: #77855C; 
-            --pattern-bg: url('https://i.imgur.com/feTyvjy.jpeg'); 
+            --pattern-bg: url('https://i.imgur.com/feTyvjy.jpeg'); /* PATRÓN GENERAL */
             --paper-texture: url('https://i.imgur.com/0pkprZl.jpeg');
-            /* NUEVA VARIABLE PARA EL FONDO FLORAL */
-            --floral-bg: url('https://i.imgur.com/7BrEmNm.jpeg');
+            --floral-bg: url('https://i.imgur.com/7BrEmNm.jpeg'); /* FONDO MODALES */
             
             /* FUENTES */
             --handwriting-font: 'Bradley Hand ITC', 'Bradley Hand', 'Noteworthy', 'Segoe Print', cursive;
@@ -41,6 +40,7 @@
             font-size: 1rem; 
         }
 
+        /* --- FONDO PATRÓN FLORAL RESTAURADO EN TODA LA WEB --- */
         body::before {
             content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-image: var(--pattern-bg);
@@ -89,31 +89,29 @@
         }
         nav a::after { content: ''; position: absolute; bottom: 0; left: 15%; width: 70%; height: 4px; background-image: var(--pattern-bg); background-size: cover; opacity: 0.6; border-radius: 2px; }
 
-        /* --- HERO (PORTADA) --- */
+        /* --- HERO (PORTADA) MÓVIL --- */
         .polaroid-hero {
             min-height: 100vh;
             width: 100%;
             display: flex;
             flex-direction: column;
-            /* Alineación base para MÓVIL (abajo derecha) */
             justify-content: center; 
             align-items: flex-end;
             position: relative;
             padding-top: 60px; 
             padding-bottom: 20px;
             
-            /* IMAGEN DE FONDO MÓVIL (Composición Vertical) */
+            /* IMAGEN MÓVIL */
             background-image: url('https://i.imgur.com/gsqT5lg.jpeg');
             background-size: cover;
             background-position: center top; 
             background-repeat: no-repeat;
         }
 
-        /* Contenedor texto derecha */
+        /* Contenedor texto MÓVIL */
         .hero-right-container {
             text-align: right;
             margin-right: 8%; 
-            /* MÓVIL: Texto subido para no tapar cabezas */
             margin-bottom: 55%; 
             z-index: 2;
         }
@@ -127,8 +125,7 @@
             margin-bottom: 5px;
             text-transform: uppercase;
             letter-spacing: 2px;
-            /* Sombra blanca para contraste */
-            text-shadow: 0 0 10px rgba(255,255,255,0.8), 0 0 20px rgba(255,255,255,0.5); 
+            text-shadow: 0 1px 3px rgba(255,255,255,0.9); 
         }
 
         .hero-date {
@@ -138,7 +135,7 @@
             font-weight: 600;
             line-height: 1;
             letter-spacing: 2px;
-            text-shadow: 0 0 10px rgba(255,255,255,0.8), 0 0 20px rgba(255,255,255,0.5);
+            text-shadow: 0 1px 3px rgba(255,255,255,0.9);
         }
 
         .scroll-indicator { 
@@ -157,7 +154,7 @@
         h2 { font-family: var(--handwriting-font); font-weight: bold; font-size: 3rem; text-align: center; margin-bottom: 40px; color: var(--secondary); line-height: 1.1; }
         .subtitle { display: block; text-align: center; font-size: 0.95rem; color: #555; margin: -30px auto 40px auto; font-style: italic; max-width: 90%; }
 
-        /* --- ITINERARIO CON MÁS MOVIMIENTO --- */
+        /* --- ITINERARIO --- */
         .timeline { position: relative; margin: 40px 0; padding: 0; display: flex; flex-direction: column; gap: 40px; padding-bottom: 20px; }
         .timeline-item { display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 2; width: 100%; }
         
@@ -257,13 +254,12 @@
         .footer-image-container { text-align: center; padding: 40px 20px 60px 20px; width: 100%; }
         .footer-image-container img { width: auto; height: auto; max-width: 150px; display: inline-block; }
 
-        /* --- MODALES CON FONDO FLORAL TRANSPARENTE --- */
+        /* --- MODALES CON FONDO FLORAL --- */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 2000; backdrop-filter: blur(3px); }
-        
         .modal-content { 
-            /* CAMBIO: Fondo floral con capa blanca muy transparente encima */
+            /* AQUÍ SÍ VA EL FONDO FLORAL CON TRANSPARENCIA */
             background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), var(--floral-bg);
-            background-repeat: repeat; background-size: 400px; /* Tamaño del patrón */
+            background-repeat: repeat; background-size: 400px;
             
             width: 100%; height: 100%; max-width: 100%; margin: 0; border-radius: 0; padding: 25px; overflow-y: auto; position: relative; animation: slideUp 0.3s; display: flex; flex-direction: column; align-items: center; 
         }
@@ -290,42 +286,35 @@
         @media (min-width: 769px) {
             nav { padding: 0 50px; } .menu-toggle { display: block; } nav ul { width: 350px; }
             
-            /* HERO PC: NUEVA IMAGEN DE FONDO PC (CONTAIN) Y BORDES FLORALES */
+            /* HERO PC: IMAGEN COVER, SIN BORDES, CENTRADA ARRIBA */
             .polaroid-hero { 
                 padding-top: 80px; 
-                background-image: url('https://i.imgur.com/6AczGUN.jpeg'); /* FOTO PC CENTRAL */
-                background-size: contain; /* SE VE ENTERA */
-                background-position: center center; 
-                /* CAMBIO: Fondo floral en los bordes */
-                background-color: transparent;
+                background-image: url('https://i.imgur.com/6AczGUN.jpeg'); /* FOTO PC */
+                background-size: cover; /* SE EXPANDE PARA CUBRIR TODO */
+                background-position: center top; /* FOCO EN LAS CARAS */
+                height: 100vh;
             }
             
-            /* CAMBIO: Añadimos el fondo floral al body o un contenedor padre en PC para que se vea en los bordes */
-            body::before {
-                 /* En PC, el fondo es el patrón floral */
-                 background-image: var(--floral-bg); 
-                 background-size: 400px;
-                 opacity: 1; /* Totalmente visible */
-            }
-
-            
-            /* Texto en PC: Posición absoluta REAJUSTADA (Más a la izquierda y arriba) */
+            /* Texto en PC: ARRIBA A LA DERECHA, SIN FONDO */
             .hero-right-container {
                 position: absolute;
-                /* CAMBIO: Ajuste de posición para que quede "dentro" de la foto */
-                top: 35%;   /* Más arriba (antes 50%) */
-                right: 25%; /* Más a la izquierda (antes 5%) */
-                transform: translateY(-50%);
-                margin-bottom: 0; 
-                margin-right: 0;
-                /* Fondo semitransparente para leer texto si pisa la foto */
-                background: rgba(255,255,255,0.7);
-                padding: 20px;
-                border-radius: 10px;
+                top: 25%;   /* BIEN ARRIBA */
+                right: 8%;  /* A LA DERECHA */
+                transform: none;
+                background: none; /* SIN FONDO */
+                padding: 0;
             }
 
-            .hero-names { font-size: 3.5rem; text-shadow: none; color: var(--secondary); }
-            .hero-date { font-size: 2.2rem; text-shadow: none; color: var(--secondary); }
+            .hero-names { 
+                font-size: 3.5rem; 
+                text-shadow: 0 0 20px rgba(255,255,255,0.9), 0 2px 5px rgba(255,255,255,1); /* SOMBRA PARA LEER */
+                color: var(--secondary); 
+            }
+            .hero-date { 
+                font-size: 2.2rem; 
+                text-shadow: 0 0 20px rgba(255,255,255,0.9), 0 2px 5px rgba(255,255,255,1); 
+                color: var(--secondary); 
+            }
             
             .timeline { max-width: 800px; margin: 0 auto; }
             .cards-grid { display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 40px; }
@@ -338,7 +327,6 @@
         
         /* MEDIA QUERY MOVIL */
         @media (max-width: 768px) { 
-            /* MARGEN INFERIOR 55% PARA SUBIR EL TEXTO */
             .hero-right-container { margin-right: 5%; margin-bottom: 55%; } 
         }
     </style>
@@ -573,11 +561,8 @@
     
     <script>
         const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzrJwolceA5-RvZgFqfbBT-Qp9_DB_v3U7YWjy4L-plFPQgBkCJEl_jlI4bSvXjFIIyXA/exec";
-        
-        // CORRECCIÓN INICIO MÓVIL: Scroll arriba al cargar
-        window.history.scrollRestoration = 'manual';
+        window.onbeforeunload = function () { window.scrollTo(0, 0); }
         window.onload = function () { window.scrollTo(0, 0); }
-
         const menuToggle = document.getElementById('mobile-menu');
         const navList = document.getElementById('nav-list');
         menuToggle.addEventListener('click', () => { navList.classList.toggle('active'); });
