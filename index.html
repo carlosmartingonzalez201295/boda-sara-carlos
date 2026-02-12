@@ -23,7 +23,7 @@
             /* FUENTES */
             --handwriting-font: 'Bradley Hand ITC', 'Bradley Hand', 'Noteworthy', 'Segoe Print', cursive;
             --crayon-font: 'Permanent Marker', cursive;
-            --royal-font: 'Cinzel', serif; /* Estilo Royal Brand */
+            --royal-font: 'Cinzel', serif; 
         }
         
         /* --- RESET Y BASE --- */
@@ -87,31 +87,28 @@
         }
         nav a::after { content: ''; position: absolute; bottom: 0; left: 15%; width: 70%; height: 4px; background-image: var(--pattern-bg); background-size: cover; opacity: 0.6; border-radius: 2px; }
 
-        /* --- HERO (PORTADA) --- */
+        /* --- HERO --- */
         .polaroid-hero {
             min-height: 100vh;
             width: 100%;
             display: flex;
             flex-direction: column;
-            /* Alineación base para MÓVIL (abajo derecha) */
             justify-content: center; 
-            align-items: flex-end;
+            align-items: flex-end; 
             position: relative;
             padding-top: 60px; 
             padding-bottom: 20px;
             
-            /* IMAGEN DE FONDO MÓVIL (Composición Vertical) */
+            /* IMAGEN DE FONDO MÓVIL */
             background-image: url('https://i.imgur.com/gsqT5lg.jpeg');
             background-size: cover;
             background-position: center top; 
             background-repeat: no-repeat;
         }
 
-        /* Contenedor texto derecha */
         .hero-right-container {
             text-align: right;
             margin-right: 8%; 
-            /* MÓVIL: Texto subido para no tapar cabezas */
             margin-bottom: 55%; 
             z-index: 2;
         }
@@ -119,24 +116,23 @@
         .hero-names {
             font-family: var(--royal-font); 
             color: var(--secondary); 
-            font-size: 1.6rem; 
+            font-size: 1.5rem; 
             font-weight: 600;
             line-height: 1.1;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            /* Sombra blanca para contraste */
-            text-shadow: 0 0 10px rgba(255,255,255,0.8), 0 0 20px rgba(255,255,255,0.5); 
+            letter-spacing: 2px; 
+            text-shadow: 0 1px 3px rgba(255,255,255,0.9); 
         }
 
         .hero-date {
             font-family: var(--royal-font);
             color: var(--secondary);
-            font-size: 1.2rem;
+            font-size: 1.1rem; 
             font-weight: 600;
             line-height: 1;
             letter-spacing: 2px;
-            text-shadow: 0 0 10px rgba(255,255,255,0.8), 0 0 20px rgba(255,255,255,0.5);
+            text-shadow: 0 1px 3px rgba(255,255,255,0.9);
         }
 
         .scroll-indicator { 
@@ -155,7 +151,7 @@
         h2 { font-family: var(--handwriting-font); font-weight: bold; font-size: 3rem; text-align: center; margin-bottom: 40px; color: var(--secondary); line-height: 1.1; }
         .subtitle { display: block; text-align: center; font-size: 0.95rem; color: #555; margin: -30px auto 40px auto; font-style: italic; max-width: 90%; }
 
-        /* --- ITINERARIO CON MOVIMIENTO --- */
+        /* --- ITINERARIO CON MÁS MOVIMIENTO --- */
         .timeline { position: relative; margin: 40px 0; padding: 0; display: flex; flex-direction: column; gap: 40px; padding-bottom: 20px; }
         .timeline-item { display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 2; width: 100%; }
         
@@ -281,11 +277,14 @@
         @media (min-width: 769px) {
             nav { padding: 0 50px; } .menu-toggle { display: block; } nav ul { width: 350px; }
             
-            /* HERO PC: NUEVA IMAGEN DE FONDO PC */
+            /* HERO PC: NUEVA IMAGEN DE FONDO PC (CONTAIN) */
             .polaroid-hero { 
                 padding-top: 80px; 
-                background-image: url('https://i.imgur.com/6AczGUN.jpeg'); /* FOTO NUEVA PC */
+                background-image: url('https://i.imgur.com/6AczGUN.jpeg'); /* FOTO PC */
+                background-size: contain; /* SE VE ENTERA */
                 background-position: center center; 
+                background-color: #faf8f5; /* Fondo crema en los laterales */
+                height: 100vh;
             }
             
             /* Texto en PC: Posición absoluta a la derecha */
@@ -296,10 +295,14 @@
                 transform: translateY(-50%);
                 margin-bottom: 0; /* Reset del margen de móvil */
                 margin-right: 0;
+                /* Fondo semitransparente para leer texto si pisa la foto */
+                background: rgba(255,255,255,0.7);
+                padding: 20px;
+                border-radius: 10px;
             }
 
-            .hero-names { font-size: 3.5rem; text-shadow: 0 0 20px rgba(255,255,255,0.9); }
-            .hero-date { font-size: 2.2rem; text-shadow: 0 0 20px rgba(255,255,255,0.9); }
+            .hero-names { font-size: 3.5rem; text-shadow: none; color: var(--secondary); }
+            .hero-date { font-size: 2.2rem; text-shadow: none; color: var(--secondary); }
             
             .timeline { max-width: 800px; margin: 0 auto; }
             .cards-grid { display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 40px; }
@@ -308,6 +311,12 @@
             .modal-content { width: 90%; max-width: 500px; height: auto; max-height: 85vh; border-radius: 15px; margin: 5% auto; }
             .img-entrada-zoomed { height: 300px; }
             .img-salida-contain { height: 300px; } 
+        }
+        
+        /* MEDIA QUERY MOVIL */
+        @media (max-width: 768px) { 
+            /* MARGEN INFERIOR 55% PARA SUBIR EL TEXTO */
+            .hero-right-container { margin-right: 5%; margin-bottom: 55%; } 
         }
     </style>
 </head>
@@ -387,10 +396,9 @@
     <section id="recomendaciones">
         <h2>Recomendaciones</h2>
         <div class="text-block reveal">
-            <p>Talavera es mi casa y ahora también la de Carlos, que ya se conoce cada rincón como uno más del equipo.</p>
+            <p>Talavera para Sara es volver a casa, a su familia y a sus amigos de siempre. Ahora también forma parte de Carlos, que ya se conoce cada rincón como uno más del equipo.</p>
             <p>Estos son nuestros favoritos de tapeo y cervecitas para calentar motores el viernes antes de la preboda o reponer fuerzas el sábado.</p>
-            <p style="font-style: italic; color: var(--secondary); font-weight: 600; margin-top: 20px;">📍 Están todos por la zona del centro, muy cerquita de la Iglesia y del sitio donde celebraremos la preboda:</p>
-        </div>
+            </div>
         <div class="cards-grid">
             <div class="card reveal"><h3>Cosafina</h3><p>Bar castizo ideal para previas. Su gilda es un imprescindible.</p><img src="https://i.imgur.com/oUrVS6B.jpeg" class="card-img" alt="Cosafina"></div>
             <div class="card reveal"><h3>La Antigua</h3><p>Las revolconas son un must en el grupo. No os podéis ir de Talavera sin probarlas ;)</p><img src="https://i.imgur.com/BzGUdYf.jpeg" class="card-img" alt="La Antigua"></div>
@@ -422,7 +430,7 @@
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12328.796075936796!2d-4.838575000000001!3d39.9602495!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd401c6c63773b1b%3A0x40340f3be4bc520!2sTalavera%20de%20la%20Reina%2C%20Toledo!5e0!3m2!1ses!2ses!4v1700000000000!5m2!1ses!2ses" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
         <div class="reveal">
-            <a href="https://www.google.com/maps/search/Talavera+de+la+Reina" target="_blank" class="map-text-link">
+            <a href="https://www.google.com/maps" target="_blank" class="map-text-link">
                 <div>
                     <span>Pincha para ver</span>
                     <span>mapa completo</span>
@@ -542,8 +550,11 @@
     
     <script>
         const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzrJwolceA5-RvZgFqfbBT-Qp9_DB_v3U7YWjy4L-plFPQgBkCJEl_jlI4bSvXjFIIyXA/exec";
-        window.onbeforeunload = function () { window.scrollTo(0, 0); }
+        
+        // CORRECCIÓN INICIO MÓVIL: Scroll arriba al cargar
+        window.history.scrollRestoration = 'manual';
         window.onload = function () { window.scrollTo(0, 0); }
+
         const menuToggle = document.getElementById('mobile-menu');
         const navList = document.getElementById('nav-list');
         menuToggle.addEventListener('click', () => { navList.classList.toggle('active'); });
@@ -584,19 +595,6 @@
             field.style.display = val === 'Sí' ? 'block' : 'none';
             document.getElementById('nombreAcompanante').required = (val === 'Sí');
         }
-        const weddingDate = new Date('2026-10-03T18:00:00').getTime();
-        setInterval(() => {
-            const now = new Date().getTime();
-            const dist = weddingDate - now;
-            const d = Math.floor(dist / (1000 * 60 * 60 * 24));
-            const h = Math.floor((dist % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const m = Math.floor((dist % (1000 * 60 * 60)) / (1000 * 60));
-            const s = Math.floor((dist % (1000 * 60)) / 1000);
-            document.getElementById('d-val').innerText = d;
-            document.getElementById('h-val').innerText = h < 10 ? '0'+h : h;
-            document.getElementById('m-val').innerText = m < 10 ? '0'+m : m;
-            document.getElementById('s-val').innerText = s < 10 ? '0'+s : s;
-        }, 1000);
     </script>
 </body>
 </html>
