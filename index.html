@@ -19,6 +19,8 @@
             --nav-bg: #77855C; 
             --pattern-bg: url('https://i.imgur.com/feTyvjy.jpeg'); 
             --paper-texture: url('https://i.imgur.com/0pkprZl.jpeg');
+            /* NUEVA VARIABLE PARA EL FONDO FLORAL */
+            --floral-bg: url('https://i.imgur.com/7BrEmNm.jpeg');
             
             /* FUENTES */
             --handwriting-font: 'Bradley Hand ITC', 'Bradley Hand', 'Noteworthy', 'Segoe Print', cursive;
@@ -87,28 +89,31 @@
         }
         nav a::after { content: ''; position: absolute; bottom: 0; left: 15%; width: 70%; height: 4px; background-image: var(--pattern-bg); background-size: cover; opacity: 0.6; border-radius: 2px; }
 
-        /* --- HERO --- */
+        /* --- HERO (PORTADA) --- */
         .polaroid-hero {
             min-height: 100vh;
             width: 100%;
             display: flex;
             flex-direction: column;
+            /* Alineación base para MÓVIL (abajo derecha) */
             justify-content: center; 
-            align-items: flex-end; 
+            align-items: flex-end;
             position: relative;
             padding-top: 60px; 
             padding-bottom: 20px;
             
-            /* IMAGEN DE FONDO MÓVIL */
+            /* IMAGEN DE FONDO MÓVIL (Composición Vertical) */
             background-image: url('https://i.imgur.com/gsqT5lg.jpeg');
             background-size: cover;
             background-position: center top; 
             background-repeat: no-repeat;
         }
 
+        /* Contenedor texto derecha */
         .hero-right-container {
             text-align: right;
             margin-right: 8%; 
+            /* MÓVIL: Texto subido para no tapar cabezas */
             margin-bottom: 55%; 
             z-index: 2;
         }
@@ -116,23 +121,24 @@
         .hero-names {
             font-family: var(--royal-font); 
             color: var(--secondary); 
-            font-size: 1.5rem; 
+            font-size: 1.6rem; 
             font-weight: 600;
             line-height: 1.1;
-            margin-bottom: 8px;
+            margin-bottom: 5px;
             text-transform: uppercase;
-            letter-spacing: 2px; 
-            text-shadow: 0 1px 3px rgba(255,255,255,0.9); 
+            letter-spacing: 2px;
+            /* Sombra blanca para contraste */
+            text-shadow: 0 0 10px rgba(255,255,255,0.8), 0 0 20px rgba(255,255,255,0.5); 
         }
 
         .hero-date {
             font-family: var(--royal-font);
             color: var(--secondary);
-            font-size: 1.1rem; 
+            font-size: 1.2rem;
             font-weight: 600;
             line-height: 1;
             letter-spacing: 2px;
-            text-shadow: 0 1px 3px rgba(255,255,255,0.9);
+            text-shadow: 0 0 10px rgba(255,255,255,0.8), 0 0 20px rgba(255,255,255,0.5);
         }
 
         .scroll-indicator { 
@@ -251,9 +257,16 @@
         .footer-image-container { text-align: center; padding: 40px 20px 60px 20px; width: 100%; }
         .footer-image-container img { width: auto; height: auto; max-width: 150px; display: inline-block; }
 
-        /* --- MODALES --- */
+        /* --- MODALES CON FONDO FLORAL TRANSPARENTE --- */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 2000; backdrop-filter: blur(3px); }
-        .modal-content { background-image: var(--paper-texture); background-repeat: repeat; width: 100%; height: 100%; max-width: 100%; margin: 0; border-radius: 0; padding: 25px; overflow-y: auto; position: relative; animation: slideUp 0.3s; display: flex; flex-direction: column; align-items: center; }
+        
+        .modal-content { 
+            /* CAMBIO: Fondo floral con capa blanca muy transparente encima */
+            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), var(--floral-bg);
+            background-repeat: repeat; background-size: 400px; /* Tamaño del patrón */
+            
+            width: 100%; height: 100%; max-width: 100%; margin: 0; border-radius: 0; padding: 25px; overflow-y: auto; position: relative; animation: slideUp 0.3s; display: flex; flex-direction: column; align-items: center; 
+        }
         .close-modal { position: absolute; top: 15px; right: 15px; font-size: 1.5rem; width: 36px; height: 36px; background: var(--nav-bg); color: white; border-radius: 50%; display: flex; justify-content: center; align-items: center; z-index: 10; cursor: pointer; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
         .modal-header-img { width: 100%; height: auto; max-height: 400px; object-fit: contain; border-radius: 15px; margin-bottom: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
         .modal-info-center { text-align: center; margin-bottom: 20px; width: 100%; }
@@ -277,23 +290,33 @@
         @media (min-width: 769px) {
             nav { padding: 0 50px; } .menu-toggle { display: block; } nav ul { width: 350px; }
             
-            /* HERO PC: NUEVA IMAGEN DE FONDO PC (CONTAIN) */
+            /* HERO PC: NUEVA IMAGEN DE FONDO PC (CONTAIN) Y BORDES FLORALES */
             .polaroid-hero { 
                 padding-top: 80px; 
-                background-image: url('https://i.imgur.com/6AczGUN.jpeg'); /* FOTO PC */
+                background-image: url('https://i.imgur.com/6AczGUN.jpeg'); /* FOTO PC CENTRAL */
                 background-size: contain; /* SE VE ENTERA */
                 background-position: center center; 
-                background-color: #faf8f5; /* Fondo crema en los laterales */
-                height: 100vh;
+                /* CAMBIO: Fondo floral en los bordes */
+                background-color: transparent;
             }
             
-            /* Texto en PC: Posición absoluta a la derecha */
+            /* CAMBIO: Añadimos el fondo floral al body o un contenedor padre en PC para que se vea en los bordes */
+            body::before {
+                 /* En PC, el fondo es el patrón floral */
+                 background-image: var(--floral-bg); 
+                 background-size: 400px;
+                 opacity: 1; /* Totalmente visible */
+            }
+
+            
+            /* Texto en PC: Posición absoluta REAJUSTADA (Más a la izquierda y arriba) */
             .hero-right-container {
                 position: absolute;
-                top: 50%;
-                right: 5%;
+                /* CAMBIO: Ajuste de posición para que quede "dentro" de la foto */
+                top: 35%;   /* Más arriba (antes 50%) */
+                right: 25%; /* Más a la izquierda (antes 5%) */
                 transform: translateY(-50%);
-                margin-bottom: 0; /* Reset del margen de móvil */
+                margin-bottom: 0; 
                 margin-right: 0;
                 /* Fondo semitransparente para leer texto si pisa la foto */
                 background: rgba(255,255,255,0.7);
@@ -397,8 +420,8 @@
         <h2>Recomendaciones</h2>
         <div class="text-block reveal">
             <p>Talavera para Sara es volver a casa, a su familia y a sus amigos de siempre. Ahora también forma parte de Carlos, que ya se conoce cada rincón como uno más del equipo.</p>
-            <p>Estos son nuestros favoritos de tapeo y cervecitas para calentar motores el viernes antes de la preboda o reponer fuerzas el sábado.</p>
-            </div>
+            <p>Estos son nuestros favoritos de tapeo y cervecitas para calentar motores el viernes antes de la preboda o reponer fuerzas el sábado (están todos por la zona centro):</p>
+        </div>
         <div class="cards-grid">
             <div class="card reveal"><h3>Cosafina</h3><p>Bar castizo ideal para previas. Su gilda es un imprescindible.</p><img src="https://i.imgur.com/oUrVS6B.jpeg" class="card-img" alt="Cosafina"></div>
             <div class="card reveal"><h3>La Antigua</h3><p>Las revolconas son un must en el grupo. No os podéis ir de Talavera sin probarlas ;)</p><img src="https://i.imgur.com/BzGUdYf.jpeg" class="card-img" alt="La Antigua"></div>
