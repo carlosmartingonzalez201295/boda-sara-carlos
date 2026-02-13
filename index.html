@@ -216,7 +216,7 @@
         .map-text-link::before { content: '→'; font-size: 1.2rem; animation: arrow-bounce 1s infinite ease-in-out; }
         .map-text-link span { display: block; } 
 
-        /* --- RSVP TEXTO CREATIVO --- */
+        /* --- RSVP --- */
         .rsvp-accordion-wrapper { width: 100%; margin-top: 20px; text-align: center; }
         .rsvp-toggle-text {
             background: none; border: none; box-shadow: none; color: var(--nav-bg); 
@@ -235,7 +235,13 @@
         .rsvp-form { background-image: var(--paper-texture); padding: 30px 20px; border-radius: 15px; width: 100%; border-top: 4px solid var(--nav-bg); margin-top: 15px; }
         .form-group { margin-bottom: 20px; text-align: left; }
         label { font-size: 1.1rem; font-weight: 600; color: var(--secondary); margin-bottom: 8px; display: block; font-family: var(--handwriting-font); }
-        input, select, textarea { width: 100%; padding: 12px; font-size: 1.1rem; border: 1px solid #ddd; border-radius: 8px; background: #fafafa; font-family: var(--handwriting-font); }
+        
+        /* CAMBIO: TIPOGRAFÍA DE INPUTS NORMAL (MONTSERRAT) */
+        input, select, textarea { 
+            width: 100%; padding: 12px; font-size: 1.1rem; border: 1px solid #ddd; border-radius: 8px; background: #fafafa; 
+            font-family: 'Montserrat', sans-serif; /* LETRA NORMAL */
+        }
+        
         button#submitBtn { padding: 16px; font-size: 1.4rem; border-radius: 10px; background: var(--secondary); color: white; font-weight: bold; border: none; width: 100%; cursor: pointer; font-family: var(--handwriting-font); letter-spacing: 1px; }
 
         /* --- IBAN --- */
@@ -257,7 +263,7 @@
         /* --- MODALES CON FONDO FLORAL MENOS TRANSPARENTE --- */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 2000; backdrop-filter: blur(3px); }
         .modal-content { 
-            /* CAMBIO: Capa blanca al 75% (0.75) para que se vea el fondo floral */
+            /* Capa blanca al 75% */
             background: linear-gradient(rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.75)), var(--floral-bg);
             background-repeat: repeat; background-size: 400px;
             
@@ -275,7 +281,15 @@
         .map-unit:last-child { margin-bottom: 0; }
         
         .img-entrada-zoomed { width: 100%; height: 250px; object-fit: cover; object-position: center center; display: block; }
-        .img-salida-contain { width: 100%; height: 250px; object-fit: cover; object-position: center center; display: block; }
+        
+        /* CAMBIO: IGLESIA SALIDA ALEJADA (CONTAIN) */
+        .img-salida-contain { 
+            width: 100%; height: 250px; 
+            object-fit: contain; /* SE VE ENTERA */
+            object-position: center center; 
+            display: block; 
+            background-color: transparent;
+        }
 
         .reveal { opacity: 0; transform: translateY(20px); transition: 0.6s ease; }
         .reveal.active { opacity: 1; transform: translateY(0); }
@@ -442,7 +456,7 @@
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12328.796075936796!2d-4.838575000000001!3d39.9602495!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd401c6c63773b1b%3A0x40340f3be4bc520!2sTalavera%20de%20la%20Reina%2C%20Toledo!5e0!3m2!1ses!2ses!4v1700000000000!5m2!1ses!2ses" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
         <div class="reveal">
-            <a href="https://www.google.com/maps" target="_blank" class="map-text-link">
+            <a href="https://maps.app.goo.gl/EFZBX5Jg1tvFAje26" target="_blank" class="map-text-link">
                 <div>
                     <span>Pincha para ver</span>
                     <span>mapa completo</span>
