@@ -236,10 +236,9 @@
         .form-group { margin-bottom: 20px; text-align: left; }
         label { font-size: 1.1rem; font-weight: 600; color: var(--secondary); margin-bottom: 8px; display: block; font-family: var(--handwriting-font); }
         
-        /* CAMBIO: TIPOGRAFÍA DE INPUTS NORMAL (MONTSERRAT) */
         input, select, textarea { 
             width: 100%; padding: 12px; font-size: 1.1rem; border: 1px solid #ddd; border-radius: 8px; background: #fafafa; 
-            font-family: 'Montserrat', sans-serif; /* LETRA NORMAL */
+            font-family: 'Montserrat', sans-serif; 
         }
         
         button#submitBtn { padding: 16px; font-size: 1.4rem; border-radius: 10px; background: var(--secondary); color: white; font-weight: bold; border: none; width: 100%; cursor: pointer; font-family: var(--handwriting-font); letter-spacing: 1px; }
@@ -282,10 +281,9 @@
         
         .img-entrada-zoomed { width: 100%; height: 250px; object-fit: cover; object-position: center center; display: block; }
         
-        /* CAMBIO: IGLESIA SALIDA ALEJADA (CONTAIN) */
         .img-salida-contain { 
             width: 100%; height: 250px; 
-            object-fit: contain; /* SE VE ENTERA */
+            object-fit: contain; 
             object-position: center center; 
             display: block; 
             background-color: transparent;
@@ -409,13 +407,12 @@
     <section id="alojamiento">
         <h2>Alojamiento</h2>
         <div class="text-block reveal">
-            <p>Como la oferta hotelera en Talavera no es muy amplia, os invitamos a reservar cuanto antes vuestro alojamiento para el fin de semana.</p>
-            <p style="font-weight: 500; color: var(--secondary);">¡¡Os animamos a reservar desde el viernes para disfrutar de la preboda!!</p>
+            <p>Os dejamos estas opciones para que estéis a un paso de todo durante todo el finde. Si sois más de Airbnb, echad un ojo pronto porque no hay mucha variedad por la zona y los sitios vuelan :)</p>
         </div>
         <div class="cards-grid">
             <div class="card reveal" onclick="openModal('hotel1')"><h3>Hotel Be Live</h3><p>⭐⭐⭐⭐</p><p style="color: var(--primary); font-weight:600; margin-top:5px; font-size:0.9rem;">👉 Ver detalles</p></div>
             <div class="card reveal" onclick="openModal('apt1')"><h3>Blue Windows</h3><p>Apartamentos</p><p style="color: var(--primary); font-weight:600; margin-top:5px; font-size:0.9rem;">👉 Ver detalles</p></div>
-            <div class="card reveal" onclick="openModal('apt2')"><h3>Santa Rita</h3><p>B&Boutique</p><p style="color: var(--primary); font-weight:600; margin-top:5px; font-size:0.9rem;">👉 Ver detalles</p></div>
+            <div class="card reveal" onclick="openModal('apt2')"><h3>Rita Rita B&B</h3><p>Apartamentos</p><p style="color: var(--primary); font-weight:600; margin-top:5px; font-size:0.9rem;">👉 Ver detalles</p></div>
         </div>
     </section>
 
@@ -570,9 +567,9 @@
         </div>
     </div>
 
-    <div id="modal-hotel1" class="modal"><div class="modal-content"><div class="close-modal" onclick="closeModal('hotel1')">×</div><h3>Hotel Be Live</h3><p>Av. Toledo, s/n</p><div style="text-align:left; width:100%; margin-top:20px; background:#fafafa; padding:20px; border-radius:10px;"><strong>💰 96€/noche aprox</strong><br><br><strong>🎁 Código Boda:</strong><br>BODA CARLOS Y SARA<br>Loc: 25GTV174</div></div></div>
-    <div id="modal-apt1" class="modal"><div class="modal-content"><div class="close-modal" onclick="closeModal('apt1')">×</div><h3>Blue Windows</h3><p>C. Corredera del Cristo, 18</p><p style="margin-top:20px;">925 80 24 28</p></div></div>
-    <div id="modal-apt2" class="modal"><div class="modal-content"><div class="close-modal" onclick="closeModal('apt2')">×</div><h3>Santa Rita</h3><p>C. Mesones, 3</p><p style="margin-top:20px;">925 80 17 17</p></div></div>
+    <div id="modal-hotel1" class="modal"><div class="modal-content"><div class="close-modal" onclick="closeModal('hotel1')">×</div><h3>Hotel Be Live</h3><p>Av. Toledo, s/n</p><div style="text-align:left; width:100%; margin-top:20px; background:#fafafa; padding:20px; border-radius:10px;"><strong>Hotel de 4 estrellas a 12 min de paseo.</strong><br><br><strong>📞 Reserva: 925 72 72 00</strong><br>(Decid que vais por la Boda de Sara y Carlos)</div></div></div>
+    <div id="modal-apt1" class="modal"><div class="modal-content"><div class="close-modal" onclick="closeModal('apt1')">×</div><h3>Blue Windows</h3><p>C. Corredera del Cristo, 18</p><div style="text-align:left; width:100%; margin-top:20px; background:#fafafa; padding:20px; border-radius:10px;"><strong>En pleno centro y a solo 5 min de la iglesia.</strong><br><br><strong>📞 Reserva: 925 80 24 28</strong></div></div></div>
+    <div id="modal-apt2" class="modal"><div class="modal-content"><div class="close-modal" onclick="closeModal('apt2')">×</div><h3>Rita Rita B&B</h3><p>C. Mesones, 3</p><div style="text-align:left; width:100%; margin-top:20px; background:#fafafa; padding:20px; border-radius:10px;"><strong>Apartamentos muy chulos (y baratos) a 6 min andando.</strong><br><br><strong>📞 Reserva: 925 80 17 17</strong></div></div></div>
     
     <script>
         const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzrJwolceA5-RvZgFqfbBT-Qp9_DB_v3U7YWjy4L-plFPQgBkCJEl_jlI4bSvXjFIIyXA/exec";
