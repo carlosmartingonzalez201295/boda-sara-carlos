@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Sara y Carlos</title>
+    <title>Sara & Carlos</title>
     
     <style>
         /* --- FUENTES --- */
@@ -193,8 +193,8 @@
         .item-right { flex-direction: row-reverse; } .item-right .timeline-content { text-align: right; padding-right: 15px; }
 
         /* --- TARJETAS --- */
-        .cards-grid { display: flex; flex-direction: column; gap: 40px; }
-        .card { background: transparent; padding: 0; border: none; text-align: center; }
+        .cards-grid { display: flex; flex-direction: column; gap: 40px; align-items: center; }
+        .card { background: transparent; padding: 0; border: none; text-align: center; width: 100%; max-width: 450px; }
         .card-img { width: 100%; height: 200px; object-fit: cover; border-radius: 15px; margin-top: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.15); }
         .card h3 { font-family: var(--handwriting-font); font-weight: bold; font-size: 2.2rem; color: var(--secondary); margin-bottom: 10px; }
         .card p { color: #555; font-size: 1.1rem; }
@@ -330,8 +330,8 @@
             }
             
             .timeline { max-width: 800px; margin: 0 auto; }
-            .cards-grid { display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 40px; }
-            .card { width: 30%; display: flex; flex-direction: column; justify-content: space-between; }
+            .cards-grid { display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 40px; align-items: stretch; }
+            .card { width: 30%; display: flex; flex-direction: column; justify-content: space-between; max-width: none; }
             .card-img { height: 250px; margin-top: auto; object-position: center 30%; }
             .modal-content { width: 90%; max-width: 500px; height: auto; max-height: 85vh; border-radius: 15px; margin: 5% auto; }
             .img-entrada-zoomed { height: 300px; }
@@ -362,7 +362,7 @@
 
     <div class="polaroid-hero" id="inicio">
         <div class="hero-right-container">
-            <h1 class="hero-names">Sara y Carlos</h1>
+            <h1 class="hero-names">Sara & Carlos</h1>
             <h2 class="hero-date">3.10.2026</h2>
         </div>
         <div class="scroll-indicator">↓</div>
@@ -374,7 +374,7 @@
             <p class="highlight-phrase">Dicen que la felicidad se multiplica cuando se comparte y nosotros tenemos la suerte de teneros a vosotros.</p>
             <p>En esta forma de ser, tan real y tan compartida, es donde aquí empieza mucho.</p>
             <p>¡Nos vemos muy pronto!</p>
-            <p class="highlight-phrase" style="margin-top: 15px;">Sara y Carlos</p>
+            <p class="highlight-phrase" style="margin-top: 15px;">Sara & Carlos</p>
             <div class="welcome-image-container">
                 <img src="https://i.imgur.com/UdtlBYY.png" alt="Adorno" class="corporate-green-filter">
             </div>
@@ -410,9 +410,9 @@
             <p>Os dejamos estas opciones para que estéis a un paso de todo durante todo el finde. Si sois más de Airbnb, echad un ojo pronto porque no hay mucha variedad por la zona y los sitios vuelan :)</p>
         </div>
         <div class="cards-grid">
-            <div class="card reveal" onclick="openModal('hotel1')"><h3>Hotel Be Live</h3><p>⭐⭐⭐⭐</p><p style="color: var(--primary); font-weight:600; margin-top:5px; font-size:0.9rem;">👉 Ver detalles</p></div>
-            <div class="card reveal" onclick="openModal('apt1')"><h3>Blue Windows</h3><p>Apartamentos</p><p style="color: var(--primary); font-weight:600; margin-top:5px; font-size:0.9rem;">👉 Ver detalles</p></div>
-            <div class="card reveal" onclick="openModal('apt2')"><h3>Rita Rita B&B</h3><p>Apartamentos</p><p style="color: var(--primary); font-weight:600; margin-top:5px; font-size:0.9rem;">👉 Ver detalles</p></div>
+            <div class="card reveal" onclick="openModal('hotel1')"><h3>Hotel Be Live</h3><p style="color: var(--primary); font-weight:600; margin-top:5px; font-size:0.9rem;">Ver detalles</p></div>
+            <div class="card reveal" onclick="openModal('apt1')"><h3>Blue Windows</h3><p>Apartamentos</p><p style="color: var(--primary); font-weight:600; margin-top:5px; font-size:0.9rem;">Ver detalles</p></div>
+            <div class="card reveal" onclick="openModal('apt2')"><h3>Santa Rita Rita B&B</h3><p>Apartamentos</p><p style="color: var(--primary); font-weight:600; margin-top:5px; font-size:0.9rem;">Ver detalles</p></div>
         </div>
     </section>
 
@@ -426,7 +426,7 @@
             <div class="card reveal"><h3>Cosafina</h3><p>Bar castizo ideal para previas. Su gilda es un imprescindible.</p><img src="https://i.imgur.com/oUrVS6B.jpeg" class="card-img" alt="Cosafina"></div>
             <div class="card reveal"><h3>La Antigua</h3><p>Las revolconas son un must en el grupo. No os podéis ir de Talavera sin probarlas ;)</p><img src="https://i.imgur.com/BzGUdYf.jpeg" class="card-img" alt="La Antigua"></div>
             <div class="card reveal"><h3>Casco Viejo</h3><p>Tapas tradicionales con toques modernos.</p><img src="https://i.imgur.com/OCSvOus.jpeg" class="card-img" alt="Casco Viejo"></div>
-            <div class="card reveal"><h3>Askuabarra</h3><p>Cocina de producto donde su montadito de steak tartar es de lo mejorcito.</p><img src="https://i.imgur.com/aoBU7fM.jpeg" class="card-img" alt="Askuabarra"></div>
+            <div class="card reveal"><h3>Restaurante Askuabarra</h3><p>Cocina de producto donde su montadito de steak tartar es de lo mejorcito.</p><img src="https://i.imgur.com/aoBU7fM.jpeg" class="card-img" alt="Askuabarra"></div>
             <div class="card reveal"><h3>Sushido</h3><p>Nuestra opción favorita si os apetece cambiar de tercio y os gusta la comida japonesa.</p><img src="https://i.imgur.com/vHYLM4W.jpeg" class="card-img" alt="Sushi Do"></div>
             <div class="card reveal"><h3>Canalla Food & Drinks</h3><p>Tacos muy top y cerveza bien fría.</p><img src="https://i.imgur.com/aEyXHLd.jpeg" class="card-img img-canalla" alt="Canalla Food & Drinks"></div>
         </div>
@@ -518,7 +518,7 @@
             <div class="close-modal" onclick="closeModal('golf')">×</div>
             <img src="https://i.imgur.com/GEZh21g.jpeg" class="modal-header-img" alt="Golf">
             <div class="modal-info-center"><h3>Palomarejos Golf</h3><p>Viernes 02 • 09:30h</p><p class="address">N-Va, Km 113, Talavera de la Reina</p></div>
-            <div class="modal-desc-justify"><p>¡Damos el pistoletazo de salida! Para aquellos que quieran empezar el fin de semana antes que nadie, Carlos ha organizado un torneo de golf el viernes por la mañana (incluido el hoyo 19, por supuesto).</p></div>
+            <div class="modal-desc-justify"><p>¡Damos el pistoletazo de salida! Para aquellos que quieran empezar el fin de semana antes que nadie, hemos organizado un torneo de golf el viernes por la mañana (incluido el hoyo 19, por supuesto).</p></div>
             <form id="golfForm" style="width:100%;">
                 <div class="form-group"><input type="text" id="golf-nombre" name="nombre" placeholder="Nombre completo" required></div>
                 <div class="form-group"><input type="text" id="golf-licencia" name="licencia" placeholder="Licencia" required></div>
@@ -567,9 +567,9 @@
         </div>
     </div>
 
-    <div id="modal-hotel1" class="modal"><div class="modal-content"><div class="close-modal" onclick="closeModal('hotel1')">×</div><h3>Hotel Be Live</h3><p>Av. Toledo, s/n</p><div style="text-align:left; width:100%; margin-top:20px; background:#fafafa; padding:20px; border-radius:10px;"><strong>Hotel de 4 estrellas a 12 min de paseo.</strong><br><br><strong>📞 Reserva: 925 72 72 00</strong><br>(Decid que vais por la Boda de Sara y Carlos)</div></div></div>
+    <div id="modal-hotel1" class="modal"><div class="modal-content"><div class="close-modal" onclick="closeModal('hotel1')">×</div><h3>Hotel Be Live</h3><p>Av. Toledo, s/n</p><p style="color: #FFD700; font-size: 1.5rem; margin-top:5px;">⭐⭐⭐⭐</p><div style="text-align:left; width:100%; margin-top:20px; background:#fafafa; padding:20px; border-radius:10px;"><strong>Hotel de 4 estrellas a 12 min de paseo.</strong><br><br><strong>📞 Reserva: 925 72 72 00</strong><br>(Decid que vais por la Boda de Sara & Carlos)</div></div></div>
     <div id="modal-apt1" class="modal"><div class="modal-content"><div class="close-modal" onclick="closeModal('apt1')">×</div><h3>Blue Windows</h3><p>C. Corredera del Cristo, 18</p><div style="text-align:left; width:100%; margin-top:20px; background:#fafafa; padding:20px; border-radius:10px;"><strong>En pleno centro y a solo 5 min de la iglesia.</strong><br><br><strong>📞 Reserva: 925 80 24 28</strong></div></div></div>
-    <div id="modal-apt2" class="modal"><div class="modal-content"><div class="close-modal" onclick="closeModal('apt2')">×</div><h3>Rita Rita B&B</h3><p>C. Mesones, 3</p><div style="text-align:left; width:100%; margin-top:20px; background:#fafafa; padding:20px; border-radius:10px;"><strong>Apartamentos muy chulos (y baratos) a 6 min andando.</strong><br><br><strong>📞 Reserva: 925 80 17 17</strong></div></div></div>
+    <div id="modal-apt2" class="modal"><div class="modal-content"><div class="close-modal" onclick="closeModal('apt2')">×</div><h3>Santa Rita Rita B&B</h3><p>C. Mesones, 3</p><div style="text-align:left; width:100%; margin-top:20px; background:#fafafa; padding:20px; border-radius:10px;"><strong>Apartamentos muy chulos (y baratos) a 6 min andando.</strong><br><br><strong>📞 Reserva: 925 80 17 17</strong></div></div></div>
     
     <script>
         const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzrJwolceA5-RvZgFqfbBT-Qp9_DB_v3U7YWjy4L-plFPQgBkCJEl_jlI4bSvXjFIIyXA/exec";
