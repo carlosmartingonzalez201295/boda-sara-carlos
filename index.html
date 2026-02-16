@@ -205,30 +205,31 @@
             width: 100%; height: 350px; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.15); margin-bottom: 20px;
         }
         .map-frame-container iframe { width: 100%; height: 100%; border: 0; }
-        @keyframes arrow-bounce { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(5px); } }
-
-        .map-text-link {
-            display: flex; flex-direction: row; align-items: center; justify-content: center;
-            text-align: center; font-family: var(--crayon-font); 
-            font-size: 1.1rem; color: var(--nav-bg); 
-            text-decoration: none; font-weight: normal; cursor: pointer; margin-top: 10px; gap: 8px;
+        
+        /* --- ESTILOS NUEVOS PARA BOTONES VERDES (MAPA Y RSVP) --- */
+        .custom-button {
+            background-color: var(--secondary);
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            padding: 15px 30px;
+            border-radius: 50px;
+            border: none;
+            font-size: 1.1rem;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(119, 133, 92, 0.3);
+            transition: transform 0.2s, background-color 0.2s;
+            text-align: center;
         }
-        .map-text-link::before { content: '→'; font-size: 1.2rem; animation: arrow-bounce 1s infinite ease-in-out; }
-        .map-text-link span { display: block; } 
+        .custom-button:active { transform: scale(0.98); background-color: #66734e; }
+        .custom-button:hover { background-color: #66734e; }
+
 
         /* --- RSVP --- */
         .rsvp-accordion-wrapper { width: 100%; margin-top: 20px; text-align: center; }
-        .rsvp-toggle-text {
-            background: none; border: none; box-shadow: none; color: var(--nav-bg); 
-            cursor: pointer; padding: 10px; text-decoration: none; 
-            display: flex; align-items: center; justify-content: center; gap: 8px;
-            line-height: 1.1; margin: 0 auto;
-        }
-        .rsvp-toggle-text::before { content: '→'; font-size: 1.4rem; font-family: var(--crayon-font); animation: arrow-bounce 1s infinite ease-in-out; }
-        .rsvp-text-group { text-align: left; }
-        .rsvp-main-text { display: block; font-family: var(--crayon-font); font-size: 1.4rem; font-weight: normal; }
-        .rsvp-sub-text { display: block; font-family: var(--crayon-font); font-size: 0.9rem; font-weight: normal; margin-top: 2px; }
-
+        
         .rsvp-content-hidden { max-height: 0; overflow: hidden; transition: max-height 0.6s ease-out; opacity: 0; }
         .rsvp-content-visible { max-height: 1200px; opacity: 1; transition: max-height 0.8s ease-in, opacity 0.5s ease-in; }
 
@@ -455,12 +456,9 @@
         <div class="map-frame-container reveal">
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12328.796075936796!2d-4.838575000000001!3d39.9602495!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd401c6c63773b1b%3A0x40340f3be4bc520!2sTalavera%20de%20la%20Reina%2C%20Toledo!5e0!3m2!1ses!2ses!4v1700000000000!5m2!1ses!2ses" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
-        <div class="reveal">
-            <a href="https://maps.app.goo.gl/EFZBX5Jg1tvFAje26" target="_blank" class="map-text-link">
-                <div>
-                    <span>Pincha para ver</span>
-                    <span>mapa completo</span>
-                </div>
+        <div class="reveal" style="text-align:center;">
+            <a href="https://maps.app.goo.gl/EFZBX5Jg1tvFAje26" target="_blank" class="custom-button">
+                Pincha para ver mapa completo
             </a>
         </div>
     </section>
@@ -472,12 +470,11 @@
             <p>Para que ese día solo tengáis que preocuparos de disfrutar, porfa, dedicad un minuto a rellenar el cuestionario de confirmación. ¡Preparad las ganas, que nos vemos muy pronto!</p>
         </div>
         <div class="rsvp-accordion-wrapper reveal">
-            <button class="rsvp-toggle-text" onclick="toggleRSVP()">
-                <div class="rsvp-text-group">
-                    <span class="rsvp-main-text">Rellena el</span>
-                    <span class="rsvp-sub-text">cuestionario</span>
-                </div>
-            </button>
+            <div style="text-align:center;">
+                <button class="custom-button" onclick="toggleRSVP()">
+                    Rellena el cuestionario
+                </button>
+            </div>
             <div id="rsvp-content" class="rsvp-content-hidden">
                 <form class="rsvp-form" id="rsvpForm">
                     <div class="form-group"><label>Nombre y Apellidos</label><input type="text" name="nombre" required></div>
