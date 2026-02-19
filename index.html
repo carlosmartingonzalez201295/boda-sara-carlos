@@ -40,6 +40,7 @@
             font-size: 1rem; 
         }
 
+        /* --- FONDO PATRÓN FLORAL EN TODA LA WEB --- */
         body::before {
             content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-image: var(--pattern-bg);
@@ -85,10 +86,11 @@
             display: block; padding: 20px; font-size: 1.3rem; color: var(--nav-bg); 
             text-transform: uppercase; letter-spacing: 1px; text-decoration: none;
             position: relative; font-family: var(--handwriting-font); font-weight: bold;
+            transition: all 0.3s ease;
         }
         nav a::after { content: ''; position: absolute; bottom: 0; left: 15%; width: 70%; height: 4px; background-image: var(--pattern-bg); background-size: cover; opacity: 0.6; border-radius: 2px; }
 
-        /* --- HERO --- */
+        /* --- HERO (PORTADA) MÓVIL --- */
         .polaroid-hero {
             min-height: 100vh;
             width: 100%;
@@ -193,16 +195,7 @@
         .cards-grid { display: flex; flex-direction: column; gap: 40px; }
         .card { background: transparent; padding: 0; border: none; text-align: center; }
         .card-img { width: 100%; height: 200px; object-fit: cover; border-radius: 15px; margin-top: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.15); }
-        
-        /* CAMBIO: LETRA MÁS PEQUEÑA EN LOS NOMBRES DE LOS BARES */
-        .card h3 { 
-            font-family: var(--handwriting-font); 
-            font-weight: bold; 
-            font-size: 1.6rem; /* Reducido de 2.2rem */
-            color: var(--secondary); 
-            margin-bottom: 10px; 
-        }
-        
+        .card h3 { font-family: var(--handwriting-font); font-weight: bold; font-size: 1.6rem; color: var(--secondary); margin-bottom: 10px; }
         .card p { color: #555; font-size: 1.1rem; }
         .img-canalla { object-position: center 45%; }
 
@@ -213,16 +206,11 @@
         .map-frame-container iframe { width: 100%; height: 100%; border: 0; }
         @keyframes arrow-bounce { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(5px); } }
 
-        /* CAMBIO: BOTÓN MAPA EN LETRA DE TÍTULOS Y MÁS PEQUEÑO */
         .map-text-link {
             display: flex; flex-direction: row; align-items: center; justify-content: center;
-            text-align: center; 
-            font-family: var(--handwriting-font); /* Letra de títulos */
-            font-size: 1.2rem; /* Más pequeña */
-            color: var(--nav-bg); 
-            text-decoration: none; 
-            font-weight: bold; /* Con negrita para destacar */
-            cursor: pointer; margin-top: 10px; gap: 8px;
+            text-align: center; font-family: var(--handwriting-font); 
+            font-size: 1.2rem; color: var(--nav-bg); 
+            text-decoration: none; font-weight: bold; cursor: pointer; margin-top: 10px; gap: 8px;
         }
         .map-text-link::before { content: '→'; font-size: 1.2rem; animation: arrow-bounce 1s infinite ease-in-out; font-family: 'Montserrat', sans-serif;}
         .map-text-link span { display: block; } 
@@ -235,25 +223,10 @@
             display: flex; align-items: center; justify-content: center; gap: 8px;
             line-height: 1.1; margin: 0 auto;
         }
-        .rsvp-toggle-text::before { content: '→'; font-size: 1.4rem; font-family: 'Montserrat', sans-serif; animation: arrow-bounce 1s infinite ease-in-out; font-weight:bold; }
+        .rsvp-toggle-text::before { content: '→'; font-size: 1.4rem; font-family: 'Montserrat', sans-serif; font-weight: bold; animation: arrow-bounce 1s infinite ease-in-out; }
         .rsvp-text-group { text-align: left; }
-        
-        /* CAMBIO: BOTÓN RSVP EN LETRA DE TÍTULOS Y MÁS PEQUEÑO */
-        .rsvp-main-text { 
-            display: block; 
-            font-family: var(--handwriting-font); /* Letra de títulos */
-            font-size: 1.4rem; /* Más pequeña */
-            font-weight: bold; 
-        }
-        .rsvp-sub-text { 
-            display: block; 
-            font-family: var(--handwriting-font); /* Letra de títulos */
-            font-size: 1.1rem; /* Más pequeña */
-            font-weight: bold; 
-            margin-top: 0px; 
-            text-transform: none;
-            letter-spacing: 0;
-        }
+        .rsvp-main-text { display: block; font-family: var(--handwriting-font); font-size: 1.4rem; font-weight: bold; }
+        .rsvp-sub-text { display: block; font-family: var(--handwriting-font); font-size: 1.1rem; font-weight: bold; margin-top: 0px; }
 
         .rsvp-content-hidden { max-height: 0; overflow: hidden; transition: max-height 0.6s ease-out; opacity: 0; }
         .rsvp-content-visible { max-height: 1200px; opacity: 1; transition: max-height 0.8s ease-in, opacity 0.5s ease-in; }
@@ -268,7 +241,8 @@
         .iban-wrapper { margin-top: 25px; display: inline-block; cursor: pointer; position: relative; width: 100%; max-width: 400px; }
         .iban-box { background: transparent; padding: 10px 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         .iban-text { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 1.4rem; color: var(--nav-bg); letter-spacing: 0.5px; white-space: nowrap; margin-bottom: 5px; }
-        .copy-link { font-size: 0.95rem; color: var(--nav-bg); font-weight: 700; text-transform: uppercase; font-family: var(--handwriting-font); text-decoration: underline; }
+        /* CAMBIO: Eliminado el text-transform uppercase para que sea minúscula */
+        .copy-link { font-size: 0.95rem; color: var(--nav-bg); font-weight: 700; font-family: var(--handwriting-font); text-decoration: underline; }
         .copy-feedback { display: none; color: var(--nav-bg); font-size: 0.8rem; margin-top: 5px; font-weight: 600; position: absolute; bottom: -25px; left: 50%; transform: translateX(-50%); white-space: nowrap; }
 
         /* --- DECORACIONES --- */
@@ -308,9 +282,9 @@
 
         /* --- MEDIA QUERY ESCRITORIO --- */
         @media (min-width: 769px) {
-            /* CAMBIO: MENÚ VISIBLE EN FORMATO PC HORIZONTAL Y LETRA PEQUEÑA */
-            nav { justify-content: flex-end; padding-right: 40px; }
-            .menu-toggle { display: none; } /* Ocultar hamburguesa */
+            /* CAMBIO: MENÚ CENTRADO EN PC */
+            nav { justify-content: center; padding: 0 20px; }
+            .menu-toggle { display: none; } 
             
             nav ul { 
                 position: static; width: auto; height: auto; 
@@ -322,12 +296,19 @@
             nav li { width: auto; }
             nav a { 
                 padding: 5px; 
-                font-size: 0.75rem; /* Letra pequeña para que quepan todos */
-                color: white; /* En blanco para destacar sobre el verde */
-                font-family: 'Montserrat', sans-serif; /* Letra de lectura muy clara */
+                font-size: 0.75rem; 
+                color: white; 
+                font-family: 'Montserrat', sans-serif; 
                 font-weight: 500;
             }
-            nav a::after { display: none; } /* Ocultar raya debajo en PC */
+            nav a::after { display: none; }
+            
+            /* CLASE ACTIVA PARA SCROLLSPY EN PC */
+            nav a.active-link {
+                text-decoration: underline;
+                text-underline-offset: 5px;
+                text-decoration-thickness: 2px;
+            }
             
             /* HERO PC */
             .polaroid-hero { 
@@ -339,11 +320,11 @@
                 height: 100vh;
             }
             
-            /* Texto en PC: ARRIBA A LA DERECHA, SIN FONDO */
+            /* Texto en PC: ARRIBA Y MÁS A LA DERECHA, SIN FONDO */
             .hero-right-container {
                 position: absolute;
-                top: 25%;   
-                right: 8%;  
+                top: 20%;   /* Subido un poco más */
+                right: 3%;  /* Empujado más a la derecha */
                 transform: none;
                 background: none; 
                 padding: 0;
@@ -373,13 +354,13 @@
         <img src="https://i.imgur.com/OqzTZa8.png" alt="Logo Sara y Carlos" class="nav-logo-stamp">
         <div class="menu-toggle" id="mobile-menu">☰</div>
         <ul id="nav-list">
-            <li><a href="#inicio">Inicio</a></li>
-            <li><a href="#itinerario">Itinerario</a></li>
-            <li><a href="#alojamiento">Alojamiento</a></li>
-            <li><a href="#recomendaciones">Recomendaciones</a></li>
-            <li><a href="#dresscode">Dresscode</a></li>
-            <li><a href="#mapa">Mapa</a></li>
-            <li><a href="#confirmacion">Confirmación</a></li>
+            <li><a href="#inicio" class="nav-link">Inicio</a></li>
+            <li><a href="#itinerario" class="nav-link">Itinerario</a></li>
+            <li><a href="#alojamiento" class="nav-link">Alojamiento</a></li>
+            <li><a href="#recomendaciones" class="nav-link">Recomendaciones</a></li>
+            <li><a href="#dresscode" class="nav-link">Dresscode</a></li>
+            <li><a href="#mapa" class="nav-link">Mapa</a></li>
+            <li><a href="#confirmacion" class="nav-link">Confirmación</a></li>
         </ul>
     </nav>
 
@@ -525,7 +506,7 @@
             <div class="iban-wrapper" onclick="copyIBAN()">
                 <div class="iban-box">
                     <span class="iban-text" id="ibanText">ES21 0000 0000 0000 0000 0000</span>
-                    <span class="copy-link">COPIAR Nº DE CUENTA</span>
+                    <span class="copy-link">Copiar nº de cuenta</span>
                 </div>
                 <div class="copy-feedback" id="copyFeedback">¡IBAN Copiado!</div>
             </div>
@@ -606,6 +587,26 @@
         document.querySelectorAll('nav a').forEach(l => l.addEventListener('click', () => navList.classList.remove('active')));
         const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('active'); }); }, { threshold: 0.1 });
         document.querySelectorAll('.reveal').forEach(e => observer.observe(e));
+        
+        // SCRIPT PARA SUBRAYAR EL MENÚ SEGÚN HACES SCROLL (SCROLLSPY)
+        const sections = document.querySelectorAll("section, .polaroid-hero");
+        const navLinks = document.querySelectorAll("nav ul li a");
+        window.addEventListener("scroll", () => {
+            let current = "";
+            sections.forEach((section) => {
+                const sectionTop = section.offsetTop;
+                if (scrollY >= sectionTop - 150) {
+                    current = section.getAttribute("id");
+                }
+            });
+            navLinks.forEach((a) => {
+                a.classList.remove("active-link");
+                if (a.getAttribute("href") === "#" + current) {
+                    a.classList.add("active-link");
+                }
+            });
+        });
+
         function openModal(id) { document.getElementById('modal-'+id).style.display = 'block'; document.body.style.overflow = 'hidden'; }
         function closeModal(id) { document.getElementById('modal-'+id).style.display = 'none'; document.body.style.overflow = 'auto'; }
         function toggleRSVP() {
