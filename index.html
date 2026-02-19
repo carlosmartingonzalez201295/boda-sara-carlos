@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Sara & Carlos</title>
+    <title>Sara y Carlos</title>
     
     <style>
         /* --- FUENTES --- */
@@ -17,7 +17,7 @@
             --dark: #3d3d3d; 
             --light: #fff; 
             --nav-bg: #77855C; 
-            --pattern-bg: url('https://i.imgur.com/feTyvjy.jpeg'); /* PATRÓN GENERAL */
+            --pattern-bg: url('https://i.imgur.com/feTyvjy.jpeg'); 
             --paper-texture: url('https://i.imgur.com/0pkprZl.jpeg');
             --floral-bg: url('https://i.imgur.com/7BrEmNm.jpeg'); /* FONDO MODALES */
             
@@ -40,7 +40,6 @@
             font-size: 1rem; 
         }
 
-        /* --- FONDO PATRÓN FLORAL EN TODA LA WEB --- */
         body::before {
             content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-image: var(--pattern-bg);
@@ -89,7 +88,7 @@
         }
         nav a::after { content: ''; position: absolute; bottom: 0; left: 15%; width: 70%; height: 4px; background-image: var(--pattern-bg); background-size: cover; opacity: 0.6; border-radius: 2px; }
 
-        /* --- HERO (PORTADA) MÓVIL --- */
+        /* --- HERO --- */
         .polaroid-hero {
             min-height: 100vh;
             width: 100%;
@@ -101,14 +100,12 @@
             padding-top: 60px; 
             padding-bottom: 20px;
             
-            /* IMAGEN MÓVIL */
             background-image: url('https://i.imgur.com/gsqT5lg.jpeg');
             background-size: cover;
             background-position: center top; 
             background-repeat: no-repeat;
         }
 
-        /* Contenedor texto MÓVIL */
         .hero-right-container {
             text-align: right;
             margin-right: 8%; 
@@ -193,10 +190,19 @@
         .item-right { flex-direction: row-reverse; } .item-right .timeline-content { text-align: right; padding-right: 15px; }
 
         /* --- TARJETAS --- */
-        .cards-grid { display: flex; flex-direction: column; gap: 40px; align-items: center; }
-        .card { background: transparent; padding: 0; border: none; text-align: center; width: 100%; max-width: 450px; }
+        .cards-grid { display: flex; flex-direction: column; gap: 40px; }
+        .card { background: transparent; padding: 0; border: none; text-align: center; }
         .card-img { width: 100%; height: 200px; object-fit: cover; border-radius: 15px; margin-top: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.15); }
-        .card h3 { font-family: var(--handwriting-font); font-weight: bold; font-size: 2.2rem; color: var(--secondary); margin-bottom: 10px; }
+        
+        /* CAMBIO: LETRA MÁS PEQUEÑA EN LOS NOMBRES DE LOS BARES */
+        .card h3 { 
+            font-family: var(--handwriting-font); 
+            font-weight: bold; 
+            font-size: 1.6rem; /* Reducido de 2.2rem */
+            color: var(--secondary); 
+            margin-bottom: 10px; 
+        }
+        
         .card p { color: #555; font-size: 1.1rem; }
         .img-canalla { object-position: center 45%; }
 
@@ -205,49 +211,58 @@
             width: 100%; height: 350px; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.15); margin-bottom: 20px;
         }
         .map-frame-container iframe { width: 100%; height: 100%; border: 0; }
-        
-        /* --- ESTILOS NUEVOS PARA BOTONES VERDES (MAPA Y RSVP) --- */
-        .custom-button {
-            background-color: var(--secondary);
-            color: white;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            padding: 15px 30px;
-            border-radius: 50px;
-            border: none;
-            font-size: 1.1rem;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-            box-shadow: 0 4px 15px rgba(119, 133, 92, 0.3);
-            transition: transform 0.2s, background-color 0.2s;
-            text-align: center;
+        @keyframes arrow-bounce { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(5px); } }
+
+        /* CAMBIO: BOTÓN MAPA EN LETRA DE TÍTULOS Y MÁS PEQUEÑO */
+        .map-text-link {
+            display: flex; flex-direction: row; align-items: center; justify-content: center;
+            text-align: center; 
+            font-family: var(--handwriting-font); /* Letra de títulos */
+            font-size: 1.2rem; /* Más pequeña */
+            color: var(--nav-bg); 
+            text-decoration: none; 
+            font-weight: bold; /* Con negrita para destacar */
+            cursor: pointer; margin-top: 10px; gap: 8px;
         }
-        .custom-button:active { transform: scale(0.98); background-color: #66734e; }
-        .custom-button:hover { background-color: #66734e; }
+        .map-text-link::before { content: '→'; font-size: 1.2rem; animation: arrow-bounce 1s infinite ease-in-out; font-family: 'Montserrat', sans-serif;}
+        .map-text-link span { display: block; } 
 
-
-        /* --- RSVP --- */
+        /* --- RSVP TEXTO CREATIVO --- */
         .rsvp-accordion-wrapper { width: 100%; margin-top: 20px; text-align: center; }
+        .rsvp-toggle-text {
+            background: none; border: none; box-shadow: none; color: var(--nav-bg); 
+            cursor: pointer; padding: 10px; text-decoration: none; 
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            line-height: 1.1; margin: 0 auto;
+        }
+        .rsvp-toggle-text::before { content: '→'; font-size: 1.4rem; font-family: 'Montserrat', sans-serif; animation: arrow-bounce 1s infinite ease-in-out; font-weight:bold; }
+        .rsvp-text-group { text-align: left; }
         
+        /* CAMBIO: BOTÓN RSVP EN LETRA DE TÍTULOS Y MÁS PEQUEÑO */
+        .rsvp-main-text { 
+            display: block; 
+            font-family: var(--handwriting-font); /* Letra de títulos */
+            font-size: 1.4rem; /* Más pequeña */
+            font-weight: bold; 
+        }
+        .rsvp-sub-text { 
+            display: block; 
+            font-family: var(--handwriting-font); /* Letra de títulos */
+            font-size: 1.1rem; /* Más pequeña */
+            font-weight: bold; 
+            margin-top: 0px; 
+            text-transform: none;
+            letter-spacing: 0;
+        }
+
         .rsvp-content-hidden { max-height: 0; overflow: hidden; transition: max-height 0.6s ease-out; opacity: 0; }
         .rsvp-content-visible { max-height: 1200px; opacity: 1; transition: max-height 0.8s ease-in, opacity 0.5s ease-in; }
 
         .rsvp-form { background-image: var(--paper-texture); padding: 30px 20px; border-radius: 15px; width: 100%; border-top: 4px solid var(--nav-bg); margin-top: 15px; }
         .form-group { margin-bottom: 20px; text-align: left; }
         label { font-size: 1.1rem; font-weight: 600; color: var(--secondary); margin-bottom: 8px; display: block; font-family: var(--handwriting-font); }
-        
-        input, select, textarea { 
-            width: 100%; padding: 12px; font-size: 1.1rem; border: 1px solid #ddd; border-radius: 8px; background: #fafafa; 
-            font-family: 'Montserrat', sans-serif; 
-        }
-        
-        /* --- BOTONES DE FORMULARIOS (RSVP Y GOLF) --- */
-        button#submitBtn, button#submitGolfBtn { 
-            padding: 16px; font-size: 1.4rem; border-radius: 10px; 
-            background: var(--secondary); color: white; font-weight: bold; border: none; 
-            width: 100%; cursor: pointer; font-family: var(--handwriting-font); letter-spacing: 1px; 
-        }
+        input, select, textarea { width: 100%; padding: 12px; font-size: 1.1rem; border: 1px solid #ddd; border-radius: 8px; background: #fafafa; font-family: 'Montserrat', sans-serif; }
+        button#submitBtn { padding: 16px; font-size: 1.4rem; border-radius: 10px; background: var(--secondary); color: white; font-weight: bold; border: none; width: 100%; cursor: pointer; font-family: var(--handwriting-font); letter-spacing: 1px; }
 
         /* --- IBAN --- */
         .iban-wrapper { margin-top: 25px; display: inline-block; cursor: pointer; position: relative; width: 100%; max-width: 400px; }
@@ -265,13 +280,11 @@
         .footer-image-container { text-align: center; padding: 40px 20px 60px 20px; width: 100%; }
         .footer-image-container img { width: auto; height: auto; max-width: 150px; display: inline-block; }
 
-        /* --- MODALES CON FONDO FLORAL MENOS TRANSPARENTE --- */
+        /* --- MODALES CON FONDO FLORAL TRANSPARENTE --- */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 2000; backdrop-filter: blur(3px); }
         .modal-content { 
-            /* Capa blanca al 75% */
             background: linear-gradient(rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.75)), var(--floral-bg);
             background-repeat: repeat; background-size: 400px;
-            
             width: 100%; height: 100%; max-width: 100%; margin: 0; border-radius: 0; padding: 25px; overflow-y: auto; position: relative; animation: slideUp 0.3s; display: flex; flex-direction: column; align-items: center; 
         }
         .close-modal { position: absolute; top: 15px; right: 15px; font-size: 1.5rem; width: 36px; height: 36px; background: var(--nav-bg); color: white; border-radius: 50%; display: flex; justify-content: center; align-items: center; z-index: 10; cursor: pointer; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
@@ -286,14 +299,7 @@
         .map-unit:last-child { margin-bottom: 0; }
         
         .img-entrada-zoomed { width: 100%; height: 250px; object-fit: cover; object-position: center center; display: block; }
-        
-        .img-salida-contain { 
-            width: 100%; height: 250px; 
-            object-fit: contain; 
-            object-position: center center; 
-            display: block; 
-            background-color: transparent;
-        }
+        .img-salida-contain { width: 100%; height: 250px; object-fit: contain; object-position: center center; display: block; background-color: transparent; }
 
         .reveal { opacity: 0; transform: translateY(20px); transition: 0.6s ease; }
         .reveal.active { opacity: 1; transform: translateY(0); }
@@ -302,14 +308,33 @@
 
         /* --- MEDIA QUERY ESCRITORIO --- */
         @media (min-width: 769px) {
-            nav { padding: 0 50px; } .menu-toggle { display: block; } nav ul { width: 350px; }
+            /* CAMBIO: MENÚ VISIBLE EN FORMATO PC HORIZONTAL Y LETRA PEQUEÑA */
+            nav { justify-content: flex-end; padding-right: 40px; }
+            .menu-toggle { display: none; } /* Ocultar hamburguesa */
             
-            /* HERO PC: NUEVA IMAGEN DE FONDO PC (CONTAIN) */
+            nav ul { 
+                position: static; width: auto; height: auto; 
+                flex-direction: row; background: transparent; 
+                box-shadow: none; transform: none; 
+                padding: 0; gap: 15px; 
+                display: flex;
+            }
+            nav li { width: auto; }
+            nav a { 
+                padding: 5px; 
+                font-size: 0.75rem; /* Letra pequeña para que quepan todos */
+                color: white; /* En blanco para destacar sobre el verde */
+                font-family: 'Montserrat', sans-serif; /* Letra de lectura muy clara */
+                font-weight: 500;
+            }
+            nav a::after { display: none; } /* Ocultar raya debajo en PC */
+            
+            /* HERO PC */
             .polaroid-hero { 
                 padding-top: 80px; 
-                background-image: url('https://i.imgur.com/6AczGUN.jpeg'); /* FOTO PC */
-                background-size: cover; /* SE EXPANDE (COVER) */
-                background-position: center top; /* ENFOQUE ARRIBA */
+                background-image: url('https://i.imgur.com/6AczGUN.jpeg'); 
+                background-size: cover; 
+                background-position: center top; 
                 background-color: transparent;
                 height: 100vh;
             }
@@ -317,27 +342,19 @@
             /* Texto en PC: ARRIBA A LA DERECHA, SIN FONDO */
             .hero-right-container {
                 position: absolute;
-                top: 25%;   /* BIEN ARRIBA */
-                right: 2%;  /* Cambiado de 8% a 2% para pegarlo más al borde derecho */
+                top: 25%;   
+                right: 8%;  
                 transform: none;
-                background: none; /* SIN FONDO */
+                background: none; 
                 padding: 0;
             }
 
-            .hero-names { 
-                font-size: 3.5rem; 
-                text-shadow: 0 0 20px rgba(255,255,255,0.9), 0 2px 5px rgba(255,255,255,1); 
-                color: var(--secondary); 
-            }
-            .hero-date { 
-                font-size: 2.2rem; 
-                text-shadow: 0 0 20px rgba(255,255,255,0.9), 0 2px 5px rgba(255,255,255,1); 
-                color: var(--secondary); 
-            }
+            .hero-names { font-size: 3.5rem; text-shadow: 0 0 20px rgba(255,255,255,0.9), 0 2px 5px rgba(255,255,255,1); color: var(--secondary); }
+            .hero-date { font-size: 2.2rem; text-shadow: 0 0 20px rgba(255,255,255,0.9), 0 2px 5px rgba(255,255,255,1); color: var(--secondary); }
             
             .timeline { max-width: 800px; margin: 0 auto; }
-            .cards-grid { display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 40px; align-items: stretch; }
-            .card { width: 30%; display: flex; flex-direction: column; justify-content: space-between; max-width: none; }
+            .cards-grid { display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 40px; }
+            .card { width: 30%; display: flex; flex-direction: column; justify-content: space-between; }
             .card-img { height: 250px; margin-top: auto; object-position: center 30%; }
             .modal-content { width: 90%; max-width: 500px; height: auto; max-height: 85vh; border-radius: 15px; margin: 5% auto; }
             .img-entrada-zoomed { height: 300px; }
@@ -347,9 +364,6 @@
         /* MEDIA QUERY MOVIL */
         @media (max-width: 768px) { 
             .hero-right-container { margin-right: 5%; margin-bottom: 55%; } 
-            
-            /* Cambio para que el título de Recomendaciones quepa en una línea y quede centrado */
-            h2 { font-size: 2.2rem; }
         }
     </style>
 </head>
@@ -359,8 +373,7 @@
         <img src="https://i.imgur.com/OqzTZa8.png" alt="Logo Sara y Carlos" class="nav-logo-stamp">
         <div class="menu-toggle" id="mobile-menu">☰</div>
         <ul id="nav-list">
-            <li><a href="#portada">Portada</a></li>
-            <li><a href="#bienvenida">Inicio</a></li>
+            <li><a href="#inicio">Inicio</a></li>
             <li><a href="#itinerario">Itinerario</a></li>
             <li><a href="#alojamiento">Alojamiento</a></li>
             <li><a href="#recomendaciones">Recomendaciones</a></li>
@@ -370,9 +383,9 @@
         </ul>
     </nav>
 
-    <div class="polaroid-hero" id="portada">
+    <div class="polaroid-hero" id="inicio">
         <div class="hero-right-container">
-            <h1 class="hero-names">Sara & Carlos</h1>
+            <h1 class="hero-names">Sara y Carlos</h1>
             <h2 class="hero-date">3.10.2026</h2>
         </div>
         <div class="scroll-indicator">↓</div>
@@ -401,7 +414,7 @@
             </div>
             <div class="timeline-item item-right reveal">
                 <div class="timeline-img-box" onclick="openModal('preboda')"><div class="timeline-img-clipper"><img src="https://i.imgur.com/0khwPw5.jpeg" alt="Preboda" class="img-preboda"></div></div>
-                <div class="timeline-content" onclick="openModal('preboda')"><h3>Preboda</h3><p><strong>Viernes 02 - 20:00h</strong></p></div>
+                <div class="timeline-content" onclick="openModal('preboda')"><h3>Preboda</h3><p><strong>Viernes 02 - Por confirmar</strong></p></div>
             </div>
             <div class="timeline-item item-left reveal">
                 <div class="timeline-img-box" onclick="openModal('ceremonia')"><div class="timeline-img-clipper"><img src="https://i.imgur.com/QDGdxoI.png" alt="Ceremonia"></div></div>
@@ -420,9 +433,9 @@
             <p>Os dejamos estas opciones para que estéis a un paso de todo durante todo el finde. Si sois más de Airbnb, echad un ojo pronto porque no hay mucha variedad por la zona y los sitios vuelan :)</p>
         </div>
         <div class="cards-grid">
-            <div class="card reveal" onclick="openModal('hotel1')"><h3>Hotel Be Live</h3><p>Hotel 4 estrellas</p><p style="color: var(--secondary); font-weight:600; margin-top:5px; font-size:0.9rem;">Ver detalles</p></div>
-            <div class="card reveal" onclick="openModal('apt1')"><h3>Blue Windows</h3><p>Apartahotel</p><p style="color: var(--secondary); font-weight:600; margin-top:5px; font-size:0.9rem;">Ver detalles</p></div>
-            <div class="card reveal" onclick="openModal('apt2')"><h3>Santa Rita Rita B&B</h3><p>Apartahotel</p><p style="color: var(--secondary); font-weight:600; margin-top:5px; font-size:0.9rem;">Ver detalles</p></div>
+            <div class="card reveal" onclick="openModal('hotel1')"><h3>Hotel Be Live</h3><p>⭐⭐⭐⭐</p><p style="color: var(--primary); font-weight:600; margin-top:5px; font-size:0.9rem;">👉 Ver detalles</p></div>
+            <div class="card reveal" onclick="openModal('apt1')"><h3>Blue Windows</h3><p>Apartamentos</p><p style="color: var(--primary); font-weight:600; margin-top:5px; font-size:0.9rem;">👉 Ver detalles</p></div>
+            <div class="card reveal" onclick="openModal('apt2')"><h3>Rita Rita B&B</h3><p>Apartamentos</p><p style="color: var(--primary); font-weight:600; margin-top:5px; font-size:0.9rem;">👉 Ver detalles</p></div>
         </div>
     </section>
 
@@ -436,7 +449,7 @@
             <div class="card reveal"><h3>Cosafina</h3><p>Bar castizo ideal para previas. Su gilda es un imprescindible.</p><img src="https://i.imgur.com/oUrVS6B.jpeg" class="card-img" alt="Cosafina"></div>
             <div class="card reveal"><h3>La Antigua</h3><p>Las revolconas son un must en el grupo. No os podéis ir de Talavera sin probarlas ;)</p><img src="https://i.imgur.com/BzGUdYf.jpeg" class="card-img" alt="La Antigua"></div>
             <div class="card reveal"><h3>Casco Viejo</h3><p>Tapas tradicionales con toques modernos.</p><img src="https://i.imgur.com/OCSvOus.jpeg" class="card-img" alt="Casco Viejo"></div>
-            <div class="card reveal"><h3>Askuabarra</h3><p>Restaurante con cocina de producto donde su montadito de steak tartar es de lo mejorcito.</p><img src="https://i.imgur.com/aoBU7fM.jpeg" class="card-img" alt="Askuabarra"></div>
+            <div class="card reveal"><h3>Askuabarra</h3><p>Cocina de producto donde su montadito de steak tartar es de lo mejorcito.</p><img src="https://i.imgur.com/aoBU7fM.jpeg" class="card-img" alt="Askuabarra"></div>
             <div class="card reveal"><h3>Sushido</h3><p>Nuestra opción favorita si os apetece cambiar de tercio y os gusta la comida japonesa.</p><img src="https://i.imgur.com/vHYLM4W.jpeg" class="card-img" alt="Sushi Do"></div>
             <div class="card reveal"><h3>Canalla Food & Drinks</h3><p>Tacos muy top y cerveza bien fría.</p><img src="https://i.imgur.com/aEyXHLd.jpeg" class="card-img img-canalla" alt="Canalla Food & Drinks"></div>
         </div>
@@ -462,9 +475,12 @@
         <div class="map-frame-container reveal">
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12328.796075936796!2d-4.838575000000001!3d39.9602495!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd401c6c63773b1b%3A0x40340f3be4bc520!2sTalavera%20de%20la%20Reina%2C%20Toledo!5e0!3m2!1ses!2ses!4v1700000000000!5m2!1ses!2ses" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
-        <div class="reveal" style="text-align:center;">
-            <a href="https://maps.app.goo.gl/EFZBX5Jg1tvFAje26" target="_blank" class="custom-button">
-                Pincha para ver mapa completo
+        <div class="reveal">
+            <a href="https://maps.app.goo.gl/EFZBX5Jg1tvFAje26" target="_blank" class="map-text-link">
+                <div>
+                    <span>Pincha para ver</span>
+                    <span>mapa completo</span>
+                </div>
             </a>
         </div>
     </section>
@@ -476,11 +492,12 @@
             <p>Para que ese día solo tengáis que preocuparos de disfrutar, porfa, dedicad un minuto a rellenar el cuestionario de confirmación. ¡Preparad las ganas, que nos vemos muy pronto!</p>
         </div>
         <div class="rsvp-accordion-wrapper reveal">
-            <div style="text-align:center;">
-                <button class="custom-button" onclick="toggleRSVP()">
-                    Rellena el cuestionario
-                </button>
-            </div>
+            <button class="rsvp-toggle-text" onclick="toggleRSVP()">
+                <div class="rsvp-text-group">
+                    <span class="rsvp-main-text">Rellena el</span>
+                    <span class="rsvp-sub-text">cuestionario</span>
+                </div>
+            </button>
             <div id="rsvp-content" class="rsvp-content-hidden">
                 <form class="rsvp-form" id="rsvpForm">
                     <div class="form-group"><label>Nombre y Apellidos</label><input type="text" name="nombre" required></div>
@@ -524,7 +541,7 @@
             <div class="close-modal" onclick="closeModal('golf')">×</div>
             <img src="https://i.imgur.com/GEZh21g.jpeg" class="modal-header-img" alt="Golf">
             <div class="modal-info-center"><h3>Palomarejos Golf</h3><p>Viernes 02 • 09:30h</p><p class="address">N-Va, Km 113, Talavera de la Reina</p></div>
-            <div class="modal-desc-justify"><p>¡Damos el pistoletazo de salida! Para aquellos que quieran empezar el fin de semana antes que nadie, hemos organizado un torneo de golf el viernes por la mañana (incluido el hoyo 19, por supuesto).</p></div>
+            <div class="modal-desc-justify"><p>¡Damos el pistoletazo de salida! Para aquellos que quieran empezar el fin de semana antes que nadie, Carlos ha organizado un torneo de golf el viernes por la mañana (incluido el hoyo 19, por supuesto).</p></div>
             <form id="golfForm" style="width:100%;">
                 <div class="form-group"><input type="text" id="golf-nombre" name="nombre" placeholder="Nombre completo" required></div>
                 <div class="form-group"><input type="text" id="golf-licencia" name="licencia" placeholder="Licencia" required></div>
@@ -541,7 +558,7 @@
         <div class="modal-content">
             <div class="close-modal" onclick="closeModal('preboda')">×</div>
             <img src="https://i.imgur.com/0khwPw5.jpeg" class="modal-header-img" style="object-position: top center;" alt="Preboda">
-            <div class="modal-info-center"><h3>Misa de 1</h3><p>Viernes 02 • 20:00h</p><p class="address">Calle José Luis Gallo, 1</p></div>
+            <div class="modal-info-center"><h3>Misa de 1</h3><p>Viernes 02 • Por confirmar</p><p class="address">Calle José Luis Gallo, 1</p></div>
             <div class="modal-desc-justify"><p>Para ir calentando el terreno... ¡tendremos preboda el viernes! Os confirmaremos la hora exacta más adelante :) Pero id reservando el hueco para el primer brindis.</p><p>Gracias por desplazaros para acompañarnos; teneros cerca ya desde el día anterior nos hace muchísima ilusión (y es la excusa perfecta para empezar por todo lo alto el fin de semana).</p></div>
         </div>
     </div>
@@ -573,50 +590,13 @@
         </div>
     </div>
 
-    <div id="modal-hotel1" class="modal">
-        <div class="modal-content">
-            <div class="close-modal" onclick="closeModal('hotel1')">×</div>
-            <h3>Hotel Be Live</h3>
-            <p style="color: #FFD700; font-size: 1.5rem; margin-top:5px;">⭐⭐⭐⭐</p>
-            <div style="text-align:left; width:100%; margin-top:20px; background:#fafafa; padding:20px; border-radius:10px;">
-                <strong>Hotel de 4 estrellas a 12 min de paseo.</strong><br><br>
-                <strong>📍 Av. Toledo, s/n</strong><br>
-                <strong>📞 Reserva: 925 72 72 00</strong><br>
-                (Decid que vais por la Boda de Sara & Carlos)
-            </div>
-        </div>
-    </div>
-    
-    <div id="modal-apt1" class="modal">
-        <div class="modal-content">
-            <div class="close-modal" onclick="closeModal('apt1')">×</div>
-            <h3>Blue Windows</h3>
-            <div style="text-align:left; width:100%; margin-top:20px; background:#fafafa; padding:20px; border-radius:10px;">
-                <strong>En pleno centro y a solo 5 min de la iglesia.</strong><br><br>
-                <strong>📍 C. Corredera del Cristo, 18</strong><br>
-                <strong>📞 Reserva: 925 80 24 28</strong><br>
-                <strong>🔗 Link: <a href="https://www.bluewindowshouse.com/es/" target="_blank" style="color:var(--nav-bg); font-weight:bold;">Web oficial</a></strong>
-            </div>
-        </div>
-    </div>
-    
-    <div id="modal-apt2" class="modal">
-        <div class="modal-content">
-            <div class="close-modal" onclick="closeModal('apt2')">×</div>
-            <h3>Santa Rita Rita B&B</h3>
-            <div style="text-align:left; width:100%; margin-top:20px; background:#fafafa; padding:20px; border-radius:10px;">
-                <strong>Apartamentos muy chulos (y baratos) a 6 min andando.</strong><br><br>
-                <strong>📍 C. Mesones, 3</strong><br>
-                <strong>📞 Reserva: 925 80 17 17</strong><br>
-                <strong>🔗 Link: <a href="https://www.santaritaritaloquesedanosequita.es/" target="_blank" style="color:var(--nav-bg); font-weight:bold;">Web oficial</a></strong>
-            </div>
-        </div>
-    </div>
+    <div id="modal-hotel1" class="modal"><div class="modal-content"><div class="close-modal" onclick="closeModal('hotel1')">×</div><h3>Hotel Be Live</h3><p>Av. Toledo, s/n</p><div style="text-align:left; width:100%; margin-top:20px; background:#fafafa; padding:20px; border-radius:10px;"><strong>Hotel de 4 estrellas a 12 min de paseo.</strong><br><br><strong>📞 Reserva: 925 72 72 00</strong><br>(Decid que vais por la Boda de Sara y Carlos)</div></div></div>
+    <div id="modal-apt1" class="modal"><div class="modal-content"><div class="close-modal" onclick="closeModal('apt1')">×</div><h3>Blue Windows</h3><p>C. Corredera del Cristo, 18</p><div style="text-align:left; width:100%; margin-top:20px; background:#fafafa; padding:20px; border-radius:10px;"><strong>En pleno centro y a solo 5 min de la iglesia.</strong><br><br><strong>📞 Reserva: 925 80 24 28</strong></div></div></div>
+    <div id="modal-apt2" class="modal"><div class="modal-content"><div class="close-modal" onclick="closeModal('apt2')">×</div><h3>Rita Rita B&B</h3><p>C. Mesones, 3</p><div style="text-align:left; width:100%; margin-top:20px; background:#fafafa; padding:20px; border-radius:10px;"><strong>Apartamentos muy chulos (y baratos) a 6 min andando.</strong><br><br><strong>📞 Reserva: 925 80 17 17</strong></div></div></div>
     
     <script>
         const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzrJwolceA5-RvZgFqfbBT-Qp9_DB_v3U7YWjy4L-plFPQgBkCJEl_jlI4bSvXjFIIyXA/exec";
         
-        // CORRECCIÓN INICIO MÓVIL: Scroll arriba al cargar
         window.history.scrollRestoration = 'manual';
         window.onload = function () { window.scrollTo(0, 0); }
 
