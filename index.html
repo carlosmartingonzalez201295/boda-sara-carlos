@@ -23,7 +23,7 @@
             --new-texture-bg: url('https://i.imgur.com/gzFDcXD.jpeg'); /* Textura menú y círculos */
             --paper-texture: url('https://i.imgur.com/0pkprZl.jpeg');
             --floral-bg: url('https://i.imgur.com/7BrEmNm.jpeg'); /* Fondo floral estándar para modales */
-            --itinerary-modal-bg: url('https://i.imgur.com/gzFDcXD.jpeg'); /* NUEVO FONDO SOLO ITINERARIO */
+            --itinerary-modal-bg: url('https://i.imgur.com/gzFDcXD.jpeg'); /* FONDO SOLO ITINERARIO */
             
             /* FUENTES */
             --handwriting-font: 'Bradley Hand ITC', 'Bradley Hand', 'Noteworthy', 'Segoe Print', cursive;
@@ -110,6 +110,7 @@
             position: relative;
             padding-top: 60px; 
             padding-bottom: 20px;
+            
             background-image: url('https://i.imgur.com/gsqT5lg.jpeg');
             background-size: cover;
             background-position: center top; 
@@ -118,7 +119,7 @@
 
         .hero-right-container {
             text-align: right;
-            margin-right: 5%; /* Más a la derecha en móvil */
+            margin-right: 5%; 
             margin-bottom: 55%; 
             z-index: 2;
             width: 100%;
@@ -312,7 +313,7 @@
         /* --- MODALES CON FONDO --- */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 2000; backdrop-filter: blur(3px); }
         .modal-content { 
-            /* Fondo estándar (blanco/floral claro) para la mayoría */
+            /* Fondo estándar */
             background: linear-gradient(rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.75)), var(--floral-bg);
             background-repeat: repeat; background-size: 400px;
             width: 100%; height: 100%; max-width: 100%; margin: 0; border-radius: 0; padding: 25px; overflow-y: auto; position: relative; animation: slideUp 0.3s; display: flex; flex-direction: column; align-items: center; 
@@ -323,7 +324,7 @@
         #modal-preboda .modal-content, 
         #modal-ceremonia .modal-content, 
         #modal-celebracion .modal-content {
-            background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), var(--itinerary-modal-bg); /* NUEVO FONDO */
+            background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), var(--itinerary-modal-bg); 
             background-size: cover; 
         }
 
@@ -386,12 +387,12 @@
                 height: 100vh;
             }
             
-            /* TEXTO PC */
+            /* TEXTO PC: A LA DERECHA (right: 1%) Y ALINEADO A LA DERECHA */
             .hero-right-container {
                 position: absolute;
                 top: 25%;   
-                right: 1%;  /* Pegado derecha */
-                text-align: right; 
+                right: 1%;  /* Pegado a la derecha */
+                text-align: right; /* Alineado a la derecha */
                 transform: none;
                 background: none; 
                 padding: 0;
@@ -531,7 +532,7 @@
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12328.796075936796!2d-4.838575000000001!3d39.9602495!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd401c6c63773b1b%3A0x40340f3be4bc520!2sTalavera%20de%20la%20Reina%2C%20Toledo!5e0!3m2!1ses!2ses!4v1700000000000!5m2!1ses!2ses" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
         <div class="reveal">
-            <a href="https://maps.app.goo.gl/EFZBX5Jg1tvFAje26" target="_blank" class="map-text-link">
+            <a href="https://maps.app.goo.gl/ejTh5By88DnZKVWK9" target="_blank" class="map-text-link">
                 <div>
                     <span>Pincha para ver</span>
                     <span>mapa completo</span>
@@ -655,6 +656,7 @@
         const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('active'); }); }, { threshold: 0.1 });
         document.querySelectorAll('.reveal').forEach(e => observer.observe(e));
         
+        // SCRIPT PARA SUBRAYAR EL MENÚ SEGÚN HACES SCROLL (SCROLLSPY)
         const sections = document.querySelectorAll("section, .polaroid-hero");
         const navLinks = document.querySelectorAll("nav ul li a");
         window.addEventListener("scroll", () => {
