@@ -387,29 +387,30 @@
                 height: 100vh;
             }
             
-            /* TEXTO PC: A LA DERECHA (right: 2%) Y CENTRADO ENTRE SÍ */
+            /* TEXTO PC: A LA DERECHA (right: 5%) Y CENTRADO ENTRE SÍ */
             .hero-right-container {
                 position: absolute;
                 top: 25%;   
-                right: 2%;  /* Pegado a la derecha */
-                text-align: center; /* Alineación del texto centrada dentro del bloque */
+                right: 5%;  /* MOVIDO A LA DERECHA (LEJOS DEL CENTRO) */
+                text-align: center; /* PERO EL TEXTO DENTRO ESTÁ CENTRADO */
                 transform: none;
                 background: none; 
                 padding: 0;
                 margin: 0;
+                width: auto; /* IMPORTANTE: OCUPA SOLO LO QUE NECESITA */
             }
 
             .hero-names { 
                 font-size: 3.5rem; 
                 text-shadow: 0 0 20px rgba(255,255,255,0.9), 0 2px 5px rgba(255,255,255,1); 
                 color: var(--secondary); 
-                text-align: center; /* Asegura el centrado */
+                /* Hereda el text-align center del padre */
             }
             .hero-date { 
                 font-size: 2.2rem; 
                 text-shadow: 0 0 20px rgba(255,255,255,0.9), 0 2px 5px rgba(255,255,255,1); 
                 color: var(--secondary); 
-                text-align: center; /* Asegura el centrado */
+                /* Hereda el text-align center del padre */
             }
             
             .timeline { max-width: 800px; margin: 0 auto; }
