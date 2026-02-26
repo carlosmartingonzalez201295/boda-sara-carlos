@@ -17,13 +17,14 @@
             --dark: #3d3d3d; 
             --light: #fff; 
             --nav-bg: #77855C; 
+            --nude-box: #EADBC8; /* COLOR NUDE PARA LA CUENTA ATRÁS */
             
             /* --- IMÁGENES --- */
-            --main-bg-pattern: url('https://i.imgur.com/feTyvjy.jpeg'); /* Fondo general floral */
-            --new-texture-bg: url('https://i.imgur.com/gzFDcXD.jpeg'); /* Textura menú y círculos */
+            --main-bg-pattern: url('https://i.imgur.com/feTyvjy.jpeg'); 
+            --new-texture-bg: url('https://i.imgur.com/gzFDcXD.jpeg'); 
             --paper-texture: url('https://i.imgur.com/0pkprZl.jpeg');
-            --floral-bg: url('https://i.imgur.com/7BrEmNm.jpeg'); /* Fondo floral estándar para modales */
-            --itinerary-modal-bg: url('https://i.imgur.com/gzFDcXD.jpeg'); /* FONDO SOLO ITINERARIO */
+            --floral-bg: url('https://i.imgur.com/7BrEmNm.jpeg');
+            --itinerary-modal-bg: url('https://i.imgur.com/gzFDcXD.jpeg'); 
             
             /* FUENTES */
             --handwriting-font: 'Bradley Hand ITC', 'Bradley Hand', 'Noteworthy', 'Segoe Print', cursive;
@@ -44,7 +45,6 @@
             font-size: 1rem; 
         }
 
-        /* --- FONDO GENERAL FLORAL --- */
         body::before {
             content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-image: var(--main-bg-pattern); 
@@ -74,7 +74,6 @@
             display: block; position: absolute; right: 15px; z-index: 1002; 
         }
         
-        /* MENÚ MÓVIL: FONDO NUEVO SIN TRANSPARENCIA */
         nav ul {
             position: fixed; top: 60px; right: 0; width: 300px; max-width: 80%; height: calc(100vh - 60px);
             background-image: var(--new-texture-bg); 
@@ -99,7 +98,7 @@
         }
         nav a::after { content: ''; position: absolute; bottom: 0; left: 15%; width: 70%; height: 4px; background-color: var(--nav-bg); opacity: 0.6; border-radius: 2px; }
 
-        /* --- HERO (PORTADA) MÓVIL --- */
+        /* --- HERO --- */
         .polaroid-hero {
             min-height: 100vh;
             width: 100%;
@@ -110,7 +109,6 @@
             position: relative;
             padding-top: 60px; 
             padding-bottom: 20px;
-            
             background-image: url('https://i.imgur.com/gsqT5lg.jpeg');
             background-size: cover;
             background-position: center top; 
@@ -172,17 +170,39 @@
         }
         .subtitle { display: block; text-align: center; font-size: 0.95rem; color: #555; margin: -30px auto 40px auto; font-style: italic; max-width: 90%; }
 
-        /* --- CUENTA ATRÁS --- */
-        #mini-countdown {
-            text-align: center;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            color: var(--secondary);
-            font-size: 1.1rem;
-            margin-bottom: 10px; 
+        /* --- CUENTA ATRÁS (NUEVO ESTILO NUDE) --- */
+        #countdown-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
             margin-top: -20px;
-            letter-spacing: 1px;
+            flex-wrap: wrap;
+        }
+        .countdown-box {
+            background-color: var(--nude-box);
+            padding: 5px 8px;
+            border-radius: 8px;
+            text-align: center;
+            min-width: 55px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .countdown-number {
+            display: block;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--nav-bg); /* Números en verde */
+            line-height: 1;
+        }
+        .countdown-label {
+            display: block;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.6rem;
+            color: var(--nav-bg);
             text-transform: uppercase;
+            margin-top: 3px;
+            font-weight: 500;
         }
 
         /* --- ITINERARIO --- */
@@ -202,7 +222,6 @@
             animation: pulse-intense 1.5s infinite ease-in-out;
         }
         
-        /* CÍRCULOS ITINERARIO: FONDO NUEVO SIN TRANSPARENCIA */
         .timeline-img-box::before { 
             content: ''; position: absolute; top: -6px; left: -6px; right: -6px; bottom: -6px; 
             background-image: var(--new-texture-bg); 
@@ -246,14 +265,34 @@
         .map-frame-container iframe { width: 100%; height: 100%; border: 0; }
         @keyframes arrow-bounce { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(5px); } }
 
-        /* --- BOTONES GENERALES (ESTILO VERDE CORPORATIVO) --- */
-        /* Esta clase la usarán: El botón del golf, el del mapa y el del cuestionario */
+        /* --- ESTILO PARA ENLACES DE TEXTO (MAPA Y CUESTIONARIO) --- */
+        /* Nuevo estilo: Sin caja, verde, subrayado, tamaño grande */
+        .text-link-green {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-family: var(--handwriting-font);
+            font-size: 1.4rem; /* Mismo tamaño que antes */
+            color: var(--nav-bg); /* Verde Corporativo */
+            text-decoration: underline; /* Subrayado */
+            text-decoration-thickness: 2px;
+            text-underline-offset: 4px;
+            font-weight: bold;
+            background: none;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .text-link-green:hover { transform: scale(1.05); transition: transform 0.2s; }
+        
+        /* Botón sólido verde (SOLO PARA GOLF) */
         .btn-green-corp { 
             padding: 15px 35px; 
             font-size: 1.3rem; 
             border-radius: 12px; 
-            background: var(--nav-bg); /* Verde Corporativo */
-            color: white !important; /* Texto blanco forzado */
+            background: var(--nav-bg); 
+            color: white !important; 
             font-weight: bold; 
             border: none; 
             cursor: pointer; 
@@ -261,7 +300,7 @@
             letter-spacing: 1px; 
             display: inline-block;
             margin-top: 15px;
-            text-decoration: none; /* Sin subrayado */
+            text-decoration: none; 
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             transition: transform 0.2s;
             text-align: center;
@@ -297,13 +336,11 @@
         /* --- MODALES CON FONDO --- */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 2000; backdrop-filter: blur(3px); }
         .modal-content { 
-            /* Fondo estándar */
             background: linear-gradient(rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.75)), var(--floral-bg);
             background-repeat: repeat; background-size: 400px;
             width: 100%; height: 100%; max-width: 100%; margin: 0; border-radius: 0; padding: 25px; overflow-y: auto; position: relative; animation: slideUp 0.3s; display: flex; flex-direction: column; align-items: center; 
         }
         
-        /* --- EXCEPCIÓN: MODALES ITINERARIO (GOLF, PREBODA, CEREMONIA, CELEBRACIÓN) --- */
         #modal-golf .modal-content, 
         #modal-preboda .modal-content, 
         #modal-ceremonia .modal-content, 
@@ -451,8 +488,27 @@
         </div>
     </section>
 
-    <div id="mini-countdown" class="reveal">
-        <span id="countdown-text">Cargando cuenta atrás...</span>
+    <div id="countdown-container" class="reveal">
+        <div class="countdown-box">
+            <span class="countdown-number" id="cd-months">0</span>
+            <span class="countdown-label">MESES</span>
+        </div>
+        <div class="countdown-box">
+            <span class="countdown-number" id="cd-days">0</span>
+            <span class="countdown-label">DÍAS</span>
+        </div>
+        <div class="countdown-box">
+            <span class="countdown-number" id="cd-hours">0</span>
+            <span class="countdown-label">HORAS</span>
+        </div>
+        <div class="countdown-box">
+            <span class="countdown-number" id="cd-minutes">0</span>
+            <span class="countdown-label">MIN</span>
+        </div>
+        <div class="countdown-box">
+            <span class="countdown-number" id="cd-seconds">0</span>
+            <span class="countdown-label">SEG</span>
+        </div>
     </div>
 
     <section id="itinerario">
@@ -527,7 +583,7 @@
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12328.796075936796!2d-4.838575000000001!3d39.9602495!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd401c6c63773b1b%3A0x40340f3be4bc520!2sTalavera%20de%20la%20Reina%2C%20Toledo!5e0!3m2!1ses!2ses!4v1700000000000!5m2!1ses!2ses" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
         <div class="reveal" style="text-align: center;">
-            <a href="https://maps.app.goo.gl/ejTh5By88DnZKVWK9" target="_blank" class="btn-green-corp">
+            <a href="https://maps.app.goo.gl/ejTh5By88DnZKVWK9" target="_blank" class="text-link-green">
                 Ver mapa completo
             </a>
         </div>
@@ -540,7 +596,7 @@
             <p>Para que ese día solo tengáis que preocuparos de disfrutar, porfa, dedicad un minuto a rellenar el cuestionario de confirmación. ¡Preparad las ganas, que nos vemos muy pronto!</p>
         </div>
         <div class="rsvp-accordion-wrapper reveal">
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLScn3pIyrI7JxGQMbNpknjZrcWFWiTnSsrkn2vIMlcWRbXUa1w/viewform?usp=header" target="_blank" class="btn-green-corp">
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLScn3pIyrI7JxGQMbNpknjZrcWFWiTnSsrkn2vIMlcWRbXUa1w/viewform?usp=header" target="_blank" class="text-link-green">
                 Rellena el cuestionario
             </a>
         </div>
@@ -664,25 +720,32 @@
             });
         });
 
-        // SCRIPT CUENTA ATRÁS (Meses, Días, Horas)
+        // SCRIPT CUENTA ATRÁS (Meses, Días, Horas, Min, Seg)
         const weddingDate = new Date("2026-10-03T17:00:00").getTime();
-        const countdownEl = document.getElementById("countdown-text");
-
+        
         setInterval(function() {
             const now = new Date().getTime();
             const distance = weddingDate - now;
 
             if (distance < 0) {
-                countdownEl.innerHTML = "¡YA ES EL GRAN DÍA!";
+                document.getElementById("countdown-container").innerHTML = "<div style='text-align:center; width:100%; font-weight:bold; color:var(--nav-bg);'>¡YA ES EL GRAN DÍA!</div>";
                 return;
             }
 
             const daysTotal = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            // Cálculo aproximado de meses
             const months = Math.floor(daysTotal / 30.44);
             const days = Math.floor(daysTotal % 30.44);
 
-            countdownEl.innerHTML = months + " MESES, " + days + " DÍAS Y " + hours + " HORAS";
+            document.getElementById("cd-months").innerText = months;
+            document.getElementById("cd-days").innerText = days;
+            document.getElementById("cd-hours").innerText = hours;
+            document.getElementById("cd-minutes").innerText = minutes;
+            document.getElementById("cd-seconds").innerText = seconds;
         }, 1000);
 
         function openModal(id) { document.getElementById('modal-'+id).style.display = 'block'; document.body.style.overflow = 'hidden'; }
