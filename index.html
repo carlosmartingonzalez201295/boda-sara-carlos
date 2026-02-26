@@ -134,8 +134,7 @@
             margin-bottom: 5px;
             text-transform: uppercase;
             letter-spacing: 2px;
-            text-shadow: 0 1px 3px rgba(255,255,255,0.9);
-            text-align: inherit; /* HEREDA LA ALINEACIÓN DEL CONTENEDOR */
+            text-shadow: 0 1px 3px rgba(255,255,255,0.9); 
         }
 
         .hero-date {
@@ -146,8 +145,6 @@
             line-height: 1;
             letter-spacing: 2px;
             text-shadow: 0 1px 3px rgba(255,255,255,0.9);
-            text-align: inherit; /* CORRECCIÓN: HEREDA LA ALINEACIÓN (DERECHA EN PC) */
-            margin-bottom: 0;
         }
 
         .scroll-indicator { 
@@ -316,7 +313,7 @@
         /* --- MODALES CON FONDO --- */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 2000; backdrop-filter: blur(3px); }
         .modal-content { 
-            /* Fondo estándar (blanco/floral claro) para la mayoría */
+            /* Fondo estándar */
             background: linear-gradient(rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.75)), var(--floral-bg);
             background-repeat: repeat; background-size: 400px;
             width: 100%; height: 100%; max-width: 100%; margin: 0; border-radius: 0; padding: 25px; overflow-y: auto; position: relative; animation: slideUp 0.3s; display: flex; flex-direction: column; align-items: center; 
@@ -390,20 +387,30 @@
                 height: 100vh;
             }
             
-            /* TEXTO PC: A LA DERECHA (right: 1%) Y ALINEADO A LA DERECHA */
+            /* TEXTO PC: A LA DERECHA (right: 2%) Y CENTRADO ENTRE SÍ */
             .hero-right-container {
                 position: absolute;
                 top: 25%;   
-                right: 1%;  /* Pegado a la derecha */
-                text-align: right; 
+                right: 2%;  /* Pegado a la derecha */
+                text-align: center; /* Alineación del texto centrada dentro del bloque */
                 transform: none;
                 background: none; 
                 padding: 0;
                 margin: 0;
             }
 
-            .hero-names { font-size: 3.5rem; text-shadow: 0 0 20px rgba(255,255,255,0.9), 0 2px 5px rgba(255,255,255,1); color: var(--secondary); text-align: right; }
-            .hero-date { font-size: 2.2rem; text-shadow: 0 0 20px rgba(255,255,255,0.9), 0 2px 5px rgba(255,255,255,1); color: var(--secondary); text-align: right; }
+            .hero-names { 
+                font-size: 3.5rem; 
+                text-shadow: 0 0 20px rgba(255,255,255,0.9), 0 2px 5px rgba(255,255,255,1); 
+                color: var(--secondary); 
+                text-align: center; /* Asegura el centrado */
+            }
+            .hero-date { 
+                font-size: 2.2rem; 
+                text-shadow: 0 0 20px rgba(255,255,255,0.9), 0 2px 5px rgba(255,255,255,1); 
+                color: var(--secondary); 
+                text-align: center; /* Asegura el centrado */
+            }
             
             .timeline { max-width: 800px; margin: 0 auto; }
             .cards-grid { display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 40px; }
