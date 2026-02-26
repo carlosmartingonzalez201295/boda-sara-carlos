@@ -169,7 +169,7 @@
         }
         .subtitle { display: block; text-align: center; font-size: 0.95rem; color: #555; margin: -30px auto 40px auto; font-style: italic; max-width: 90%; }
 
-        /* --- CUENTA ATRÁS (ESTILO NUDE) --- */
+        /* --- CUENTA ATRÁS (TRANSPARENTE CON BORDE FINO) --- */
         #countdown-container {
             display: flex;
             justify-content: center;
@@ -179,12 +179,12 @@
             flex-wrap: wrap;
         }
         .countdown-box {
-            background-color: transparent; 
+            background-color: transparent; /* Transparente */
             padding: 5px 8px;
             border-radius: 8px;
             text-align: center;
             min-width: 55px;
-            border: 1px solid var(--nav-bg); 
+            border: 1px solid var(--nav-bg); /* Borde finito verde */
         }
         .countdown-number {
             display: block;
@@ -401,35 +401,35 @@
                 padding-top: 80px; 
                 background-image: url('https://i.imgur.com/6AczGUN.jpeg'); 
                 background-size: cover; 
-                background-position: center 100px; 
+                background-position: center top; 
                 background-color: transparent;
                 height: 100vh;
             }
             
-            /* TEXTO PC: ALINEADO A LA DERECHA (SIN CENTRADO) */
+            /* TEXTO PC: A LA DERECHA (right: 3%) Y CENTRADO ENTRE SÍ */
             .hero-right-container {
                 position: absolute;
                 top: 25%;   
-                right: 5%;  /* Margen derecho */
-                text-align: right; /* Alineación del texto a la derecha */
+                right: 3%;  /* MOVIDO A LA DERECHA (LEJOS DEL CENTRO) */
+                text-align: center; /* PERO EL TEXTO DENTRO ESTÁ CENTRADO */
                 transform: none;
                 background: none; 
                 padding: 0;
                 margin: 0;
-                width: auto; 
+                width: auto; /* IMPORTANTE: OCUPA SOLO LO QUE NECESITA */
             }
 
             .hero-names { 
                 font-size: 3.5rem; 
                 text-shadow: 0 0 20px rgba(255,255,255,0.9), 0 2px 5px rgba(255,255,255,1); 
                 color: var(--secondary); 
-                text-align: right; /* Forzar alineación a la derecha */
+                text-align: center; /* Asegura el centrado */
             }
             .hero-date { 
                 font-size: 2.2rem; 
                 text-shadow: 0 0 20px rgba(255,255,255,0.9), 0 2px 5px rgba(255,255,255,1); 
                 color: var(--secondary); 
-                text-align: right; /* Forzar alineación a la derecha */
+                text-align: center; /* Asegura el centrado */
             }
             
             .timeline { max-width: 800px; margin: 0 auto; }
@@ -476,7 +476,7 @@
     <section id="bienvenida" style="padding-bottom: 20px;">
         <div class="text-block reveal">
             <p>¡Hola a todos! Hemos preparado este espacio para que podáis consultar toda la información necesaria sobre nuestra boda.</p> 
-            <p>Dicen que la felicidad se multiplica cuando se comparte y nosotros tenemos la suerte de teneros a vosotros.</p>
+            <p class="highlight-phrase">Dicen que la felicidad se multiplica cuando se comparte y nosotros tenemos la suerte de teneros a vosotros.</p>
             <p>En esta forma de ser, tan real y tan compartida, es donde aquí empieza mucho.</p>
             <p>¡Nos vemos muy pronto!</p>
             <p class="highlight-phrase" style="margin-top: 15px;">Sara y Carlos</p>
@@ -586,7 +586,7 @@
     <section id="confirmacion">
         <h2>Confirmación</h2>
         <div class="text-block reveal" style="margin-bottom: 30px;">
-            <p>Si estáis aquí es porque sois nuestra gente. <span style="font-family: var(--handwriting-font);">Gracias por ser nuestro equipo, nuestro apoyo y empezar con nosotros el futuro que empieza.</span></p>
+            <p>Si estáis aquí es porque sois nuestra gente. Gracias por ser nuestro equipo, nuestro apoyo y empezar con nosotros el futuro que empieza.</p>
             <p>Para que ese día solo tengáis que preocuparos de disfrutar, porfa, dedicad un minuto a rellenar el cuestionario de confirmación. ¡Preparad las ganas, que nos vemos muy pronto!</p>
         </div>
         <div class="rsvp-accordion-wrapper reveal">
