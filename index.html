@@ -86,10 +86,9 @@
         
         nav ul {
             position: fixed; top: 60px; right: 0; width: 300px; max-width: 80%; height: calc(100vh - 60px);
-            /* CAMBIO 4: Mismo fondo que el body en la versión móvil */
             background-color: var(--accent);
             background-image: none; 
-            isolation: isolate; /* Crea contexto para que el patrón no se salga */
+            isolation: isolate;
             opacity: 1; 
             flex-direction: column; align-items: center; justify-content: flex-start;
             padding-top: 20px; gap: 0; list-style: none;
@@ -97,7 +96,6 @@
             display: flex; box-shadow: -5px 0 15px rgba(0,0,0,0.1);
         }
 
-        /* CAMBIO 4: Patrón del menú móvil idéntico al de la web */
         nav ul::before {
             content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             background-image: var(--main-bg-pattern); 
@@ -114,7 +112,6 @@
             text-transform: uppercase; letter-spacing: 1px; text-decoration: none;
             position: relative; font-family: var(--handwriting-font); font-weight: bold;
             transition: all 0.3s ease;
-            /* CAMBIO 4: Fondo de los botones transparente para que se vea la textura */
             background: transparent; 
             margin-bottom: 2px;
         }
@@ -377,14 +374,13 @@
             margin-bottom: 8px;
         }
         
-        /* CAMBIO 2: Reducir dinámicamente el tamaño de la fecha para mantenerla en una línea */
         .custom-footer-date {
             font-family: var(--royal-font);
             color: var(--secondary);
             font-size: clamp(0.6rem, 2.5vw, 1rem); 
             letter-spacing: clamp(0.5px, 1vw, 3px); 
             font-weight: 400;
-            white-space: nowrap; /* Evita que salte de línea */
+            white-space: nowrap; 
         }
 
         /* --- MODALES CON FONDO --- */
@@ -436,7 +432,6 @@
                 opacity: 1;
                 isolation: auto;
             }
-            /* Esconde el patrón móvil en la vista de escritorio */
             nav ul::before { display: none; }
             
             nav li { width: auto; }
@@ -457,7 +452,6 @@
             }
             
             /* HERO PC */
-            /* CAMBIO 1: Ajustada la posición de la foto y el espacio para que empiece justo debajo de la franja del menú (60px) */
             .polaroid-hero { 
                 padding-top: 60px; 
                 background-image: url('https://i.imgur.com/6AczGUN.jpeg'); 
@@ -535,7 +529,7 @@
     <section id="bienvenida" style="padding-bottom: 20px;">
         <div class="text-block reveal">
             <p>¡Hola a todos! Hemos preparado este espacio para que podáis consultar toda la información necesaria sobre nuestra boda.</p> 
-            <p class="highlight-phrase" style="font-size: 1.6rem; line-height: 1.3; margin: 25px 0;">Dicen que la felicidad se multiplica cuando se comparte y nosotros tenemos la suerte de teneros a vosotros.</p>
+            <p class="highlight-phrase" style="font-size: 1.3rem; line-height: 1.4; margin: 20px 0;">Dicen que la felicidad se multiplica cuando se comparte y nosotros tenemos la suerte de teneros a vosotros.</p>
             <p>En esta forma de ser, tan real y tan compartida, es donde aquí empieza mucho.</p>
             <p>¡Nos vemos muy pronto!</p>
             <p class="highlight-phrase" style="margin-top: 15px;">Sara y Carlos</p>
@@ -645,7 +639,8 @@
     <section id="confirmacion">
         <h2>Confirmación</h2>
         <div class="text-block reveal" style="margin-bottom: 30px;">
-            <p>Si estáis aquí es porque sois nuestra gente. <span style="font-family: var(--handwriting-font);">Gracias por ser nuestro equipo, nuestro apoyo y empezar con nosotros el futuro que empieza.</span></p>
+            <p>Si estáis aquí es porque sois nuestra gente.</p>
+            <p class="highlight-phrase" style="font-size: 1.3rem; line-height: 1.4; margin: 20px 0;">Gracias por ser nuestro equipo, nuestro apoyo y empezar con nosotros el futuro que empieza.</p>
             <p>Para que ese día solo tengáis que preocuparos de disfrutar, porfa, dedicad un minuto a rellenar el cuestionario de confirmación. ¡Preparad las ganas, que nos vemos muy pronto!</p>
         </div>
         <div class="rsvp-accordion-wrapper reveal">
