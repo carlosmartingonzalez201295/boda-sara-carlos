@@ -6,12 +6,12 @@
     <meta name="format-detection" content="telephone=no">
     <title>Sara y Carlos</title>
     
-    <meta name="description" content="¡Hola a todos! Hemos preparado este espacio para que podáis consultar toda la información necesaria sobre nuestra boda.">
+    <meta name="description" content="Sara y Carlos - 3 de Octubre de 2026">
 
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://boda-sara-carlos.vercel.app/">
     <meta property="og:title" content="Sara y Carlos - 3 de Octubre de 2026">
-    <meta property="og:description" content="¡Hola a todos! Hemos preparado este espacio para que podáis consultar toda la información necesaria sobre nuestra boda.">
+    <meta property="og:description" content=" ">
     <meta property="og:image" itemprop="image" content="https://boda-sara-carlos.vercel.app/images/og-preview.png">
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="600">
@@ -618,7 +618,7 @@
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12328.796075936796!2d-4.838575000000001!3d39.9602495!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd401c6c63773b1b%3A0x40340f3be4bc520!2sTalavera%20de%20la%20Reina%2C%20Toledo!5e0!3m2!1ses!2ses!4v1700000000000!5m2!1ses!2ses" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
         <div class="reveal" style="text-align: center;">
-            <a href="https://maps.app.goo.gl/ejTh5By88DnZKVWK9" target="_blank" class="text-link-green">
+            <a href="https://maps.app.goo.gl/B9owRgkjuWpq3K567" target="_blank" rel="noopener noreferrer" class="text-link-green" id="mapa-completo-link" onclick="abrirGoogleMaps(event)">
                 Ver mapa completo
             </a>
         </div>
@@ -730,6 +730,15 @@
     <div id="modal-apt2" class="modal"><div class="modal-content"><div class="close-modal" onclick="closeModal('apt2')">×</div><h3>Rita Rita B&B</h3><p>C. Mesones, 3</p><div style="text-align:left; width:100%; margin-top:20px; background:#fafafa; padding:20px; border-radius:10px;"><strong>Apartamentos muy chulos (y baratos) a 6 min andando.</strong><br><br><strong>📞 Reserva: 925 80 17 17</strong><br><br>Disponibles en Booking</div></div></div>
     
     <script>
+        // Función para abrir siempre en Google Maps (app o web)
+        function abrirGoogleMaps(e) {
+            e.preventDefault();
+            // URL completa de la lista de Google Maps (resolución del shortlink)
+            var fullUrl = 'https://www.google.com/maps/@/data=!3m1!4b1!4m3!11m2!2s4fB_hXgPCUF5x0h0spl3UUWSCIe7vw!3e7?entry=tts';
+            // Abrir siempre en google.com/maps - funciona tanto si tiene la app como si no
+            window.open(fullUrl, '_blank', 'noopener,noreferrer');
+        }
+        
         const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzrJwolceA5-RvZgFqfbBT-Qp9_DB_v3U7YWjy4L-plFPQgBkCJEl_jlI4bSvXjFIIyXA/exec";
         
         window.history.scrollRestoration = 'manual';
